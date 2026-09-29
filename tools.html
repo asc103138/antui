@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技能總覽倉庫｜敦元老師的 AntiGravity AI Agent 技能庫總覽｜DUN-YUAN AI</title>
+  <meta name="description" content="敦元老師精心研發與收錄的 AntiGravity 全域技能庫總覽：涵蓋 RDQ 需求探索、PDF 萬用處理、第二大腦知識體系、NotebookLM、STEAM 社群公文自動化與系統診斷，100% 免費本機端運行。">
+  <meta name="keywords" content="AntiGravity, AI Agent, 敦元老師, 技能庫, 教學神器, 數位倉庫, 國小教育, 備課神器, 免費開源, DUN-YUAN AI">
+  <link rel="canonical" href="https://asc103138.github.io/antui/tools.html">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://asc103138.github.io/antui/tools.html">
+  <meta property="og:title" content="技能總覽倉庫｜敦元老師的 AntiGravity AI Agent 技能庫總覽">
+  <meta property="og:description" content="收錄 24+ 款實戰 AI Agent 全域技能與數位備課工作流，100% 本機端安全運行。">
+
+  <!-- Google Web Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Orbitron:wght@600;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-theme="light">
+  <!-- 頂部導覽列 Header -->
+  <header>
+    <div class="container nav-wrapper">
+      <a href="index.html" class="logo" aria-label="回到首頁">
+        <span class="logo-icon">🛸</span>
+        <span>DUN-YUAN</span>
+        <span class="logo-badge">SKILLS</span>
+      </a>
+
+      <button class="hamburger" id="hamburgerBtn" type="button" aria-label="切換選單" aria-expanded="false">☰</button>
+
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html" class="nav-link">首頁</a></li>
+        <li><a href="index.html#featured" class="nav-link">精選技能</a></li>
+        <li><a href="tools.html" class="nav-link active">技能倉庫</a></li>
+        <li><a href="index.html#about" class="nav-link">關於敦元老師</a></li>
+        <li><a href="index.html#works" class="nav-link">實戰成果</a></li>
+        <li>
+          <button class="theme-toggle" id="themeToggle" type="button" aria-label="切換日夜間模式">
+            <span class="theme-toggle-icon" aria-hidden="true">☾</span>
+            <span class="theme-toggle-text">夜間模式</span>
+          </button>
+        </li>
+        <li>
+          <a href="https://github.com/asc103138/antui" target="_blank" rel="noopener noreferrer" class="nav-github-btn">
+            <span>🐙 GitHub</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main class="container" style="padding-top: 24px;">
+    <!-- 頂部返回與導覽 -->
+    <div style="margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+      <a href="index.html" class="btn-outline" style="font-weight: 700;">
+        <span>🔙 回首頁</span>
+      </a>
+      <span style="font-size: 0.9rem; color: var(--page-muted);">
+        ✨ 技能庫已納管至 chezmoi 跨電腦同步
+      </span>
+    </div>
+
+    <!-- 標題區 -->
+    <section class="hero" style="padding: 20px 0 24px;">
+      <h1 class="hero-title" style="font-size: 2.3rem; margin-bottom: 10px;">🚀 AntiGravity 全域技能倉庫</h1>
+      <p class="hero-subtitle" style="margin-bottom: 0;">
+        隨選即用！支援模糊搜尋、分類過濾、觸發語一鍵複製與完整 SKILL.md 內文預覽。
+      </p>
+    </section>
+
+    <!-- 即時搜尋與分類篩選區塊 -->
+    <section class="search-section">
+      <div class="search-input-box">
+        <span class="search-icon" aria-hidden="true">🔍</span>
+        <input type="text" id="toolSearchInput" class="search-input" placeholder="搜尋技能名稱、關鍵字（例如：RDQ、PDF、Obsidian、出題、Whisper、chezmoi...）" autocomplete="off" aria-label="搜尋技能">
+        <button type="button" id="toolSearchClearBtn" class="search-clear-btn" aria-label="清除搜尋">✕</button>
+      </div>
+
+      <!-- 熱門關鍵字標籤 -->
+      <div class="filter-pills-row">
+        <span class="filter-label">🔥 熱門檢索：</span>
+        <button type="button" class="pill-btn hot-keyword-pill active" data-keyword="">全部</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="RDQ">RDQ 訪談法</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="PDF">PDF 萬用處理</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="第二大腦">第二大腦</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="NotebookLM">NotebookLM</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="語音">語音字幕</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="chezmoi">chezmoi 同步</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="STEAM">STEAM 公文</button>
+        <button type="button" class="pill-btn hot-keyword-pill" data-keyword="診斷">開機診斷</button>
+      </div>
+
+      <!-- 快速類別導覽列 -->
+      <div class="filter-pills-row" id="categoryQuickNav" style="margin-top: 14px;">
+        <!-- 由 JavaScript 動態產生 -->
+      </div>
+
+      <div class="search-status-bar">
+        <span id="searchCountBadge">正在載入技能庫...</span>
+        <span style="font-size: 0.82rem; color: var(--page-muted);">💡 點擊卡片上的「觸發語」可直接複製提示詞</span>
+      </div>
+    </section>
+
+    <!-- 完整技能分類清單 -->
+    <div id="skills-container" style="margin-bottom: 60px;">
+      <div style="text-align: center; width: 100%; padding: 40px;">技能庫載入中...</div>
+    </div>
+  </main>
+
+  <!-- 頁尾 Footer -->
+  <footer>
+    <div class="container footer-wrapper">
+      <div class="footer-left">
+        <p style="font-weight: 700; color: var(--page-text); margin-bottom: 4px;">&copy; 2026 DUN-YUAN AI · 敦元老師的 AntiGravity 技能倉庫</p>
+        <p>致力推動教育數位轉型 · AI Agent 實戰賦能 · 100% 本機端隱私保護</p>
+      </div>
+      <div class="footer-right" style="display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+        <div class="footer-stats-card">
+          <span style="display: inline-flex; align-items: center; gap: 6px;">
+            <span class="status-dot"></span>
+            <span>服務正常</span>
+          </span>
+          <span class="stat-divider"></span>
+          <span>🛠️ 技能總數：<strong id="footerTotalSkills">24</strong> 款</span>
+        </div>
+        <button type="button" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">↑ 返回頂部</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SKILL.md 內文閱讀彈窗 (Modal Viewer) -->
+  <div class="modal-overlay" id="skillModalOverlay" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-area">
+          <h3 class="modal-skill-title" id="modalSkillTitle">技能詳細指引</h3>
+          <span class="badge-tag" id="modalSkillCategory">分類標籤</span>
+        </div>
+        <button type="button" class="modal-close-btn" id="modalCloseBtn" aria-label="關閉視窗">&times;</button>
+      </div>
+
+      <div class="modal-body" id="modalSkillBody">
+        <div style="text-align: center; padding: 40px; color: var(--page-muted);">載入中...</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn-primary" onclick="copyActiveModalSkill()">
+          <span>📋 複製全篇 Skill 規格</span>
+        </button>
+        <button type="button" class="btn-outline" id="modalFooterCloseBtn">
+          <span>關閉</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

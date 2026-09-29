@@ -38,8 +38,19 @@
 - [x] 研讀奕鈞老師「PDF 萬用工具 v3.1」並升級全域文書處理技能
   - 升級 `14-advanced-docs`：新增高畫質黑白灰階轉換（省墨列印）、自訂壓縮檔案瘦身、單/多頁旋轉校正、拆分轉 PNG 打包 ZIP、重編標準頁碼與半透明浮水印
   - 同步將最新技能版本推送至 `asc103138/dotfiles`
+- [x] 建置「敦元老師的 AntiGravity 技能倉庫」公開展示網站（1:1 參照 ijun-ai.com 風格與功能規格）
+  - 建立全靜態網站架構（`index.html`, `tools.html`, `style.css`, `script.js`, `data.json`），免額外工具鏈即可直出
+  - 完美重現 ijun-ai.com 高質感日夜雙主題（日間溫暖米白+亮橘 / 夜間深邃海藍+科技青色）
+  - 實作即時關鍵字搜尋、熱門快搜標籤（RDQ、PDF、第二大腦、NotebookLM、chezmoi、STEAM 等）與六大類別快速導覽
+  - 打造互動式 `SKILL.md` 內文彈窗閱讀器（含輕量 Markdown 解析、程式碼高亮、引用塊與一鍵複製完整 Prompt 規格）
+  - 實作觸發語一鍵複製與 Toast 即時通知反饋
+  - 撰寫 `scripts/build_site_data.py` 自動化建置腳本，自動掃描收錄 25 款全域與本地技能至 `data.json` 並備份於 `skills_docs/`
+  - 經 Playwright MCP 實體瀏覽器渲染測試（日夜切換、彈窗閱讀、分類過濾與捲軸均通過驗證）
+  - 調用 `antigravity-draw`（04-draw）生圖技能為 7 大核心技能（RDQ、PDF進階文件處理、教師第二大腦、NotebookLM、chezmoi跨裝置同步、STEAM社群公文、素養命題助手）生成專屬 16:9 3D 全息科技封面縮圖（存放於 `assets/covers/`），並於前端實作無圖卡片自動幾何科技漸層封套（Fallback Cover）
+  - 更新 `README.md` 詳細提供本機預覽指令與 GitHub Pages 免費一鍵公開部署指南
 
 ## 下一步規劃
+- [ ] 將本次網站成果提交至 GitHub，並於 `asc103138/antui` 開啟 GitHub Pages 公開部署
 - [ ] 支援更多科目（國文、自然、社會、英文）之生活情境出題範本
 - [ ] 結合 Antigravity 內建生圖（Nano Banana Pro）自動生成試卷情境插圖
 - [ ] 若需合成影片，執行 Edge-TTS 旁白生成與 Playwright/FFmpeg 影音渲染匯出 MP4
