@@ -3,7 +3,7 @@
 ## 專案基本資訊
 - **專案名稱**：antui
 - **主要用途**：工具庫 / 套件開發
-- **Obsidian 對應筆記**：`尚未設定`（若有外部 vault 筆記，請於此處填入本機路徑；注意：本機路徑勿 commit 到公開儲存庫）
+- **Obsidian 對應筆記**：`D:\opencode\我的筆記\antui\專案工作流程.md`（注意：本機路徑勿 commit 到公開儲存庫）
 
 ## 開工流程
 1. 讀取 `AGENTS.md`、`ANTIGRAVITY.md`、`handoff.md`。

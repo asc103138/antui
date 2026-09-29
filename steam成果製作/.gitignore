@@ -1,0 +1,33 @@
+# macOS & Cloud Storage
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+__MACOSX/
+*.tmp
+*.tmp.*
+
+# Python & Environment
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Large binary files & photos
+*.JPG
+*.jpg
+*.jpeg
+*.PNG
+*.png
+!references/**/*.png
+!references/**/*.jpg
+
+# Large scans & generated activity folders
+簽 名 後 紙 本 申 請 表.pdf
+0520/
+0603/
+0810/
+中科核可版申請書/
+[0-9][0-9][0-9][0-9]/
