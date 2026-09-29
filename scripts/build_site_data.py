@@ -43,6 +43,16 @@ CATEGORY_MAP = {
 
     "steam-community-docs": {"cat": "🏫 教育實戰與社群成果", "badge": "公文行政", "icon": "🏆", "friendly_name": "STEAM 教師社群成果表、簽到表與領據生成"},
     "competency-test-generator": {"cat": "🏫 教育實戰與社群成果", "badge": "考卷排版", "icon": "📝", "friendly_name": "108 課綱素養命題助手 (Word 考卷自動排版)"},
+    "render-zhuyin-web": {"cat": "🏫 教育實戰與社群成果", "badge": "國語排版", "icon": "🔤", "friendly_name": "中文直式/橫式注音標註與生字試卷生成"},
+
+    "16-huggingface": {"cat": "☁️ 雲端後端與本地模型", "badge": "AI Hub", "icon": "🤗", "friendly_name": "Hugging Face 全域工作流 (MCP / CLI / Skills)"},
+    "hf-cli": {"cat": "⚙️ 環境工程與系統維護", "badge": "Hub CLI", "icon": "🤗", "friendly_name": "Hugging Face Hub CLI 終端操作指南"},
+    "huggingface-datasets": {"cat": "📑 文件與多媒體神器", "badge": "資料集", "icon": "📚", "friendly_name": "Hugging Face Datasets 檢視與下載"},
+    "huggingface-gradio": {"cat": "📑 文件與多媒體神器", "badge": "Web UI", "icon": "🖼️", "friendly_name": "Gradio Web UI 與互動展示建置"},
+    "huggingface-best": {"cat": "🎯 智能工作流與方法論", "badge": "模型評測", "icon": "🏆", "friendly_name": "最佳 AI 模型推薦與排行榜評估"},
+    "huggingface-spaces": {"cat": "☁️ 雲端後端與本地模型", "badge": "ZeroGPU", "icon": "🚀", "friendly_name": "Hugging Face Spaces 部署與設定"},
+    "huggingface-papers": {"cat": "🧠 第二大腦與筆記生態", "badge": "每日論文", "icon": "📑", "friendly_name": "Hugging Face 每日精選論文閱讀"},
+    "huggingface-local-models": {"cat": "☁️ 雲端後端與本地模型", "badge": "離線推論", "icon": "💻", "friendly_name": "本機 GGUF / llama.cpp 模型選型"},
 }
 
 def parse_frontmatter(content):
@@ -147,7 +157,7 @@ def main():
             "triggers": triggers,
             "doc_filename": f"{folder}.md",
             "doc_content": body,
-            "showOnMain": folder in ["12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs"]
+            "showOnMain": folder in ["12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface"]
         })
 
     # 分類匯總

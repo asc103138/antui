@@ -533,6 +533,11 @@ header {
   letter-spacing: -0.5px;
 }
 
+/* 全域錨點滾動邊距，避免被 sticky header 遮蔽標題 */
+section[id], .category-block, #skills-container {
+  scroll-margin-top: 85px;
+}
+
 .category-block {
   margin-bottom: 36px;
 }
@@ -1311,21 +1316,76 @@ footer {
   }
 
   .nav-menu {
-    position: absolute;
+    position: fixed;
     top: 72px;
     left: 0;
     width: 100%;
-    background: var(--nav-bg);
+    height: calc(100vh - 72px);
+    background: var(--page-surface-strong);
     border-bottom: 1px solid var(--nav-border);
     flex-direction: column;
-    padding: 20px;
+    align-items: stretch;
+    padding: 24px 20px;
     gap: 14px;
     display: none;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 1001;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .nav-menu.open {
     display: flex;
+  }
+
+  .nav-menu .nav-link {
+    width: 100%;
+    text-align: center;
+    font-size: 1.05rem;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    background: var(--page-bg);
+    border: 1px solid var(--page-border);
+    color: var(--page-text);
+  }
+
+  .nav-menu .theme-toggle {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  .nav-menu .nav-github-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 16px;
+    font-size: 1rem;
+  }
+
+  /* 行動端快速導覽列改為原生橫向滑動軸（Horizontal Scroll Ribbon） */
+  .filter-pills-row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    gap: 8px;
+  }
+
+  .filter-pills-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .pill-btn, .hot-keyword-pill {
+    flex-shrink: 0;
+    padding: 8px 16px;
+    font-size: 0.88rem;
+  }
+
+  .filter-label {
+    flex-shrink: 0;
   }
 
   .hero {

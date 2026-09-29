@@ -63,17 +63,42 @@ function initHamburger() {
   const navMenu = document.getElementById('navMenu');
 
   if (hamburgerBtn && navMenu) {
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       navMenu.classList.toggle('open');
       const expanded = navMenu.classList.contains('open');
       hamburgerBtn.setAttribute('aria-expanded', expanded);
     });
 
-    // 點擊導覽連結後自動關閉選單
+    // 點擊導覽連結後平滑捲動並關閉選單（精準扣除 sticky header 高度）
     navMenu.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', () => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
         navMenu.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+
+        if (href && href.startsWith('#')) {
+          const targetEl = document.querySelector(href);
+          if (targetEl) {
+            e.preventDefault();
+            const headerOffset = 80;
+            const elementPosition = targetEl.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: 'smooth'
+            });
+          }
+        }
       });
+    });
+
+    // 點擊外側空白處自動關閉手機選單
+    document.addEventListener('click', (e) => {
+      if (!navMenu.contains(e.target) && !hamburgerBtn.contains(e.target) && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+      }
     });
   }
 }
@@ -164,15 +189,23 @@ function renderFilterPills(categories) {
   const container = document.getElementById('categoryQuickNav');
   if (!container || !categories) return;
 
-  let html = `<button type="button" class="pill-btn active" onclick="filterByCategory('ALL')">全部 (${siteData.skills.length})</button>`;
+  let html = `<button type="button" class="pill-btn active" data-category="ALL">全部 (${siteData.skills.length})</button>`;
   
   categories.forEach(cat => {
     // 擷取簡短標籤名稱
     const shortName = cat.category.replace(/^[^\w\s\u4e00-\u9fa5]+/, '').trim();
-    html += `<button type="button" class="pill-btn" onclick="filterByCategory('${escapeHtml(cat.category)}')">${escapeHtml(shortName)} (${cat.count})</button>`;
+    html += `<button type="button" class="pill-btn" data-category="${escapeHtml(cat.category)}">${escapeHtml(shortName)} (${cat.count})</button>`;
   });
 
   container.innerHTML = html;
+
+  container.querySelectorAll('.pill-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cat = btn.getAttribute('data-category');
+      filterByCategory(cat, true);
+    });
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -185,6 +218,13 @@ function renderSkillsCatalog(categories) {
   const query = currentSearchQuery.trim().toLowerCase();
   let totalVisible = 0;
   let html = '';
+
+  // 搜尋或特定類別篩選時，暫時隱藏頂部固定精選區塊，直接將符合結果呈現在最上方
+  const featuredSection = document.getElementById('featured');
+  if (featuredSection) {
+    const isFiltering = Boolean(query || currentCategoryFilter !== 'ALL');
+    featuredSection.style.display = isFiltering ? 'none' : '';
+  }
 
   categories.forEach((cat, idx) => {
     // 篩選當前類別
@@ -320,7 +360,22 @@ function setupSearchEvents() {
       if (clearBtn) {
         clearBtn.style.display = currentSearchQuery ? 'flex' : 'none';
       }
+      // 輸入關鍵字時自動切回全局搜尋，避免類別篩選衝突
+      if (currentSearchQuery.trim()) {
+        currentCategoryFilter = 'ALL';
+        document.querySelectorAll('#categoryQuickNav .pill-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-category') === 'ALL');
+        });
+      }
       renderSkillsCatalog(siteData.projects_by_category);
+    });
+
+    // 行動載具按 Enter/搜尋後自動收起鍵盤並平滑捲動至目錄區
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        input.blur();
+        scrollToSkillsSection();
+      }
     });
   }
 
@@ -332,9 +387,18 @@ function setupSearchEvents() {
 
   // 熱門關鍵字按鈕點擊
   document.querySelectorAll('.hot-keyword-pill').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       document.querySelectorAll('.hot-keyword-pill').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+
+      // 切換熱門關鍵字時重設類別為全部
+      currentCategoryFilter = 'ALL';
+      document.querySelectorAll('#categoryQuickNav .pill-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-category') === 'ALL');
+      });
+
       const keyword = btn.getAttribute('data-keyword') || '';
       if (input) {
         input.value = keyword;
@@ -342,16 +406,52 @@ function setupSearchEvents() {
         if (clearBtn) clearBtn.style.display = keyword ? 'flex' : 'none';
       }
       renderSkillsCatalog(siteData.projects_by_category);
+      if (keyword) {
+        scrollToSkillsSection();
+      }
     });
   });
 }
 
-function filterByCategory(category) {
+function scrollToSkillsSection() {
+  const target = document.getElementById('skills');
+  if (target) {
+    const headerOffset = 85;
+    const elementPosition = target.getBoundingClientRect().top;
+    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  }
+}
+
+function filterByCategory(category, autoScroll = true) {
   currentCategoryFilter = category;
+
+  // 切換特定分類時清空搜尋字串與熱門關鍵字，避免交互衝突
+  const input = document.getElementById('toolSearchInput');
+  const clearBtn = document.getElementById('toolSearchClearBtn');
+  if (input) input.value = '';
+  if (clearBtn) clearBtn.style.display = 'none';
+  currentSearchQuery = '';
+  document.querySelectorAll('.hot-keyword-pill').forEach(b => b.classList.remove('active'));
+  const firstHot = document.querySelector('.hot-keyword-pill');
+  if (firstHot) firstHot.classList.add('active');
+
   document.querySelectorAll('#categoryQuickNav .pill-btn').forEach(btn => {
-    btn.classList.toggle('active', btn.textContent.includes(category === 'ALL' ? '全部' : category.replace(/^[^\w\s\u4e00-\u9fa5]+/, '').trim()));
+    const isMatch = btn.getAttribute('data-category') === category;
+    btn.classList.toggle('active', isMatch);
+    if (isMatch) {
+      btn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
   });
+
   renderSkillsCatalog(siteData.projects_by_category);
+
+  if (autoScroll) {
+    scrollToSkillsSection();
+  }
 }
 
 function resetSearch() {
@@ -364,6 +464,9 @@ function resetSearch() {
   document.querySelectorAll('.hot-keyword-pill').forEach(b => b.classList.remove('active'));
   const firstHot = document.querySelector('.hot-keyword-pill');
   if (firstHot) firstHot.classList.add('active');
+  document.querySelectorAll('#categoryQuickNav .pill-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-category') === 'ALL');
+  });
   renderSkillsCatalog(siteData.projects_by_category);
 }
 

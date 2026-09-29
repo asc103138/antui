@@ -52,11 +52,32 @@
   - 儲存庫切換為公開（Public），對應公開分享目標
   - 調用 GitHub Pages API 正式啟用，並經 GitHub Actions `pages-build-deployment` 自動編譯推送
   - 線上生產環境網址實測驗證通過（HTTP 200 OK）：`https://asc103138.github.io/antui/`
+- [x] 完成 Hugging Face 全域生態掛接與展示網站技能庫擴充（技能庫收錄擴增至 34 款）
+  - 全域註冊 Hugging Face 官方 MCP 伺服器（`mcp_config.json`，支援端點 `https://huggingface.co/mcp`）
+  - 透過 `uv tool` 全域安裝最新 `hf` CLI（v2.0.0）終端工具，可直接於 PowerShell 呼叫
+  - 新增全域 `16-huggingface` 技能，並同步 7 大官方 Agent Skills（`hf-cli`、`huggingface-datasets`、`huggingface-gradio`、`huggingface-best`、`huggingface-spaces`、`huggingface-papers`、`huggingface-local-models`）
+  - 更新 `scripts/build_site_data.py` 分類與首頁推薦，重新產出 `data.json` 與 `skills_docs/`
+  - 更新全域 `00-install-all` 技能清單納入 `16-huggingface`
+  - 將 MCP 設定與新增技能檔案納入 `chezmoi` 跨電腦同步管理
+- [x] 修復展示網站在行動載具（Mobile）上索引與導覽失效問題
+  - 修正 Sticky Header 遮蔽問題：全域區塊與分類卡片加入 `scroll-margin-top: 85px`，解決行動裝置跳轉時標題被頂部 72px 導覽列遮蔽之問題。
+  - 行動版導覽抽屜（Hamburger Menu）體驗升級：改為全螢幕抽屜覆蓋（`fixed` + 滿版按鈕），點擊項目後精準平滑滾動並自動收合選單，點擊外側空白自動關閉。
+  - 橫向滑動分類軌（Scroll Ribbon）：行動端分類標籤與熱門快搜標籤改為原生橫向流暢滑動，避免大量標籤垂直換行推擠畫面。
+  - 分類篩選與熱門關鍵字連動自動捲動：點擊分類膠囊或熱門關鍵字後，即時平滑捲動至技能目錄區，並將當前選中膠囊自動置中於橫向軌道；過濾狀態下自動隱藏靜態精選區塊，直接呈現篩選結果，徹底解決手機上點擊無視覺反應的假死問題。
+  - 輸入框支援 Enter 鍵收起虛擬鍵盤並平滑捲動，並協調搜尋字串與分類篩選之切換邏輯，杜絕跨條件衝突。
+  - 經 Playwright MCP 實體模擬 iPhone 390x844 視窗完成漢堡選單、分類點選、關鍵字檢索、彈窗閱讀與重置搜尋之端到端驗證。
+
+- [x] 完成 108 課綱國小四年級（第二學習階段）國語文、數學、社會三大學科生活素養命題模組研發
+  - 國語文模組：《走讀家鄉尋找老手藝：傳統竹編與綠色生活》（對應 5-Ⅱ-3、5-Ⅱ-4、6-Ⅱ-1、國-E-A1、國-E-B1、國-E-C2），設計篇章文意推論、圖表數據分析、給阿公的感謝便條生活應用寫作（附 4 級 Rubrics）。
+  - 數學模組：《校園綠色市集與園藝花圃規劃》（對應 N-4-2、S-4-3、D-4-1、數-E-A1、數-E-A2、數-E-B1、數-E-B2、數-E-C1），設計四則混合括號運算、長方形中央步道扣除之實際種植面積分割計算、小白菜採收折線圖數據增長差值分析與低溫變因決策。
+  - 社會模組：《家鄉的生命之泉——百年老水圳與水資源守護》（對應 1b-Ⅱ-1、2a-Ⅱ-1、3a-Ⅱ-1、社-E-A1、社-E-B1、社-E-B3、社-E-C1），設計水圳開鑿史地脈絡價值、水圳上中下游水質檢測表污染判讀、小學生具體護水方案公民行動倡議（附 4 級 Rubrics）。
+  - 調用生圖工具（04-draw / Nano Banana Pro）生成三張適合學校黑白試卷列印的高對比黑白線稿情境插圖，存放於 `gem/assets/exam_images/`。
+  - 成功完成 Word 自動排版輸出，於 `gem/output/` 產出學生卷（3份）與教師詳解卷（3份），含素養雙向細目表與評分規準。
+  - 升級 `competency-test-generator/SKILL.md`，並更新展示網站 `data.json` 與 `skills_docs/`。
 
 ## 下一步規劃
-- [ ] 支援更多科目（國文、自然、社會、英文）之生活情境出題範本
-- [ ] 結合 Antigravity 內建生圖（Nano Banana Pro）自動生成試卷情境插圖
-- [ ] 若需合成影片，執行 Edge-TTS 旁白生成與 Playwright/FFmpeg 影音渲染匯出 MP4
+- [ ] 配合教師授課進度與各版本教科書（康軒、翰林、南一）進一步微調單元題庫
+- [ ] 探討將試卷直接轉存 PDF 列印檔之自動化流程（結合 14-advanced-docs）
 - [ ] 評估是否將四段鏡頭畫面繪圖示範加入 Canva 範本投影片中
 - [ ] 確定套件的程式語言與建置工具（例如 TypeScript / Vite / Rollup / npm / pnpm）
 - [ ] 初始化 `package.json` 或專案設定檔

@@ -22,6 +22,7 @@ description: 一次安裝所有 AntiGravity 懶人包技能。說「全部安裝
 13. **13-video-specs** — 三類影片製作規範（活動紀錄／教學影片／社群科普）
 14. **14-advanced-docs** — 進階文件處理工具包（Word / PDF / Excel / 圖片自動化）
 15. **15-windows-boot-diagnostics** — Windows 開機與登入後效能診斷（開機事件／啟動來源／系統負載／安全與同步安全稽核）
+16. **16-huggingface** — 掛接 Hugging Face 官方生態（MCP 伺服器、hf CLI、Agent Skills 與模型/資料集/Spaces 工作流）
 
 每完成一個報告進度，最終回報總表。
 已安裝的工具自動跳過。
