@@ -48,9 +48,12 @@
   - 經 Playwright MCP 實體瀏覽器渲染測試（日夜切換、彈窗閱讀、分類過濾與捲軸均通過驗證）
   - 調用 `antigravity-draw`（04-draw）生圖技能為 7 大核心技能（RDQ、PDF進階文件處理、教師第二大腦、NotebookLM、chezmoi跨裝置同步、STEAM社群公文、素養命題助手）生成專屬 16:9 3D 全息科技封面縮圖（存放於 `assets/covers/`），並於前端實作無圖卡片自動幾何科技漸層封套（Fallback Cover）
   - 更新 `README.md` 詳細提供本機預覽指令與 GitHub Pages 免費一鍵公開部署指南
+- [x] 將儲存庫切換為 Public 並正式完成 GitHub Pages 自動建置部署
+  - 儲存庫切換為公開（Public），對應公開分享目標
+  - 調用 GitHub Pages API 正式啟用，並經 GitHub Actions `pages-build-deployment` 自動編譯推送
+  - 線上生產環境網址實測驗證通過（HTTP 200 OK）：`https://asc103138.github.io/antui/`
 
 ## 下一步規劃
-- [ ] 將本次網站成果提交至 GitHub，並於 `asc103138/antui` 開啟 GitHub Pages 公開部署
 - [ ] 支援更多科目（國文、自然、社會、英文）之生活情境出題範本
 - [ ] 結合 Antigravity 內建生圖（Nano Banana Pro）自動生成試卷情境插圖
 - [ ] 若需合成影片，執行 Edge-TTS 旁白生成與 Playwright/FFmpeg 影音渲染匯出 MP4
