@@ -19,7 +19,25 @@
   - 同步部署 `steam-community-docs` 全域技能（`scripts/`, `references/templates/`, `assets/`）
   - 完成 Windows 11 Word 原生轉存 PDF 與 Edge 海報渲染環境
   - 預先生成 115 年 10 月 30 日活動簽到表（內聘講師：王怡婷 老師）於 `steam成果製作/1030/` 目錄
-
+- [x] 整合 AntiGravity 2 全域技能庫與跨電腦同步架構
+  - 盤點並補齊全域 23 個技能，新增 7 大核心主題（`02-essentials`, `04-github-obsidian`, `06-second-brain`, `07-supabase`, `09-ollama`, `10-gemini`, `13-chezmoi`）
+  - 升級 `01-notebooklm`：導入 6 階段狀態機、防循環規則與 `Test-NotebookLMConnection.ps1` 診斷腳本
+  - 設定 Windows 使用者全域環境變數 `PYTHONUTF8 = 1`（防呆 CP950 編碼問題）
+  - 設定 `GEMINI_API_KEY` 使用者環境變數並通過 Google AI Studio 唯讀連線測試（HTTP 200 OK）
+- [x] 建立 chezmoi 跨電腦同步系統與新私有儲存庫
+  - 安裝 `chezmoi v2.73.0`，全域技能與 MCP 設定納管並推送至私有庫 `asc103138/dotfiles`
+  - 第二台電腦只需執行 `chezmoi init --apply asc103138/dotfiles` 即可一鍵還原技能
+- [x] 完成 GitHub 帳號切換與專案遷移
+  - GitHub CLI 認證切換至作用中帳號 `asc103138`（謝敦元）
+  - Git 全域提交作者更新為 `謝敦元 <305822202+asc103138@users.noreply.github.com>`
+  - 建立專屬私有儲存庫 `asc103138/antui`，切換 remote 並完成初次推送
+- [x] 對接 Obsidian 本機第二大腦駕駛艙
+  - Vault 路徑：`D:\opencode\我的筆記`
+  - 建立專案駕駛艙筆記：`D:\opencode\我的筆記\antui\專案工作流程.md`
+  - 更新 `AGENTS.md` 自動連結駕駛艙
+- [x] 研讀奕鈞老師「PDF 萬用工具 v3.1」並升級全域文書處理技能
+  - 升級 `14-advanced-docs`：新增高畫質黑白灰階轉換（省墨列印）、自訂壓縮檔案瘦身、單/多頁旋轉校正、拆分轉 PNG 打包 ZIP、重編標準頁碼與半透明浮水印
+  - 同步將最新技能版本推送至 `asc103138/dotfiles`
 
 ## 下一步規劃
 - [ ] 支援更多科目（國文、自然、社會、英文）之生活情境出題範本
@@ -29,6 +47,9 @@
 - [ ] 確定套件的程式語言與建置工具（例如 TypeScript / Vite / Rollup / npm / pnpm）
 - [ ] 初始化 `package.json` 或專案設定檔
 - [ ] 開始核心模組/工具功能實作
+- [ ] 於第二台電腦透過 `chezmoi init --apply asc103138/dotfiles` 驗證一鍵同步
 
 ## 踩坑與注意事項
+- **Windows CP950 編碼解法**：已永久在使用者環境變數設定 `PYTHONUTF8 = 1`，避免 Python、nlm、uv 輸出中文字元時拋出 `UnicodeDecodeError`。
+- **機敏資訊隔離原則**：API 金鑰與 Token 嚴禁進入 Git 儲存庫，chezmoi 只同步指令與可攜式設定，每台電腦獨立驗證授權。
 - Google Gemini 外部分享連結預設需登入且常隱藏 Instructions，若無法直接複製可由 Gem 自報家門或直接根據科目/年級/單元由 Agent 生成標準 108 課綱試題。
