@@ -75,13 +75,22 @@
   - 成功完成 Word 自動排版輸出，於 `gem/output/` 產出學生卷（3份）與教師詳解卷（3份），含素養雙向細目表與評分規準。
   - 升級 `competency-test-generator/SKILL.md`，並更新展示網站 `data.json` 與 `skills_docs/`。
 
+- [x] 完成 micro:bit 融入國小資訊教育 100 篇系統性文獻回顧（PRISMA 矩陣與 CSV 資料庫）
+  - 嚴格落實指導教授「完全屏除主觀自陳問卷」之要求，全數收錄客觀成就測驗、實作規準盲評（ICC 信度）、程式碼複雜度指標與系統日誌行為數據。
+  - 完整收錄 100 篇國內頂尖師培碩博士論文與國際頂刊（Computers & Education, IEEE TLT, ACM TOCE/SIGCSE, BJET），涵蓋五大核心向度（Cluster A 客觀測驗 35 篇、Cluster B 實作規準 15 篇、Cluster C 代碼結構 20 篇、Cluster D 跨域STEAM 15 篇、Cluster E GenAI鷹架與PRIMM 15 篇）。
+  - 產出 Markdown 矩陣總表 [microbit_literature_matrix.md](file:///d:/antui/research/microbit_literature_matrix.md) 與 Excel 專用 [microbit_literature_matrix.csv](file:///d:/antui/research/microbit_literature_matrix.csv)，並提供自動化匯出腳本 `scripts/export_literature_matrix.py`。
+- [x] 完成 NotebookLM 專屬研讀庫建置與雙人學術 Podcast（Audio Overview）生成
+  - 建立研讀庫「micro:bit 融入國小資訊教育 100 篇文獻探討研究庫」（ID: `d8457d44-8433-43b2-a882-8233cf1c8cc0`），上傳並成功索引 100 篇客觀文獻矩陣。
+  - 啟動 Studio 雙人對談音訊（Audio Overview，Artifact ID: `969c8e08-8a6c-48e3-b570-f1fb9decd876`），以繁體中文深入剖析「屏除自陳問卷、轉向三大客觀評量取徑」之學術典範轉移。
+  - 驗證跨文獻語意檢索與提問範本，可即時輔助第二章文獻探討與教育統計設計。
+
 ## 下一步規劃
+- [ ] 聆聽並下載 NotebookLM 生成之雙人學術對談 Podcast
+- [ ] 依據 100 篇文獻與研究變項，草擬論文第二章文獻探討（2.1 實體運算評量演進、2.2 Bebras客觀測驗與實作規準雙軌設計）
+- [ ] 規劃教育統計分析架構（ANCOVA 迴歸同質性檢定、二因子混合設計 ANOVA、ICC 雙盲評分者信度標準作業流程）
 - [ ] 配合教師授課進度與各版本教科書（康軒、翰林、南一）進一步微調單元題庫
 - [ ] 探討將試卷直接轉存 PDF 列印檔之自動化流程（結合 14-advanced-docs）
-- [ ] 評估是否將四段鏡頭畫面繪圖示範加入 Canva 範本投影片中
 - [ ] 確定套件的程式語言與建置工具（例如 TypeScript / Vite / Rollup / npm / pnpm）
-- [ ] 初始化 `package.json` 或專案設定檔
-- [ ] 開始核心模組/工具功能實作
 - [ ] 於第二台電腦透過 `chezmoi init --apply asc103138/dotfiles` 驗證一鍵同步
 
 ## 踩坑與注意事項
