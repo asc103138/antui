@@ -44,6 +44,7 @@ CATEGORY_MAP = {
     "steam-community-docs": {"cat": "🏫 教育實戰與社群成果", "badge": "公文行政", "icon": "🏆", "friendly_name": "STEAM 教師社群成果表、簽到表與領據生成"},
     "competency-test-generator": {"cat": "🏫 教育實戰與社群成果", "badge": "考卷排版", "icon": "📝", "friendly_name": "108 課綱素養命題助手 (Word 考卷自動排版)"},
     "render-zhuyin-web": {"cat": "🏫 教育實戰與社群成果", "badge": "國語排版", "icon": "🔤", "friendly_name": "中文直式/橫式注音標註與生字試卷生成"},
+    "school-language-contest-coach": {"cat": "🏫 教育實戰與社群成果", "badge": "競賽教練", "icon": "🏅", "friendly_name": "校內國語文競賽全方位培訓教材生成器"},
 
     "16-huggingface": {"cat": "☁️ 雲端後端與本地模型", "badge": "AI Hub", "icon": "🤗", "friendly_name": "Hugging Face 全域工作流 (MCP / CLI / Skills)"},
     "hf-cli": {"cat": "⚙️ 環境工程與系統維護", "badge": "Hub CLI", "icon": "🤗", "friendly_name": "Hugging Face Hub CLI 終端操作指南"},

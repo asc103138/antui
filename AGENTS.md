@@ -18,7 +18,7 @@
 3. 規則若有調整才更新 `AGENTS.md`。
 4. 檢查 `git status` 與 `git diff`。
 5. 只 stage 本次相關檔案（嚴禁無差別 `git add .`）。
-6. 使用者確認後再執行 commit 與 push。
+6. 自動執行 commit 並同步推送至線上 Git 遠端儲存庫（git push）。
 7. 回報同步結果。
 
 ## 安全與 Git 規範
