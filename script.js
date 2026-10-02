@@ -178,7 +178,7 @@ function renderFeaturedSkills(skills) {
   const container = document.getElementById('featured-skills-grid');
   if (!container || !skills) return;
 
-  const featured = skills.filter(s => s.showOnMain).slice(0, 6);
+  const featured = skills.filter(s => s.showOnMain).slice(0, 8);
   container.innerHTML = featured.map(s => renderSkillCardHtml(s)).join('');
 }
 
@@ -339,7 +339,7 @@ function renderSkillCardHtml(item) {
           <span>📋 複製</span>
         </button>
         <a href="https://github.com/asc103138/dotfiles/tree/main/private_dot_gemini/config/skills/${encodeURIComponent(item.folder)}" 
-           target="_blank" rel="noopener noreferrer" class="btn-outline" title="前往 GitHub 檢視檔案">
+           target="_blank" rel="noopener noreferrer" class="btn-outline btn-icon" title="前往 GitHub 檢視檔案" aria-label="前往 GitHub 檢視檔案">
           <span>🐙</span>
         </a>
       </div>

@@ -114,9 +114,6 @@ html {
 body {
   font-family: var(--font-main);
   background-color: var(--page-bg);
-  background-image: radial-gradient(circle at 50% -10%, rgba(41, 151, 255, 0.14) 0%, rgba(228, 201, 136, 0.06) 32%, transparent 65%);
-  background-attachment: fixed;
-  background-repeat: no-repeat;
   color: var(--page-text);
   line-height: 1.65;
   transition: background-color 200ms ease, color 200ms ease;
@@ -124,10 +121,145 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
-[data-theme="light"] body {
-  background-image: radial-gradient(circle at 50% -12%, rgba(0, 113, 227, 0.07) 0%, rgba(197, 160, 89, 0.04) 28%, transparent 55%);
+/* --------------------------------------------------------------------------
+   背景空間流體極光動態 (Spatial Ambient Fluid Aurora - Emil Kowalski 規範)
+   全 GPU 合成層加速，60-120fps 絲滑無感負載，呈現 Apple Keynote 級空間微光
+   -------------------------------------------------------------------------- */
+.spatial-bg-mesh {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: -1;
+  contain: strict;
+}
+
+.spatial-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(85px);
+  -webkit-filter: blur(85px);
+  will-change: transform, opacity;
+  opacity: 0.72;
+}
+
+/* 夜間模式光球色系 (Apple OLED Black + Desert Titanium + Spatial Blue) */
+.orb-1 {
+  top: -12vh;
+  left: 8vw;
+  width: 58vw;
+  height: 58vw;
+  max-width: 700px;
+  max-height: 700px;
+  background: radial-gradient(circle, rgba(41, 151, 255, 0.22) 0%, rgba(0, 113, 227, 0.1) 45%, transparent 70%);
+  animation: spatial-orb-drift-1 22s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.orb-2 {
+  top: 28vh;
+  right: -8vw;
+  width: 52vw;
+  height: 52vw;
+  max-width: 640px;
+  max-height: 640px;
+  background: radial-gradient(circle, rgba(228, 201, 136, 0.17) 0%, rgba(197, 160, 89, 0.07) 50%, transparent 72%);
+  animation: spatial-orb-drift-2 28s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.orb-3 {
+  bottom: -18vh;
+  left: 20vw;
+  width: 64vw;
+  height: 64vw;
+  max-width: 760px;
+  max-height: 760px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.13) 0%, rgba(99, 102, 241, 0.05) 55%, transparent 75%);
+  animation: spatial-orb-drift-3 25s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+/* 日間模式光球色系 (Ceramic White + Warm Gold + Sky Blue) */
+[data-theme="light"] .spatial-orb {
+  opacity: 0.85;
+  filter: blur(95px);
+  -webkit-filter: blur(95px);
+}
+
+[data-theme="light"] .orb-1 {
+  background: radial-gradient(circle, rgba(0, 113, 227, 0.11) 0%, rgba(56, 189, 248, 0.05) 50%, transparent 70%);
+}
+
+[data-theme="light"] .orb-2 {
+  background: radial-gradient(circle, rgba(244, 123, 32, 0.09) 0%, rgba(251, 146, 60, 0.04) 50%, transparent 72%);
+}
+
+[data-theme="light"] .orb-3 {
+  background: radial-gradient(circle, rgba(13, 148, 136, 0.07) 0%, rgba(20, 184, 166, 0.03) 55%, transparent 75%);
+}
+
+/* 微型科技點陣背景紋理，增加空間精工立體感 */
+.spatial-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.45;
+  mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 30%, black 20%, transparent 80%);
+}
+
+[data-theme="light"] .spatial-grid-pattern {
+  background-image: radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px);
+  opacity: 0.4;
+}
+
+/* 異步有機流動軌跡 (Organic Fluid Motion) - 純 GPU Transform，零 Reflow 耗能 */
+@keyframes spatial-orb-drift-1 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(7vw, 10vh, 0) scale(1.12) rotate(45deg);
+  }
+  100% {
+    transform: translate3d(-5vw, 16vh, 0) scale(0.96) rotate(90deg);
+  }
+}
+
+@keyframes spatial-orb-drift-2 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-9vw, -8vh, 0) scale(1.15) rotate(-35deg);
+  }
+  100% {
+    transform: translate3d(-3vw, 12vh, 0) scale(0.93) rotate(-70deg);
+  }
+}
+
+@keyframes spatial-orb-drift-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-7vw, -12vh, 0) scale(1.13);
+  }
+  100% {
+    transform: translate3d(8vw, -6vh, 0) scale(0.97);
+  }
+}
+
+/* 無障礙環境防護：減少動態偏好時保持柔和光暈，停止位移 */
+@media (prefers-reduced-motion: reduce) {
+  .spatial-orb {
+    animation: none !important;
+  }
 }
 
 a {
@@ -791,8 +923,14 @@ section[id], .category-block, #skills-container {
     box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(41, 151, 255, 0.16);
   }
 
+  .skill-card:hover .card-cover {
+    border-color: rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.16);
+  }
+
   .skill-card:hover .card-cover img {
     transform: scale(1.04);
+    filter: brightness(1.03);
   }
 
   .skill-card:hover .card-cover-fallback .fallback-icon {
@@ -811,6 +949,7 @@ section[id], .category-block, #skills-container {
   position: relative;
   border: 1px solid var(--page-border);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  transition: border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
 
 .card-cover img {
@@ -818,7 +957,7 @@ section[id], .category-block, #skills-container {
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 240ms var(--ease-out);
+  transition: transform 240ms var(--ease-out), filter 240ms var(--ease-out);
 }
 
 .card-cover-fallback {
@@ -965,11 +1104,11 @@ section[id], .category-block, #skills-container {
   background: rgba(34, 211, 238, 0.2);
 }
 
-/* 卡片操作按鈕 (Apple Action Buttons) */
+/* 卡片操作按鈕 (Apple Action Buttons - Emil Kowalski 規格) */
 .card-actions {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-top: auto;
   padding-top: 16px;
   border-top: 1px solid var(--page-border);
@@ -977,11 +1116,12 @@ section[id], .category-block, #skills-container {
 
 .btn-primary {
   flex: 1;
+  min-height: 42px;
   background: var(--accent-blue);
   color: #ffffff;
   font-size: 0.88rem;
   font-weight: 650;
-  padding: 10px 16px;
+  padding: 10px 14px;
   border-radius: var(--radius-full);
   text-align: center;
   transition: transform 140ms var(--ease-out), box-shadow 150ms ease, background-color 150ms ease;
@@ -992,6 +1132,7 @@ section[id], .category-block, #skills-container {
   box-shadow: 0 2px 8px rgba(0, 113, 227, 0.28);
   user-select: none;
   -webkit-user-select: none;
+  white-space: nowrap;
 }
 
 .btn-primary:active {
@@ -1018,6 +1159,7 @@ section[id], .category-block, #skills-container {
 }
 
 .btn-outline {
+  min-height: 42px;
   background: rgba(0, 0, 0, 0.04);
   border: 1px solid var(--page-border);
   color: var(--page-text);
@@ -1028,13 +1170,37 @@ section[id], .category-block, #skills-container {
   transition: transform 140ms var(--ease-out), border-color 150ms ease, color 150ms ease, background-color 150ms ease;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 4px;
   user-select: none;
   -webkit-user-select: none;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-outline:active {
   transform: scale(0.96);
+}
+
+/* 獨立圖示膠囊按鈕 (例如 GitHub 連結) */
+.btn-icon {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.btn-icon span {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.btn-icon:active {
+  transform: scale(0.92);
 }
 
 @media (hover: hover) and (pointer: fine) {

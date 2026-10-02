@@ -163,7 +163,7 @@ def main():
             "triggers": triggers,
             "doc_filename": f"{folder}.md",
             "doc_content": body,
-            "showOnMain": folder in ["12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface", "17-g4-curriculum-review"]
+            "showOnMain": folder in ["emil-design-eng", "12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface", "17-g4-curriculum-review"]
         })
 
     # 分類匯總

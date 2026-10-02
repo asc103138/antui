@@ -135,9 +135,12 @@
   - **Apple Spotlight 懸浮搜尋島**：搜尋框改為圓弧流線 Omnibar 膠囊，支援 28px 超高飽和毛玻璃（Spatial Blur）、內建焦點環與 Apple 黑白高對比選中膠囊。
   - **Apple Hardware Chamfer 倒角卡片與 Action Button**：卡片升級為 22px iPhone 連續曲率（Squircle），卡片邊界注入高階鈦金屬雷射倒角高光；按鈕全面改為圓潤 Action Button 膠囊，按下時呈現 `scale(0.96)` 物理微縮。
   - **原生 iOS 底部抽屜把手（Sheet Drag Handle）**：手機版 Modal 頂部嵌入 iOS 原生抽屜把手，Toast 升級為動態島懸浮膠囊。
-  - **資產版本號同步推進至 v4.0**：解決所有瀏覽器強快取，確保訪客立即體驗最新震撼視覺。
-
-
+- [x] 全面落實 Emil Kowalski 設計工程最高工藝標準、修復 #featured 佈局、注入背景空間流體極光與 GAS 全域標準
+  - 確立全套工藝為底線：修訂 `AGENTS.md`，明訂全套設計工程標準為專案起步底線（絕非妥協低標），確立無形細節疊加、美感即槓桿、感知效能、彈簧物理與中斷性等 7 大維度。
+  - 修復 `#featured` 核心推薦區塊：修正按鈕擠壓切角問題，新增 `.btn-icon` 獨立圓形膠囊樣式；按鈕高度全面提升至 42px（貼合 Apple 44px 觸控熱區）；將 `emil-design-eng` 納入精選首位，展示上限放寬至 8 款完美雙欄/四欄對稱卡片。
+  - 植入 Apple 旗艦空間流體極光背景（Spatial Ambient Fluid Aurora）：三大異步有機流光島（22s / 28s / 25s）搭配微型科技空間點陣，純 GPU 合成層硬體加速（`will-change: transform`，零 Reflow 耗能），支援 OLED 深空純黑與陶瓷白日夜雙模式。
+  - 全域技能 `08-sheets-gas` 規格全面升級：在全域技能庫注入 GAS 前端網頁設計工程與行動原生最高標準（100dvh、輸入框最低 16px、`:active` 微縮、Sonner 級 Toast），並同步至 chezmoi 遠端 dotfiles 私有庫。
+  - 資產快取推進至 `v5.1`。
 
 ## 下一步規劃
 - [ ] 依四年級南一數學與康軒社會單元進度，持續產出符合三階審查之試題與素養學習單
