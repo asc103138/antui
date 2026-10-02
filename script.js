@@ -108,7 +108,7 @@ function initHamburger() {
    -------------------------------------------------------------------------- */
 async function loadSiteData() {
   try {
-    const res = await fetch('data.json?v=2.0');
+    const res = await fetch('data.json?v=3.0');
     if (!res.ok) throw new Error('Failed to load data.json');
     siteData = await res.json();
 
