@@ -39,3 +39,5 @@ Thumbs.db
 .gemini/
 scratch/
 g4-curriculum/
+__pycache__/
+*.pyc
