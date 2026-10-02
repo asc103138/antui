@@ -255,9 +255,122 @@ body {
   }
 }
 
+/* --------------------------------------------------------------------------
+   夜空流星動態系統 (Celestial Meteors - Emil Kowalski 規格)
+   純 GPU 加速，長尾線性漸層，異步劃過深邃夜空
+   -------------------------------------------------------------------------- */
+.meteor {
+  position: absolute;
+  height: 2px;
+  background: linear-gradient(90deg, #ffffff 0%, rgba(41, 151, 255, 0.85) 30%, rgba(228, 201, 136, 0.4) 65%, transparent 100%);
+  border-radius: 9999px;
+  opacity: 0;
+  pointer-events: none;
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.85));
+  will-change: transform, opacity;
+}
+
+/* 流星璀璨核心光點 */
+.meteor::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.95), 0 0 18px 4px rgba(41, 151, 255, 0.6);
+}
+
+/* 3 顆不同角度、起點與異步週期的流星 (不重複、不廉價) */
+.meteor-1 {
+  top: 6vh;
+  right: 15vw;
+  width: 160px;
+  animation: meteor-shower-1 8s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: 1.2s;
+}
+
+.meteor-2 {
+  top: 18vh;
+  right: 35vw;
+  width: 130px;
+  animation: meteor-shower-2 11s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: 4.5s;
+}
+
+.meteor-3 {
+  top: 2vh;
+  right: 58vw;
+  width: 180px;
+  animation: meteor-shower-3 15s cubic-bezier(0.25, 1, 0.5, 1) infinite;
+  animation-delay: 8s;
+}
+
+@keyframes meteor-shower-1 {
+  0% {
+    transform: rotate(-35deg) translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  12% {
+    transform: rotate(-35deg) translate3d(-380px, 260px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(-35deg) translate3d(-380px, 260px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes meteor-shower-2 {
+  0% {
+    transform: rotate(-38deg) translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  3% {
+    opacity: 0.95;
+  }
+  10% {
+    transform: rotate(-38deg) translate3d(-350px, 280px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(-38deg) translate3d(-350px, 280px, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes meteor-shower-3 {
+  0% {
+    transform: rotate(-32deg) translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  3% {
+    opacity: 1;
+  }
+  10% {
+    transform: rotate(-32deg) translate3d(-440px, 270px, 0);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(-32deg) translate3d(-440px, 270px, 0);
+    opacity: 0;
+  }
+}
+
+/* 日間模式：白天隱藏流星，維持物理真實感與乾淨視覺 */
+[data-theme="light"] .meteor {
+  display: none !important;
+}
+
 /* 無障礙環境防護：減少動態偏好時保持柔和光暈，停止位移 */
 @media (prefers-reduced-motion: reduce) {
-  .spatial-orb {
+  .spatial-orb, .meteor {
     animation: none !important;
   }
 }
