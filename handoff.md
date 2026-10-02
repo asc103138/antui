@@ -127,12 +127,16 @@
   - 確立專案最低標準：更新 `AGENTS.md`，明訂全案前端動效與 UI 以 Emil Kowalski 規範為最低標準（要求 `| Before | After | Why |` 表格審查、高頻操作零動畫、入場強烈 `ease-out`、嚴禁 `scale(0)` 憑空出現、嚴禁 `transition: all`、按鈕必備 `:active` 微縮觸感、行動端消除點擊反白閃爍與 `100dvh` 適配）。
   - 一鍵全面重構：依審查報告重構 `style.css`，消滅所有 `transition: all`，導入 `--ease-out`、`--ease-in-out`、`--ease-drawer` 自訂物理曲線；為所有按鈕與觸發標籤加入 `user-select: none;` 與 `:active` 觸感；以 Sonner 規格優化 Toast 與 Modal 彈窗平滑進場。
   - 專案資料同步建置：更新 `scripts/build_site_data.py` 新增「🎨 介面美學與動效工程」類別，重新產出 `data.json`（技能庫擴增至 39 款、7 大主題），同步產生 `skills_docs/` 並在首頁新增「Emil 動效標準」與「手機原生」熱門檢索膠囊。
-- [x] 完成網頁全面性 Emil Kowalski & Mobile Native 設計工程審查與落地優化
-  - **行動端黏滯懸浮消除（Sticky Hover Fix）**：將 `.skill-card:hover`、`.card-cover img`、`.btn-primary:hover`、`.btn-outline:hover`、`.work-card:hover`、`.back-to-top:hover` 全數封裝至 `@media (hover: hover) and (pointer: fine)` 媒體查詢內，徹底杜絕觸控裝置單次點擊後卡死於懸浮位移狀態之問題。
-  - **微互動與即時回饋感（Tactile Micro-interactions）**：為 `.hamburger`（`scale(0.92)`）、`.back-to-top`（`scale(0.96)`）、`.btn-primary`（`scale(0.97)`）、`.btn-outline`（`scale(0.97)`）、`.pill-btn`（`scale(0.96)`）、`.search-clear-btn`（`scale(0.92)`）、`.trigger-pill`（`scale(0.94)`）、`.snippet-copy-btn`（`scale(0.94)`）、`.modal-close-btn`（`scale(0.92)`）、`.work-card`（`scale(0.98)`）全數賦予精準 `:active` 瞬態回饋。
-  - **原生抽屜與物理曲線（Mobile Drawer & Bottom Sheet）**：手機版漢堡導覽列從粗糙的 `display: none` / `flex` 切換升級為 `--ease-drawer: cubic-bezier(0.32, 0.72, 0, 1)` 阻尼位移與淡入淡出（10px / 200ms）；彈窗於 `<=640px` 自動轉化為原生 Bottom Sheet 抽屜滑入。
-  - **螢幕動態高度與安全邊界（100dvh & Safe-area Insets）**：手機選單改為 `calc(100dvh - 72px)`，全面杜絕 iOS/Android 網址列伸縮時底部截斷破版；底部 Footer、Toast 通知與彈窗底部加入 `env(safe-area-inset-bottom)` 保護。
-  - **無障礙偏好減弱動態（Prefers-Reduced-Motion）**：全站結尾注入無障礙規範，於系統開啟減弱動態時將動畫時長微縮至 `0.01ms` 並停用平滑滾動。
+- [x] 完成網頁全面同步 iPhone 18 Pro 旗艦旗艦美學與主視覺重塑（依據 Emil Kowalski 最低標準執行）
+  - **Apple OLED Black & Desert Titanium 雙色主題**：重構全站色系，夜間模式升級為 iPhone 18 Pro OLED 純黑（`#000000`）搭配深空黑鈦（`#121215`）、自然鈦（`#f5f5f7`）與沙漠金（`#e4c988`）；日間模式升級為 Apple 陶瓷銀白（`#f5f5f7`）與深空灰字體。
+  - **Apple Spatial Lighting 空間環境光源**：背景注入 Apple 旗艦發布會等級之環境空間微光（Radial Gradient Spatial Mesh），营造無垠深邃沉浸感。
+  - **Dynamic Island 動態島膠囊主視覺**：Hero 標籤全新重構為 Apple 旗艦動態島膠囊，內建微秒級雷達即時綠色脈衝光圈（Live Radar Ping）與沙漠金尊爵標籤。
+  - **Apple Keynote 鈦金屬金屬漸層標題**：首頁主標題重塑為大字號金屬光澤漸層（`linear-gradient(180deg, #FFFFFF 15%, #D2D2D7 55%, #86868B 100%)`）搭配 `-0.035em` 緊湊字距與微光外暈。
+  - **Apple Spotlight 懸浮搜尋島**：搜尋框改為圓弧流線 Omnibar 膠囊，支援 28px 超高飽和毛玻璃（Spatial Blur）、內建焦點環與 Apple 黑白高對比選中膠囊。
+  - **Apple Hardware Chamfer 倒角卡片與 Action Button**：卡片升級為 22px iPhone 連續曲率（Squircle），卡片邊界注入高階鈦金屬雷射倒角高光；按鈕全面改為圓潤 Action Button 膠囊，按下時呈現 `scale(0.96)` 物理微縮。
+  - **原生 iOS 底部抽屜把手（Sheet Drag Handle）**：手機版 Modal 頂部嵌入 iOS 原生抽屜把手，Toast 升級為動態島懸浮膠囊。
+  - **資產版本號同步推進至 v4.0**：解決所有瀏覽器強快取，確保訪客立即體驗最新震撼視覺。
+
 
 
 ## 下一步規劃

@@ -6,41 +6,44 @@
 
 :root {
   /* --------------------------------------------------------------------------
-     日間模式 (Light Theme - Default)
+     日間模式 (Light Theme - Apple Ceramic Silver & Titanium)
      -------------------------------------------------------------------------- */
-  --page-bg: #fffaf2;
-  --page-surface: rgba(255, 255, 255, 0.92);
+  --page-bg: #f5f5f7;
+  --page-surface: rgba(255, 255, 255, 0.85);
   --page-surface-strong: #ffffff;
-  --page-text: #2c221e;
-  --page-muted: #6b5e54;
-  --page-border: #ebdcd0;
-  --page-shadow: 0 10px 30px rgba(76, 42, 18, 0.07);
+  --page-text: #1d1d1f;
+  --page-muted: #6e6e73;
+  --page-border: rgba(0, 0, 0, 0.08);
+  --page-shadow: 0 12px 36px rgba(0, 0, 0, 0.05);
 
-  /* 主題色彩 */
-  --accent-orange: #f47b20;
-  --accent-orange-dark: #c7520f;
-  --accent-orange-light: rgba(244, 123, 32, 0.1);
-  --accent-blue: #0284c7;
-  --accent-blue-light: rgba(2, 132, 199, 0.1);
-  --accent-cyan: #008fa8;
-  --accent-purple: #7928ca;
-  --accent-green: #16a34a;
-  --accent-teal: #0d9488;
+  /* 主題色彩 - Apple Pro System Colors */
+  --accent-blue: #0071e3;
+  --accent-blue-light: rgba(0, 113, 227, 0.08);
+  --accent-cyan: #2997ff;
+  --accent-cyan-light: rgba(41, 151, 255, 0.1);
+  --accent-gold: #c5a059;
+  --accent-gold-light: rgba(197, 160, 89, 0.12);
+  --accent-orange: #ff9f0a;
+  --accent-orange-dark: #d25000;
+  --accent-orange-light: rgba(255, 159, 10, 0.1);
+  --accent-purple: #af52de;
+  --accent-green: #30d158;
+  --accent-teal: #59adc4;
 
   /* 導覽列 */
-  --nav-bg: rgba(255, 250, 242, 0.94);
-  --nav-border: rgba(244, 123, 32, 0.18);
-  --nav-shadow: 0 4px 20px rgba(76, 42, 18, 0.06);
+  --nav-bg: rgba(245, 245, 247, 0.82);
+  --nav-border: rgba(0, 0, 0, 0.08);
+  --nav-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 
-  /* 卡片與元件 */
+  /* 卡片與元件 - Apple Hardware Curvature */
   --card-bg: #ffffff;
-  --card-hover-border: #f47b20;
-  --card-shadow: 0 4px 16px rgba(76, 42, 18, 0.05);
-  --card-hover-shadow: 0 12px 28px rgba(244, 123, 32, 0.14);
+  --card-hover-border: rgba(0, 113, 227, 0.35);
+  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  --card-hover-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
 
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 24px;
   --radius-full: 9999px;
 
   /* Emil Kowalski 動效標準：自訂物理曲線與時長 */
@@ -52,42 +55,45 @@
   --transition-smooth: 260ms var(--ease-out);
   --transition: transform 200ms var(--ease-out), opacity 180ms ease, background-color 150ms ease, border-color 150ms ease, box-shadow 180ms ease;
 
-  --font-main: 'Plus Jakarta Sans', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-code: "Fira Code", Consolas, Monaco, "Courier New", monospace;
-  --font-display: 'Orbitron', var(--font-main);
+  --font-main: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", 'Plus Jakarta Sans', 'Noto Sans TC', sans-serif;
+  --font-code: "SF Mono", "Fira Code", Consolas, Monaco, monospace;
+  --font-display: -apple-system, BlinkMacSystemFont, "SF Pro Display", 'Orbitron', var(--font-main);
 }
 
 /* --------------------------------------------------------------------------
-   夜間模式 (Dark Theme)
+   夜間模式 (Dark Theme - iPhone 18 Pro OLED Black & Desert Titanium)
    -------------------------------------------------------------------------- */
 body[data-theme="dark"],
 html[data-theme="dark"] {
-  --page-bg: #090f1d;
-  --page-surface: rgba(15, 23, 42, 0.85);
-  --page-surface-strong: #0f172a;
-  --page-text: #f1f5f9;
-  --page-muted: #94a3b8;
-  --page-border: rgba(56, 189, 248, 0.22);
-  --page-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+  --page-bg: #000000;
+  --page-surface: rgba(22, 22, 26, 0.78);
+  --page-surface-strong: #121215;
+  --page-text: #f5f5f7;
+  --page-muted: #86868b;
+  --page-border: rgba(255, 255, 255, 0.1);
+  --page-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
 
-  --accent-orange: #fb923c;
-  --accent-orange-dark: #ea580c;
-  --accent-orange-light: rgba(251, 146, 60, 0.15);
-  --accent-blue: #38bdf8;
-  --accent-blue-light: rgba(56, 189, 248, 0.15);
-  --accent-cyan: #22d3ee;
-  --accent-purple: #c084fc;
-  --accent-green: #4ade80;
-  --accent-teal: #2dd4bf;
+  --accent-blue: #2997ff;
+  --accent-blue-light: rgba(41, 151, 255, 0.16);
+  --accent-cyan: #64d2ff;
+  --accent-cyan-light: rgba(100, 210, 255, 0.16);
+  --accent-gold: #e4c988;
+  --accent-gold-light: rgba(228, 201, 136, 0.18);
+  --accent-orange: #ff9f0a;
+  --accent-orange-dark: #f56300;
+  --accent-orange-light: rgba(255, 159, 10, 0.16);
+  --accent-purple: #bf5af2;
+  --accent-green: #30d158;
+  --accent-teal: #64d2ff;
 
-  --nav-bg: rgba(9, 15, 29, 0.94);
-  --nav-border: rgba(56, 189, 248, 0.25);
-  --nav-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --nav-bg: rgba(10, 10, 12, 0.82);
+  --nav-border: rgba(255, 255, 255, 0.1);
+  --nav-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
 
-  --card-bg: #0f172a;
-  --card-hover-border: var(--accent-cyan);
-  --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  --card-hover-shadow: 0 12px 32px rgba(34, 211, 238, 0.2);
+  --card-bg: #121215;
+  --card-hover-border: rgba(255, 255, 255, 0.28);
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+  --card-hover-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(41, 151, 255, 0.15);
 }
 
 /* --------------------------------------------------------------------------
@@ -108,6 +114,9 @@ html {
 body {
   font-family: var(--font-main);
   background-color: var(--page-bg);
+  background-image: radial-gradient(circle at 50% -10%, rgba(41, 151, 255, 0.14) 0%, rgba(228, 201, 136, 0.06) 32%, transparent 65%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: var(--page-text);
   line-height: 1.65;
   transition: background-color 200ms ease, color 200ms ease;
@@ -115,6 +124,10 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+[data-theme="light"] body {
+  background-image: radial-gradient(circle at 50% -12%, rgba(0, 113, 227, 0.07) 0%, rgba(197, 160, 89, 0.04) 28%, transparent 55%);
 }
 
 a {
@@ -152,15 +165,15 @@ a.nav-github-btn,
 }
 
 /* --------------------------------------------------------------------------
-   Header & Navigation
+   Header & Navigation (Apple Spatial Glass)
    -------------------------------------------------------------------------- */
 header {
   position: sticky;
   top: 0;
   z-index: 1000;
   background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
   border-bottom: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
   padding-top: env(safe-area-inset-top, 0px);
@@ -327,104 +340,166 @@ header {
 }
 
 /* --------------------------------------------------------------------------
-   Hero Section
+   Hero Section (Apple Keynote & Dynamic Island)
    -------------------------------------------------------------------------- */
 .hero {
-  padding: 48px 0 32px;
+  padding: 56px 0 36px;
   text-align: center;
+  position: relative;
 }
 
 .hero-pill-badge {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  background: var(--accent-orange-light);
-  color: var(--accent-orange-dark);
-  border: 1px solid rgba(244, 123, 32, 0.3);
-  padding: 6px 16px;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--page-text);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: 7px 18px;
   border-radius: var(--radius-full);
-  font-size: 0.88rem;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: transform 140ms var(--ease-out), box-shadow 150ms ease;
 }
 
 [data-theme="dark"] .hero-pill-badge {
-  background: rgba(34, 211, 238, 0.12);
-  color: var(--accent-cyan);
-  border-color: rgba(34, 211, 238, 0.35);
+  background: rgba(18, 18, 22, 0.85);
+  color: #f5f5f7;
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.dynamic-radar-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-green);
+  display: inline-block;
+  box-shadow: 0 0 10px var(--accent-green);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dynamic-radar-dot::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent-green);
+  animation: radar-ping 2.2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes radar-ping {
+  0% { transform: scale(0.9); opacity: 0.9; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.dynamic-island-label {
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent-gold);
+}
+
+.dynamic-island-divider {
+  width: 1px;
+  height: 12px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] .dynamic-island-divider {
+  background: rgba(255, 255, 255, 0.2);
 }
 
 .hero-title {
-  font-size: 2.75rem;
-  font-weight: 900;
-  line-height: 1.25;
-  letter-spacing: -1px;
-  margin-bottom: 16px;
-  background: linear-gradient(135deg, var(--page-text) 30%, var(--accent-orange-dark) 85%);
+  font-size: clamp(2.4rem, 5.5vw, 3.4rem);
+  font-weight: 850;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  margin-bottom: 18px;
+  background: linear-gradient(180deg, #1d1d1f 25%, #434344 75%, #68686d 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 [data-theme="dark"] .hero-title {
-  background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan) 80%, var(--accent-blue) 100%);
+  background: linear-gradient(180deg, #ffffff 15%, #d2d2d7 55%, #86868b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 4px 28px rgba(255, 255, 255, 0.12));
 }
 
 .hero-subtitle {
   font-size: 1.15rem;
   color: var(--page-muted);
   max-width: 760px;
-  margin: 0 auto 36px;
+  margin: 0 auto 38px;
   line-height: 1.7;
 }
 
-/* Hero Stats Grid */
+/* Hero Stats Grid (Apple Watch / Telemetry Widget Style) */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 16px;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
 }
 
 .stat-card {
   background: var(--page-surface-strong);
   border: 1px solid var(--page-border);
-  padding: 20px 16px;
+  padding: 22px 18px;
   border-radius: var(--radius-md);
   text-align: center;
   box-shadow: var(--card-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   transition: transform 200ms var(--ease-out), border-color 150ms ease, box-shadow 200ms var(--ease-out);
+}
+
+[data-theme="dark"] .stat-card {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .stat-card:hover {
     transform: translateY(-3px);
-    border-color: var(--accent-orange);
+    border-color: rgba(0, 113, 227, 0.4);
     box-shadow: var(--card-hover-shadow);
   }
 
   [data-theme="dark"] .stat-card:hover {
-    border-color: var(--accent-cyan);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 20px rgba(41, 151, 255, 0.18);
   }
 }
 
 .stat-icon {
-  font-size: 1.8rem;
-  margin-bottom: 6px;
+  font-size: 1.9rem;
+  margin-bottom: 8px;
 }
 
 .stat-number {
-  font-size: 1.85rem;
-  font-weight: 800;
-  color: var(--accent-orange-dark);
-  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-weight: 850;
+  letter-spacing: -0.03em;
+  color: var(--page-text);
   line-height: 1.1;
   margin-bottom: 4px;
 }
 
 [data-theme="dark"] .stat-number {
-  color: var(--accent-cyan);
+  background: linear-gradient(180deg, #ffffff 30%, #a1a1a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .stat-label {
@@ -434,53 +509,63 @@ header {
 }
 
 /* --------------------------------------------------------------------------
-   搜尋與篩選區塊 (Search & Filter Section)
+   搜尋與篩選區塊 (Apple Spotlight & Pro Chips)
    -------------------------------------------------------------------------- */
 .search-section {
-  background: var(--page-surface-strong);
+  background: var(--page-surface);
   border: 1px solid var(--page-border);
   border-radius: var(--radius-lg);
-  padding: 24px;
+  padding: 26px;
   margin-bottom: 40px;
   box-shadow: var(--card-shadow);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
 }
 
 .search-input-box {
   position: relative;
   display: flex;
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .search-icon {
   position: absolute;
-  left: 18px;
-  font-size: 1.25rem;
+  left: 20px;
+  font-size: 1.2rem;
   color: var(--page-muted);
   pointer-events: none;
 }
 
 .search-input {
   width: 100%;
-  padding: 14px 48px 14px 50px;
+  padding: 15px 48px 15px 52px;
   font-size: 16px; /* 保證行動端不觸發自動放大 */
   font-family: inherit;
-  background: var(--page-bg);
-  border: 2px solid var(--page-border);
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid var(--page-border);
   border-radius: var(--radius-full);
   color: var(--page-text);
   outline: none;
-  transition: border-color 140ms ease, box-shadow 140ms ease;
+  transition: border-color 140ms ease, box-shadow 140ms ease, background-color 140ms ease;
+}
+
+[data-theme="dark"] .search-input {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .search-input:focus {
-  border-color: var(--accent-orange);
-  box-shadow: 0 0 0 4px var(--accent-orange-light);
+  border-color: var(--accent-blue);
+  background: var(--page-surface-strong);
+  box-shadow: 0 0 0 3.5px rgba(0, 113, 227, 0.25), 0 8px 24px rgba(0, 0, 0, 0.08);
 }
 
 [data-theme="dark"] .search-input:focus {
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 0 4px rgba(34, 211, 238, 0.15);
+  border-color: var(--accent-blue);
+  background: rgba(255, 255, 255, 0.09);
+  box-shadow: 0 0 0 3.5px rgba(41, 151, 255, 0.35), 0 8px 30px rgba(0, 0, 0, 0.6);
 }
 
 .search-clear-btn {
@@ -489,8 +574,8 @@ header {
   font-size: 1.1rem;
   color: var(--page-muted);
   display: none;
-  width: 24px;
-  height: 24px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   align-items: center;
   justify-content: center;
@@ -506,7 +591,7 @@ header {
   transform: scale(0.92);
 }
 
-/* 熱門標籤與類別 Pills */
+/* 熱門標籤與類別 Pills (Apple Pro Precision Chips) */
 .filter-pills-row {
   display: flex;
   align-items: center;
@@ -523,10 +608,10 @@ header {
 }
 
 .pill-btn {
-  background: var(--page-bg);
+  background: var(--page-surface);
   color: var(--page-muted);
   border: 1px solid var(--page-border);
-  padding: 6px 14px;
+  padding: 7px 16px;
   border-radius: var(--radius-full);
   font-size: 0.85rem;
   font-weight: 600;
@@ -534,23 +619,37 @@ header {
   white-space: nowrap;
   user-select: none;
   -webkit-user-select: none;
-  transition: transform 140ms var(--ease-out), background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+  transition: transform 140ms var(--ease-out), background-color 140ms ease, color 140ms ease, border-color 140ms ease, box-shadow 140ms ease;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.pill-btn:hover, .pill-btn.active {
-  background: var(--accent-orange-light);
-  color: var(--accent-orange-dark);
-  border-color: var(--accent-orange);
+.pill-btn:hover {
+  color: var(--page-text);
+  border-color: rgba(0, 0, 0, 0.2);
+}
+
+.pill-btn.active {
+  background: #1d1d1f;
+  color: #ffffff;
+  border-color: #1d1d1f;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .pill-btn:active {
   transform: scale(0.96);
 }
 
-[data-theme="dark"] .pill-btn:hover, [data-theme="dark"] .pill-btn.active {
-  background: rgba(34, 211, 238, 0.15);
-  color: var(--accent-cyan);
-  border-color: var(--accent-cyan);
+[data-theme="dark"] .pill-btn:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="dark"] .pill-btn.active {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.32);
 }
 
 .search-status-bar {
@@ -666,8 +765,8 @@ section[id], .category-block, #skills-container {
 .skill-card {
   background: var(--card-bg);
   border: 1px solid var(--page-border);
-  border-radius: var(--radius-md);
-  padding: 22px;
+  border-radius: 22px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   box-shadow: var(--card-shadow);
@@ -676,11 +775,20 @@ section[id], .category-block, #skills-container {
   overflow: hidden;
 }
 
+[data-theme="dark"] .skill-card {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .skill-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--card-hover-border);
+    transform: translateY(-4px);
+    border-color: rgba(0, 113, 227, 0.4);
     box-shadow: var(--card-hover-shadow);
+  }
+
+  [data-theme="dark"] .skill-card:hover {
+    border-color: rgba(255, 255, 255, 0.28);
+    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.8), 0 0 24px rgba(41, 151, 255, 0.16);
   }
 
   .skill-card:hover .card-cover img {
@@ -692,16 +800,17 @@ section[id], .category-block, #skills-container {
   }
 }
 
-/* 技能封面縮圖 (Cover Image & Fallback) */
+/* 技能封面縮圖 (Apple Retina Display Glass Framing) */
 .card-cover {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: var(--radius-sm);
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   background: var(--page-bg);
   position: relative;
   border: 1px solid var(--page-border);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .card-cover img {
@@ -715,20 +824,20 @@ section[id], .category-block, #skills-container {
 .card-cover-fallback {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border-radius: var(--radius-sm);
+  border-radius: 14px;
   overflow: hidden;
-  margin-bottom: 14px;
+  margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(244, 123, 32, 0.08), rgba(2, 132, 199, 0.12));
+  background: linear-gradient(135deg, rgba(0, 113, 227, 0.06), rgba(197, 160, 89, 0.08));
   border: 1px solid var(--page-border);
   position: relative;
 }
 
 [data-theme="dark"] .card-cover-fallback {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(56, 189, 248, 0.14));
-  border-color: rgba(56, 189, 248, 0.22);
+  background: linear-gradient(135deg, rgba(20, 20, 25, 0.95), rgba(41, 151, 255, 0.12));
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
 .card-cover-fallback .fallback-icon {
@@ -856,65 +965,67 @@ section[id], .category-block, #skills-container {
   background: rgba(34, 211, 238, 0.2);
 }
 
-/* 卡片操作按鈕 */
+/* 卡片操作按鈕 (Apple Action Buttons) */
 .card-actions {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   margin-top: auto;
-  padding-top: 12px;
+  padding-top: 16px;
   border-top: 1px solid var(--page-border);
 }
 
 .btn-primary {
   flex: 1;
-  background: linear-gradient(135deg, var(--accent-orange), #ff9e00);
+  background: var(--accent-blue);
   color: #ffffff;
   font-size: 0.88rem;
-  font-weight: 700;
-  padding: 8px 14px;
-  border-radius: var(--radius-sm);
+  font-weight: 650;
+  padding: 10px 16px;
+  border-radius: var(--radius-full);
   text-align: center;
-  transition: transform 140ms var(--ease-out), box-shadow 150ms ease;
+  transition: transform 140ms var(--ease-out), box-shadow 150ms ease, background-color 150ms ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  box-shadow: 0 2px 6px rgba(244, 123, 32, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 113, 227, 0.28);
   user-select: none;
   -webkit-user-select: none;
 }
 
 .btn-primary:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(244, 123, 32, 0.4);
+    box-shadow: 0 6px 18px rgba(0, 113, 227, 0.4);
+    background: #0077ed;
   }
 
   [data-theme="dark"] .btn-primary:hover {
-    box-shadow: 0 0 18px rgba(0, 245, 212, 0.6);
+    box-shadow: 0 6px 22px rgba(41, 151, 255, 0.5);
+    background: #3ba2ff;
   }
 }
 
 [data-theme="dark"] .btn-primary {
-  background: linear-gradient(135deg, #0284c7, #00f5d4);
-  color: #090f1d;
-  box-shadow: 0 0 10px rgba(0, 245, 212, 0.3);
+  background: linear-gradient(180deg, #2997ff 0%, #0071e3 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(41, 151, 255, 0.35);
 }
 
 .btn-outline {
-  background: var(--page-bg);
+  background: rgba(0, 0, 0, 0.04);
   border: 1px solid var(--page-border);
   color: var(--page-text);
   font-size: 0.88rem;
   font-weight: 600;
-  padding: 8px 12px;
-  border-radius: var(--radius-sm);
-  transition: transform 140ms var(--ease-out), border-color 150ms ease, color 150ms ease;
+  padding: 10px 14px;
+  border-radius: var(--radius-full);
+  transition: transform 140ms var(--ease-out), border-color 150ms ease, color 150ms ease, background-color 150ms ease;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -923,19 +1034,27 @@ section[id], .category-block, #skills-container {
 }
 
 .btn-outline:active {
-  transform: scale(0.97);
+  transform: scale(0.96);
 }
 
 @media (hover: hover) and (pointer: fine) {
   .btn-outline:hover {
-    border-color: var(--accent-orange);
-    color: var(--accent-orange-dark);
+    border-color: rgba(0, 113, 227, 0.4);
+    color: var(--accent-blue);
+    background: rgba(0, 113, 227, 0.05);
   }
 
   [data-theme="dark"] .btn-outline:hover {
-    border-color: var(--accent-cyan);
-    color: var(--accent-cyan);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.08);
   }
+}
+
+[data-theme="dark"] .btn-outline {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #f5f5f7;
 }
 
 /* --------------------------------------------------------------------------
@@ -1132,7 +1251,7 @@ section[id], .category-block, #skills-container {
 }
 
 /* --------------------------------------------------------------------------
-   Modal Viewer (SKILL.md 內文彈窗與閱讀器 - Emil Kowalski 標準)
+   Modal Viewer (Apple Spatial Glass & Pro Sheet)
    -------------------------------------------------------------------------- */
 .modal-overlay {
   position: fixed;
@@ -1141,8 +1260,8 @@ section[id], .category-block, #skills-container {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
   z-index: 2000;
   display: flex;
   align-items: center;
@@ -1163,17 +1282,21 @@ section[id], .category-block, #skills-container {
 .modal-container {
   background: var(--page-surface-strong);
   border: 1px solid var(--page-border);
-  border-radius: var(--radius-lg);
+  border-radius: 26px;
   width: 100%;
   max-width: 860px;
   max-height: min(88dvh, 88vh);
   display: flex;
   flex-direction: column;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
   overflow: hidden;
   transform: scale(0.96) translateY(12px);
   opacity: 0;
   transition: transform 220ms var(--ease-out), opacity 180ms var(--ease-out);
+}
+
+[data-theme="dark"] .modal-container {
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
 .modal-overlay.active .modal-container {
@@ -1213,7 +1336,7 @@ section[id], .category-block, #skills-container {
 }
 
 .modal-close-btn:hover {
-  color: var(--accent-orange);
+  color: var(--page-text);
   transform: scale(1.08);
 }
 
@@ -1329,10 +1452,24 @@ section[id], .category-block, #skills-container {
 
   .modal-container {
     max-height: min(90dvh, 90vh);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     transform: translateY(100%);
     transition: transform 250ms var(--ease-drawer), opacity 200ms ease;
+  }
+
+  /* iOS 原生抽屜頂部把手 (Native Sheet Handle) */
+  .modal-container::before {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(120, 120, 128, 0.35);
+    margin: 10px auto 4px;
+    flex-shrink: 0;
   }
 
   .modal-overlay.active .modal-container {
@@ -1340,29 +1477,31 @@ section[id], .category-block, #skills-container {
   }
 
   .modal-footer {
-    padding-bottom: max(14px, calc(14px + env(safe-area-inset-bottom, 0px)));
+    padding-bottom: max(16px, calc(16px + env(safe-area-inset-bottom, 0px)));
   }
 }
 
 /* --------------------------------------------------------------------------
-   Toast 複製反饋通知 (Emil Kowalski / Sonner 觸感標準)
+   Toast 複製反饋通知 (Apple Dynamic Island Capsule Toast)
    -------------------------------------------------------------------------- */
 .toast-msg {
   position: fixed;
   bottom: 24px;
   right: 24px;
-  background: #181926;
-  color: #cad3f5;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 12px 20px;
+  background: rgba(18, 18, 22, 0.94);
+  color: #f5f5f7;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  padding: 12px 22px;
   border-radius: var(--radius-full);
   font-size: 0.92rem;
   font-weight: 600;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
   z-index: 3000;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transform: translateY(14px) scale(0.96);
   opacity: 0;
   pointer-events: none;
