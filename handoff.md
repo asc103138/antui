@@ -122,6 +122,11 @@
   - 支援三大排版模式：雙列表格模式（上注音下國字，最適小學列印）、Word 原生 Ruby 旁註模式與行內夾註模式。
   - 內建終端多音字人工複查報告表（Audit Report），供教師快速巡檢。
   - 全域技能固化：安裝至 `C:\Users\ccps\.gemini\config\skills\18-word-zhuyin/`，納入 chezmoi 跨電腦同步管理，公開展示網站收錄擴增至 37 款全域技能並產生專屬 3D 科技封面（`cover_18_word_zhuyin.jpg`）。
+- [x] 安裝 Emil Kowalski 全域設計工程技能並將動效最低標準正式納入專案規範與展示網站重構
+  - 全域技能安裝：引進知名設計工程師 Emil Kowalski（Linear/Vercel、Sonner 作者）開源之 `emil-design-eng`（設計工程與動畫審查核心哲學）與 `mobile-native`（行動端 Web 原生質感與 CSS 修復）技能，安裝至 `C:\Users\ccps\.gemini\config\skills/`，並補強繁體中文語境觸發詞。
+  - 確立專案最低標準：更新 `AGENTS.md`，明訂全案前端動效與 UI 以 Emil Kowalski 規範為最低標準（要求 `| Before | After | Why |` 表格審查、高頻操作零動畫、入場強烈 `ease-out`、嚴禁 `scale(0)` 憑空出現、嚴禁 `transition: all`、按鈕必備 `:active` 微縮觸感、行動端消除點擊反白閃爍與 `100dvh` 適配）。
+  - 一鍵全面重構：依審查報告重構 `style.css`，消滅所有 `transition: all`，導入 `--ease-out`、`--ease-in-out`、`--ease-drawer` 自訂物理曲線；為所有按鈕與觸發標籤加入 `user-select: none;` 與 `:active` 觸感；以 Sonner 規格優化 Toast 與 Modal 彈窗平滑進場。
+  - 專案資料同步建置：更新 `scripts/build_site_data.py` 新增「🎨 介面美學與動效工程」類別，重新產出 `data.json`（技能庫擴增至 39 款、7 大主題），同步產生 `skills_docs/` 並在首頁新增「Emil 動效標準」與「手機原生」熱門檢索膠囊。
 
 ## 下一步規劃
 - [ ] 依四年級南一數學與康軒社會單元進度，持續產出符合三階審查之試題與素養學習單

@@ -56,6 +56,9 @@ CATEGORY_MAP = {
     "huggingface-spaces": {"cat": "☁️ 雲端後端與本地模型", "badge": "ZeroGPU", "icon": "🚀", "friendly_name": "Hugging Face Spaces 部署與設定"},
     "huggingface-papers": {"cat": "🧠 第二大腦與筆記生態", "badge": "每日論文", "icon": "📑", "friendly_name": "Hugging Face 每日精選論文閱讀"},
     "huggingface-local-models": {"cat": "☁️ 雲端後端與本地模型", "badge": "離線推論", "icon": "💻", "friendly_name": "本機 GGUF / llama.cpp 模型選型"},
+
+    "emil-design-eng": {"cat": "🎨 介面美學與動效工程", "badge": "設計工程", "icon": "✨", "friendly_name": "Emil Kowalski 設計工程與動效最低標準"},
+    "mobile-native": {"cat": "🎨 介面美學與動效工程", "badge": "手機原生", "icon": "📱", "friendly_name": "行動端 Web 原生質感與 CSS 修復"},
 }
 
 def parse_frontmatter(content):

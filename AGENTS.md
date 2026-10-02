@@ -24,3 +24,30 @@
 ## 安全與 Git 規範
 - **嚴禁硬編碼機密**：API 金鑰、個人憑證或 Token 切勿寫入程式碼或 Markdown 文件中。
 - **Commit 紀律**：保持每次 commit 意圖單一清晰，提交前仔細審查 diff。
+
+## 前端動效與 UI 設計工程最低標準 (Emil Kowalski 規範)
+本專案所有介面、按鈕、彈窗與過渡動效，均以 **Emil Kowalski（Design Engineering）** 之規範為專案**最低標準**，審查與產出程式碼時嚴格恪守以下原則：
+
+### 1. 審查報告格式（強制要求）
+所有動效審查必須使用 Markdown 表格，欄位為 `| Before | After | Why |`，一項一列，明確指陳問題與物理修正原理。
+
+### 2. 動畫決策框架（Frequency Framework）
+- **高頻操作（每日百次以上，如快捷鍵、搜尋框開關、命令列）**：**絕對不加動態**，必須瞬開瞬關，避免造成延遲感。
+- **中頻操作（列表導航、標籤切換）**：大幅簡化或微縮時長（<= 150ms）。
+- **低頻操作（彈窗 Modal、抽屜 Drawer、通知 Toast）**：允許標準動效，但嚴格控制在 180ms ~ 300ms 內。
+
+### 3. 動效曲線與物理定律
+- **禁止使用 `ease-in` 於 UI 進場**：進場元素必須用強烈自訂曲線的 `ease-out`（如 `cubic-bezier(0.23, 1, 0.32, 1)`），提供即時回饋感。
+- **嚴禁從 `scale(0)` 憑空出現**：真實世界沒有零體積物體，入場起點至少為 `scale(0.95)` 搭配 `opacity: 0`。
+- **嚴禁無差別 `transition: all`**：必須精確指定過渡屬性（如 `transform, opacity`），避免引發不必要的 layout/repaint 效能消耗。
+- **彈出層（Popover/Dropdown）具備 Origin-Aware**：必須依賴觸發來源縮放，而非全部機械式置中。
+
+### 4. 微互動與點擊回饋
+- **按鈕與可點擊元素必備 `:active`**：按下時必須具備 `transform: scale(0.97)` 微縮觸感，證明介面即時響應用戶動作。
+
+### 5. 行動端原生感規範 (Mobile Native)
+- 消除點擊藍灰色高亮（`-webkit-tap-highlight-color: transparent`）。
+- 彈窗與全螢幕高低視窗適配 `100dvh` / `100svh`，嚴禁死板 `100vh` 破版。
+- 按鈕文字鎖定 `user-select: none`，避免長按誤觸選取。
+- 表單輸入框字體最低 16px，杜絕 iOS Safari 焦點縮放災難。
+
