@@ -45,6 +45,7 @@ CATEGORY_MAP = {
     "competency-test-generator": {"cat": "🏫 教育實戰與社群成果", "badge": "考卷排版", "icon": "📝", "friendly_name": "108 課綱素養命題助手 (Word 考卷自動排版)"},
     "render-zhuyin-web": {"cat": "🏫 教育實戰與社群成果", "badge": "國語排版", "icon": "🔤", "friendly_name": "中文直式/橫式注音標註與生字試卷生成"},
     "school-language-contest-coach": {"cat": "🏫 教育實戰與社群成果", "badge": "競賽教練", "icon": "🏅", "friendly_name": "校內國語文競賽全方位培訓教材生成器"},
+    "17-g4-curriculum-review": {"cat": "🏫 教育實戰與社群成果", "badge": "三階審查", "icon": "🛡️", "friendly_name": "國小四年級教材與試題審查機制 (G4-Review)"},
 
     "16-huggingface": {"cat": "☁️ 雲端後端與本地模型", "badge": "AI Hub", "icon": "🤗", "friendly_name": "Hugging Face 全域工作流 (MCP / CLI / Skills)"},
     "hf-cli": {"cat": "⚙️ 環境工程與系統維護", "badge": "Hub CLI", "icon": "🤗", "friendly_name": "Hugging Face Hub CLI 終端操作指南"},
@@ -158,7 +159,7 @@ def main():
             "triggers": triggers,
             "doc_filename": f"{folder}.md",
             "doc_content": body,
-            "showOnMain": folder in ["12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface"]
+            "showOnMain": folder in ["12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface", "17-g4-curriculum-review"]
         })
 
     # 分類匯總
@@ -191,7 +192,7 @@ def main():
             "chezmoiRepo": "asc103138/dotfiles",
             "siteUrl": "https://asc103138.github.io/antui/",
             "totalSkills": len(skills),
-            "lastUpdated": "2026-09-29"
+            "lastUpdated": "2026-10-02"
         },
         "stats": [
             {"number": f"{len(skills)}+", "label": "全域 AntiGravity 技能", "icon": "🛠️"},
@@ -200,6 +201,7 @@ def main():
             {"number": "24h", "label": "AI Agent 備課後勤力", "icon": "⚡"}
         ],
         "experiences": [
+            {"date": "115-10", "type": "評量機制", "school": "梧棲區中正國小", "topic": "國小四年級教材與試題三階審查機制研發（南一數·翰林國·康軒社）與 Canva 作文句型牆", "showOnMain": True},
             {"date": "115-09", "type": "校園實務", "school": "梧棲區中正國小", "topic": "STEAM 教師社群：AI Agent 行政成果表與簽到公文自動化流程建置", "showOnMain": True},
             {"date": "115-09", "type": "工作流開發", "school": "AntiGravity 實戰", "topic": "RDQ Method 需求探索四象限法與 108 課綱素養命題助手工作流化", "showOnMain": True},
             {"date": "115-09", "type": "教材創作", "school": "數位教學創新", "topic": "四年級國語《鏡頭下的家鄉》Canva 繪圖填空教材與中秋彩繪柚子 360 環繞分鏡", "showOnMain": True},
@@ -208,6 +210,14 @@ def main():
         "projects_by_category": projects_by_category,
         "skills": skills,
         "works": [
+            {
+                "title": "國小四年級教材與試題三階審查系統（含作文句型牆與素養題）",
+                "tag": "四年級寫作與命題審查",
+                "desc": "以最低標準（先備經驗/課綱指標/南一數·翰林國·康軒社版本對準）、中階（CLT認知負荷/SDGs/STEAM）與高階（迷思診斷/時事/媒體識讀）打造之全域審查體系。內含《快樂的家庭活動》Canva 填空與作文簿抄寫系統、南一數學海線淨灘試題。",
+                "link": "g4-curriculum/",
+                "demoLink": "g4-curriculum/worksheet.html",
+                "date": "115-10"
+            },
             {
                 "title": "STEAM 教師社群活動行政文件生成系統",
                 "tag": "教育行政自動化",

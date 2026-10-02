@@ -477,13 +477,27 @@ function renderWorks(works) {
   const container = document.getElementById('works-container');
   if (!container || !works) return;
 
-  container.innerHTML = works.map(w => `
-    <div class="work-card">
-      <span class="work-tag">${escapeHtml(w.tag || '實務作品')}</span>
-      <h4 class="work-title">${escapeHtml(w.title)}</h4>
-      <p class="work-desc">${escapeHtml(w.desc)}</p>
-    </div>
-  `).join('');
+  container.innerHTML = works.map(w => {
+    let actionBtns = '';
+    if (w.demoLink) {
+      actionBtns += `<a href="${escapeHtml(w.demoLink)}" target="_blank" class="btn-primary" style="font-size:0.8rem; padding: 6px 14px; margin-top: 12px; display: inline-flex; align-items:center; gap: 6px; text-decoration: none; border-radius: var(--radius-sm); font-weight: 600;"><span>🚀 線上實戰體驗</span></a> `;
+    }
+    if (w.link) {
+      actionBtns += `<a href="${escapeHtml(w.link)}" target="_blank" class="btn-outline" style="font-size:0.8rem; padding: 6px 14px; margin-top: 12px; display: inline-flex; align-items:center; gap: 6px; text-decoration: none; border-radius: var(--radius-sm); font-weight: 600;"><span>📁 查看專案庫</span></a>`;
+    }
+
+    return `
+      <div class="work-card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+          <span class="work-tag">${escapeHtml(w.tag || '實務作品')}</span>
+          <span style="font-size:0.8rem; color:var(--page-muted);">${escapeHtml(w.date || '')}</span>
+        </div>
+        <h4 class="work-title">${escapeHtml(w.title)}</h4>
+        <p class="work-desc">${escapeHtml(w.desc)}</p>
+        ${actionBtns ? `<div style="display:flex; gap:8px; flex-wrap:wrap;">${actionBtns}</div>` : ''}
+      </div>
+    `;
+  }).join('');
 }
 
 function renderExperiences(exps) {
