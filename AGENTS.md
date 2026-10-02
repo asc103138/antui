@@ -14,12 +14,13 @@
 
 ## 收工流程
 1. 檢查敏感資料（API Key、Token、個資等），嚴禁寫入。
-2. 更新專案進度至 `handoff.md`。
-3. 規則若有調整才更新 `AGENTS.md`。
-4. 檢查 `git status` 與 `git diff`。
-5. 只 stage 本次相關檔案（嚴禁無差別 `git add .`）。
-6. 自動執行 commit 並同步推送至線上 Git 遠端儲存庫（git push）。
-7. 回報同步結果。
+2. **執行成品一票否決檢查**：執行 `python scripts/audit_gatekeeper.py` 與 Playwright 實體驗收，未過一律砍掉重練。
+3. 更新專案進度至 `handoff.md`。
+4. 規則若有調整才更新 `AGENTS.md`。
+5. 檢查 `git status` 與 `git diff`。
+6. 只 stage 本次相關檔案（嚴禁無差別 `git add .`）。
+7. 自動執行 commit 並同步推送至線上 Git 遠端儲存庫（git push）。
+8. 回報同步結果。
 
 ## 安全與 Git 規範
 - **嚴禁硬編碼機密**：API 金鑰、個人憑證或 Token 切勿寫入程式碼或 Markdown 文件中。
@@ -55,10 +56,46 @@
 ### 6. 微互動與點擊回饋 (Micro-interactions)
 - **按鈕與可點擊元素必備 `:active`**：按下時必須具備 `transform: scale(0.97)` 微縮觸感，證明介面即時響應用戶動作。
 
-### 7. 行動端原生感規範 (Mobile Native)
-- 消除點擊藍灰色高亮（`-webkit-tap-highlight-color: transparent`）。
-- 彈窗與全螢幕高低視窗適配 `100dvh` / `100svh`，嚴禁死板 `100vh` 破版。
-- 按鈕文字鎖定 `user-select: none`，避免長按誤觸選取。
-- 表單輸入框字體最低 16px，杜絕 iOS Safari 焦點縮放災難。
+## 成品一票否決檢查機制 (Zero-Tolerance Gatekeeper Protocol)
+**【核心鐵律】任何交付之成品（網頁、組件、教材、文件、工作流）必須通過五重嚴格檢查。只要踩中任一項「一票否決紅線（Fatal Red Flags）」，判定為 FAIL，立即「砍掉重練（Hard Reset）」！嚴禁修補苟且、嚴禁帶病過關！**
+
+### 1. 驗收五重鐵律（一票否決紅線 Fatal Red Flags）
+1. **動效工藝物理紅線**：
+   - ❌ 出現無差別 `transition: all`（一律砍掉重練）。
+   - ❌ 出現 `scale(0)` 憑空生成（一律砍掉重練，入場起點最低 `scale(0.95)` 搭配 `opacity: 0`）。
+   - ❌ UI 進場使用 `ease-in` 或線性 `linear`（一律砍掉重練，必須使用強烈自訂曲線 `ease-out`）。
+   - ❌ 可點擊按鈕/標籤缺少 `:active` 物理微縮（`scale(0.96~0.98)`）（一律砍掉重練）。
+   - ❌ 高頻操作（快捷鍵、搜尋、開關）加入多餘動畫延遲（一律砍掉重練，必須瞬開瞬關）。
+2. **多情境可視性與空間層級紅線**：
+   - ❌ 日間/夜間任一模式下元件被隱藏、不可見或對比度破裂（例如日間被 `display: none` 或 `z-index` 負值遮蔽）（一律砍掉重練）。
+   - ❌ 背景動態層攔截使用者點擊（缺少 `pointer-events: none`）（一律砍掉重練）。
+3. **行動端原生感紅線**：
+   - ❌ 缺少 `-webkit-tap-highlight-color: transparent` 造成點擊藍灰閃爍（一律砍掉重練）。
+   - ❌ 視窗尺寸未適配 `100dvh` / `100svh` 而死板使用 `100vh` 造成手機瀏覽器破版（一律砍掉重練）。
+   - ❌ 表單輸入框字體小於 16px 造成 iOS Safari 強迫畫面縮放（一律砍掉重練）。
+   - ❌ 按鈕/控制項未鎖定 `user-select: none` 造成長按誤選字（一律砍掉重練）。
+4. **實體渲染檢驗紅線**：
+   - ❌ **嚴禁「腦補通過」**：必須實際以終端、Playwright 瀏覽器或實機檢視渲染畫面（DOM 計算屬性、截圖），無客觀證據直接否決。
+   - ❌ 瀏覽器控制台或執行期存在未處理錯誤（Console Error / Unhandled Exception）（一律砍掉重練）。
+5. **資安與 Commit 紀律紅線**：
+   - ❌ 硬編碼任何 API Key、Token 或機敏本機路徑（一律砍掉重練）。
+   - ❌ 無差別 `git add .`（一律拒絕）。
+
+### 2. 裁決判定標準與處置流程
+- **判定 FAIL（違規 ≥ 1 項）**：
+  1. 拒絕合併、拒絕 Commit、拒絕交付。
+  2. 立即宣告觸發「砍掉重練（Hard Reset）」機制。
+  3. 丟棄瑕疵實作，依規範重新乾淨實作，直到 100% 綠燈通過。
+- **判定 PASS（違規 = 0 項）**：
+  1. 產出 `| Before | After | Why |` 動效審查報告或檢驗合格清單。
+  2. 方可進入收工流程、Stage 相關檔案、Commit 並推送。
+
+### 3. 自動化巡檢工具
+每次交付前強制執行自動化檢查：
+```bash
+python scripts/audit_gatekeeper.py
+```
+（回傳 Exit Code 1 即代表違規，觸發砍掉重練；Exit Code 0 代表合格）
+
 
 
