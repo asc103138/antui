@@ -164,6 +164,12 @@
   - **全域技能與腳本升級**：升級 `17-g4-curriculum-review`（納入 `check_curriculum.py` v2.1、`review-protocol.md`、`RDQ-spec`）；更新 `05-workflow` 與 `00-install-all`。
   - **chezmoi 跨裝置同步**：已將全域規則、升級技能與腳本納管並推送至私有 dotfiles 儲存庫（`asc103138/dotfiles`，Commit: `a634325`）。
   - **工作區架構就緒**：`d:\antui\四年級教材審查機制` 已對齊 `asc103138/g4-curriculum` 完整架構。
+- [x] 修復 `family-activity-writing` 簡報第二頁文字雲無法打字輸入問題，並實作重置與防搶鍵機制
+  - **根本原因診斷**：確認三大真凶：① Reveal.js 全域鍵盤監聽在注音輸入法選字（Space/數字鍵/Enter）時因缺乏 `event.target` 深度檢驗而搶鍵跳頁；② `e.stopImmediatePropagation()` 阻斷了後續 `Enter` 送出監聽器，導致按下 Enter 無法觸發送出；③ `await addDoc` 同步卡住介面且在離線或權限受限時造成按鈕鎖死。
+  - **鍵盤防搶鍵防護**：升級 Reveal.js `keyboardCondition(event)` 同時檢查 `event.target`、`composedPath` 與 `activeElement`；在輸入框監聽中阻止向上冒泡，並直接原生支援 `Enter` 送出與 `Escape` 清除。
+  - **互動與重置按鈕強化**：在輸入卡片新增明顯的「🔄 重置」按鈕（供新班級重複使用）與「✕」清除文字按鈕；點擊卡片任何空白處自動聚焦輸入框；切換至第二頁時自動聚焦；送出改為樂觀即時更新（0ms 零延遲），背景非同步同步 Firestore。
+  - **Emil Kowalski 規範與實體渲染驗收**：按鈕加入 `:active` scale(0.97) 微縮觸感與輕量 Toast 反饋；經 Playwright 實體瀏覽器抓屏驗證，Enter 送出與重置按鈕 100% 正常；變更已推送至 `asc103138/family-activity-writing`（Commit: `5c97a4a`），並同步更新全域 `19-html-slide-builder` 模板與 chezmoi。
+
 
 
 
