@@ -26,6 +26,7 @@ description: 一次安裝所有 AntiGravity 懶人包技能。說「全部安裝
 17. **17-g4-curriculum-review** — 國小四年級教材與試題生成之全域三階審查機制（南一數/翰林國/康軒社、CLT、SDGs、STEAM、防幻覺真實語料比對、同型態輸出）
 18. **18-word-zhuyin** — 國小 Word 國字自動注音標註與學習單排版
 19. **19-html-slide-builder** — Reveal.js HTML 互動簡報生成器（AI底圖／圖標／Firebase 互動／滑桿演示／GitHub Pages 部署）
+20. **20-mineru** — MinerU 多模態文件結構化解析（PDF轉Markdown／圖文原位對齊／表格／LaTeX公式還原／OCR）
 
 
 每完成一個報告進度，最終回報總表。

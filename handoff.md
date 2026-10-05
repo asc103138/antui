@@ -1,6 +1,11 @@
 # 專案交接筆記 (handoff.md)
 
 ## 目前進度
+- [x] 完成 `04-draw` 生圖技能全面升級為 **Nano Banana 2** 專屬架構規範，並同步更新至公開展示網站與 chezmoi 跨裝置管理庫
+  - **診斷與架構校準**：排查確認原技能為舊版通用草稿，未指定特定架構；全面升級為 Google Gemini Flash Image / Nano Banana 2 原生架構。
+  - **全域技能升級**：更新 `~/.gemini/config/skills/04-draw/SKILL.md`，完整規範 AntiGravity 原生 `generate_image` 之參數規範（`Prompt`、`AspectRatio`、多模態 `ImagePaths` 參考圖）、四大情境提示詞範本（國小高對比黑白試卷線稿、16:9 全息簡報底圖/封面、扁平化去背圖標、角色一致性三視圖卡）與繁體文字後製鐵律。
+  - **本機快速腳本**：新增 Windows 原生免金鑰 PowerShell 快速生圖腳本 `draw.ps1`。
+  - **dotfiles 與展示網站同步**：納入 `asc103138/dotfiles` 跨電腦同步管理（Commit `2d057c0` 已推送）；更新 `d:\antui` 之 `data.json` 與 `skills_docs/`，展示網站技能收錄達 41 款。
 - [x] 完成 STEAM 教師社群（梧棲區中正國小）行政成果與報銷單據全套自動化模組
   - 建立全域技能 `steam-community-docs`，支援 115 年度推動校園 STEAM 教育實施計畫成果表、簽到表、內聘講師領據自動生成。
   - 完成 10/01 場次（王怡婷老師「micro:bit 甩繩軌跡神射手跨域教學」）成果表（含 4 大亮點、2 欄照片集錦、A4 海報）、親筆簽到表、領據生成，並配置 Gmail SMTP 全域寄件通道。
