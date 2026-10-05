@@ -23,6 +23,10 @@ description: 一次安裝所有 AntiGravity 懶人包技能。說「全部安裝
 14. **14-advanced-docs** — 進階文件處理工具包（Word / PDF / Excel / 圖片自動化）
 15. **15-windows-boot-diagnostics** — Windows 開機與登入後效能診斷（開機事件／啟動來源／系統負載／安全與同步安全稽核）
 16. **16-huggingface** — 掛接 Hugging Face 官方生態（MCP 伺服器、hf CLI、Agent Skills 與模型/資料集/Spaces 工作流）
+17. **17-g4-curriculum-review** — 國小四年級教材與試題生成之全域三階審查機制（南一數/翰林國/康軒社、CLT、SDGs、STEAM、防幻覺真實語料比對、同型態輸出）
+18. **18-word-zhuyin** — 國小 Word 國字自動注音標註與學習單排版
+19. **19-html-slide-builder** — Reveal.js HTML 互動簡報生成器（AI底圖／圖標／Firebase 互動／滑桿演示／GitHub Pages 部署）
+
 
 每完成一個報告進度，最終回報總表。
 已安裝的工具自動跳過。

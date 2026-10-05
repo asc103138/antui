@@ -47,6 +47,7 @@ CATEGORY_MAP = {
     "school-language-contest-coach": {"cat": "🏫 教育實戰與社群成果", "badge": "競賽教練", "icon": "🏅", "friendly_name": "校內國語文競賽全方位培訓教材生成器"},
     "17-g4-curriculum-review": {"cat": "🏫 教育實戰與社群成果", "badge": "三階審查", "icon": "🛡️", "friendly_name": "國小四年級教材與試題審查機制 (G4-Review)"},
     "18-word-zhuyin": {"cat": "📑 文件與多媒體神器", "badge": "注音排版", "icon": "🔤", "friendly_name": "Word (.docx) 國字自動注音標註與學習單排版"},
+    "19-html-slide-builder": {"cat": "📑 文件與多媒體神器", "badge": "互動簡報", "icon": "📽️", "friendly_name": "Reveal.js HTML 互動簡報生成器"},
 
     "16-huggingface": {"cat": "☁️ 雲端後端與本地模型", "badge": "AI Hub", "icon": "🤗", "friendly_name": "Hugging Face 全域工作流 (MCP / CLI / Skills)"},
     "hf-cli": {"cat": "⚙️ 環境工程與系統維護", "badge": "Hub CLI", "icon": "🤗", "friendly_name": "Hugging Face Hub CLI 終端操作指南"},
@@ -163,7 +164,7 @@ def main():
             "triggers": triggers,
             "doc_filename": f"{folder}.md",
             "doc_content": body,
-            "showOnMain": folder in ["emil-design-eng", "12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface", "17-g4-curriculum-review"]
+            "showOnMain": folder in ["emil-design-eng", "12-rdq", "14-advanced-docs", "06-second-brain", "01-notebooklm", "13-chezmoi", "steam-community-docs", "16-huggingface", "17-g4-curriculum-review", "19-html-slide-builder"]
         })
 
     # 分類匯總

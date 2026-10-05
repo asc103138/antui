@@ -152,6 +152,13 @@
   - **五重鐵律紅線確立**：動效工藝（禁 `transition: all`、禁 `scale(0)`、禁進場 `ease-in`、必備 `:active` 微縮）、多情境可視性（禁日夜模式遮蔽、禁攔截點擊）、行動端原生（必備 `100dvh`、消除點擊閃爍、字體 ≥ 16px、防誤選）、實體渲染檢驗（嚴禁腦補 pass、控制台零錯誤）、資安與 Commit 紀律（嚴禁洩漏金鑰、禁止無差別 add）。
   - **自動化巡檢工具實裝**：建立 `scripts/audit_gatekeeper.py`，全自動逐行靜態掃描 CSS/HTML/JS 與資安金鑰，违规即 Exit 1 觸發砍掉重練。
   - **工作指引更新**：寫入 `AGENTS.md` 並融入收工流程，作為全體 Agent 開發與交付不可逾越之最高門檻。
+- [x] 完成 `html-slide-builder` 儲存庫全域設定與展示網站同步（全域技能庫收錄擴增至 40 款）
+  - **全域技能庫部署**：依據 `asc103138/html-slide-builder` 於 `~/.gemini/config/skills/19-html-slide-builder` 建立完整技能規範，整合 Reveal.js 骨架、Firebase Firestore 即時文字雲與單選投票、clip-path 滑桿前後演示、AntiGravity 原生生圖（`generate_image`）與 PIL 亮度去背腳本（`scripts/remove_bg.py`，支援 Windows 萬用字元路徑）。
+  - **全域安裝清單升級**：更新 `00-install-all` 技能清單納入 `17-g4-curriculum-review`、`18-word-zhuyin` 與 `19-html-slide-builder`。
+  - **chezmoi 跨裝置同步**：將 `19-html-slide-builder` 與 `00-install-all` 同步納管，並已推播同步至私有 dotfiles 儲存庫（`asc103138/dotfiles`）。
+  - **展示網站收錄與視覺資產**：調用 `generate_image` 生成專屬 3D 霓虹全息科技封面（`cover_19_html_slide_builder.jpg`），更新 `scripts/build_site_data.py` 分類對應，重新生成 `data.json` 與 `skills_docs/19-html-slide-builder.md`。
+  - **嚴格驗收合格**：通過 `audit_gatekeeper.py` 零容忍檢查，經 Playwright 實體瀏覽器渲染測試驗證卡片展示、即時觸發詞一鍵複製與 Markdown 彈窗閱讀器互動完全無誤。
+
 
 
 ## 下一步規劃
