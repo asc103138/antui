@@ -158,6 +158,12 @@
   - **chezmoi 跨裝置同步**：將 `19-html-slide-builder` 與 `00-install-all` 同步納管，並已推播同步至私有 dotfiles 儲存庫（`asc103138/dotfiles`）。
   - **展示網站收錄與視覺資產**：調用 `generate_image` 生成專屬 3D 霓虹全息科技封面（`cover_19_html_slide_builder.jpg`），更新 `scripts/build_site_data.py` 分類對應，重新生成 `data.json` 與 `skills_docs/19-html-slide-builder.md`。
   - **嚴格驗收合格**：通過 `audit_gatekeeper.py` 零容忍檢查，經 Playwright 實體瀏覽器渲染測試驗證卡片展示、即時觸發詞一鍵複製與 Markdown 彈窗閱讀器互動完全無誤。
+- [x] 完成 `g4-curriculum` 國小四年級教材審查全域設定部署與強制本機教科書實體審查條件強化
+  - **全域規則確立**：建立 `~/.gemini/config/rules/curriculum-review-protocol.md`，納入南一數、翰林國、康軒社版本鎖定與三階漏斗審查（最低門檻一票否決、中階RDQ、高階亮點與同型態輸出）。
+  - **核心前置紅線（Gate 0 Hard Stop）**：確立「本機教科書為唯一真實依據（Ground Truth）」；生字詞彙必須透過 `check_curriculum.py` 與本機課習真實 PDF 語料進行精確比對（Exact Substring Match），嚴禁 AI 憑空假審查；若本機缺少教材資料夾（`115四上數課習/`、`115四上國課習/`、`115社會課習/`），強制中斷阻擋並提示教師自行合法放置，絕對嚴禁腦補放行。
+  - **全域技能與腳本升級**：升級 `17-g4-curriculum-review`（納入 `check_curriculum.py` v2.1、`review-protocol.md`、`RDQ-spec`）；更新 `05-workflow` 與 `00-install-all`。
+  - **chezmoi 跨裝置同步**：已將全域規則、升級技能與腳本納管並推送至私有 dotfiles 儲存庫（`asc103138/dotfiles`，Commit: `a634325`）。
+  - **工作區架構就緒**：`d:\antui\四年級教材審查機制` 已對齊 `asc103138/g4-curriculum` 完整架構。
 
 
 
