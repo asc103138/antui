@@ -113,7 +113,7 @@ def send_via_smtp(sender, app_password, recipient, subject, body, attachment_pat
             filename = os.path.basename(filepath)
             with open(filepath, 'rb') as f:
                 part = MIMEApplication(f.read(), Name=filename)
-            part['Content-Disposition'] = f'attachment; filename="{filename}"'
+            part.add_header('Content-Disposition', 'attachment', filename=filename)
             msg.attach(part)
 
     server = smtplib.SMTP('smtp.gmail.com', 587)
