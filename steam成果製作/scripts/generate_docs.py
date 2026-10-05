@@ -430,24 +430,52 @@ def generate_documents(
                     # Insert rows before last row
                     row_img = t1.add_row()
                     row_cap = t1.add_row()
+
+                # Deduplicate cells sharing the same underlying _tc (for horizontally merged cells)
+                distinct_img_cells = []
+                for c in row_img.cells:
+                    if not any(c._tc is u._tc for u in distinct_img_cells):
+                        distinct_img_cells.append(c)
+
+                distinct_cap_cells = []
+                for c in row_cap.cells:
+                    if not any(c._tc is u._tc for u in distinct_cap_cells):
+                        distinct_cap_cells.append(c)
                 
                 for c_idx, img_path in enumerate(pair):
-                    if c_idx < len(row_img.cells):
-                        cell_img = row_img.cells[c_idx]
+                    if c_idx < len(distinct_img_cells):
+                        cell_img = distinct_img_cells[c_idx]
                         cell_img.text = ''
                         p = cell_img.paragraphs[0]
                         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                         run = p.add_run()
                         run.add_picture(img_path, width=Cm(7.9))
                     
-                    if c_idx < len(row_cap.cells):
-                        cell_cap = row_cap.cells[c_idx]
+                    if c_idx < len(distinct_cap_cells):
+                        cell_cap = distinct_cap_cells[c_idx]
                         cap_txt = caption_pairs[pair_idx][c_idx]
                         cell_cap.text = cap_txt
                         p = cell_cap.paragraphs[0]
                         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
                         for r in p.runs:
                             apply_font_zh(r, font_name='標楷體', size_pt=11)
+
+            # Remove any unused photo/caption rows between last filled row and "其他附件" row
+            last_filled_r_idx = 1 + len(photo_pairs) * 2
+            while True:
+                # Find the index of "其他附件"
+                other_r_idx = None
+                for idx_r, row in enumerate(t1.rows):
+                    if any("其他附件" in cell.text for cell in row.cells):
+                        other_r_idx = idx_r
+                        break
+                if other_r_idx is not None and other_r_idx > last_filled_r_idx:
+                    # Remove the row immediately preceding "其他附件"
+                    r_to_del = t1.rows[other_r_idx - 1]
+                    r_to_del._tr.getparent().remove(r_to_del._tr)
+                else:
+                    break
+
 
         # =====================================================================
         # 1.1 自動生成議程海報並嵌入成果表附件區 (Table 1)
@@ -466,7 +494,11 @@ def generate_documents(
         poster_fn = f"{mmdd}議程海報.png"
         target_poster_path = os.path.join(output_dir, poster_fn)
 
-        if generate_session_poster:
+        if os.path.exists(target_poster_path):
+            poster_path = target_poster_path
+            if target_poster_path not in created_files:
+                created_files.append(target_poster_path)
+        elif generate_session_poster:
             try:
                 date_for_poster = f"115年{month}月{day}日 ({weekday_str})"
                 p_success = generate_session_poster(
@@ -483,6 +515,7 @@ def generate_documents(
                         created_files.append(target_poster_path)
             except Exception as pe:
                 print(f"Warning: Poster generation error: {pe}", file=sys.stderr)
+
 
         # Embed poster into Table 1
         if poster_path and os.path.exists(poster_path):
@@ -626,7 +659,7 @@ def generate_documents(
             for p in c0.paragraphs:
                 txt = p.text
                 if '領款人' in txt and '先生/女士' in txt:
-                    p.text = f"領款人  {lecturer}  先生/女士(請以正楷填寫)茲領到"
+                    p.text = "領款人：____________________ 先生/女士(請以正楷填寫)茲領到"
                 elif '活動日期/時間：' in txt:
                     p.text = f"活動日期/時間： {roc_year} 年 {month} 月 {day} 日， {sh:02d} 時 {sm:02d} 分 至 {eh:02d} 時 {em:02d} 分，共 {hours} 小時"
                 elif '活動地點：' in txt:
@@ -643,7 +676,7 @@ def generate_documents(
             for p in c2.paragraphs:
                 txt = p.text
                 if '具    領    人：' in txt:
-                    p.text = f"具    領    人： {lecturer}"
+                    p.text = "具    領    人：____________________（簽名或蓋章）"
                 elif '服務單位/職稱：' in txt:
                     p.text = f"服務單位/職稱： 臺中市梧棲區中正國民小學 / 教師"
                 elif '中華民國年月日' in txt or '中華民國' in txt:

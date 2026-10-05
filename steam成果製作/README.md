@@ -81,3 +81,13 @@ python3 scripts/generate_docs.py \
    ```
 2. 系統自動完成套件檢查與 `~/.gemini/config/skills/steam-community-docs` 配置。
 
+---
+
+## 📧 全域 Gmail 自動發信設定
+
+為實現全自動寄送成果信件至教育局承辦信箱（`tc.steam114@gmail.com`），本機已啟用全域 Gmail 配置：
+1. **Windows 使用者環境變數**：`GMAIL_SENDER`（固定為 `asc103138@st.tc.edu.tw`）與 `GMAIL_APP_PASSWORD`（16 碼 Google 應用程式密碼）。
+2. **全域設定檔**：`~/.gemini/config/gmail_config.json` 與全域技能之 `references/gmail_config.json`。
+3. **安全防護**：全域設定檔與環境變數絕不上傳至 Git 儲存庫，在任何工作目錄均可自動辨識並安全調用 SMTP 發送。
+
+
