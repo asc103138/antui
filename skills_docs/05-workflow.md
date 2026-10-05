@@ -22,6 +22,7 @@ description: AntiGravity 開工/收工/新專案初始化流程。說「開工�
 7. 回報同步結果
 
 ## 新專案初始化
-先問：名稱、用途、資料夾、是否 GitHub repo、公開/私有、是否部署。
-建立：AGENTS.md、README.md、.gitignore、Git repo、GitHub repo、專案筆記；`ANTIGRAVITY.md` 只作為指向 AGENTS.md 的精簡入口（AntiGravity 1 舊寫法是把規則全放 ANTIGRAVITY.md）。
-若已存在 → 盤點後只補缺口，不覆蓋。
+1. 先問：名稱、用途、資料夾、是否 GitHub repo、公開/私有、是否部署。
+2. 建立：AGENTS.md、README.md、.gitignore、Git repo、GitHub repo、專案筆記；`ANTIGRAVITY.md` 只作為指向 AGENTS.md 的精簡入口（AntiGravity 1 舊寫法是把規則全放 ANTIGRAVITY.md）。
+3. 若已存在 → 盤點後只補缺口，不覆蓋。
+4. **四年級教材/試題專案自動掛載**：若專案或任務涉及國小四年級教材、試題、學習單或教案生成，必須自動掛載並遵循 `17-g4-curriculum-review` 三階審查協議（最低門檻一票否決、中階RDQ、高階亮點、防幻覺真實課習語料比對與同型態輸出）。

@@ -117,9 +117,9 @@ python3 ~/.gemini/config/skills/steam-community-docs/scripts/generate_docs.py \
      python3 ~/.gemini/config/skills/steam-community-docs/scripts/send_gmail.py --dir "./<MMDD>"
      ```
    - **登入與寄送機制**：
-     - 腳本鎖定專用帳號 `asc103138@st.tc.edu.tw`，自動開啟瀏覽器 Gmail 撰寫視窗（預填收件人、主旨、內文）並彈出成果檔案資料夾。
-     - 若瀏覽器尚未登入 `asc103138@st.tc.edu.tw`，請使用者先於瀏覽器完成登入，再拖曳附件寄件。
-     - 若本機設定了該帳號之 SMTP 應用程式密碼，亦支援全自動背景發送。
+     - 腳本鎖定專用帳號 sc103138@st.tc.edu.tw。
+     - **全域設定已就緒**：已在 Windows 使用者層級環境變數（GMAIL_SENDER、GMAIL_APP_PASSWORD）與全域設定檔（~/.gemini/config/gmail_config.json 及技能 references 目錄）完成全域配置，系統可直接進行全自動 SMTP 背景安全發送。
+     - 若未設定密碼或環境不通，則無縫退回開啟瀏覽器 Gmail 撰寫視窗（預填收件人、主旨、內文）並彈出成果檔案資料夾。
 
 ---
 
