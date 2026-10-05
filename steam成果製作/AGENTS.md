@@ -29,4 +29,5 @@
 - 學生資料僅記錄代號或人數，不記錄學生個人隱私。
 - 活動成果產出嚴格遵守 `rdq/RDQ-spec-steam-community-docs-20260926.md` 確認之規格與既有 2 欄式照片版面。
 - **成果信件繳交規範**：每場次活動成果依規需寄至 `tc.steam114@gmail.com`。附件**僅夾帶《成果表》與《簽到表》**（絕不夾帶內部報銷之《領據》）。**寄信前必須先在對話中呈現信件主旨、內文與附件清單供使用者確認**，經使用者明確確認無誤後方可執行發送。
+- **收工與 Git 推送規範**：收工時必須執行 `python scripts/sync_git.py "<commit_message>"`，自動將修改同步至專屬 Git 目錄（`d:\steam-community-docs`）推送至本專案線上 GitHub 儲存庫 `https://github.com/asc103138/steam-community-docs`，並同時同步更新至父目錄 `asc103138/antui` 與全域技能目錄（`~/.gemini/config/skills/steam-community-docs`）。嚴禁只推送單一儲存庫！
 
