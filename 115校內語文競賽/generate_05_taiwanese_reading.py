@@ -357,7 +357,7 @@ def generate_taiwanese_reading():
         if line.strip():
             p = t_doc.add_paragraph()
             r = p.add_run(line)
-            apply_font(r, size_pt=9.5, color_rgb=(15, 23, 42) if not line.startswith("【") else (180, 83, 9))
+            apply_font(r, size_pt=16, color_rgb=(15, 23, 42) if not line.startswith("【") else (180, 83, 9))
 
     add_section_h1(t_doc, "參、10/5~10/30 每日集訓與週末自學增量進度評量表")
     t_table_data = [["天數/週末", "日期", "性質", "訓練焦點/任務", "在校教學重點／週末自學指引", "評量指標規準", "導師評核"]]
@@ -434,7 +434,7 @@ def generate_taiwanese_reading():
         if line.strip():
             p = s_doc.add_paragraph()
             r = p.add_run(line)
-            apply_font(r, size_pt=10.5, color_rgb=(30, 41, 59))
+            apply_font(r, size_pt=16, color_rgb=(30, 41, 59))
 
     add_section_h1(s_doc, "肆、每日在校教學練習單 暨 週末假日增量朗讀單（逐日訓練專區）")
     for d in TAIWANESE_SCHEDULE:
@@ -442,7 +442,7 @@ def generate_taiwanese_reading():
         p1 = s_doc.add_paragraph()
         guidance = d.get('s_aid', d.get('s_guide', ''))
         r1 = p1.add_run(f"★ 學習要領：{guidance}")
-        apply_font(r1, size_pt=9, bold=True, color_rgb=(71, 85, 105))
+        apply_font(r1, size_pt=16, bold=True, color_rgb=(71, 85, 105))
 
         for line in d["s_task"].split("\n"):
             if line.strip():
@@ -450,7 +450,7 @@ def generate_taiwanese_reading():
                 p.paragraph_format.space_before = Pt(1)
                 p.paragraph_format.space_after = Pt(1)
                 r = p.add_run(line)
-                apply_font(r, size_pt=9, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
+                apply_font(r, size_pt=16, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
 
         check_data = [
             ["訓練項目", "實測數值", "弱音勘誤／反饋", "今日星等自評"],

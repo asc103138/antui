@@ -339,7 +339,7 @@ def generate_taiwanese_speech():
         if line.strip():
             p = t_doc.add_paragraph()
             r = p.add_run(line)
-            apply_font(r, size_pt=9.5, bold=line.startswith("【") or line.startswith("題目") or line.startswith("提示"), color_rgb=(180, 83, 9) if line.startswith("【") else (15, 23, 42))
+            apply_font(r, size_pt=16, bold=line.startswith("【") or line.startswith("題目") or line.startswith("提示"), color_rgb=(180, 83, 9) if line.startswith("【") else (15, 23, 42))
 
     add_section_h1(t_doc, "貳、競賽核心規範與評判要旨")
     add_bullet_pt(t_doc, "115 年 11 月 19 日（四）08:10-09:20，活動中心校史室。", "時間地點：")
@@ -353,16 +353,16 @@ def generate_taiwanese_speech():
         if line.strip():
             p = t_doc.add_paragraph()
             r = p.add_run(line)
-            apply_font(r, size_pt=9.5, color_rgb=(15, 23, 42))
+            apply_font(r, size_pt=16, color_rgb=(15, 23, 42))
 
     add_section_h1(t_doc, "肆、評判即席提問 5 大必考題與回答指南")
     for qa in QA_5_QUESTIONS:
         add_section_h2(t_doc, qa["q"])
         p = t_doc.add_paragraph()
         r1 = p.add_run(qa["a"] + "\n")
-        apply_font(r1, size_pt=9, bold=True, color_rgb=(30, 64, 175))
+        apply_font(r1, size_pt=16, bold=True, color_rgb=(30, 64, 175))
         r2 = p.add_run(f"★ {qa['point']}")
-        apply_font(r2, size_pt=8.5, italic=True, color_rgb=(71, 85, 105))
+        apply_font(r2, size_pt=16, italic=True, color_rgb=(71, 85, 105))
 
     add_section_h1(t_doc, "伍、10/5~10/30 每日集訓與週末自學增量進度評量表")
     t_table_data = [["天數/週末", "日期", "性質", "訓練焦點/任務", "在校教學重點／週末自學指引", "評量指標規準", "導師評核"]]
@@ -440,7 +440,7 @@ def generate_taiwanese_speech():
         if line.strip():
             p = s_doc.add_paragraph()
             r = p.add_run(line)
-            apply_font(r, size_pt=9.5, bold=line.startswith("【") or line.startswith("題目") or line.startswith("提示"), color_rgb=(180, 83, 9) if line.startswith("【") else (15, 23, 42))
+            apply_font(r, size_pt=16, bold=line.startswith("【") or line.startswith("題目") or line.startswith("提示"), color_rgb=(180, 83, 9) if line.startswith("【") else (15, 23, 42))
 
     add_section_h1(s_doc, "貳、四年丙班台語情境演說選手參賽守則與作答須知")
     add_bullet_pt(s_doc, "限時 2 分鐘（演講約 1分20秒 ＋ 即席問答約 40 秒，結束前30秒一響鈴，2分鐘二響鈴）。", "競賽時間：")
@@ -461,16 +461,16 @@ def generate_taiwanese_speech():
         if line.strip():
             p = s_doc.add_paragraph()
             r = p.add_run(line)
-            apply_font(r, size_pt=9.5, color_rgb=(30, 41, 59))
+            apply_font(r, size_pt=16, color_rgb=(30, 41, 59))
 
     add_section_h1(s_doc, "伍、評判即席提問 5 大必考題與回答要領")
     for qa in QA_5_QUESTIONS:
         add_section_h2(s_doc, qa["q"])
         p = s_doc.add_paragraph()
         r1 = p.add_run(qa["a"] + "\n")
-        apply_font(r1, size_pt=9, bold=True, color_rgb=(30, 64, 175))
+        apply_font(r1, size_pt=16, bold=True, color_rgb=(30, 64, 175))
         r2 = p.add_run(f"★ {qa['point']}")
-        apply_font(r2, size_pt=8.5, italic=True, color_rgb=(71, 85, 105))
+        apply_font(r2, size_pt=16, italic=True, color_rgb=(71, 85, 105))
 
     add_section_h1(s_doc, "陸、每日在校教學練習單 暨 週末假日增量演說單（逐日訓練專區）")
     for d in TAIWANESE_SPEECH_SCHEDULE:
@@ -478,7 +478,7 @@ def generate_taiwanese_speech():
         guidance = d.get("s_aid", d.get("s_guide", ""))
         p1 = s_doc.add_paragraph()
         r1 = p1.add_run(f"★ 學習要領：{guidance}")
-        apply_font(r1, size_pt=9, bold=True, color_rgb=(71, 85, 105))
+        apply_font(r1, size_pt=16, bold=True, color_rgb=(71, 85, 105))
 
         for line in d["s_task"].split("\n"):
             if line.strip():
@@ -486,7 +486,7 @@ def generate_taiwanese_speech():
                 p.paragraph_format.space_before = Pt(1)
                 p.paragraph_format.space_after = Pt(1)
                 r = p.add_run(line)
-                apply_font(r, size_pt=9, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
+                apply_font(r, size_pt=16, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
 
         check_data = [
             ["訓練項目", "實測數值", "檢核反饋／卡頓修正", "今日星等自評"],

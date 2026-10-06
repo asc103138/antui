@@ -306,7 +306,7 @@ def generate_characters_system():
             p.paragraph_format.space_before = Pt(2)
             p.paragraph_format.space_after = Pt(4)
             r = p.add_run(f"★ 週末增量挑戰成效：實得分數［    /{count*2}分 ］  塗改次數［    次 ］  家長抽考簽章：__________________")
-            apply_font(r, size_pt=8.5, bold=True, color_rgb=(15, 44, 89))
+            apply_font(r, size_pt=16, bold=True, color_rgb=(15, 44, 89))
         else:
             grid_rows = [["題號", "字音題目（寫出注音）", "作答方格", "題號", "字形題目（寫出國字）", "作答方格"]]
             for i in range(10):
@@ -321,7 +321,7 @@ def generate_characters_system():
             p.paragraph_format.space_before = Pt(2)
             p.paragraph_format.space_after = Pt(4)
             r = p.add_run("★ 今日實測：得分［    /20分 ］  塗改次數［    次 ］  作答耗時［    秒 ］  回家錯題已訂正 3 遍［ ］")
-            apply_font(r, size_pt=8.5, bold=True, color_rgb=(194, 65, 12))
+            apply_font(r, size_pt=16, bold=True, color_rgb=(194, 65, 12))
 
     s_doc.save(os.path.join(TARGET_DIR, "學生_在校教學練習每日學習單與自評表.docx"))
     print("03_國語字音字形組 MD and DOCX (含週末自學增量) generated successfully.")

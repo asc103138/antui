@@ -321,7 +321,7 @@ def generate_composition():
                 p.paragraph_format.space_before = Pt(1)
                 p.paragraph_format.space_after = Pt(1)
                 r = p.add_run(line)
-                apply_font(r, size_pt=9, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
+                apply_font(r, size_pt=16, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
 
         for line in d["s_frame"].split("\n"):
             if line.strip():
@@ -329,7 +329,7 @@ def generate_composition():
                 p.paragraph_format.space_before = Pt(1)
                 p.paragraph_format.space_after = Pt(1)
                 r = p.add_run(line)
-                apply_font(r, size_pt=8.5, color_rgb=(71, 85, 105))
+                apply_font(r, size_pt=16, color_rgb=(71, 85, 105))
 
         # 模擬稿紙方格表格
         grid_data = [

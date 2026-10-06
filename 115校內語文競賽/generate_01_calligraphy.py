@@ -389,7 +389,7 @@ def generate_calligraphy():
                 p.paragraph_format.space_before = Pt(1)
                 p.paragraph_format.space_after = Pt(1)
                 r = p.add_run(line)
-                apply_font(r, size_pt=9, bold=line.startswith("指定字") or line.startswith("★"), color_rgb=(30, 41, 59))
+                apply_font(r, size_pt=16, bold=line.startswith("指定字") or line.startswith("★"), color_rgb=(30, 41, 59))
         
         for line in d["s_task"].split("\n"):
             if line.strip():
@@ -397,14 +397,14 @@ def generate_calligraphy():
                 p.paragraph_format.space_before = Pt(1)
                 p.paragraph_format.space_after = Pt(1)
                 r = p.add_run(line)
-                apply_font(r, size_pt=9, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
+                apply_font(r, size_pt=16, bold=True, color_rgb=(194, 65, 12) if ("回家" in line or "增量" in line) else (30, 64, 175))
 
         if "週末" in d["day"]:
             p = s_doc.add_paragraph()
             p.paragraph_format.space_before = Pt(4)
             p.paragraph_format.space_after = Pt(4)
             r = p.add_run("★ 週末增量作業檢核欄：請將本週末完成之宣紙作品夾於本冊，家長簽章：______________ 導師週一批閱：［ ］特優 ［ ］優等 ［ ］尚可")
-            apply_font(r, size_pt=8.5, bold=True, color_rgb=(15, 44, 89))
+            apply_font(r, size_pt=16, bold=True, color_rgb=(15, 44, 89))
         else:
             grid_data = [
                 ["九宮格 1", "九宮格 2", "九宮格 3", "九宮格 4", "九宮格 5"],

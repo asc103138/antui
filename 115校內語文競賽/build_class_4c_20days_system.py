@@ -70,7 +70,7 @@ def set_table_borders(table, color="D0D5DD", sz="4", val="single"):
     )
     tblPr.append(borders)
 
-def apply_font(run, font_name="微軟正黑體", size_pt=10, bold=False, italic=False, color_rgb=(51,51,51)):
+def apply_font(run, font_name="標楷體", size_pt=16, bold=False, italic=False, color_rgb=(51,51,51)):
     run.font.name = font_name
     rPr = run._r.get_or_add_rPr()
     rFonts = rPr.find(qn('w:rFonts'))
@@ -80,13 +80,24 @@ def apply_font(run, font_name="微軟正黑體", size_pt=10, bold=False, italic=
     rFonts.set(qn('w:eastAsia'), font_name)
     rFonts.set(qn('w:ascii'), font_name)
     rFonts.set(qn('w:hAnsi'), font_name)
-    run.font.size = Pt(size_pt)
+    run.font.size = Pt(16)
     run.bold = bold
     run.italic = italic
     run.font.color.rgb = RGBColor(*color_rgb)
 
 def create_doc():
     doc = Document()
+    style = doc.styles['Normal']
+    style.font.name = '標楷體'
+    style.font.size = Pt(16)
+    rPr = style.element.get_or_add_rPr()
+    rFonts = rPr.find(qn('w:rFonts'))
+    if rFonts is None:
+        rFonts = OxmlElement('w:rFonts')
+        rPr.append(rFonts)
+    rFonts.set(qn('w:eastAsia'), '標楷體')
+    rFonts.set(qn('w:ascii'), '標楷體')
+    rFonts.set(qn('w:hAnsi'), '標楷體')
     for s in doc.sections:
         s.top_margin = Inches(0.65)
         s.bottom_margin = Inches(0.65)
@@ -100,14 +111,14 @@ def add_header(doc, title, subtitle):
     p1.paragraph_format.space_before = Pt(0)
     p1.paragraph_format.space_after = Pt(2)
     r1 = p1.add_run(title)
-    apply_font(r1, size_pt=15, bold=True, color_rgb=(15, 44, 89))
+    apply_font(r1, size_pt=16, bold=True, color_rgb=(15, 44, 89))
 
     p2 = doc.add_paragraph()
     p2.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p2.paragraph_format.space_before = Pt(0)
     p2.paragraph_format.space_after = Pt(10)
     r2 = p2.add_run(subtitle)
-    apply_font(r2, size_pt=11, bold=True, color_rgb=(194, 65, 12))
+    apply_font(r2, size_pt=16, bold=True, color_rgb=(194, 65, 12))
 
 def add_section_h1(doc, text):
     p = doc.add_paragraph()
@@ -115,7 +126,7 @@ def add_section_h1(doc, text):
     p.paragraph_format.space_after = Pt(4)
     p.paragraph_format.keep_with_next = True
     r = p.add_run(text)
-    apply_font(r, size_pt=13, bold=True, color_rgb=(15, 44, 89))
+    apply_font(r, size_pt=16, bold=True, color_rgb=(15, 44, 89))
     return p
 
 def add_section_h2(doc, text):
@@ -124,7 +135,7 @@ def add_section_h2(doc, text):
     p.paragraph_format.space_after = Pt(3)
     p.paragraph_format.keep_with_next = True
     r = p.add_run(text)
-    apply_font(r, size_pt=11, bold=True, color_rgb=(30, 64, 175))
+    apply_font(r, size_pt=16, bold=True, color_rgb=(30, 64, 175))
     return p
 
 def add_bullet_pt(doc, text, bold_prefix=None):
@@ -133,9 +144,9 @@ def add_bullet_pt(doc, text, bold_prefix=None):
     p.paragraph_format.space_after = Pt(2)
     if bold_prefix:
         r_pre = p.add_run(bold_prefix)
-        apply_font(r_pre, size_pt=9.5, bold=True, color_rgb=(30, 41, 59))
+        apply_font(r_pre, size_pt=16, bold=True, color_rgb=(30, 41, 59))
     r = p.add_run(text)
-    apply_font(r, size_pt=9.5, bold=False, color_rgb=(51, 65, 85))
+    apply_font(r, size_pt=16, bold=False, color_rgb=(51, 65, 85))
     return p
 
 def add_simple_table(doc, data, widths, header_color="1E3A8A"):
@@ -156,11 +167,11 @@ def add_simple_table(doc, data, widths, header_color="1E3A8A"):
             run = p.add_run(cell_text)
             if r_i == 0:
                 set_cell_background(cell, header_color)
-                apply_font(run, size_pt=9, bold=True, color_rgb=(255, 255, 255))
+                apply_font(run, size_pt=16, bold=True, color_rgb=(255, 255, 255))
             else:
                 if r_i % 2 == 1:
                     set_cell_background(cell, "F8FAFC")
-                apply_font(run, size_pt=8.5, bold=(c_i==0), color_rgb=(30, 41, 59))
+                apply_font(run, size_pt=16, bold=(c_i==0), color_rgb=(30, 41, 59))
     doc.add_paragraph().paragraph_format.space_after = Pt(4)
     return t
 
