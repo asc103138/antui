@@ -1,12 +1,13 @@
 # 專案交接筆記 (handoff.md)
 
 ## 目前進度
-- [x] 完成 108 課綱國小四年級康軒版社會第一單元 1-2《地形的種類與生活》15 頁完整 SOIL 互動 HTML 簡報（`soil-html-deck`）製作
+- [x] 完成 108 課綱國小四年級康軒版社會第一單元 1-2《地形的種類與生活》15 頁完整 SOIL / Reveal.js 互動簡報（`taiwan-landforms-life`）製作與互動重置機制修復
   - **教材來源精準對齊**：依據 `G:\我的雲端硬碟\115四上教材\115社會課習` 之課本第 20～23 頁、習作第 6～7 頁與附件第 114 頁地圖，精確納入五大地形特徵、居民生活產業實例（池上水稻、枋寮魚塭、石碇茶園、和平梨山果蔬、臺北/埔里/臺中盆地、大肚台地）。
-  - **三階漏斗審查完全合規**：符合 `g4-curriculum-review` 第一階紅線（無假課文、先備經驗鎖定、108 課綱代碼對齊、教育部標準字體）、第二階中階（CLT 認知負荷 15 頁標題全部 $\le 10$ 字、林長揚 30 原則 55/34/21/13、SDG 11 永續城鄉防洪與 SDG 15 水土保持、1000m 標尺與排水物理探究）、第三階高階（三大迷思互動診斷、臺中市梧棲區海線在地橫剖面視角）。
-  - **Emil Kowalski 設計工程工藝落實**：單一可攜 HTML（位於 `d:\antui\html簡報\115四上社會_1-2地形的種類與生活\index.html`），零 `transition: all`、零 `scale(0)`、進場自訂物理曲線 `--ease-out`、`:active` 微縮觸感、行動原生 `100dvh` 與 `-webkit-tap-highlight-color: transparent`。
-  - **富互動元件與實體渲染驗收**：內建 Chart.js 五大地形雷達圖、習作第 6～7 頁 5 道互動題目即時批改反饋、三大迷思翻牌器、教師教學備忘抽屜（按鍵 `N`）、鍵盤導航（方向鍵/空白鍵）與手機滑動手勢；經 Playwright MCP 瀏覽器端對端實機渲染測試通過，控制台零錯誤。
-  - **驗收審查**：通過 `python scripts/audit_gatekeeper.py` 零容忍檢查，綠燈合格。
+  - **全套 15 張 AI 背景底圖生成**：調用生圖子代理（`image-generator`），全數產出 16:9 深暗色系高質感背景底圖（五大地形、臺中海線橫剖面、迷思偵探、高山茶園等），以 `data-background-image` 與 `data-background-opacity` 完美嵌入。
+  - **互動內容重置機制全面修復**：徹底解決文字雲與投票重置失效問題，重構 Slide 2 與 Slide 13 頂部工具列避免 Reveal.js 視窗遮蔽，引入 Session 會期隔離、本地狀態徹底歸零（0 則、0 票）、畫布即時 `clearRect` 清空、Toast 懸浮通知反饋與 `BroadcastChannel` 跨分頁即時同步，並同步支援 Slide 10 迷思卡片重新蓋上與 Slide 12 滑桿重置。
+  - **三階漏斗審查完全合規**：符合 `g4-curriculum-review` 第一階紅線、第二階中階（CLT 15 頁標題全部 $\le 10$ 字、林長揚 30 原則、SDGs 11 & 15）、第三階高階（三大迷思互動診斷、梧棲海線在地視角）。
+  - **Emil Kowalski 設計工程工藝落實**：零 `transition: all`、零 `scale(0)`、進場自訂物理曲線 `--ease-out`、`:active` 微縮觸感、行動原生 `100dvh` 與 `-webkit-tap-highlight-color: transparent`。
+  - **同步與部署**：已同步推送至 `asc103138/html-slide-builder` 遠端儲存庫（Commit `2a0b569`），通過 `audit_gatekeeper.py` 零容忍檢查，經 Playwright 實測驗收確認 0 控制台錯誤、重置點擊 100% 生效。
   - **診斷與架構校準**：排查確認原技能為舊版通用草稿，未指定特定架構；全面升級為 Google Gemini Flash Image / Nano Banana 2 原生架構。
   - **全域技能升級**：更新 `~/.gemini/config/skills/04-draw/SKILL.md`，完整規範 AntiGravity 原生 `generate_image` 之參數規範（`Prompt`、`AspectRatio`、多模態 `ImagePaths` 參考圖）、四大情境提示詞範本（國小高對比黑白試卷線稿、16:9 全息簡報底圖/封面、扁平化去背圖標、角色一致性三視圖卡）與繁體文字後製鐵律。
   - **本機快速腳本**：新增 Windows 原生免金鑰 PowerShell 快速生圖腳本 `draw.ps1`。
