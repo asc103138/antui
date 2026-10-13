@@ -7,7 +7,8 @@
   - **互動內容重置機制全面修復**：徹底解決文字雲與投票重置失效問題，重構 Slide 2 與 Slide 13 頂部工具列避免 Reveal.js 視窗遮蔽，引入 Session 會期隔離、本地狀態徹底歸零（0 則、0 票）、畫布即時 `clearRect` 清空、Toast 懸浮通知反饋與 `BroadcastChannel` 跨分頁即時同步，並同步支援 Slide 10 迷思卡片重新蓋上與 Slide 12 滑桿重置。
   - **三階漏斗審查完全合規**：符合 `g4-curriculum-review` 第一階紅線、第二階中階（CLT 15 頁標題全部 $\le 10$ 字、林長揚 30 原則、SDGs 11 & 15）、第三階高階（三大迷思互動診斷、梧棲海線在地視角）。
   - **Emil Kowalski 設計工程工藝落實**：零 `transition: all`、零 `scale(0)`、進場自訂物理曲線 `--ease-out`、`:active` 微縮觸感、行動原生 `100dvh` 與 `-webkit-tap-highlight-color: transparent`。
-  - **同步與部署**：已同步推送至 `asc103138/html-slide-builder` 遠端儲存庫（Commit `2a0b569`），通過 `audit_gatekeeper.py` 零容忍檢查，經 Playwright 實測驗收確認 0 控制台錯誤、重置點擊 100% 生效。
+  - **第 12 頁平面地圖與立體生活剖面雙層視覺化重構**：針對第 12 頁滑桿演示，徹底捨棄純文字佔位，構建兩幅 1:1 像素精準對齊的向量 SVG（Before：課本 P.114 經緯鳥瞰平面地圖色塊、海峽水波、南北縱列大肚台地與 A-B 東西發光剖面切線；After：真實 3D 海拔生活橫剖面，清晰標定 0m 海洋、梧棲中正國小校園、300m 平頂大肚台地工業區、120m 碗狀臺中盆地市區、1000m 關鍵丘陵/山地分界線、高聳雪山山脈與和平梨山溫帶果園）。支援滑桿 `<input type="range">` 與地圖畫布直接觸控拖曳雙模式，點擊重置按鈕即時回彈起點並觸發 Toast 反饋。
+  - **同步與部署**：已同步推送至 `asc103138/html-slide-builder` 遠端儲存庫（Commit `0ccdea6`），通過 `audit_gatekeeper.py` 零容忍檢查，經 Playwright 實機實測驗收確認 0 控制台錯誤、滑桿拖曳與視覺剖面完美對齊。
   - **診斷與架構校準**：排查確認原技能為舊版通用草稿，未指定特定架構；全面升級為 Google Gemini Flash Image / Nano Banana 2 原生架構。
   - **全域技能升級**：更新 `~/.gemini/config/skills/04-draw/SKILL.md`，完整規範 AntiGravity 原生 `generate_image` 之參數規範（`Prompt`、`AspectRatio`、多模態 `ImagePaths` 參考圖）、四大情境提示詞範本（國小高對比黑白試卷線稿、16:9 全息簡報底圖/封面、扁平化去背圖標、角色一致性三視圖卡）與繁體文字後製鐵律。
   - **本機快速腳本**：新增 Windows 原生免金鑰 PowerShell 快速生圖腳本 `draw.ps1`。
