@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Output and temp files
+output/
+temp/
+*.tmp
+*.log
+
+# Models & Weights Cache
+models/
+*.bin
+*.pth
+*.pt
+*.onnx
+*.safetensors
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini

@@ -1,6 +1,12 @@
 # 專案交接筆記 (handoff.md)
 
-## 目前進度
+- [x] 完成 Antigravity MinerU 文件解析技能與進階 PDF 工具包（`antigravity-mineru`）全域設定、文件技能整合與專案初始化
+  - **全域技能註冊**：建立全域技能 `20-mineru`，登錄 `00-install-all` 清單第 20 項，支援多模態版面分析（Layout Analysis）、圖文原位對齊、跨頁表格 Markdown 化、LaTeX 數理公式還原與 OCR 模式。
+  - **進階文書處理技能整合**：擴充全域 `14-advanced-docs` 技能（更新 frontmatter 觸發詞、工具分工表、安裝指引，新增範例八 Python 深度解析調用腳本）。
+  - **專案結構初始化**：於 `d:\antui\pdf技能` 完整建立規範檔案（`AGENTS.md`、`ANTIGRAVITY.md`、`README.md`、`.gitignore`、`handoff.md`、`SKILL.md`）。
+  - **核心腳本研發**：完成 CLI/Python 核心解析腳本 `scripts/parse_pdf.py` 與多端雙向自動同步腳本 `scripts/sync_git.py`。
+  - **獨立 GitHub 開源儲存庫**：建立本地專屬目錄 `d:\antigravity-mineru` 並成功建立與推送到 GitHub 公開儲存庫（`https://github.com/asc103138/antigravity-mineru`）。
+  - **Obsidian 知識庫對接**：建立專屬駕駛艙筆記（`D:\opencode\我的筆記\antui\pdf-mineru-文件解析.md`）並更新總覽工作流程。
 - [x] 完成 115 學年度校內語文競賽【國語字音字形組】真題出題範圍全面比對與題號標註（`115校內語文競賽`）
   - **對齊官方出題範圍試卷**：精準解析 `1.校內語文競賽-國語字音字形出題範圍/` 之《附件五之一（112年）》（200題）與《附件五之三（114年）》（200題），構建完整 400 題真題題庫與考點解析。
   - **逐題標註官方原始題號**：Day 01~10 字音字形各 100 題對齊 112 年真題，第 1 題「沮洳」編上 1（`【1】沮「洳」 ➔ ㄖㄨˋ`）、「城隍爺」編上 1（`【1】城「ㄏㄨㄤˊ」爺 ➔ 【 隍 】`），依序編號至第 100 題；Day 11~20 對齊 114 年真題，第 1 題「咎陶殺人」編上 1、「亙古常存」編上 1，依序編號至第 100 題；四大週末假日自學增量挑戰卷（各 50 題）同步標註原題號。
