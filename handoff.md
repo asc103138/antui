@@ -1,5 +1,9 @@
 # 專案交接筆記 (handoff.md)
 
+- [x] 完成 `shanshiba-workflow-colab`（山獅霸的多重宇宙 AI 短片工作流）全域設定、專案初始化（`d:\antui\影片`）與《micro:bit 8人跳繩智慧教練》2 分鐘搞笑教學影片製作
+  - **全域技能註冊與同步**：安裝 `shanshiba-workflow-colab`、`shanshiba-drama`、`blender-previs` 三大全域技能至 `~/.gemini/config/skills/`，部署全域工具鏈至 `C:\AI\tools`，安裝並修補 Windows 版 `google-colab-cli (v0.7.4)`，同步更新 `antigravity-lazy-packs`、展示網站 `data.json` 與 `asc103138/dotfiles` (chezmoi)。
+  - **專案結構初始化**：於 `d:\antui\影片` 部署完整工作流（`agent/`, `cloud/`, `configs/`, `docs/`, `pipeline/`, `setup/`, `sfx/`, `templates/`, `tools/`）及標準規範檔（`AGENTS.md`, `ANTIGRAVITY.md`, `CLAUDE.md`, `handoff.md`）。
+  - **2 分鐘搞笑教學影片產出**：將國小四年級資訊科技 7 週專題《micro:bit 8人跳繩智慧教練》轉化為 16 鏡正片（110.0 秒）＋金色咒印法陣片尾（10.0 秒）＝ **120.00 秒（2 分鐘整）** 1080p 24fps 搞笑教學影片（`pipeline/microbit_jumprope_coach/out/cut/film_1080p.mp4`），通過 `review.py` 五遍自審（`-15.8 LUFS`、0 台詞重疊、0 截斷）與 `g4-curriculum-review` 三階漏斗審查。
 - [x] 完成 Antigravity MinerU 文件解析技能與進階 PDF 工具包（`antigravity-mineru`）全域設定、文件技能整合與專案初始化
   - **全域技能註冊**：建立全域技能 `20-mineru`，登錄 `00-install-all` 清單第 20 項，支援多模態版面分析（Layout Analysis）、圖文原位對齊、跨頁表格 Markdown 化、LaTeX 數理公式還原與 OCR 模式。
   - **進階文書處理技能整合**：擴充全域 `14-advanced-docs` 技能（更新 frontmatter 觸發詞、工具分工表、安裝指引，新增範例八 Python 深度解析調用腳本）。

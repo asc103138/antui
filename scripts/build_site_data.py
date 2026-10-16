@@ -60,6 +60,12 @@ CATEGORY_MAP = {
 
     "emil-design-eng": {"cat": "🎨 介面美學與動效工程", "badge": "設計工程", "icon": "✨", "friendly_name": "Emil Kowalski 設計工程與動效最低標準"},
     "mobile-native": {"cat": "🎨 介面美學與動效工程", "badge": "手機原生", "icon": "📱", "friendly_name": "行動端 Web 原生質感與 CSS 修復"},
+
+    "shanshiba-workflow-colab": {"cat": "📑 文件與多媒體神器", "badge": "AI短片工作流", "icon": "🎬", "friendly_name": "山獅霸 AI 短片與教學影片工作流 (Colab G4 雲端版)"},
+    "shanshiba-drama": {"cat": "📑 文件與多媒體神器", "badge": "短劇編劇", "icon": "🎭", "friendly_name": "山獅霸 AI 短劇九階段編劇與 16:9 鏡表"},
+    "blender-previs": {"cat": "📑 文件與多媒體神器", "badge": "3D預演", "icon": "🎥", "friendly_name": "Blender 3D 空間鎖定預演與 H3 提示詞交付包"},
+    "20-mineru": {"cat": "📑 文件與多媒體神器", "badge": "PDF深度解析", "icon": "🔬", "friendly_name": "MinerU 多模態含圖 PDF 原位解析神器"},
+    "antigravity-mineru": {"cat": "📑 文件與多媒體神器", "badge": "PDF深度解析", "icon": "🔬", "friendly_name": "MinerU 多模態含圖 PDF 原位解析神器"},
 }
 
 def parse_frontmatter(content):

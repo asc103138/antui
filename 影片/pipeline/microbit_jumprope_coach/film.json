@@ -1,0 +1,172 @@
+{
+ "_comment": "山獅霸的多重宇宙 × 國小四年級資訊科技搞笑教學短片《甩一下跳五下？！micro:bit 跳繩智慧教練大作戰》。完全相容 make_film.py 與 cloud/colab_h3.py，正片 16 鏡 110.0 秒＋片尾 10.0 秒＝120.0 秒（整整 2 分鐘）。",
+ "title": "跳繩智慧教練",
+ "repo_dir": "../..",
+ "cine": "A cinematic film still from a Taiwanese elementary school comedy movie, shot on Kodak Vision3 500T film with an anamorphic 50mm lens at f/2. Bright morning sunlight, warm side light with a soft glowing rim light on hair, warm amber and teal color grade, shallow depth of field, subtle film grain. Full-frame image, NO black letterbox bars. ",
+ "set_sentence": "Use the location from <image{n}> as the set (same lighting, background architecture, and spatial layout), but only as the location.",
+ "frame_suffix": " Only one main character in focus. No text, no watermark, no captions, no readable writing anywhere.",
+ "h3": {
+  "style": "a realistic cinematic live-action Taiwanese campus comedy film shot on anamorphic lenses, 35mm grain, warm morning light",
+  "setting": "a sunny Taiwanese elementary school playground and computer lab in the morning",
+  "soundscape": "Quiet morning school campus ambience, soft breeze, gentle room tone.",
+  "camera": "The camera holds a static shot on a tripod.",
+  "constraints": [
+   "No new people appear that are not already in the first frame; no captions and no readable text.",
+   "The camera stays locked on the tripod; no zoom, no pan.",
+   "LOCKED-OFF STATIC CAMERA on a tripod."
+  ]
+ },
+ "chars": {
+  "zhe": {
+   "name": "阿哲",
+   "look": "Azhe, a lively 10-year-old Taiwanese elementary schoolboy with a childish round face (clearly a young child, never a teenager), short messy black hair with a small cowlick on top, big expressive eyes, wearing a bright sky-blue and white Taiwanese elementary school sports polo shirt and navy-blue athletic shorts",
+   "voice_design": "A lively 10-year-old Taiwanese boy with a bright, unbroken child's voice, energetic and cheeky, natural Taiwanese Mandarin accent.",
+   "voice_sample": "老師早安，我們今天體育課要練習八人跳大繩，這次我一定要帶大家跳超過二十下！",
+   "h3_voice": "a bright, unbroken 10-year-old boy's voice",
+   "edge_voice": "zh-TW-YunJheNeural",
+   "sub_color": "&H00FFEA80"
+  },
+  "chen": {
+   "name": "陳老師",
+   "look": "Ms. Chen, a Taiwanese female teacher in her mid-thirties with a gentle oval face, shoulder-length black hair tied in a neat low ponytail, thin gold-rimmed glasses, wearing a clean mint-green polo shirt, a silver whistle lanyard around her neck, and dark athletic trousers",
+   "voice_design": "A calm, composed Taiwanese woman in her mid-thirties, an experienced and patient teacher with dry humor, clear natural Taiwanese Mandarin accent.",
+   "voice_sample": "各位同學早安，今天我們要用 micro:bit 做出一個跳繩智慧教練，幫大家穩定節奏跟計算次數。",
+   "h3_voice": "a calm, composed adult woman's voice",
+   "edge_voice": "zh-TW-HsiaoChenNeural",
+   "sub_color": "&H00B4E6FF"
+  }
+ },
+ "masters": {
+  "playground": "A cinematic wide film still, shot on Kodak Vision3 500T film with an anamorphic lens. A sunny Taiwanese elementary school outdoor red running track and playground in the morning, green trees and a colorful school building in the soft-focus background, a long cotton team jump rope with wooden handles lying on the track. Clean, uncluttered, realistic, warm morning sunlight. No people. No text, no watermark.",
+  "lab": "A cinematic wide film still, shot on Kodak Vision3 500T film with an anamorphic lens. Inside a bright modern Taiwanese elementary school computer lab classroom in the morning, neat wooden desks with computer monitors, large windows along the left wall letting in warm morning sunbeams, a blank green board at the front. Clean, uncluttered, realistic, warm amber color grade. No people. No text, no watermark."
+ },
+ "shots": [
+  {
+   "id": "S01", "refs": ["zhe"], "scene": ["playground", [0.15, 0.10, 0.85, 0.90]], "dur": 6.5,
+   "line": {"who": "zhe", "text": "奇怪，今天操場的風怎麼吹得忽快忽慢？", "at": 0.5},
+   "frame": "Medium shot at eye level on the sunny school playground from <image2>: the boy from <image1> stands on the red track holding a wooden jump rope handle in both hands, panting with messy hair and an innocent, bewildered expression. Behind him out of focus, a tangled long jump rope lies on the ground. Sunlight comes from the left.",
+   "action": "The boy holds the jump rope handle, shrugs his shoulders with an innocent bewildered face, and makes his excuse.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S02", "refs": ["chen"], "scene": ["playground", [0.20, 0.10, 0.80, 0.90]], "dur": 6.0,
+   "line": {"who": "chen", "text": "不是風亂吹，是你的手臂沒有裝節拍器。", "at": 0.5},
+   "frame": "Medium close-up at eye level on the school playground from <image2>: the woman from <image1> stands calmly, pushing up her gold-rimmed glasses with one finger while holding up a tiny black micro:bit circuit board with glowing red LED dots in her other hand, looking straight ahead with a composed deadpan expression.",
+   "action": "The teacher lowers her finger from her glasses, holds the tiny circuit board steady, and speaks with calm dry humor.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S03", "refs": ["zhe"], "scene": ["lab", [0.20, 0.15, 0.85, 0.90]], "dur": 6.0,
+   "line": {"who": "zhe", "text": "這塊小板子連嘴巴都沒有，要怎麼幫我們數拍子？", "at": 0.5},
+   "frame": "Medium close-up inside the bright computer lab from <image2>: the boy from <image1> sits at a wooden computer desk, holding a tiny micro:bit circuit board close to his eyes, tilting his head with a skeptical, curious expression. Windows are on the left side.",
+   "action": "The boy tilts his head while examining the tiny circuit board in his hand and asks his question skeptically.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S04", "refs": ["chen"], "scene": ["lab", [0.15, 0.10, 0.85, 0.90]], "dur": 7.0,
+   "line": {"who": "chen", "text": "它有點陣螢幕、按鈕、加速度計，還有蜂鳴器。開機先循序亮出笑臉，就是你的專屬教練。", "at": 0.4},
+   "frame": "Medium close-up inside the computer lab from <image2>: the woman from <image1> stands beside the teacher's desk, holding up a micro:bit board whose red 5x5 LED matrix displays a bright glowing smiley icon, pointing at the board gently with a warm confident expression.",
+   "action": "The teacher points at the glowing smiley LED matrix on the circuit board and explains clearly.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S05", "refs": ["chen"], "scene": ["lab", [0.20, 0.10, 0.85, 0.90]], "dur": 6.5,
+   "line": {"who": "chen", "text": "再用重複無限次，每五百毫秒嗶一聲。固定一百拍，全班聽聲音起跳就絕對不會絆倒。", "at": 0.4},
+   "frame": "Medium shot inside the computer lab from <image2>: the woman from <image1> stands at the desk beside a micro:bit board connected to a small white battery pack, gesturing rhythmically with her hand like a metronome conductor, with a calm encouraging smile.",
+   "action": "The teacher marks a steady beat with her hand while explaining the rhythm loop.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S06", "refs": ["zhe"], "scene": ["lab", [0.20, 0.15, 0.85, 0.90]], "dur": 6.5,
+   "line": {"who": "zhe", "text": "那誰來幫我們數跳了幾下？每次數到十幾下大家就開始吵架！", "at": 0.5},
+   "frame": "Medium close-up inside the computer lab from <image2>: the boy from <image1> sits at his desk with sparkling excited eyes, raising one hand eagerly while leaning forward.",
+   "action": "The boy leans forward eagerly with bright eyes and asks his question.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S07", "refs": ["chen"], "scene": ["lab", [0.15, 0.10, 0.85, 0.90]], "dur": 7.5,
+   "line": {"who": "chen", "text": "交給加速度計和變數小盒子。開機把次數設為零，每當感應到晃動，盒子裡的次數就加一。", "at": 0.4},
+   "frame": "Medium close-up inside the computer lab from <image2>: the woman from <image1> holds a small clear acrylic storage box in one hand and a micro:bit board in the other, smiling warmly as she demonstrates putting a token into the box.",
+   "action": "The teacher holds up the small clear box and the circuit board, explaining the variable counter concept.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S08", "refs": ["zhe"], "scene": ["playground", [0.20, 0.10, 0.85, 0.90]], "dur": 8.0,
+   "line": {"who": "zhe", "text": "報告老師！我練成閃電神功了！我才甩一下，螢幕直接跳到五耶！", "at": 0.5},
+   "frame": "Medium close-up on the sunny playground from <image2>: the boy from <image1> holds a jump rope handle with a micro:bit strapped to it, his eyes wide as saucers and mouth open in overjoyed shock as he stares at the glowing red LED screen in his hand.",
+   "action": "The boy stares at the glowing device in his hand in shock, then looks up and shouts excitedly with a proud grin.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S09", "refs": ["chen"], "scene": ["playground", [0.25, 0.10, 0.80, 0.85]], "dur": 8.0,
+   "line": {"who": "chen", "text": "那叫做快樂表。你甩一下手腕回彈抖了五次，電腦太老實，零點一秒內幫你算了五下。", "at": 0.5},
+   "frame": "Close-up on the sunny playground from <image2>: the woman from <image1> pushes up her gold-rimmed glasses with one finger, looking straight ahead with an unimpressed, deadpan expression.",
+   "action": "The teacher lowers her hand from her glasses and delivers a deadpan explanation.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S10", "refs": ["zhe"], "scene": ["playground", [0.25, 0.15, 0.80, 0.90]], "dur": 6.0,
+   "line": {"who": "zhe", "text": "蛤？連手抖都算喔！那怎麼辦，叫電腦不要看那麼仔細嗎？", "tts": "蛤？連手抖都算喔！那怎[:ㄗㄣ3]麼辦，叫電腦不要看那麼仔細嗎？", "at": 0.5},
+   "frame": "Medium close-up on the sunny playground from <image2>: the boy from <image1> slumps his shoulders with a comical crestfallen, dramatic pouting face while holding the jump rope handle.",
+   "action": "The boy slumps his shoulders dramatically and asks with a funny troubled face.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S11", "refs": ["chen"], "scene": ["lab", [0.15, 0.10, 0.85, 0.90]], "dur": 8.0,
+   "line": {"who": "chen", "text": "沒錯，加完一分，命令它暫停三百毫秒閉上眼睛休息，濾掉手抖雜訊，滿二十下再播歡呼音樂。", "at": 0.4},
+   "frame": "Medium shot inside the computer lab from <image2>: the woman from <image1> stands beside a computer monitor showing colorful coding blocks, raising one index finger with a clear, confident expression.",
+   "action": "The teacher explains the 300 millisecond pause solution with a reassuring smile.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S12", "refs": ["zhe"], "scene": ["lab", [0.25, 0.15, 0.80, 0.90]], "dur": 6.0,
+   "line": {"who": "zhe", "text": "老師，那如果我設暫停三千毫秒，讓它睡久一點會更準嗎？", "at": 0.5},
+   "frame": "Medium close-up inside the computer lab from <image2>: the boy from <image1> tilts his head with a cheeky, overly clever grin, pointing one finger up as if he just had a genius idea.",
+   "action": "The boy grins cheekily and asks his clever question.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S13", "refs": ["chen"], "scene": ["lab", [0.25, 0.10, 0.80, 0.85]], "dur": 7.0,
+   "line": {"who": "chen", "text": "三千毫秒是三秒鐘。你同學都跳六下了，你的教練還在睡午覺，只會幫你算一下。", "at": 0.5},
+   "frame": "Close-up inside the computer lab from <image2>: the woman from <image1> looks at the camera with the corner of her mouth curling into a small knowing, dry smile.",
+   "action": "The teacher answers with a calm knowing smile.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S14", "refs": ["zhe"], "scene": ["playground", [0.20, 0.10, 0.85, 0.90]], "dur": 6.5,
+   "line": {"who": "zhe", "text": "可是老師，我一邊甩繩一邊低頭看握柄，眼睛快要脫窗了啦！", "at": 0.5},
+   "frame": "Medium shot on the sunny playground from <image2>: the boy from <image1> holds the jump rope handle right up against his nose, squinting cross-eyed at the tiny LED screen with a funny dizzy expression.",
+   "action": "The boy squints cross-eyed at the jump rope handle near his nose and complains comically.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S15", "refs": ["chen"], "scene": ["playground", [0.15, 0.10, 0.85, 0.90]], "dur": 7.5,
+   "line": {"who": "chen", "text": "用無線廣播設同一個群組七。握柄用魔鬼氈和泡棉綁牢負責發送，場邊第二台當大看板接收。", "at": 0.4},
+   "frame": "Medium shot on the sunny playground from <image2>: the woman from <image1> holds a foam-padded jump rope handle with a Velcro-strapped micro:bit in one hand and a second micro:bit display unit in the other hand, smiling confidently.",
+   "action": "The teacher shows both the padded handle transmitter and the receiver unit clearly.",
+   "cut_in": 0.0, "cut_out": "full"
+  },
+  {
+   "id": "S16", "refs": ["zhe"], "scene": ["playground", [0.10, 0.05, 0.90, 0.95]], "dur": 7.0,
+   "line": {"who": "zhe", "text": "二十下破紀錄啦！原來寫程式真的能當全班的跳繩神教練！", "at": 0.5},
+   "frame": "Medium wide shot on the sunny playground from <image2>: the boy from <image1> raises both arms in a triumphant cheer, holding the jump rope handle, while the glowing micro:bit display shows a bright red heart icon. Joyful celebratory atmosphere.",
+   "action": "The boy cheers joyfully with a huge smile, celebrating the team record.",
+   "cut_in": 0.0, "cut_out": "full"
+  }
+ ],
+ "seeds": {"frame_S01": 5101, "h3_S01": 20261016},
+ "music": {
+  "caption": "Genre: upbeat playful school comedy and science adventure underscore, purely instrumental film score, lively marimba, pizzicato strings, warm woodwinds, cheerful rhythm. BPM 100, key C major.\nVocal: NONE. No singing, no humming, no choir.\nArrangement: marimba, pizzicato strings, glockenspiel, light snare, acoustic bass.",
+  "seeds": [7, 23, 51]
+ },
+ "mix": {"say_lead": 0.2, "default_tail": 0.55, "music_under_lines": 0.25, "music_bed_rms": 0.035, "target_lufs": -15.5},
+ "ending": {
+  "closeups": ["S02", "S08", "S16"],
+  "header": "本片使用的 AI 工具與跨域教材（山獅霸工作流 Colab 版）",
+  "card_dur": 2.0, "title_dur": 6.0,
+  "cards": [
+   [["shanshiba-workflow-colab", "山獅霸 AI 短片工作流"], ["Gemini Nano Banana 2", "分鏡與角色視覺生成"], ["MakeCode × micro:bit V2", "國小四年級資訊科技專題"]],
+   [["Edge-TTS / BreezyVoice", "台灣國語雙角色配音"], ["FFmpeg + Freesound CC0", "1080p 24fps 混音與字幕後製"], ["本片畫面、配音與配樂皆由 AI 協作生成", ""]]
+  ]
+ }
+}
