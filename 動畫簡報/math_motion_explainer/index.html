@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>南一版數學四上第四單元 4-3 三位數除以二位數：估商心法全解密</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Microsoft JhengHei';
+        src: local('Microsoft JhengHei');
+      }
+      @font-face {
+        font-family: 'PingFang TC';
+        src: local('PingFang TC');
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #080D1A;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+        color: #F1F5F9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        background: radial-gradient(circle at 50% 20%, #111C38 0%, #080D1A 85%);
+        overflow: hidden;
+      }
+
+      /* 數學座標幾何網格背景 */
+      .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
+        background-size: 60px 60px;
+        pointer-events: none;
+      }
+
+      /* 光暈光斑 */
+      .glow-orb-1 {
+        position: absolute;
+        top: -150px;
+        left: 200px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+        filter: blur(40px);
+        pointer-events: none;
+      }
+      .glow-orb-2 {
+        position: absolute;
+        bottom: -150px;
+        right: 150px;
+        width: 650px;
+        height: 650px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+        filter: blur(50px);
+        pointer-events: none;
+      }
+
+      /* 頂部導覽列 */
+      .header-bar {
+        position: absolute;
+        top: 40px;
+        left: 80px;
+        right: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+      }
+      .unit-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 22px;
+        border-radius: 9999px;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        color: #FBBF24;
+        font-size: 22px;
+        font-weight: 800;
+        letter-spacing: 0.05em;
+      }
+      .curriculum-info {
+        font-size: 20px;
+        color: #94A3B8;
+        letter-spacing: 0.08em;
+      }
+
+      /* 場景通用舞台 */
+      .scene {
+        position: absolute;
+        top: 135px;
+        left: 80px;
+        width: 1760px;
+        height: 755px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* ==================== Scene 1: 商的定位神針 ==================== */
+      #scene-1 .title-wrap {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .scene-title {
+        font-size: 42px;
+        font-weight: 900;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+      }
+      .scene-sub {
+        font-size: 22px;
+        color: #38BDF8;
+        margin-top: 8px;
+        font-weight: 600;
+      }
+      .cards-pair {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin-top: 15px;
+      }
+      .math-card {
+        background: rgba(15, 23, 42, 0.85);
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 36px 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(16px);
+        position: relative;
+        overflow: hidden;
+      }
+      .card-tag {
+        display: inline-block;
+        padding: 6px 16px;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      .tag-blue { background: #38BDF8; color: #080D1A; font-weight: 800; }
+      .tag-amber { background: #FBBF24; color: #080D1A; font-weight: 800; }
+      
+      .calc-display {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+        background: rgba(8, 13, 26, 0.7);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 20px;
+        padding: 24px 30px;
+        margin-bottom: 24px;
+      }
+      .division-formula {
+        font-size: 44px;
+        font-weight: 900;
+        color: #FFFFFF;
+        font-family: "Courier New", monospace, sans-serif;
+      }
+      .highlight-two {
+        color: #38BDF8;
+        border-bottom: 4px solid #38BDF8;
+        padding-bottom: 2px;
+      }
+      .vs-badge {
+        font-size: 24px;
+        font-weight: 800;
+        padding: 6px 14px;
+        border-radius: 10px;
+      }
+      .vs-greater {
+        background: rgba(16, 185, 129, 0.25);
+        border: 1px solid #10B981;
+        color: #6EE7B7;
+      }
+      .vs-less {
+        background: rgba(239, 68, 68, 0.25);
+        border: 1px solid #EF4444;
+        color: #FCA5A5;
+      }
+      .verdict-box {
+        background: rgba(30, 41, 59, 0.6);
+        border-radius: 16px;
+        padding: 20px 24px;
+        border-left: 5px solid #F59E0B;
+      }
+      .verdict-line {
+        font-size: 24px;
+        color: #E2E8F0;
+        line-height: 1.6;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .golden-rule-banner {
+        margin-top: 35px;
+        text-align: center;
+        background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.3), rgba(245, 158, 11, 0.1));
+        border: 1px solid rgba(245, 158, 11, 0.5);
+        border-radius: 18px;
+        padding: 16px 30px;
+        font-size: 28px;
+        font-weight: 800;
+        color: #FCD34D;
+      }
+
+      /* ==================== Scene 2: 戴帽子整十估商法 ==================== */
+      #scene-2 .title-wrap {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      #scene-2 .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin-top: 55px;
+      }
+      .hat-container {
+        position: relative;
+        text-align: center;
+        padding: 35px;
+        background: rgba(15, 23, 42, 0.85);
+        border-radius: 28px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .target-number {
+        font-size: 80px;
+        font-weight: 900;
+        color: #FFFFFF;
+        position: relative;
+        display: inline-block;
+        font-family: "Courier New", monospace;
+        margin-top: 10px;
+      }
+      .magic-hat {
+        position: absolute;
+        top: -30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: #F59E0B;
+        color: #080D1A;
+        font-size: 24px;
+        font-weight: 900;
+        padding: 6px 20px;
+        border-radius: 9999px;
+        box-shadow: 0 0 25px rgba(245, 158, 11, 0.8);
+        white-space: nowrap;
+        z-index: 5;
+      }
+      .step-arrow {
+        font-size: 36px;
+        color: #38BDF8;
+        margin: 25px 0 15px;
+      }
+      .math-formula-box {
+        background: rgba(8, 13, 26, 0.8);
+        border-radius: 16px;
+        padding: 18px 24px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        display: inline-block;
+      }
+      .math-formula-box span {
+        font-size: 32px;
+        font-weight: 800;
+        color: #38BDF8;
+      }
+      .rule-summary-ribbon {
+        margin-top: 35px;
+        display: flex;
+        justify-content: space-around;
+        background: rgba(15, 23, 42, 0.7);
+        border-radius: 20px;
+        padding: 22px 30px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .rule-chip {
+        font-size: 24px;
+        color: #CBD5E1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .rule-chip strong {
+        color: #FCD34D;
+      }
+
+      /* ==================== Scene 3: 摘下帽子乘回原除數 ==================== */
+      #scene-3 .dual-contrast {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin-top: 30px;
+      }
+      .trap-card {
+        background: rgba(40, 16, 24, 0.85);
+        border: 2px solid rgba(239, 68, 68, 0.5);
+        border-radius: 28px;
+        padding: 40px;
+        box-shadow: 0 0 40px rgba(239, 68, 68, 0.15);
+      }
+      .correct-card {
+        background: rgba(12, 38, 28, 0.85);
+        border: 2px solid rgba(16, 185, 129, 0.5);
+        border-radius: 28px;
+        padding: 40px;
+        box-shadow: 0 0 40px rgba(16, 185, 129, 0.15);
+      }
+      .contrast-badge {
+        font-size: 26px;
+        font-weight: 900;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .trap-badge { color: #EF4444; }
+      .correct-badge { color: #10B981; }
+
+      .vertical-calc-demo {
+        background: rgba(8, 13, 26, 0.8);
+        border-radius: 20px;
+        padding: 24px 30px;
+        font-family: "Courier New", monospace;
+        font-size: 34px;
+        line-height: 1.5;
+      }
+      .calc-row-trap {
+        color: #F87171;
+        font-weight: 700;
+      }
+      .calc-row-ok {
+        color: #34D399;
+        font-weight: 700;
+      }
+      .contrast-desc {
+        font-size: 22px;
+        color: #E2E8F0;
+        margin-top: 24px;
+        line-height: 1.6;
+      }
+      .takeaway-pill {
+        margin-top: 35px;
+        text-align: center;
+        background: linear-gradient(90deg, rgba(2, 132, 199, 0.2), rgba(2, 132, 199, 0.5), rgba(2, 132, 199, 0.2));
+        border: 1px solid #38BDF8;
+        border-radius: 9999px;
+        padding: 16px 40px;
+        font-size: 26px;
+        font-weight: 800;
+        color: #FFFFFF;
+      }
+
+      /* ==================== Scene 4: 調商天秤與餘數鐵律 ==================== */
+      #scene-4 .scale-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        margin-top: 25px;
+      }
+      .balance-card {
+        background: rgba(15, 23, 42, 0.85);
+        border-radius: 28px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 36px 40px;
+      }
+      .balance-icon {
+        font-size: 52px;
+        margin-bottom: 12px;
+      }
+      .balance-title {
+        font-size: 32px;
+        font-weight: 800;
+        color: #FFFFFF;
+        margin-bottom: 16px;
+      }
+      .action-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 24px;
+        border-radius: 12px;
+        font-size: 24px;
+        font-weight: 800;
+        margin: 15px 0;
+      }
+      .pill-down { background: rgba(239, 68, 68, 0.2); color: #F87171; border: 1px solid #EF4444; }
+      .pill-up { background: rgba(56, 189, 248, 0.2); color: #38BDF8; border: 1px solid #0284C7; }
+
+      .double-shield-wrap {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+      }
+      .shield-card {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.15) 0%, rgba(15, 23, 42, 0.9) 100%);
+        border: 2px solid #F59E0B;
+        border-radius: 20px;
+        padding: 22px 28px;
+        text-align: center;
+      }
+      .shield-title {
+        font-size: 20px;
+        color: #FCD34D;
+        font-weight: 700;
+        margin-bottom: 8px;
+      }
+      .shield-formula {
+        font-size: 28px;
+        font-weight: 900;
+        color: #FFFFFF;
+        font-family: "Courier New", monospace;
+      }
+
+      /* 底部字幕列 */
+      #caption-box {
+        position: absolute;
+        bottom: 35px;
+        left: 100px;
+        right: 100px;
+        height: 75px;
+        background: rgba(8, 13, 26, 0.92);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 40px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(12px);
+        z-index: 20;
+      }
+      #caption-text {
+        font-size: 26px;
+        font-weight: 700;
+        color: #F8FAFC;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        letter-spacing: 0.05em;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="90.4"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div class="grid-overlay"></div>
+      <div class="glow-orb-1"></div>
+      <div class="glow-orb-2"></div>
+
+      <!-- 頂部資訊列 -->
+      <div class="header-bar">
+        <div class="unit-badge">
+          <span>📐</span> 國小數學四上 · 第四單元 4-3 三位數除以二位數
+        </div>
+        <div class="curriculum-info">
+          108課綱 數學領域 n-Ⅱ-7 · 估商心法特訓
+        </div>
+      </div>
+
+      <!-- ==================== Scene 1: 商的定位神針 (0.0s ~ 26.09s) ==================== -->
+      <div id="scene-1" class="scene">
+        <div class="title-wrap">
+          <h2 class="scene-title"><span>🎯</span> 第一步 · 商的定位神針</h2>
+          <p class="scene-sub">除數是二位數，抓被除數前二位比大小！</p>
+        </div>
+
+        <div class="cards-pair">
+          <!-- 情況 A: 前二位 >= 除數 -->
+          <div class="math-card">
+            <span class="card-tag tag-blue">情境 A：前二位夠除</span>
+            <div class="calc-display">
+              <div class="division-formula">
+                <span class="highlight-two">78</span>6 ÷ 24
+              </div>
+              <div class="vs-badge vs-greater">78 ＞ 24</div>
+            </div>
+            <div class="verdict-box">
+              <div class="verdict-line">
+                <span>✦</span> 78 個十夠分給 24 人
+              </div>
+              <div class="verdict-line" style="color: #38BDF8; font-weight: 800; margin-top: 6px;">
+                ➔ 商是二位數，從「十位」開始記商！
+              </div>
+            </div>
+          </div>
+
+          <!-- 情況 B: 前二位 < 除數 -->
+          <div class="math-card">
+            <span class="card-tag tag-amber">情境 B：前二位不夠除</span>
+            <div class="calc-display">
+              <div class="division-formula">
+                <span class="highlight-two" style="color: #F59E0B; border-color: #F59E0B;">43</span>2 ÷ 54
+              </div>
+              <div class="vs-badge vs-less">43 ＜ 54</div>
+            </div>
+            <div class="verdict-box">
+              <div class="verdict-line">
+                <span>✦</span> 43 個十不夠分給 54 人
+              </div>
+              <div class="verdict-line" style="color: #FCD34D; font-weight: 800; margin-top: 6px;">
+                ➔ 商是一位數，退到「個位」開始記商！
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="golden-rule-banner">
+          🌟 定位口訣：夠除記十位，不夠退個位！
+        </div>
+      </div>
+
+      <!-- ==================== Scene 2: 戴帽子整十估商法 (26.09s ~ 45.66s) ==================== -->
+      <div id="scene-2" class="scene">
+        <div class="title-wrap">
+          <h2 class="scene-title"><span>🎩</span> 第二步 · 戴帽子整十估商法</h2>
+          <p class="scene-sub">除數戴帽子化成最接近的整十，九九乘法快又準！</p>
+        </div>
+
+        <div class="content-grid" data-layout-allow-overlap="true">
+          <div class="hat-container">
+            <div class="magic-hat">🎩 戴上帽子 ➔ 想成 50</div>
+            <div class="target-number">54</div>
+            <div class="step-arrow">⬇ 運用九九乘法試商</div>
+            <div class="math-formula-box">
+              <span>5 × 8 = 40</span> ➔ 試商用 <strong>8</strong>
+            </div>
+          </div>
+
+          <div class="hat-container">
+            <div class="magic-hat" style="background:#0284C7; box-shadow: 0 0 25px rgba(2, 132, 199, 0.8);">🎩 戴上帽子 ➔ 想成 40</div>
+            <div class="target-number">36</div>
+            <div class="step-arrow">⬇ 運用九九乘法試商</div>
+            <div class="math-formula-box">
+              <span style="color:#FCD34D;">4 × 7 = 28</span> ➔ 試商用 <strong>7</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="rule-summary-ribbon">
+          <div class="rule-chip">
+            <span>🔹</span> 個位數是 <strong>1, 2, 3, 4</strong> ➔ 往下看最接近的整十（如 54 ➔ 50）
+          </div>
+          <div class="rule-chip">
+            <span>🔸</span> 個位數是 <strong>6, 7, 8, 9</strong> ➔ 往上看最接近的整十（如 36 ➔ 40）
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== Scene 3: 摘下帽子乘回原除數 (45.66s ~ 67.19s) ==================== -->
+      <div id="scene-3" class="scene">
+        <div class="title-wrap">
+          <h2 class="scene-title"><span>⚠️</span> 第三步 · 摘下帽子乘回原除數</h2>
+          <p class="scene-sub">小心致命陷阱！試出商後，直式乘法必須乘回原來的除數！</p>
+        </div>
+
+        <div class="dual-contrast">
+          <!-- 致命錯誤 -->
+          <div class="trap-card">
+            <div class="contrast-badge trap-badge">
+              <span>❌</span> 致命陷阱：誤乘整十
+            </div>
+            <div class="vertical-calc-demo">
+              <div style="color:#94A3B8;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8</div>
+              <div style="color:#94A3B8;">54 ) 432</div>
+              <div class="calc-row-trap">&nbsp;&nbsp;&nbsp;&nbsp;400 &nbsp;← 50 × 8 算錯了！</div>
+              <div style="border-top:2px solid #EF4444; width:180px; margin:4px 0;"></div>
+              <div class="calc-row-trap">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;32 &nbsp;(大錯特錯！)</div>
+            </div>
+            <p class="contrast-desc">
+              帽子的 50 只是拿來幫忙「猜商」，千萬不能拿去算乘法！
+            </p>
+          </div>
+
+          <!-- 正確解法 -->
+          <div class="correct-card">
+            <div class="contrast-badge correct-badge">
+              <span>✔</span> 正確解密：摘帽乘回原除數
+            </div>
+            <div class="vertical-calc-demo">
+              <div style="color:#94A3B8;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;8</div>
+              <div style="color:#94A3B8;">54 ) 432</div>
+              <div class="calc-row-ok">&nbsp;&nbsp;&nbsp;&nbsp;432 &nbsp;← 54 × 8 乘回原本除數！</div>
+              <div style="border-top:2px solid #10B981; width:180px; margin:4px 0;"></div>
+              <div class="calc-row-ok">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp;(剛好整除！)</div>
+            </div>
+            <p class="contrast-desc">
+              試出商是 8 之後，立刻摘下帽子，用原來的 <strong>54 × 8 = 432</strong>！
+            </p>
+          </div>
+        </div>
+
+        <div class="takeaway-pill">
+          💡 口訣密碼：估商戴帽子猜得快，算乘法摘帽子算得準！
+        </div>
+      </div>
+
+      <!-- ==================== Scene 4: 調商天秤與餘數鐵律 (67.19s ~ 90.39s) ==================== -->
+      <div id="scene-4" class="scene">
+        <div class="title-wrap">
+          <h2 class="scene-title"><span>⚖️</span> 第四步 · 調商天秤與驗算守則</h2>
+          <p class="scene-sub">太大多減調小一，太小餘大調加一！餘數永遠小於除數！</p>
+        </div>
+
+        <div class="scale-grid">
+          <!-- 調商情況 1 -->
+          <div class="balance-card">
+            <div class="balance-icon">📉</div>
+            <h3 class="balance-title">情況一：乘積 ＞ 被除數</h3>
+            <p style="font-size:22px; color:#CBD5E1; line-height:1.6;">
+              乘出來的數字比被除數還大，減不下去！
+            </p>
+            <div class="action-pill pill-down">
+              <span>➔</span> 商太大了！立即調小 1（商減 1）
+            </div>
+          </div>
+
+          <!-- 調商情況 2 -->
+          <div class="balance-card">
+            <div class="balance-icon">📈</div>
+            <h3 class="balance-title">情況二：餘數 ≧ 除數</h3>
+            <p style="font-size:22px; color:#CBD5E1; line-height:1.6;">
+              減出來的餘數竟然比除數還大，代表還能再分！
+            </p>
+            <div class="action-pill pill-up">
+              <span>➔</span> 商太小了！立即調大 1（商加 1）
+            </div>
+          </div>
+        </div>
+
+        <div class="double-shield-wrap">
+          <div class="shield-card">
+            <div class="shield-title">🛡️ 除法最高鐵律</div>
+            <div class="shield-formula" style="color:#FCD34D;">餘數 ＜ 除數</div>
+          </div>
+          <div class="shield-card" style="border-color:#38BDF8;">
+            <div class="shield-title" style="color:#38BDF8;">🛡️ 驗算金鐘罩</div>
+            <div class="shield-formula" style="color:#38BDF8;">除數 × 商 ＋ 餘數 ＝ 被除數</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部同步字幕 -->
+      <div id="caption-box">
+        <span id="caption-text">遇到三位數除以二位數，第一步先看商記在哪一位。</span>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // 精準同步字幕清單（對齊 audio_meta.json 時間點）
+      const captions = [
+        // Scene 1 (0.0s ~ 26.09s)
+        { time: 0.0, text: "遇到三位數除以二位數，第一步先看商記在哪一位" },
+        { time: 5.3, text: "除數是二位數，被除數就從左邊取兩位來比大小" },
+        { time: 10.5, text: "例如七百八十六除以二十四，七十八大於二十四，夠除，商就從十位開始記" },
+        { time: 17.9, text: "如果是四百三十二除以五十四，四十三小於五十四，不夠除，商就退到個位開始記" },
+        
+        // Scene 2 (26.09s ~ 45.66s)
+        { time: 26.1, text: "第二步，除數戴帽子，化成最接近的整十來估商" },
+        { time: 31.3, text: "五十四戴上五十的帽子，五八四十，試商用八" },
+        { time: 35.8, text: "三十六戴上四十的帽子，四七二十八，試商用七" },
+        { time: 41.2, text: "善用九九乘法表，一眼就能抓出可能的商！" },
+
+        // Scene 3 (45.66s ~ 67.19s)
+        { time: 45.7, text: "第三步，摘下帽子，小心致命陷阱！" },
+        { time: 50.0, text: "試出商之後，計算直式乘法時，一定要用原來的除數去乘商" },
+        { time: 56.3, text: "例如四百三十二除以五十四，試商用八之後" },
+        { time: 60.6, text: "要算五十四乘以八等於四百三十二，絕對不能算成五十乘八等於四百！" },
+
+        // Scene 4 (67.19s ~ 90.39s)
+        { time: 67.2, text: "第四步，調商天秤與驗算守則" },
+        { time: 70.0, text: "相乘後如果比被除數還大，代表商太大，要調小一" },
+        { time: 75.4, text: "如果減出來的餘數大於或等於除數，代表商太小，要調大一" },
+        { time: 81.7, text: "記住除法最高鐵律：餘數必須比除數小，最後用除數乘商加餘數完成驗算！" }
+      ];
+
+      captions.forEach(cap => {
+        tl.call(() => {
+          const el = document.getElementById("caption-text");
+          if (el) el.textContent = cap.text;
+        }, null, cap.time);
+      });
+
+      // --- Scene 1 物理進退場動效 (0.0s ~ 26.09s) ---
+      tl.fromTo("#scene-1", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        0.2
+      );
+      tl.to("#scene-1", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 25.5);
+
+      // --- Scene 2 物理進退場動效 (26.09s ~ 45.66s) ---
+      tl.fromTo("#scene-2", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        26.2
+      );
+      tl.to("#scene-2", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 45.1);
+
+      // --- Scene 3 物理進退場動效 (45.66s ~ 67.19s) ---
+      tl.fromTo("#scene-3", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        45.8
+      );
+      tl.to("#scene-3", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 66.6);
+
+      // --- Scene 4 物理進退場動效 (67.19s ~ 90.39s) ---
+      tl.fromTo("#scene-4", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        67.3
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

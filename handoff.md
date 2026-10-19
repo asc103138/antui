@@ -1,5 +1,26 @@
 # 專案交接筆記 (handoff.md)
 
+- [x] 完成南一版國小四年級數學四上第四單元 4-3《三位數除以二位數 · 估商大師探險記》14 頁互動簡報修復、關鍵頁靜音動態循環重構與數學直式位值對齊系統開發
+  - **Repo 脈絡診斷與架構釐清**：
+    - 深入分析 `mathruffian-dot/claude-motion-explainer.git`（HyperFrames 原理解說動畫影片工作流），釐清其原本定位為影片生成管線；說明本次簡報架構係依據使用者需求，以 `soil-html-deck` 規格開發之 14 頁全互動式 HTML 教學簡報。
+  - **關鍵頁靜音動態循環重構（Slide 6）**：
+    - 將原本的全功能影片播放器徹底改造為「純視覺微動態（Micro-Motion Graphic）」。
+    - 使用 FFmpeg 剝離音軌產出無聲影片 `math_explainer_silent.mp4`，視訊標籤宣告為 `autoplay loop muted playsinline` 且不加控制條。
+    - 左側配置綠色脈衝狀態指示標籤（`● 原理動態演示（靜音循環）`），右側搭配「商定位、戴帽估商、摘帽乘回、天秤調商」四步驟卡片堆疊，達成動靜結合的雙向學習鷹架。
+  - **除法與乘法直式「數學位值網格系統（`.math-division-table`）」研發**：
+    - 徹底捨棄粗糙純文字空白（`&nbsp;`）拼接，杜絕二位數商浮在百位上方、一位數商漂移、相減橫線缺失之嚴重缺陷。
+    - 建立固定欄寬（28px）之垂直位值網格，百位、十位、個位嚴格垂對。二位數商（`786 ÷ 24 = 32`）之商數 `3` 100% 垂直對準十位 `8`，百位上方嚴格留空；一位數商（`432 ÷ 54 = 8`）之商數 `8` 100% 垂直對準個位 `2`，百位與十位上方留空。
+    - 全面補齊所有除法直式之減算等於橫線（`border-bottom: 2.5px solid #F8FAFC !important;`）與除號上方橫線（3px）、除號弧括號。
+    - 解決直式靠左失衡問題，透過 `margin: 10px auto; display: table;` 達成全直式在卡片中央完美居中。
+  - **避雷經驗打包進全域技能與專案規範**：
+    - 更新 `g4-curriculum-review/SKILL.md`：第一階紅線新增第 9 項「數學科直式算則位值對齊與相減橫線不可退讓鐵律」。
+    - 更新 `soil-html-deck/SKILL.md`：新增避雷手冊，收錄 `.math-division-table` 實作標準與關鍵頁無聲循環動畫原則。
+    - 更新 `antigravity-motion-explainer/SKILL.md`：新增第 5 項教訓「簡報關鍵頁純視覺動態規格」。
+    - 更新 `AGENTS.md`：驗收五重鐵律新增「數學算則與版面物理紅線（Math Layout & Division Invariant）」。
+  - **全套門禁審查與實體瀏覽器驗收通過**：
+    - 通過母庫 `python scripts/audit_gatekeeper.py` 零容忍檢查（PERFECT PASS）。
+    - 經 Playwright 實機瀏覽器渲染測試（`uv run --with playwright python test_deck.py`）確認 0 控制台錯誤、0 未處理例外，14 頁翻頁與小測驗互動 100% 正常，實體截圖存檔至 `renders/`。
+
 - [x] 完成 `antigravity-motion-explainer`（HyperFrames 原理解說動畫影片工作流）全域安裝與國語四上第六課《又遠又近的月亮》【前三段內容深究（四年級學生專屬）】互動簡報暨關鍵頁動畫重新製作
   - **全域技能安裝與環境配置**：
     - 將 `asc103138/antigravity-motion-explainer` 安裝至全域技能目錄（`~/.gemini/config/skills/antigravity-motion-explainer/`）。
