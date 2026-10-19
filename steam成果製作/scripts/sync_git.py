@@ -42,7 +42,11 @@ def main():
         "領據.docx", "AGENTS.md", "ANTIGRAVITY.md", "handoff.md", "README.md",
         ".gitignore", "SKILL.md", "setup.bat", "setup.sh", "成果表.docx",
         "簽到表範本.docx", "三年級steam教案.docx", "空白教案.docx", "計畫書.docx",
-        "steam社群申請.docx", "steam社群申請.pdf"
+        "steam社群申請.docx", "steam社群申請.pdf",
+        "臺中市梧棲區中正國小_115年度STEAM教師社群_總核銷清冊.docx",
+        "臺中市梧棲區中正國小_115年度STEAM教師社群_總核銷清冊.pdf",
+        "臺中市梧棲區中正國小_115年度STEAM教師社群_活動成果總表.docx",
+        "臺中市梧棲區中正國小_115年度STEAM教師社群_活動成果總表.pdf"
     ]
     for fn in sync_files:
         src = os.path.join(steam_work_dir, fn)
