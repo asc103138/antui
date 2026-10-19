@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>國語四上第六課《又遠又近的月亮》原理解說動畫</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Microsoft JhengHei';
+        src: local('Microsoft JhengHei');
+      }
+      @font-face {
+        font-family: 'PingFang TC';
+        src: local('PingFang TC');
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #060913;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+        color: #F0F4F8;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        background: #060913;
+        overflow: hidden;
+      }
+
+      /* 星空與背景圖層 */
+      .bg-layer {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* 裝飾光暈與網格 */
+      .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 80px 80px;
+        pointer-events: none;
+      }
+
+      /* 頂部導覽列 */
+      .header-bar {
+        position: absolute;
+        top: 40px;
+        left: 80px;
+        right: 80px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 18px;
+        border-radius: 9999px;
+        background: rgba(255, 184, 0, 0.12);
+        border: 1px solid rgba(255, 184, 0, 0.35);
+        color: #FFB800;
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .curriculum-tag {
+        font-size: 20px;
+        color: #94A3B8;
+        letter-spacing: 0.1em;
+      }
+
+      /* 場景容器 */
+      .scene {
+        position: absolute;
+        top: 130px;
+        left: 80px;
+        width: 1760px;
+        height: 760px;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      /* Scene 1: 封面與地月距離數字 */
+      #scene-1 .title-wrap {
+        position: absolute;
+        top: 120px;
+        left: 40px;
+        max-width: 850px;
+      }
+      #scene-1 .h1-title {
+        font-size: 80px;
+        font-weight: 900;
+        line-height: 1.15;
+        color: #FFFFFF;
+        text-shadow: 0 4px 24px rgba(0,0,0,0.8);
+      }
+      #scene-1 .h1-title span {
+        color: #FFB800;
+      }
+      #scene-1 .subtitle {
+        margin-top: 24px;
+        font-size: 32px;
+        color: #94A3B8;
+        line-height: 1.5;
+      }
+      .metric-card {
+        margin-top: 40px;
+        display: inline-flex;
+        align-items: baseline;
+        gap: 16px;
+        padding: 20px 36px;
+        border-radius: 20px;
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(255, 184, 0, 0.3);
+        backdrop-filter: blur(16px);
+      }
+      .metric-num {
+        font-size: 72px;
+        font-weight: 900;
+        color: #FFB800;
+        font-variant-numeric: tabular-nums;
+      }
+      .metric-unit {
+        font-size: 28px;
+        color: #E2E8F0;
+        font-weight: 700;
+      }
+
+      /* Scene 2: 隕石坑與月球黑影想像 */
+      #scene-2 .content-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        height: 100%;
+        align-items: center;
+      }
+      .info-box {
+        padding: 36px;
+        border-radius: 24px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      }
+      .info-box h3 {
+        font-size: 40px;
+        color: #38BDF8;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .info-box ul {
+        list-style: none;
+      }
+      .info-box li {
+        font-size: 26px;
+        line-height: 1.8;
+        color: #CBD5E1;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .info-box li::before {
+        content: "◆";
+        color: #FFB800;
+        font-size: 18px;
+      }
+      .visual-frame {
+        position: relative;
+        height: 520px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 184, 0, 0.3);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      }
+      .visual-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .visual-tag {
+        position: absolute;
+        bottom: 24px;
+        left: 24px;
+        right: 24px;
+        padding: 14px 20px;
+        background: rgba(0, 0, 0, 0.75);
+        backdrop-filter: blur(12px);
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 22px;
+        color: #FFD56B;
+        text-align: center;
+      }
+
+      /* Scene 3: 速度與距離對比條 */
+      #scene-3 .speed-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        gap: 40px;
+      }
+      .speed-row {
+        position: relative;
+        padding: 24px 36px;
+        border-radius: 20px;
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .speed-label {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+      .speed-title {
+        font-size: 32px;
+        font-weight: 800;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .speed-time {
+        font-size: 36px;
+        font-weight: 900;
+        color: #FFB800;
+      }
+      .speed-track {
+        position: relative;
+        width: 100%;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+      .speed-bar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0%;
+        border-radius: 9999px;
+      }
+      .bar-bike { background: linear-gradient(90deg, #94A3B8, #64748B); }
+      .bar-plane { background: linear-gradient(90deg, #38BDF8, #0284C7); }
+      .bar-light { background: linear-gradient(90deg, #FFB800, #F59E0B); box-shadow: 0 0 20px #FFB800; }
+
+      /* Scene 4: 阿提米絲與總結天秤 */
+      #scene-4 .dual-columns {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        height: 100%;
+        align-items: center;
+      }
+      .summary-card {
+        padding: 36px;
+        border-radius: 24px;
+        height: 520px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        backdrop-filter: blur(16px);
+      }
+      .science-card {
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(15, 23, 42, 0.85));
+        border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .art-card {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.85));
+        border: 1px solid rgba(251, 191, 36, 0.3);
+      }
+      .card-header {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .card-icon {
+        font-size: 44px;
+      }
+      .card-header h3 {
+        font-size: 38px;
+        font-weight: 800;
+      }
+      .card-desc {
+        font-size: 26px;
+        line-height: 1.8;
+        color: #E2E8F0;
+      }
+      .card-footer {
+        padding: 16px 24px;
+        border-radius: 14px;
+        background: rgba(0,0,0,0.4);
+        font-size: 24px;
+        font-weight: 700;
+        text-align: center;
+      }
+
+      /* 底部全域字幕列 */
+      #caption-box {
+        position: absolute;
+        bottom: 30px;
+        left: 120px;
+        right: 120px;
+        height: 90px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(10, 15, 29, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        backdrop-filter: blur(16px);
+        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+        z-index: 50;
+      }
+      #caption-text {
+        font-size: 32px;
+        font-weight: 700;
+        color: #F8FAFC;
+        letter-spacing: 0.05em;
+        text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="43.8"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- 背景層 -->
+      <div id="bg-hero" class="bg-layer" style="background-image: url('assets/moon_exploration_hero.png');"></div>
+      <div id="bg-distance" class="bg-layer" style="background-image: url('assets/moon_earth_distance_bg.png');"></div>
+      <div id="bg-crater" class="bg-layer" style="background-image: url('assets/moon_crater_rabbit.png');"></div>
+      <div id="bg-artemis" class="bg-layer" style="background-image: url('assets/artemis_moon_landing.png');"></div>
+      <div class="grid-overlay"></div>
+
+      <!-- 頂部標頭 -->
+      <div class="header-bar">
+        <div class="badge">
+          <span>●</span> 國小國語四上 · 第六課 原理解說
+        </div>
+        <div class="curriculum-tag">
+          臺中市梧棲區中正國小 · 108課綱跨域探索
+        </div>
+      </div>
+
+      <!-- Scene 1: 0 ~ 9.0s -->
+      <div id="scene-1" class="scene">
+        <div class="title-wrap">
+          <h1 class="h1-title">
+            又遠又近的<span>月亮</span>
+          </h1>
+          <p class="subtitle">
+            為什麼月亮看似近在咫尺，卻又遠在天邊？<br>
+            讓我們透過科學與文學的雙重視角，揭開月球的真實面貌。
+          </p>
+          <div class="metric-card">
+            <span style="font-size: 26px; color: #94A3B8;">地月平均距離</span>
+            <span id="metric-counter" class="metric-num">380,000</span>
+            <span class="metric-unit">公里 (km)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 2: 9.0s ~ 21.0s -->
+      <div id="scene-2" class="scene">
+        <div class="content-grid">
+          <div class="info-box">
+            <h3><span style="color:#FFB800;">🌑</span> 月球表面的暗影真相</h3>
+            <ul>
+              <li><strong>四十五億歲高齡</strong>：古老而靜謐的天體。</li>
+              <li><strong>無水與無大氣保護</strong>：無法抵擋宇宙隕石侵襲。</li>
+              <li><strong>成千上萬撞擊坑</strong>：終年遭受隕石高速轟擊。</li>
+              <li><strong>陽光照射陰影</strong>：古人因此想像出「玉兔搗藥」與「嫦娥奔月」。</li>
+            </ul>
+          </div>
+          <div class="visual-frame">
+            <img src="assets/moon_crater_rabbit.png" alt="隕石坑與玉兔意象">
+            <div class="visual-tag">科學的隕石撞擊坑 ✕ 文學的玉兔奔月傳說</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 3: 21.0s ~ 32.5s -->
+      <div id="scene-3" class="scene">
+        <div class="speed-container">
+          <div style="font-size: 40px; font-weight: 800; color: #FFFFFF; margin-bottom: 10px;">
+            跨越 <span style="color:#FFB800;">38 萬公里</span> 需要多久？
+          </div>
+
+          <div class="speed-row">
+            <div class="speed-label">
+              <span class="speed-title">🚲 騎單車 (時速 15 km/h)</span>
+              <span class="speed-time">整整 3 年</span>
+            </div>
+            <div class="speed-track">
+              <div id="bar-bike" class="speed-bar bar-bike"></div>
+            </div>
+          </div>
+
+          <div class="speed-row">
+            <div class="speed-label">
+              <span class="speed-title">✈️ 搭乘噴射客機 (時速 900 km/h)</span>
+              <span class="speed-time">半個月 (15 天)</span>
+            </div>
+            <div class="speed-track">
+              <div id="bar-plane" class="speed-bar bar-plane"></div>
+            </div>
+          </div>
+
+          <div class="speed-row" style="border-color: rgba(255, 184, 0, 0.4);">
+            <div class="speed-label">
+              <span class="speed-title">⚡ 光速旅行 (每秒 300,000 km)</span>
+              <span class="speed-time" style="color: #FFB800;">只要 1.3 秒</span>
+            </div>
+            <div class="speed-track">
+              <div id="bar-light" class="speed-bar bar-light"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 4: 32.5s ~ 43.8s -->
+      <div id="scene-4" class="scene">
+        <div class="dual-columns">
+          <div class="summary-card science-card">
+            <div>
+              <div class="card-header">
+                <span class="card-icon">🚀</span>
+                <h3 style="color:#38BDF8;">科學的月球</h3>
+              </div>
+              <p class="card-desc" style="margin-top: 24px;">
+                距離地球平均三十八萬公里。<br>
+                從 1969 阿波羅登月，到 2027 阿提米絲重返月球並準備進軍火星。<br>
+                科學揭開了真實、嚴酷而冰冷的天文真相。
+              </p>
+            </div>
+            <div class="card-footer" style="color: #38BDF8;">
+              物理之遠：三十八萬公里
+            </div>
+          </div>
+
+          <div class="summary-card art-card">
+            <div>
+              <div class="card-header">
+                <span class="card-icon">🌕</span>
+                <h3 style="color:#FFB800;">文學的月亮</h3>
+              </div>
+              <p class="card-desc" style="margin-top: 24px;">
+                每當中秋節品嘗月餅、仰望銀白光芒。<br>
+                嫦娥、玉兔與無數詩詞歌賦，凝聚了人們對美好親情的寄託。<br>
+                文學讓月亮永遠溫暖地陪伴在我們身邊。
+              </p>
+            </div>
+            <div class="card-footer" style="color: #FFB800;">
+              心靈之近：溫暖相伴身旁
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 底部字幕 -->
+      <div id="caption-box">
+        <span id="caption-text">你看過夜空中皎潔的月亮嗎？</span>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ==========================================
+      // 字幕驅動器（依據 audio_meta.json 時間點）
+      // ==========================================
+      const captions = [
+        { time: 0.0, text: "你看過夜空中皎潔的月亮嗎？" },
+        { time: 3.3, text: "它看似近在眼前" },
+        { time: 5.1, text: "其實平均距離地球高達三十八萬公里" },
+        { time: 9.2, text: "月球表面為什麼有暗影？" },
+        { time: 12.0, text: "因為月球沒有大氣層與水的保護" },
+        { time: 14.9, text: "遭受無數隕石撞擊" },
+        { time: 16.9, text: "留下的坑洞陰影" },
+        { time: 18.5, text: "讓人們想像出玉兔與嫦娥的美麗傳說" },
+        { time: 22.4, text: "三十八萬公里有多遠？" },
+        { time: 25.3, text: "如果騎單車日夜不停要騎整整三年" },
+        { time: 28.5, text: "搭客機要飛半個月" },
+        { time: 30.3, text: "而如果以光速前進" },
+        { time: 32.1, text: "只需要一點三秒" },
+        { time: 34.3, text: "從阿波羅到阿提米絲計畫" },
+        { time: 36.8, text: "人類再次啟程重返月球" },
+        { time: 39.9, text: "科學揭開了冰冷真相" },
+        { time: 41.9, text: "文學卻讓月亮近在身邊，這就是奇妙的月亮" }
+      ];
+
+      captions.forEach(cap => {
+        tl.call(() => {
+          const el = document.getElementById("caption-text");
+          if (el) el.textContent = cap.text;
+        }, null, cap.time);
+      });
+
+      // ==========================================
+      // 畫面動態編排 (符合 Emil Kowalski 曲線規範)
+      // ==========================================
+
+      // --- Scene 1 (0.0s ~ 9.2s) ---
+      tl.to("#bg-hero", { opacity: 0.6, duration: 1.2, ease: "power2.out" }, 0);
+      tl.fromTo("#scene-1", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
+        0.3
+      );
+      // 數字滾動動畫
+      const counterObj = { val: 0 };
+      tl.to(counterObj, {
+        val: 380000,
+        duration: 3.5,
+        ease: "power2.out",
+        onUpdate: () => {
+          const el = document.getElementById("metric-counter");
+          if (el) el.textContent = Math.round(counterObj.val).toLocaleString();
+        }
+      }, 4.8);
+
+      tl.to("#scene-1", { opacity: 0, scale: 0.98, duration: 0.6, ease: "power2.in" }, 8.6);
+      tl.to("#bg-hero", { opacity: 0, duration: 0.8 }, 8.6);
+
+      // --- Scene 2 (9.2s ~ 22.4s) ---
+      tl.to("#bg-crater", { opacity: 0.45, duration: 1.0, ease: "power2.out" }, 9.2);
+      tl.fromTo("#scene-2", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
+        9.4
+      );
+      tl.fromTo("#scene-2 .info-box li", 
+        { opacity: 0, x: -30 }, 
+        { opacity: 1, x: 0, duration: 0.6, stagger: 0.35, ease: "back.out(1.2)" }, 
+        11.5
+      );
+      tl.to("#scene-2", { opacity: 0, scale: 0.98, duration: 0.6, ease: "power2.in" }, 21.8);
+      tl.to("#bg-crater", { opacity: 0, duration: 0.8 }, 21.8);
+
+      // --- Scene 3 (22.4s ~ 34.3s) ---
+      tl.to("#bg-distance", { opacity: 0.45, duration: 1.0, ease: "power2.out" }, 22.4);
+      tl.fromTo("#scene-3", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
+        22.6
+      );
+      // 單車進度條慢慢爬 (到 15%)
+      tl.to("#bar-bike", { width: "15%", duration: 3.0, ease: "none" }, 25.0);
+      // 飛機進度條開跑 (到 55%)
+      tl.to("#bar-plane", { width: "55%", duration: 1.6, ease: "power1.out" }, 28.3);
+      // 光速瞬間射滿 100%
+      tl.to("#bar-light", { width: "100%", duration: 0.4, ease: "power4.out" }, 31.8);
+
+      tl.to("#scene-3", { opacity: 0, scale: 0.98, duration: 0.6, ease: "power2.in" }, 33.7);
+      tl.to("#bg-distance", { opacity: 0, duration: 0.8 }, 33.7);
+
+      // --- Scene 4 (34.3s ~ 43.8s) ---
+      tl.to("#bg-artemis", { opacity: 0.4, duration: 1.0, ease: "power2.out" }, 34.3);
+      tl.fromTo("#scene-4", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
+        34.5
+      );
+      tl.fromTo(".science-card", 
+        { opacity: 0, y: 30 }, 
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
+        36.0
+      );
+      tl.fromTo(".art-card", 
+        { opacity: 0, y: 30 }, 
+        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
+        38.5
+      );
+
+      // 註冊時間軸
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

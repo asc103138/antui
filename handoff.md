@@ -1,5 +1,24 @@
 # 專案交接筆記 (handoff.md)
 
+- [x] 完成 `antigravity-motion-explainer`（HyperFrames 原理解說動畫影片工作流）全域安裝與國語四上第六課《又遠又近的月亮》互動簡報暨關鍵頁動畫製作
+  - **全域技能安裝與環境配置**：
+    - 將 `asc103138/antigravity-motion-explainer` 安裝至全域技能目錄（`~/.gemini/config/skills/antigravity-motion-explainer/`）。
+    - 安裝全域 `hyperframes v0.8.173` CLI，補齊 Python 依賴（`edge-tts`、`fonttools`、`Pillow`、`brotli`）。
+    - 登錄 `data.json` 與 `skills_docs/`，antui 展示網站技能收錄擴增至 36 款。
+  - **AI 視覺素材生圖（16:9 全息教學背景）**：
+    - 調用 `image-generator` 生圖子代理，產出 4 張 16:9 8K 電影級深空背景與插圖（`moon_exploration_hero.png`、`moon_earth_distance_bg.png`、`artemis_moon_landing.png`、`moon_crater_rabbit.png`），存放於 `動畫簡報/assets/`。
+  - **HyperFrames 原理解說動畫影片製作（`moon_motion_explainer`）**：
+    - 依據 115 四上國課習第 6 課《又遠又近的月亮》研發解說腳本（44 秒 1080p 30fps，微軟台灣女聲 `zh-TW-HsiaoChenNeural` 旁白合成）。
+    - GSAP 物理幾何動態（地月 38 萬公里滾動計數、隕石撞擊坑與玉兔想像、單車3年 vs 飛機15天 vs 光速1.3秒速度賽道對決、阿波羅到阿提米絲）。
+    - 通過 `hyperframes check` 零違規（0 error, 0 warning, 49/49 WCAG AA 對比度通過）。
+    - 渲染產出高傳真有聲 MP4 影片（`moon_explainer.mp4`，13.5MB）與 Review Contact Sheet（`renders/sheets/beats.png/`）。
+  - **12 頁現代化 16:9 國語互動教學簡報（`動畫簡報/index.html`）**：
+    - 涵蓋封面、三維學習目標、課文起承轉合架構、生字形音義百寶箱（巨/距、以/呂）、關鍵核心頁（原生嵌入 `moon_explainer.mp4` 播放器）、速度換算圖卡、迷思概念大偵探、登月歷史時光機、假設複句「就算……也……」練習、哲思對話、隨堂即時測驗與封底。
+    - 支援鍵盤（←/→/Space/F全螢幕）與行動端手勢操作，自帶進度條與頁碼指示。
+  - **審查機制與零容忍驗收全面合格**：
+    - 產出 `自我檢測審查報告.md`，包含 `| Before | After | Why |` 動效工程審查表與 G4 三階漏斗自我審查報告。
+    - 經 Playwright 實機瀏覽器渲染測試（`test_deck.mjs`）確認 0 控制台錯誤、端到端換頁與小測驗互動 100% 正常，實體截圖存檔。
+    - 通過母庫 `python scripts/audit_gatekeeper.py` 零容忍檢查（PERFECT PASS）。
 - [x] 完成 `shanshiba-workflow-colab`（山獅霸的多重宇宙 AI 短片工作流）全域設定、專案初始化（`d:\antui\影片`）與《micro:bit 8人跳繩智慧教練》2 分鐘搞笑教學影片製作
   - **全域技能註冊與同步**：安裝 `shanshiba-workflow-colab`、`shanshiba-drama`、`blender-previs` 三大全域技能至 `~/.gemini/config/skills/`，部署全域工具鏈至 `C:\AI\tools`，安裝並修補 Windows 版 `google-colab-cli (v0.7.4)`，同步更新 `antigravity-lazy-packs`、展示網站 `data.json` 與 `asc103138/dotfiles` (chezmoi)。
   - **專案結構初始化**：於 `d:\antui\影片` 部署完整工作流（`agent/`, `cloud/`, `configs/`, `docs/`, `pipeline/`, `setup/`, `sfx/`, `templates/`, `tools/`）及標準規範檔（`AGENTS.md`, `ANTIGRAVITY.md`, `CLAUDE.md`, `handoff.md`）。

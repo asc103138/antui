@@ -66,6 +66,7 @@ CATEGORY_MAP = {
     "blender-previs": {"cat": "📑 文件與多媒體神器", "badge": "3D預演", "icon": "🎥", "friendly_name": "Blender 3D 空間鎖定預演與 H3 提示詞交付包"},
     "20-mineru": {"cat": "📑 文件與多媒體神器", "badge": "PDF深度解析", "icon": "🔬", "friendly_name": "MinerU 多模態含圖 PDF 原位解析神器"},
     "antigravity-mineru": {"cat": "📑 文件與多媒體神器", "badge": "PDF深度解析", "icon": "🔬", "friendly_name": "MinerU 多模態含圖 PDF 原位解析神器"},
+    "antigravity-motion-explainer": {"cat": "📑 文件與多媒體神器", "badge": "解說動畫", "icon": "🎞️", "friendly_name": "HyperFrames 原理解說動畫影片全自動工作流"},
 }
 
 def parse_frontmatter(content):

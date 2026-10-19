@@ -11,12 +11,12 @@
     "repo": "https://github.com/asc103138/antui",
     "chezmoiRepo": "asc103138/dotfiles",
     "siteUrl": "https://asc103138.github.io/antui/",
-    "totalSkills": 35,
+    "totalSkills": 36,
     "lastUpdated": "2026-10-02"
   },
   "stats": [
     {
-      "number": "35+",
+      "number": "36+",
       "label": "全域 AntiGravity 技能",
       "icon": "🛠️"
     },
@@ -76,7 +76,7 @@
   "projects_by_category": [
     {
       "category": "📑 文件與多媒體神器",
-      "count": 5,
+      "count": 6,
       "items": [
         {
           "id": "20-mineru",
@@ -124,6 +124,32 @@
           ],
           "doc_filename": "antigravity-mineru.md",
           "doc_content": "# Antigravity MinerU 文件解析技能\n\n## 🎯 技能定位與核心價值\nMinerU（OpenDataLab 開源）為新一代專為 LLM 與 AI Agent 打造的深度學習文件解析引擎。\n相較於一般的 PDF 轉文字工具（如 MarkItDown、pdfplumber），MinerU 能徹底解決以下痛點：\n1. **圖文錯位問題**：透過版面佈局模型（Layout Analysis），將圖說與圖片切片原位插入在正文段落間，而非堆在文末。\n2. **複雜跨頁表格**：自動辨識並還原為乾淨的 Markdown / HTML 表格結構。\n3. **數學公式還原**：行內公式與區塊公式精準轉譯為標準 LaTeX。\n4. **掃描件與圖中文字**：支援 OCR 模式，將插圖與掃描內容中的印刷文字轉為可讀文字層。\n\n---\n\n## 🛠️ CLI 常用指令範例\n\n系統已將 MinerU 4.0 透過 `uv tool` 安裝於系統環境中（執行檔：`mineru-kit` 與 `mineru`）。\n\n### 1. 標準解析（將 PDF 轉為含圖 Markdown）\n```bash\nmineru-kit parse \"考卷.pdf\" -o \"./output\"\n```\n- 解析完成後會在 `./output/考卷/` 產生：\n  - `考卷.md`（內含圖文對齊、表格與 LaTeX 公式）\n  - `images/`（切片出的所有高解析度圖片與插圖）\n\n### 2. 指定頁碼解析\n```bash\nmineru-kit parse \"講義.pdf\" -o \"./output\" -p \"1-3,5\"\n```\n\n### 3. 強制 OCR 模式（適用掃描件或大量文字在圖裡的考卷）\n```bash\nmineru-kit parse \"掃描考卷.pdf\" -o \"./output\" --ocr-mode ocr\n```\n\n### 4. 檔位模式（Tier）\n```bash\nmineru-kit parse \"論文.pdf\" -o \"./output\" --tier basic\n```\n- `flash`：極速文字解析\n- `basic`：版面分析 ＋ 基礎小模型\n- `standard`：版面分析 ＋ VLM 視覺語言模型精準解析\n\n---\n\n## ⚙️ 模型權重下載說明\n本地端首次執行解析時，系統會自動下載所需的視覺與版面模型權重至 `~/.mineru/models`。\n若欲提前下載：\n```bash\n# 下載 basic 檔位模型（約數百 MB ~ 1GB）\nmineru-kit models download --tier basic\n```\n\n---\n\n## 🍎 macOS Apple Silicon 適性\n- 系統已設定 `~/.mineru/config.yaml` 預設啟用 Apple Silicon MPS 硬體加速 (`device-mode: mps`)。\n- 圖片檔案路徑在 macOS 上處理時，均符合 Unicode NFC 正規化標準。",
+          "showOnMain": false
+        },
+        {
+          "id": "antigravity-motion-explainer",
+          "folder": "antigravity-motion-explainer",
+          "name": "antigravity-motion-explainer",
+          "friendly_name": "HyperFrames 原理解說動畫影片全自動工作流",
+          "category": "📑 文件與多媒體神器",
+          "badge": "解說動畫",
+          "icon": "🎞️",
+          "image": null,
+          "description": "用自然語言與程式碼製作「原理解說動畫影片」的端到端全自動工作流（HyperFrames + 中文 Edge-TTS/Breeze 旁白 + 字幕自動切分對齊 + 60-30-10 三色主題 + 源石黑體子集化 + GSAP 物理緩動動畫 + Review Loop 聯絡單自我審查）。",
+          "full_description": "用自然語言與程式碼製作「原理解說動畫影片」的端到端全自動工作流（HyperFrames + 中文 Edge-TTS/Breeze 旁白 + 字幕自動切分對齊 + 60-30-10 三色主題 + 源石黑體子集化 + GSAP 物理緩動動畫 + Review Loop 聯絡單自我審查）。當使用者提到「解說動畫」、「科普動畫」、「原理動畫」、「教學動畫」、「motion explainer」、「HyperFrames動畫」、「原理解說影片」、「製作動畫」時載入此技能。",
+          "triggers": [
+            "原理解說動畫影片",
+            "解說動畫",
+            "科普動畫",
+            "原理動畫",
+            "教學動畫",
+            "motion explainer",
+            "HyperFrames動畫",
+            "原理解說影片",
+            "製作動畫"
+          ],
+          "doc_filename": "antigravity-motion-explainer.md",
+          "doc_content": "# Antigravity 原理解說動畫影片工作流（Motion Explainer）\n\n本技能將「主題研究／教材考證 → 分鏡腳本設計 → 中文語音旁白合成 → GSAP 幾何動態設計 → 字幕音訊對齊 → 60-30-10 三色主題統整 → 字型子集化 → Contact Sheet 自我審查 → 最終 MP4 渲染」串聯為高度可靠且可重複執行的流水線。\n\n---\n\n## 核心技術基石\n\n1. **HyperFrames**（HeyGen 開源）：基於 HTML + CSS + GSAP 3 驅動的現代影片渲染架構，透過 Headless 瀏覽器進行逐格精準採樣輸出。\n2. **中文在地化語音（Edge-TTS / Breeze TTS）**：\n   - 預設推薦：微軟台灣神經語音（`zh-TW-HsiaoChenNeural` 溫和女聲、`zh-TW-YunJheNeural` 穩重男聲），零 GPU 依賴。\n   - 高階路線：Breeze TTS 2 本機語音複製與情緒控制。\n3. **極簡三色主題（Theming System）**：\n   - 60% 背景色（`bg`）、30% 主文字與骨幹線條（`fg`）、10% 強調關鍵與結論（`accent`）。\n   - 全片統一採用開源繁體字型（預設：源石黑體 GenSeki Gothic Bold，OFL-1.1 授權）。\n4. **字型子集化（Font Subsetting）**：\n   - 透過 `subset_fonts.py` 自動抽取全片用字，將 15MB+ 中文字型縮減為 ~140KB，徹底消除 Puppeteer 渲染超時與記憶體耗盡。\n5. **Review Loop 聯絡單審查**：\n   - 自動將全片每一幀的重要節奏點抽取並合成 4x4 視覺接觸清單（Contact Sheet），一眼揪出跳動、色彩失真、重疊與錯字。\n6. **教育審查整合（`g4-curriculum-review`）**：\n   - 凡涉及國中小教材影片，自動銜接三階漏斗審查機制（課綱門檻、認知負荷退回檢驗、迷思診斷與在地情境），檢核通過後方可交付。\n\n---\n\n## 完整工作流程\n\n```mermaid\nflowchart TD\n    Step0[\"0. 硬體與環境檢查 (hw_check)\"] --> Step1[\"1. 主題研究與數值教材考證\"]\n    Step1 --> Step2[\"2. 需求訪談與 3 色主題確立\"]\n    Step2 --> Step3[\"3. 分鏡 (STORYBOARD) 與腳本 (SCRIPT)\"]\n    Step3 --> Step4[\"4. 語音合成 (TTS) 與字幕音訊對齊\"]\n    Step4 --> Step5[\"5. GSAP 動態單格實作 (HTML + GSAP)\"]\n    Step5 --> Step6[\"6. 主題替換 (theme.py) 與字型子集化\"]\n    Step6 --> Step7[\"7. Review Loop 審查 (Contact Sheet)\"]\n    Step7 --> Step8[\"8. 最終 MP4 渲染 (hyperframes render)\"]\n```\n\n---\n\n### Step 0: 硬體與環境檢查\n\n1. 檢查核心依賴：\n   ```bash\n   node -v               # 建議 v20+ 或 v22+\n   ffmpeg -version       # 必須在 PATH 中\n   hyperframes --version # 建議 v0.8.170+\n   python3 -c \"import edge_tts, fontTools, PIL; print('Python deps OK')\"\n   ```\n2. 執行硬體推估：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/hw_check.py --project <專案目錄>\n   ```\n\n---\n\n### Step 1: 主題研究與教材考證\n\n- 依據主題蒐集最新資料，明確標示數值來源（官方宣稱、實測報導、自己推導）。\n- **教材動畫守則**：若為學校教材（如南一版國小數學四上「三角形」），必須嚴格核對課綱定義（如「頂點、邊、角」、「銳角、直角、鈍角三角形」、「等腰、正三角形」與「三角形成立條件：兩邊之和大於第三邊」），嚴禁超綱或使用非課綱名詞。\n\n---\n\n### Step 2: 需求訪談與 3 色主題確立\n\n確認影片規格：\n- **長度**：建議 60–120 秒，依照旁白節奏定錨。\n- **畫布比例**：預設 16:9（1920x1080），投影與 YouTube 首選。\n- **三色色彩盤（寫入專案 `theme.json`）**：\n  - 深色系範例：`\"bg\": \"#121212\"`, `\"fg\": \"#F2F0EA\"`, `\"accent\": \"#FF7A1A\"`\n  - 藍黑科技系：`\"bg\": \"#0D1117\"`, `\"fg\": \"#C9D1D9\"`, `\"accent\": \"#58A6FF\"`\n  - 暖色文教系：`\"bg\": \"#1C1B1A\"`, `\"fg\": \"#EAE6DF\"`, `\"accent\": \"#FFB800\"`\n\n---\n\n### Step 3: 分鏡與腳本設計\n\n1. 建立專案骨架：\n   ```bash\n   hyperframes init videos/<專案名稱> --non-interactive --example=blank --skill=faceless-explainer\n   ```\n2. 抓取開源字型：\n   ```bash\n   bash ~/.gemini/config/skills/antigravity-motion-explainer/scripts/fetch_fonts.sh <專案目錄>\n   ```\n3. 撰寫 `STORYBOARD.md` 與 `SCRIPT.md`：\n   - 旁白請**依「子句」切分**，每逗號即為一個動態揭示點。\n   - **所有數字一律拼寫為繁體國字**（如「一萬零八百元」、「三點一四秒」），避免 TTS 誤讀。\n\n---\n\n### Step 4: 語音合成與字幕音訊校正\n\n1. 合成語音：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/edge_tts_voice.py \\\n     --project <專案目錄> \\\n     --voice zh-TW-HsiaoChenNeural \\\n     --rate=\"-5%\"\n   ```\n2. 建立音訊時長資訊與字幕群組：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/voice_meta.py <專案目錄>\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/patch_captions.py <專案目錄>\n   ```\n\n---\n\n### Step 5: 單幀動態實作（HTML + GSAP 3）\n\n在 `compositions/frames/` 內實作各幀：\n- **底層保留區規範**：畫面底部 180px（`y: 900px ~ 1080px`）保留給字幕軌道 `#cap`，主要動態內容與警告標語必須保持在 `y <= 860px` 或加入 `data-layout-allow-overlap` 屬性。\n- **幾何與線條動態**：善用 SVG `stroke-dashoffset`、`transform-origin`、GSAP `Timeline` 與 `back.out(1.7)` / `power2.out` 緩動。\n- **對比與易讀性**：文字與背景對比度必須符合 WCAG AA 4.5:1。\n\n---\n\n### Step 6: 主題統一替換與字型子集化\n\n1. 套用三色主題：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/theme.py <專案目錄>\n   ```\n2. 抽取字集並進行中文字型子集化：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/subset_fonts.py <專案目錄>\n   ```\n\n---\n\n### Step 7: Review Loop 聯絡單審查\n\n1. 檢查佈局規範：\n   ```bash\n   cd <專案目錄> && hyperframes check\n   ```\n2. 渲染草稿並生成 Review Contact Sheet：\n   ```bash\n   hyperframes render --draft --output renders/draft.mp4\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/sheet.py \\\n     --project <專案目錄> \\\n     --video renders/draft.mp4 \\\n     --beats \\\n     --out renders/sheets/beats.png\n   ```\n3. 檢查聯絡單，確認各分鏡轉場平順無突兀閃爍。\n\n---\n\n### Step 8: 最終高畫質 MP4 渲染\n\n```bash\ncd <專案目錄> && hyperframes render --output renders/video.mp4\n```\n\n輸出驗證：\n- 畫面解析度：1080p（1920x1080）\n- 音訊響度：建議落在 -16 LUFS 左右，適合課堂投影與 YouTube 串流。\n\n---\n\n## 關鍵踩坑與避雷手冊（Lessons Learned）\n\n1. **`edge-tts` rate 參數解析**：\n   - 傳遞負值語速（如 `-5%`）時，命令列必須使用 `--rate=\"-5%\"` 等號語法，否則會被 Python argparse 誤判為未知 flag。\n2. **`theme.py` 快取機制**：\n   - `theme.py` 首次執行時會將原始 HTML 備份至 `.hyperframes/pre-theme/`。若手動修改了 `compositions/frames/` 中的 HTML，必須清空 `.hyperframes/pre-theme/` 或是直接編輯該快取，否則再次執行 `theme.py` 會覆蓋最新的手動變更。\n3. **字型子集化不可省略**：\n   - 未經子集化的繁體中文字型（15MB+）在無頭瀏覽器多進程並發渲染時會引發極大記憶體壓力，導致 Puppeteer 隨機逾時。務必執行 `subset_fonts.py`。\n4. **教材審查不妥協**：\n   - 任何中小學教材內容產出，嚴格禁止跳過 `g4-curriculum-review`，務必自我檢視定義無誤後輸出審查報告。",
           "showOnMain": false
         },
         {
@@ -1157,6 +1183,32 @@
       ],
       "doc_filename": "antigravity-mineru.md",
       "doc_content": "# Antigravity MinerU 文件解析技能\n\n## 🎯 技能定位與核心價值\nMinerU（OpenDataLab 開源）為新一代專為 LLM 與 AI Agent 打造的深度學習文件解析引擎。\n相較於一般的 PDF 轉文字工具（如 MarkItDown、pdfplumber），MinerU 能徹底解決以下痛點：\n1. **圖文錯位問題**：透過版面佈局模型（Layout Analysis），將圖說與圖片切片原位插入在正文段落間，而非堆在文末。\n2. **複雜跨頁表格**：自動辨識並還原為乾淨的 Markdown / HTML 表格結構。\n3. **數學公式還原**：行內公式與區塊公式精準轉譯為標準 LaTeX。\n4. **掃描件與圖中文字**：支援 OCR 模式，將插圖與掃描內容中的印刷文字轉為可讀文字層。\n\n---\n\n## 🛠️ CLI 常用指令範例\n\n系統已將 MinerU 4.0 透過 `uv tool` 安裝於系統環境中（執行檔：`mineru-kit` 與 `mineru`）。\n\n### 1. 標準解析（將 PDF 轉為含圖 Markdown）\n```bash\nmineru-kit parse \"考卷.pdf\" -o \"./output\"\n```\n- 解析完成後會在 `./output/考卷/` 產生：\n  - `考卷.md`（內含圖文對齊、表格與 LaTeX 公式）\n  - `images/`（切片出的所有高解析度圖片與插圖）\n\n### 2. 指定頁碼解析\n```bash\nmineru-kit parse \"講義.pdf\" -o \"./output\" -p \"1-3,5\"\n```\n\n### 3. 強制 OCR 模式（適用掃描件或大量文字在圖裡的考卷）\n```bash\nmineru-kit parse \"掃描考卷.pdf\" -o \"./output\" --ocr-mode ocr\n```\n\n### 4. 檔位模式（Tier）\n```bash\nmineru-kit parse \"論文.pdf\" -o \"./output\" --tier basic\n```\n- `flash`：極速文字解析\n- `basic`：版面分析 ＋ 基礎小模型\n- `standard`：版面分析 ＋ VLM 視覺語言模型精準解析\n\n---\n\n## ⚙️ 模型權重下載說明\n本地端首次執行解析時，系統會自動下載所需的視覺與版面模型權重至 `~/.mineru/models`。\n若欲提前下載：\n```bash\n# 下載 basic 檔位模型（約數百 MB ~ 1GB）\nmineru-kit models download --tier basic\n```\n\n---\n\n## 🍎 macOS Apple Silicon 適性\n- 系統已設定 `~/.mineru/config.yaml` 預設啟用 Apple Silicon MPS 硬體加速 (`device-mode: mps`)。\n- 圖片檔案路徑在 macOS 上處理時，均符合 Unicode NFC 正規化標準。",
+      "showOnMain": false
+    },
+    {
+      "id": "antigravity-motion-explainer",
+      "folder": "antigravity-motion-explainer",
+      "name": "antigravity-motion-explainer",
+      "friendly_name": "HyperFrames 原理解說動畫影片全自動工作流",
+      "category": "📑 文件與多媒體神器",
+      "badge": "解說動畫",
+      "icon": "🎞️",
+      "image": null,
+      "description": "用自然語言與程式碼製作「原理解說動畫影片」的端到端全自動工作流（HyperFrames + 中文 Edge-TTS/Breeze 旁白 + 字幕自動切分對齊 + 60-30-10 三色主題 + 源石黑體子集化 + GSAP 物理緩動動畫 + Review Loop 聯絡單自我審查）。",
+      "full_description": "用自然語言與程式碼製作「原理解說動畫影片」的端到端全自動工作流（HyperFrames + 中文 Edge-TTS/Breeze 旁白 + 字幕自動切分對齊 + 60-30-10 三色主題 + 源石黑體子集化 + GSAP 物理緩動動畫 + Review Loop 聯絡單自我審查）。當使用者提到「解說動畫」、「科普動畫」、「原理動畫」、「教學動畫」、「motion explainer」、「HyperFrames動畫」、「原理解說影片」、「製作動畫」時載入此技能。",
+      "triggers": [
+        "原理解說動畫影片",
+        "解說動畫",
+        "科普動畫",
+        "原理動畫",
+        "教學動畫",
+        "motion explainer",
+        "HyperFrames動畫",
+        "原理解說影片",
+        "製作動畫"
+      ],
+      "doc_filename": "antigravity-motion-explainer.md",
+      "doc_content": "# Antigravity 原理解說動畫影片工作流（Motion Explainer）\n\n本技能將「主題研究／教材考證 → 分鏡腳本設計 → 中文語音旁白合成 → GSAP 幾何動態設計 → 字幕音訊對齊 → 60-30-10 三色主題統整 → 字型子集化 → Contact Sheet 自我審查 → 最終 MP4 渲染」串聯為高度可靠且可重複執行的流水線。\n\n---\n\n## 核心技術基石\n\n1. **HyperFrames**（HeyGen 開源）：基於 HTML + CSS + GSAP 3 驅動的現代影片渲染架構，透過 Headless 瀏覽器進行逐格精準採樣輸出。\n2. **中文在地化語音（Edge-TTS / Breeze TTS）**：\n   - 預設推薦：微軟台灣神經語音（`zh-TW-HsiaoChenNeural` 溫和女聲、`zh-TW-YunJheNeural` 穩重男聲），零 GPU 依賴。\n   - 高階路線：Breeze TTS 2 本機語音複製與情緒控制。\n3. **極簡三色主題（Theming System）**：\n   - 60% 背景色（`bg`）、30% 主文字與骨幹線條（`fg`）、10% 強調關鍵與結論（`accent`）。\n   - 全片統一採用開源繁體字型（預設：源石黑體 GenSeki Gothic Bold，OFL-1.1 授權）。\n4. **字型子集化（Font Subsetting）**：\n   - 透過 `subset_fonts.py` 自動抽取全片用字，將 15MB+ 中文字型縮減為 ~140KB，徹底消除 Puppeteer 渲染超時與記憶體耗盡。\n5. **Review Loop 聯絡單審查**：\n   - 自動將全片每一幀的重要節奏點抽取並合成 4x4 視覺接觸清單（Contact Sheet），一眼揪出跳動、色彩失真、重疊與錯字。\n6. **教育審查整合（`g4-curriculum-review`）**：\n   - 凡涉及國中小教材影片，自動銜接三階漏斗審查機制（課綱門檻、認知負荷退回檢驗、迷思診斷與在地情境），檢核通過後方可交付。\n\n---\n\n## 完整工作流程\n\n```mermaid\nflowchart TD\n    Step0[\"0. 硬體與環境檢查 (hw_check)\"] --> Step1[\"1. 主題研究與數值教材考證\"]\n    Step1 --> Step2[\"2. 需求訪談與 3 色主題確立\"]\n    Step2 --> Step3[\"3. 分鏡 (STORYBOARD) 與腳本 (SCRIPT)\"]\n    Step3 --> Step4[\"4. 語音合成 (TTS) 與字幕音訊對齊\"]\n    Step4 --> Step5[\"5. GSAP 動態單格實作 (HTML + GSAP)\"]\n    Step5 --> Step6[\"6. 主題替換 (theme.py) 與字型子集化\"]\n    Step6 --> Step7[\"7. Review Loop 審查 (Contact Sheet)\"]\n    Step7 --> Step8[\"8. 最終 MP4 渲染 (hyperframes render)\"]\n```\n\n---\n\n### Step 0: 硬體與環境檢查\n\n1. 檢查核心依賴：\n   ```bash\n   node -v               # 建議 v20+ 或 v22+\n   ffmpeg -version       # 必須在 PATH 中\n   hyperframes --version # 建議 v0.8.170+\n   python3 -c \"import edge_tts, fontTools, PIL; print('Python deps OK')\"\n   ```\n2. 執行硬體推估：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/hw_check.py --project <專案目錄>\n   ```\n\n---\n\n### Step 1: 主題研究與教材考證\n\n- 依據主題蒐集最新資料，明確標示數值來源（官方宣稱、實測報導、自己推導）。\n- **教材動畫守則**：若為學校教材（如南一版國小數學四上「三角形」），必須嚴格核對課綱定義（如「頂點、邊、角」、「銳角、直角、鈍角三角形」、「等腰、正三角形」與「三角形成立條件：兩邊之和大於第三邊」），嚴禁超綱或使用非課綱名詞。\n\n---\n\n### Step 2: 需求訪談與 3 色主題確立\n\n確認影片規格：\n- **長度**：建議 60–120 秒，依照旁白節奏定錨。\n- **畫布比例**：預設 16:9（1920x1080），投影與 YouTube 首選。\n- **三色色彩盤（寫入專案 `theme.json`）**：\n  - 深色系範例：`\"bg\": \"#121212\"`, `\"fg\": \"#F2F0EA\"`, `\"accent\": \"#FF7A1A\"`\n  - 藍黑科技系：`\"bg\": \"#0D1117\"`, `\"fg\": \"#C9D1D9\"`, `\"accent\": \"#58A6FF\"`\n  - 暖色文教系：`\"bg\": \"#1C1B1A\"`, `\"fg\": \"#EAE6DF\"`, `\"accent\": \"#FFB800\"`\n\n---\n\n### Step 3: 分鏡與腳本設計\n\n1. 建立專案骨架：\n   ```bash\n   hyperframes init videos/<專案名稱> --non-interactive --example=blank --skill=faceless-explainer\n   ```\n2. 抓取開源字型：\n   ```bash\n   bash ~/.gemini/config/skills/antigravity-motion-explainer/scripts/fetch_fonts.sh <專案目錄>\n   ```\n3. 撰寫 `STORYBOARD.md` 與 `SCRIPT.md`：\n   - 旁白請**依「子句」切分**，每逗號即為一個動態揭示點。\n   - **所有數字一律拼寫為繁體國字**（如「一萬零八百元」、「三點一四秒」），避免 TTS 誤讀。\n\n---\n\n### Step 4: 語音合成與字幕音訊校正\n\n1. 合成語音：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/edge_tts_voice.py \\\n     --project <專案目錄> \\\n     --voice zh-TW-HsiaoChenNeural \\\n     --rate=\"-5%\"\n   ```\n2. 建立音訊時長資訊與字幕群組：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/voice_meta.py <專案目錄>\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/patch_captions.py <專案目錄>\n   ```\n\n---\n\n### Step 5: 單幀動態實作（HTML + GSAP 3）\n\n在 `compositions/frames/` 內實作各幀：\n- **底層保留區規範**：畫面底部 180px（`y: 900px ~ 1080px`）保留給字幕軌道 `#cap`，主要動態內容與警告標語必須保持在 `y <= 860px` 或加入 `data-layout-allow-overlap` 屬性。\n- **幾何與線條動態**：善用 SVG `stroke-dashoffset`、`transform-origin`、GSAP `Timeline` 與 `back.out(1.7)` / `power2.out` 緩動。\n- **對比與易讀性**：文字與背景對比度必須符合 WCAG AA 4.5:1。\n\n---\n\n### Step 6: 主題統一替換與字型子集化\n\n1. 套用三色主題：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/theme.py <專案目錄>\n   ```\n2. 抽取字集並進行中文字型子集化：\n   ```bash\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/subset_fonts.py <專案目錄>\n   ```\n\n---\n\n### Step 7: Review Loop 聯絡單審查\n\n1. 檢查佈局規範：\n   ```bash\n   cd <專案目錄> && hyperframes check\n   ```\n2. 渲染草稿並生成 Review Contact Sheet：\n   ```bash\n   hyperframes render --draft --output renders/draft.mp4\n   python3 ~/.gemini/config/skills/antigravity-motion-explainer/scripts/sheet.py \\\n     --project <專案目錄> \\\n     --video renders/draft.mp4 \\\n     --beats \\\n     --out renders/sheets/beats.png\n   ```\n3. 檢查聯絡單，確認各分鏡轉場平順無突兀閃爍。\n\n---\n\n### Step 8: 最終高畫質 MP4 渲染\n\n```bash\ncd <專案目錄> && hyperframes render --output renders/video.mp4\n```\n\n輸出驗證：\n- 畫面解析度：1080p（1920x1080）\n- 音訊響度：建議落在 -16 LUFS 左右，適合課堂投影與 YouTube 串流。\n\n---\n\n## 關鍵踩坑與避雷手冊（Lessons Learned）\n\n1. **`edge-tts` rate 參數解析**：\n   - 傳遞負值語速（如 `-5%`）時，命令列必須使用 `--rate=\"-5%\"` 等號語法，否則會被 Python argparse 誤判為未知 flag。\n2. **`theme.py` 快取機制**：\n   - `theme.py` 首次執行時會將原始 HTML 備份至 `.hyperframes/pre-theme/`。若手動修改了 `compositions/frames/` 中的 HTML，必須清空 `.hyperframes/pre-theme/` 或是直接編輯該快取，否則再次執行 `theme.py` 會覆蓋最新的手動變更。\n3. **字型子集化不可省略**：\n   - 未經子集化的繁體中文字型（15MB+）在無頭瀏覽器多進程並發渲染時會引發極大記憶體壓力，導致 Puppeteer 隨機逾時。務必執行 `subset_fonts.py`。\n4. **教材審查不妥協**：\n   - 任何中小學教材內容產出，嚴格禁止跳過 `g4-curriculum-review`，務必自我檢視定義無誤後輸出審查報告。",
       "showOnMain": false
     },
     {

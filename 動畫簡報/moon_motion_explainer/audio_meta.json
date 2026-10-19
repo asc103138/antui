@@ -1,0 +1,132 @@
+{
+  "bgm": null,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01.wav",
+      "source": "host",
+      "speech_s": 8.512,
+      "duration_s": 9.21,
+      "words": [
+        {
+          "text": "你看過夜空中皎潔的月亮嗎？",
+          "start": 0.0,
+          "end": 2.304
+        },
+        {
+          "text": "它看似近在眼前",
+          "start": 3.306,
+          "end": 4.896
+        },
+        {
+          "text": "其實平均距離地球高達三十八萬公里",
+          "start": 5.171,
+          "end": 8.361
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02.wav",
+      "source": "host",
+      "speech_s": 12.519,
+      "duration_s": 13.22,
+      "words": [
+        {
+          "text": "月球表面為什麼有暗影？",
+          "start": 0.0,
+          "end": 1.901
+        },
+        {
+          "text": "因為月球沒有大氣層與水的保護",
+          "start": 2.841,
+          "end": 5.422
+        },
+        {
+          "text": "遭受無數隕石撞擊",
+          "start": 5.74,
+          "end": 7.378
+        },
+        {
+          "text": "留下的坑洞陰影",
+          "start": 7.715,
+          "end": 9.067
+        },
+        {
+          "text": "讓人們想像出玉兔與嫦娥的美麗傳說",
+          "start": 9.366,
+          "end": 12.369
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03.wav",
+      "source": "host",
+      "speech_s": 11.184,
+      "duration_s": 11.88,
+      "words": [
+        {
+          "text": "三十八萬公里有多遠？",
+          "start": 0.0,
+          "end": 1.914
+        },
+        {
+          "text": "如果騎單車日夜不停要騎整整三年",
+          "start": 2.922,
+          "end": 5.825
+        },
+        {
+          "text": "搭客機要飛半個月",
+          "start": 6.124,
+          "end": 7.592
+        },
+        {
+          "text": "而如果以光速前進",
+          "start": 7.946,
+          "end": 9.465
+        },
+        {
+          "text": "只需要一點三秒",
+          "start": 9.741,
+          "end": 11.034
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04.wav",
+      "source": "host",
+      "speech_s": 11.578,
+      "duration_s": 13.38,
+      "words": [
+        {
+          "text": "從阿波羅到阿提米絲計畫",
+          "start": 0.0,
+          "end": 2.279
+        },
+        {
+          "text": "人類再次啟程重返月球",
+          "start": 2.589,
+          "end": 4.647
+        },
+        {
+          "text": "科學揭開了冰冷真相",
+          "start": 5.638,
+          "end": 7.42
+        },
+        {
+          "text": "文學卻讓月亮近在身邊",
+          "start": 7.699,
+          "end": 9.658
+        },
+        {
+          "text": "這就是奇妙的月亮",
+          "start": 9.981,
+          "end": 11.428
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}
