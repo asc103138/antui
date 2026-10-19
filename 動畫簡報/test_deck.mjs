@@ -1,4 +1,4 @@
-// test_deck.mjs - Playwright 端到端實體瀏覽器渲染驗證腳本
+// test_deck.mjs - Playwright 端到端實體瀏覽器渲染驗證腳本（前三段內容深究 14 頁專屬）
 import { chromium } from "playwright";
 import { pathToFileURL } from "url";
 import path from "path";
@@ -10,7 +10,7 @@ async function run() {
   const rendersDir = path.join(baseDir, "renders");
   if (!fs.existsSync(rendersDir)) fs.mkdirSync(rendersDir, { recursive: true });
 
-  console.log("🚀 啟動 Playwright 實機瀏覽器渲染驗收...");
+  console.log("🚀 啟動 Playwright 實機瀏覽器渲染驗收（前三段內容深究版本）...");
   const errors = [];
 
   const browser = await chromium.launch({ headless: true });
@@ -31,37 +31,37 @@ async function run() {
   await page.goto(fileUrl, { waitUntil: "networkidle" });
 
   // 1. 截圖 Slide 1 (封面)
-  const p1Shot = path.join(rendersDir, "deck_slide1_cover.png");
+  const p1Shot = path.join(rendersDir, "deck_slide1_deepdive.png");
   await page.screenshot({ path: p1Shot });
   console.log(`📸 Slide 1 截圖完成: ${p1Shot}`);
 
-  // 2. 切換至 Slide 5 (關鍵頁：原理解說動畫)
-  await page.evaluate(() => goToSlide(5));
+  // 2. 切換至 Slide 6 (關鍵頁：前三段原理解說動畫)
+  await page.evaluate(() => goToSlide(6));
   await page.waitForTimeout(600);
-  const p5Shot = path.join(rendersDir, "deck_slide5_video.png");
-  await page.screenshot({ path: p5Shot });
-  console.log(`📸 Slide 5 (動畫關鍵頁) 截圖完成: ${p5Shot}`);
+  const p6Shot = path.join(rendersDir, "deck_slide6_video.png");
+  await page.screenshot({ path: p6Shot });
+  console.log(`📸 Slide 6 (前三段動畫關鍵頁) 截圖完成: ${p6Shot}`);
 
   const videoSrc = await page.$eval("#explainer-video source", (el) => el.getAttribute("src"));
-  console.log(`🎬 Slide 5 影片標籤驗證: src = ${videoSrc}`);
+  console.log(`🎬 Slide 6 影片標籤驗證: src = ${videoSrc}`);
 
-  // 3. 切換至 Slide 11 (隨堂測驗)
-  await page.evaluate(() => goToSlide(11));
+  // 3. 切換至 Slide 14 (終極思辨檢測)
+  await page.evaluate(() => goToSlide(14));
   await page.waitForTimeout(400);
 
-  // 點擊正確選項 B
-  await page.click(".quiz-option:nth-child(2)");
+  // 點擊選項 C (「又遠又近」哲思觀點)
+  await page.click(".quiz-option:nth-child(3)");
   await page.waitForTimeout(300);
   const feedback = await page.innerText("#quiz-feedback");
-  console.log(`🎯 測驗互動反饋: ${feedback}`);
+  console.log(`🎯 終極思辨反饋: ${feedback}`);
 
-  if (!feedback.includes("回答完全正確")) {
-    throw new Error("測驗反饋未正確顯示！");
+  if (!feedback.includes("讀懂了課文標題的靈魂")) {
+    throw new Error("終極思辨反饋未正確顯示！");
   }
 
-  const p11Shot = path.join(rendersDir, "deck_slide11_quiz.png");
-  await page.screenshot({ path: p11Shot });
-  console.log(`📸 Slide 11 (測驗互動) 截圖完成: ${p11Shot}`);
+  const p14Shot = path.join(rendersDir, "deck_slide14_quiz.png");
+  await page.screenshot({ path: p14Shot });
+  console.log(`📸 Slide 14 (終極思辨互動) 截圖完成: ${p14Shot}`);
 
   await browser.close();
 

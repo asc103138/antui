@@ -1,20 +1,20 @@
 # 專案交接筆記 (handoff.md)
 
-- [x] 完成 `antigravity-motion-explainer`（HyperFrames 原理解說動畫影片工作流）全域安裝與國語四上第六課《又遠又近的月亮》互動簡報暨關鍵頁動畫製作
+- [x] 完成 `antigravity-motion-explainer`（HyperFrames 原理解說動畫影片工作流）全域安裝與國語四上第六課《又遠又近的月亮》【前三段內容深究（四年級學生專屬）】互動簡報暨關鍵頁動畫重新製作
   - **全域技能安裝與環境配置**：
     - 將 `asc103138/antigravity-motion-explainer` 安裝至全域技能目錄（`~/.gemini/config/skills/antigravity-motion-explainer/`）。
     - 安裝全域 `hyperframes v0.8.173` CLI，補齊 Python 依賴（`edge-tts`、`fonttools`、`Pillow`、`brotli`）。
     - 登錄 `data.json` 與 `skills_docs/`，antui 展示網站技能收錄擴增至 36 款。
-  - **AI 視覺素材生圖（16:9 全息教學背景）**：
+  - **AI 視覺素材生圖（16:9 全息深空教學背景）**：
     - 調用 `image-generator` 生圖子代理，產出 4 張 16:9 8K 電影級深空背景與插圖（`moon_exploration_hero.png`、`moon_earth_distance_bg.png`、`artemis_moon_landing.png`、`moon_crater_rabbit.png`），存放於 `動畫簡報/assets/`。
-  - **HyperFrames 原理解說動畫影片製作（`moon_motion_explainer`）**：
-    - 依據 115 四上國課習第 6 課《又遠又近的月亮》研發解說腳本（44 秒 1080p 30fps，微軟台灣女聲 `zh-TW-HsiaoChenNeural` 旁白合成）。
-    - GSAP 物理幾何動態（地月 38 萬公里滾動計數、隕石撞擊坑與玉兔想像、單車3年 vs 飛機15天 vs 光速1.3秒速度賽道對決、阿波羅到阿提米絲）。
-    - 通過 `hyperframes check` 零違規（0 error, 0 warning, 49/49 WCAG AA 對比度通過）。
-    - 渲染產出高傳真有聲 MP4 影片（`moon_explainer.mp4`，13.5MB）與 Review Contact Sheet（`renders/sheets/beats.png/`）。
-  - **12 頁現代化 16:9 國語互動教學簡報（`動畫簡報/index.html`）**：
-    - 涵蓋封面、三維學習目標、課文起承轉合架構、生字形音義百寶箱（巨/距、以/呂）、關鍵核心頁（原生嵌入 `moon_explainer.mp4` 播放器）、速度換算圖卡、迷思概念大偵探、登月歷史時光機、假設複句「就算……也……」練習、哲思對話、隨堂即時測驗與封底。
-    - 支援鍵盤（←/→/Space/F全螢幕）與行動端手勢操作，自帶進度條與頁碼指示。
+  - **前三段內容深究專屬原理解說動畫（`moon_motion_explainer`）**：
+    - 依據國語四上第 6 課前三段研發學生內容深究專屬腳本（48 秒 1080p 30fps，微軟台灣女聲 `zh-TW-HsiaoChenNeural` 旁白合成）。
+    - 聚焦前三段關鍵推論：第一段圖書館讀報與50年太空夢、第二段45億歲無防護罩與光影魔術（隕石坑陰影 vs 玉兔想像）、第三段38萬公里大數字生活比喻（客機半個月 vs 單車日夜不停3年）與嫦娥奔月純真提問、第四段科學與文學的深究總結。
+    - 通過 `hyperframes check` 驗收，渲染產出高傳真有聲 MP4 影片（`moon_explainer.mp4`）與 Review Contact Sheet（`renders/sheets/beats.png/`）。
+  - **14 頁國小四年級學生專屬「前三段內容深究」互動探險簡報（`動畫簡報/index.html`）**：
+    - 摒棄任何教師教案/指引格式，100% 以學生為本位，設計 9 大深究核心提問（為什麼特地去圖書館？50年太空空白？太空加油站？防護罩大破案？光影魔術？玉兔想像算不算犯錯？生活比喻巧思？單車三年驚人真相？嫦娥奔月童心提問？）。
+    - 包含前三段統整思辨擂台矩陣，以及第 14 頁即時互動思辨檢測（「讀完前三段，你覺得月球是變遠了還是變近了？」）。
+    - 關鍵第 6 頁原生嵌入 `moon_explainer.mp4` 播放器，支援全螢幕、鍵盤快速鍵與行動手勢。
   - **審查機制與零容忍驗收全面合格**：
     - 產出 `自我檢測審查報告.md`，包含 `| Before | After | Why |` 動效工程審查表與 G4 三階漏斗自我審查報告。
     - 經 Playwright 實機瀏覽器渲染測試（`test_deck.mjs`）確認 0 控制台錯誤、端到端換頁與小測驗互動 100% 正常，實體截圖存檔。

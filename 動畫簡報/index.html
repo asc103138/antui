@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#060913">
-  <meta name="description" content="國小四年級國語上學期第六課《又遠又近的月亮》互動教學簡報與原理解說動畫">
+  <meta name="description" content="國小四年級國語上學期第六課《又遠又近的月亮》前三段內容深究互動探險簡報">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌕</text></svg>">
-  <title>六、又遠又近的月亮 | 國小四年級國語互動教學簡報</title>
+  <title>六、又遠又近的月亮 · 前三段內容深究探險 | 四年級國語專屬</title>
   <style>
     /* ========================================================
        Emil Kowalski 設計工程工藝標準 CSS
@@ -15,8 +15,8 @@
     :root {
       --bg-dark: #060913;
       --bg-surface: #0E1626;
-      --bg-card: rgba(15, 23, 42, 0.75);
-      --border-subtle: rgba(255, 255, 255, 0.1);
+      --bg-card: rgba(15, 23, 42, 0.8);
+      --border-subtle: rgba(255, 255, 255, 0.12);
       --border-gold: rgba(255, 184, 0, 0.35);
       --gold-primary: #FFB800;
       --gold-glow: rgba(255, 184, 0, 0.25);
@@ -46,7 +46,6 @@
       font-size: 16px;
     }
 
-    /* 投影片容器 */
     #deck-container {
       position: relative;
       width: 100vw;
@@ -59,7 +58,6 @@
       overflow: hidden;
     }
 
-    /* 舞台 16:9 比例鎖定 */
     #stage {
       position: relative;
       width: 100%;
@@ -72,7 +70,6 @@
       box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
     }
 
-    /* 背景圖層（生圖素材） */
     .slide-bg {
       position: absolute;
       top: 0;
@@ -83,7 +80,7 @@
       background-position: center;
       opacity: 0.35;
       pointer-events: none;
-      transition: opacity 0.5s var(--ease-out), transform 0.8s var(--ease-out);
+      transition: opacity 0.4s var(--ease-out), transform 0.6s var(--ease-out);
     }
 
     .grid-overlay {
@@ -99,7 +96,6 @@
       pointer-events: none;
     }
 
-    /* 頂部常駐導覽列 */
     header.deck-header {
       position: absolute;
       top: 24px;
@@ -126,7 +122,7 @@
       letter-spacing: 0.05em;
     }
 
-    .school-info {
+    .student-badge {
       font-size: 14px;
       color: var(--text-sub);
       display: flex;
@@ -134,7 +130,6 @@
       gap: 12px;
     }
 
-    /* 投影片主體 */
     .slide {
       position: absolute;
       top: 80px;
@@ -156,13 +151,12 @@
       transform: scale(1);
     }
 
-    /* 大字流標題 */
     .slide-title {
-      font-size: 52px;
+      font-size: 50px;
       font-weight: 900;
       line-height: 1.2;
       color: #FFFFFF;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
       letter-spacing: -0.02em;
     }
 
@@ -171,14 +165,13 @@
     }
 
     .slide-subtitle {
-      font-size: 24px;
+      font-size: 22px;
       color: var(--text-sub);
       line-height: 1.6;
-      max-width: 900px;
-      margin-bottom: 32px;
+      max-width: 950px;
+      margin-bottom: 28px;
     }
 
-    /* 卡片與佈局格 */
     .grid-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -190,13 +183,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
-      width: 100%;
-    }
-
-    .grid-4 {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
       width: 100%;
     }
 
@@ -216,7 +202,7 @@
     }
 
     .deck-card h4 {
-      font-size: 26px;
+      font-size: 25px;
       font-weight: 800;
       color: #FFFFFF;
       margin-bottom: 14px;
@@ -231,7 +217,17 @@
       color: #CBD5E1;
     }
 
-    /* 影片嵌入播放器（關鍵頁 Slide 5） */
+    .deep-tag {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: rgba(56, 189, 248, 0.15);
+      color: #38BDF8;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
     .video-wrapper {
       position: relative;
       width: 100%;
@@ -250,23 +246,6 @@
       background: #000;
     }
 
-    .video-controls-overlay {
-      position: absolute;
-      bottom: 16px;
-      left: 24px;
-      right: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: rgba(10, 15, 29, 0.8);
-      backdrop-filter: blur(12px);
-      padding: 12px 20px;
-      border-radius: 16px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      z-index: 20;
-    }
-
-    /* 按鈕工藝：必備 :active 微縮 */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -302,7 +281,6 @@
       background: rgba(255, 255, 255, 0.18);
     }
 
-    /* 底部操作工具列 */
     footer.deck-footer {
       position: absolute;
       bottom: 20px;
@@ -327,7 +305,7 @@
 
     .progress-bar-fill {
       height: 100%;
-      width: 8.33%;
+      width: 7.14%;
       background: linear-gradient(90deg, var(--gold-primary), var(--blue-accent));
       border-radius: 9999px;
       transition: width 0.3s var(--ease-out);
@@ -359,7 +337,6 @@
       font-variant-numeric: tabular-nums;
     }
 
-    /* 互動小測驗 */
     .quiz-options {
       display: flex;
       flex-direction: column;
@@ -407,125 +384,136 @@
 <body>
   <div id="deck-container">
     <main id="stage">
-      <!-- 背景底圖 -->
       <div id="bg-art" class="slide-bg" style="background-image: url('assets/moon_exploration_hero.png');"></div>
       <div class="grid-overlay"></div>
 
-      <!-- 頂部標頭 -->
       <header class="deck-header">
         <div class="badge-capsule">
-          <span>●</span> 翰林國語四上 · 第六課
+          <span>●</span> 國語四上第六課 · 前三段內容深究
         </div>
-        <div class="school-info">
-          <span>臺中市梧棲區中正國小</span>
+        <div class="student-badge">
+          <span>四年級同學專屬</span>
           <span>•</span>
-          <span>108課綱自然文學跨域教材</span>
+          <span>化身科學偵探與文學鑑賞家</span>
         </div>
       </header>
 
-      <!-- ==========================================
-           Slide 1: 封面
-           ========================================== -->
+      <!-- Slide 1: 封面 -->
       <section class="slide active" data-slide="1" data-bg="assets/moon_exploration_hero.png">
-        <div style="max-width: 820px;">
+        <div style="max-width: 860px;">
           <div class="badge-capsule" style="margin-bottom: 20px;">
-            ✦ 閱讀科普 ✕ 浪漫文學
+            ✦ 不是只把字讀過去，而是挖出文字背後的祕密！
           </div>
           <h1 class="slide-title">
-            六、又遠又近的<span class="highlight">月亮</span>
+            六、又遠又近的月亮<br>
+            <span class="highlight">【前三段】內容深究思維探險</span>
           </h1>
           <p class="slide-subtitle">
-            為什麼月球在科學上距離地球三十八萬公里那麼遙遠，<br>
-            但在文學詩詞與傳說中，卻又像朋友般近在身邊？
+            嗨！四年級的小探險家！<br>
+            讀課文就像尋寶，課本前三段藏著許多作者沒直接說的驚人祕密。<br>
+            準備好戴上「科學眼鏡」與「文學濾鏡」，一起出發深究了嗎？
           </p>
           <div style="display: flex; gap: 16px;">
             <button class="btn btn-primary" onclick="nextSlide()">
-              開始探索航道 ➔
+              開始深究挑戰 ➔
             </button>
-            <button class="btn btn-secondary" onclick="goToSlide(5)">
-              直達原理解說動畫 🎬
+            <button class="btn btn-secondary" onclick="goToSlide(6)">
+              觀看原理解說動畫 🎬
             </button>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 2: 三維學習目標
-           ========================================== -->
+      <!-- Slide 2: 什麼是內容深究？ -->
       <section class="slide" data-slide="2" data-bg="assets/moon_earth_distance_bg.png">
-        <h2 class="slide-title">本課<span class="highlight">三大核心目標</span></h2>
+        <h2 class="slide-title">小探險家指南：<span class="highlight">什麼是「內容深究」？</span></h2>
         <div class="grid-3">
           <div class="deck-card">
-            <h4><span>🔬</span> 自然科學探究</h4>
-            <p>理解月球已經 45 億歲，無水無大氣層保護，隕石撞擊坑形成陰影的科學真相，破除玉兔迷思。</p>
+            <h4><span>🔍</span> 不只是「字面看見」</h4>
+            <p>不是只問你「月球幾歲？距離多遠？」，而是探究「為什麼這樣寫？」以及「背後的原因是什麼？」。</p>
           </div>
           <div class="deck-card">
-            <h4><span>🚀</span> 太空航太科技</h4>
-            <p>掌握地月平均距離 38 萬公里，從 1969 阿波羅登月到 2027 阿提米絲重返月球的探索歷程。</p>
+            <h4><span>🔬</span> 戴上「科學眼鏡」</h4>
+            <p>用理性思維推敲：為什麼地球沒有坑洞？為什麼去火星要先去月球？深入科學事實的邏輯！</p>
           </div>
           <div class="deck-card">
-            <h4><span>📖</span> 語文與人文素養</h4>
-            <p>學習記敘文讀報文體、假設複句「就算……也……」練習，體會文學如何豐富心靈世界。</p>
+            <h4><span>🎨</span> 換上「文學濾鏡」</h4>
+            <p>體會作者的寫作巧思：為什麼要寫單車？為什麼問嫦娥怎麼去？感受文字的幽默與想像力！</p>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 3: 課文架構地圖
-           ========================================== -->
-      <section class="slide" data-slide="3" data-bg="assets/moon_earth_distance_bg.png">
-        <h2 class="slide-title">課文<span class="highlight">起承轉合</span>全脈絡</h2>
-        <div class="grid-4">
-          <div class="deck-card">
-            <h4 style="color:#38BDF8;">起 · 好奇緣起</h4>
-            <p>帶著對月亮的好奇到圖書館讀報，看見 NASA「阿提米絲二號」公布登月成員新聞。</p>
-          </div>
-          <div class="deck-card">
-            <h4 style="color:#38BDF8;">承 · 科學事實</h4>
-            <p>月球45億歲、無水無氣、滿布隕石坑洞；距離地球平均38萬公里，單車騎三年才能到。</p>
-          </div>
-          <div class="deck-card">
-            <h4 style="color:#FFB800;">轉 · 師生趣聞</h4>
-            <p>自然老師提及阿波羅11號阿姆斯壯登月時，地面管制中心幽默要他尋找嫦娥與玉兔。</p>
-          </div>
-          <div class="deck-card">
-            <h4 style="color:#FFB800;">合 · 深刻哲思</h4>
-            <p>中秋吃月餅賞月。科學的月亮那麼遠，文學的月亮近在身邊，又遠又近，奇妙無比！</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==========================================
-           Slide 4: 生字百寶箱
-           ========================================== -->
-      <section class="slide" data-slide="4" data-bg="assets/moon_crater_rabbit.png">
-        <h2 class="slide-title">字詞百寶箱：<span class="highlight">形音義辨析</span></h2>
+      <!-- Slide 3: 第一段深究 ① 主動探索 -->
+      <section class="slide" data-slide="3" data-bg="assets/artemis_moon_landing.png">
+        <div class="deep-tag">第一段內容深究 · 探究提問 ①</div>
+        <h2 class="slide-title">作者為什麼要<span class="highlight">特地去圖書館找資料</span>？</h2>
         <div class="grid-2">
           <div class="deck-card">
-            <h4 style="color:#38BDF8;">🔍 巨 ✕ 距（音同義不同）</h4>
-            <p><strong>【距】</strong>（足部，共12畫）：距離、相距。<br>「月球與地球平均距離三十八萬公里。」</p>
-            <p style="margin-top: 10px;"><strong>【拒】</strong>（手部）：拒絕、抗拒。</p>
-            <p style="margin-top: 10px;"><strong>【巨】</strong>（工部）：巨大、巨人。</p>
+            <h4 style="color:#38BDF8;">🤔 想一想：聽完故事之後，你會怎麼做？</h4>
+            <p>很多同學聽完神話故事，笑一笑就過去了。<br>
+            但課文第一句寫道：「<strong>抱著對月亮的好奇和想像，第二天下課後，我特地去圖書館找資料……</strong>」</p>
+            <p style="margin-top: 14px;"><strong>【關鍵深究】</strong>：<br>
+            「好奇」是科學探索的起點！如果只有想像，月球永遠只是傳說；作者特地走進圖書館查證，代表他的思維正從「幻想」跨入「求真」的科學大門！</p>
           </div>
           <div class="deck-card">
-            <h4 style="color:#FFB800;">✍️ 以 ✕ 呂（筆順易錯字）</h4>
-            <p><strong>【以】</strong>：第一筆為<strong>豎提</strong>，嚴禁寫成撇或連筆。<br>「以平均三十八萬公里計算。」</p>
-            <p style="margin-top: 10px;"><strong>【呂】</strong>：用<strong>撇</strong>來連接上下兩個口。<br>常見詞：呂洞賓、鋁罐（金＋呂）。</p>
+            <h4 style="color:#FFB800;">💡 給你的探究任務：</h4>
+            <p>當你在生活中有不懂的疑問時，你是直接滑手機刷影片，還是會像作者一樣，主動找權威資料探索答案？</p>
+            <p style="margin-top: 14px; color:#F8FAFC; font-weight:700;">
+              ✦ 真正的學習者，不會只停留在「聽說」，而是會自己「求證」！
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 5: 關鍵核心頁：原理解說動畫
-           ========================================== -->
-      <section class="slide" data-slide="5" data-bg="assets/moon_exploration_hero.png">
-        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px;">
-          <div>
-            <div class="badge-capsule" style="margin-bottom: 8px;">🎬 本課核心動態演示</div>
-            <h2 class="slide-title" style="margin-bottom: 0;">原理解說：<span class="highlight">地月三十八萬公里大揭密</span></h2>
+      <!-- Slide 4: 第一段深究 ② 讀報關鍵密碼 -->
+      <section class="slide" data-slide="4" data-bg="assets/artemis_moon_landing.png">
+        <div class="deep-tag">第一段內容深究 · 探究提問 ②</div>
+        <h2 class="slide-title">讀報密碼：<span class="highlight">人類為什麼隔了五十多年才重返月球？</span></h2>
+        <div class="grid-2">
+          <div class="deck-card">
+            <h4 style="color:#38BDF8;">⏳ 「五十多年來，人類再也沒踏上月球」</h4>
+            <p>五十多年，比你爸爸媽媽的年紀還要長！為什麼人類隔了這麼久都沒去月球？是月球不值得探索嗎？</p>
+            <p style="margin-top: 12px;"><strong>【深究解答】</strong>：<br>
+            登月需要耗費龐大資金，而且極度危險！當年阿波羅登月後，人類轉而研發太空梭與國際太空站。直到科技更成熟、新材料研發成功，人類才準備好再次出發！</p>
           </div>
-          <div style="font-size: 16px; color: var(--text-sub);">
-            台灣語音旁白 ✕ GSAP物理動態 ✕ 1080p 高清
+          <div class="deck-card">
+            <h4 style="color:#FFB800;">👥 為什麼特別提到「女性與非裔男性」？</h4>
+            <p>五十年前登月的十二位太空人，全部都是美國白人男性。</p>
+            <p style="margin-top: 12px;"><strong>【深究解答】</strong>：<br>
+            「阿提米絲計畫」首度將女性與非裔太空人送上月球，象徵著<strong>太空探索屬於全人類平等的夢想</strong>，不再受限於性別與族群！這代表了人類文明的重要進步！</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 5: 第一段深究 ③ 為什麼是進軍火星的跳板？ -->
+      <section class="slide" data-slide="5" data-bg="assets/artemis_moon_landing.png">
+        <div class="deep-tag">第一段內容深究 · 探究提問 ③</div>
+        <h2 class="slide-title">為什麼登月是<span class="highlight">進軍火星的前置作業</span>？</h2>
+        <div class="grid-2">
+          <div class="deck-card">
+            <h4 style="color:#38BDF8;">⛽ 月球是人類未來的「太空加油站」！</h4>
+            <p>如果要飛向幾億公里外的火星，火箭需要攜帶龐大燃料。但是從地球發射，地球重力巨大，而且有厚厚的大氣層阻力！</p>
+            <p style="margin-top: 12px;"><strong>【科學深究】</strong>：<br>
+            月球引力只有地球的 <strong>1/6</strong>，而且<strong>沒有大氣層阻力</strong>！在月球上發射太空船，所需燃料大幅減少。先在月球建立基地，人類才能飛向更遙遠的深空！</p>
+          </div>
+          <div class="deck-card">
+            <h4 style="color:#FFB800;">💎 探索「稀有資源」代表什麼？</h4>
+            <p>新聞裡提到「探索月球上的稀有資源」。</p>
+            <p style="margin-top: 12px;"><strong>【科學深究】</strong>：<br>
+            月球表面的土壤中富含地球極為罕見的「氦-3」（未來乾淨核融合能源的寶藏），以及月球南極陰影坑底的「水冰」（可分解為飲用水與火箭氫氧燃料）。月球不只是荒石，更是未來的能源庫！</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 6: 關鍵核心頁：原理解說動畫影片 -->
+      <section class="slide" data-slide="6" data-bg="assets/moon_exploration_hero.png">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 14px;">
+          <div>
+            <div class="badge-capsule" style="margin-bottom: 8px;">🎬 前三段核心動態演示</div>
+            <h2 class="slide-title" style="margin-bottom: 0;">原理解說：<span class="highlight">前三段內容深究全動態</span></h2>
+          </div>
+          <div style="font-size: 15px; color: var(--text-sub);">
+            台灣語音旁白 ✕ GSAP物理幾何動態 ✕ 1080p 高清
           </div>
         </div>
 
@@ -537,154 +525,189 @@
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 6: 距離與速度對決
-           ========================================== -->
-      <section class="slide" data-slide="6" data-bg="assets/moon_earth_distance_bg.png">
-        <h2 class="slide-title">三十八萬公里：<span class="highlight">速度旅行換算</span></h2>
-        <div class="grid-3">
-          <div class="deck-card" style="text-align: center;">
-            <div style="font-size: 54px; margin-bottom: 12px;">🚲</div>
-            <h4 style="justify-content: center;">騎單車 (15 km/h)</h4>
-            <div style="font-size: 40px; font-weight: 900; color: #94A3B8; margin: 16px 0;">整整 3 年</div>
-            <p>日夜不停、不吃不喝踩踏板，也要騎滿一千多天！</p>
-          </div>
-          <div class="deck-card" style="text-align: center;">
-            <div style="font-size: 54px; margin-bottom: 12px;">✈️</div>
-            <h4 style="justify-content: center; color:#38BDF8;">噴射客機 (900 km/h)</h4>
-            <div style="font-size: 40px; font-weight: 900; color: #38BDF8; margin: 16px 0;">半個月 (15天)</div>
-            <p>如同搭乘國際長途班機，連續飛行 400 多個小時。</p>
-          </div>
-          <div class="deck-card" style="text-align: center; border-color: var(--border-gold);">
-            <div style="font-size: 54px; margin-bottom: 12px;">⚡</div>
-            <h4 style="justify-content: center; color: var(--gold-primary);">光速 (30萬 km/s)</h4>
-            <div style="font-size: 40px; font-weight: 900; color: var(--gold-primary); margin: 16px 0;">只要 1.3 秒</div>
-            <p>電磁波與光線一眨眼即達，我們看到的月光是 1.3 秒前的！</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==========================================
-           Slide 7: 迷思概念大偵探
-           ========================================== -->
+      <!-- Slide 7: 第二段深究 ① 防護罩大破案 -->
       <section class="slide" data-slide="7" data-bg="assets/moon_crater_rabbit.png">
-        <h2 class="slide-title">迷思大偵探：<span class="highlight">破解天文直覺</span></h2>
+        <div class="deep-tag">第二段內容深究 · 探究提問 ④</div>
+        <h2 class="slide-title">防護罩大破案：<span class="highlight">為什麼月球滿臉「痘疤」？</span></h2>
         <div class="grid-2">
           <div class="deck-card">
-            <h4><span>❓</span> 迷思：月亮上的黑影是玉兔與嫦娥？</h4>
-            <p><strong>【科學破解】</strong><br>
-            月球表面沒有水和大氣層保護，終年遭受無數大小隕石高速撞擊，形成數以萬計的「撞擊坑（環形山）」。當太陽光側向照射時，高低起伏的坑洞邊緣投射出大片陰影，古人發揮豐富想像力才看成玉兔與嫦娥。</p>
+            <h4 style="color:#38BDF8;">🛡️ 地球的幸運防護罩：大氣層與水</h4>
+            <p>每天其實也有無數小隕石衝向地球，為什麼我們走在路上沒被砸到？</p>
+            <p style="margin-top: 12px;"><strong>【科學解答】</strong>：<br>
+            地球擁有厚達數百公里的大氣層！小隕石一進入就會高速摩擦高溫燃燒，化成夜空裡浪漫的「流星」。即便有大隕石砸下，幾億年來的雨水與風化也會逐漸將坑洞撫平。</p>
           </div>
           <div class="deck-card">
-            <h4><span>❓</span> 迷思：月亮本身會發出皎潔的光芒？</h4>
-            <p><strong>【科學破解】</strong><br>
-            月球本身是冰冷岩石天體，<strong>完全不會自己發光</strong>。我們夜晚所見的皎潔月光，其實是月球表面岩石反射太陽光到達地球的結果！</p>
+            <h4 style="color:#FFB800;">🌑 月球的殘酷現實：赤裸迎擊砲彈</h4>
+            <p>月球已經 45 億歲，但它「沒有水和大氣保護」。</p>
+            <p style="margin-top: 12px;"><strong>【科學解答】</strong>：<br>
+            每一顆隕石都像重裝砲彈，直接高速硬生生撞在月球表面！加上月球沒有風也沒有流水，<strong>45 億年前撞出來的坑洞，到今天依然完好如初</strong>！月球就像一張凍結在時間裡的宇宙靶場。</p>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 8: 登月歷史時光機
-           ========================================== -->
-      <section class="slide" data-slide="8" data-bg="assets/artemis_moon_landing.png">
-        <h2 class="slide-title">人類登月史：<span class="highlight">阿波羅 ➔ 阿提米絲</span></h2>
+      <!-- Slide 8: 第二段深究 ② 光與影的魔術 -->
+      <section class="slide" data-slide="8" data-bg="assets/moon_crater_rabbit.png">
+        <div class="deep-tag">第二段內容深究 · 探究提問 ⑤</div>
+        <h2 class="slide-title">光與影的魔術：<span class="highlight">黑影是怎麼變出來的？</span></h2>
         <div class="grid-2">
           <div class="deck-card">
-            <h4 style="color:#38BDF8;">👨‍🚀 1969 年 · 阿波羅 11 號 (Apollo 11)</h4>
-            <p>阿姆斯壯（Neil Armstrong）成為人類首位登月太空人。「這是我個人的一小步，卻是人類的一大步。」任務期間休士頓地面管制中心曾風趣玩笑請他尋找嫦娥與玉兔。</p>
+            <h4><span>💡</span> 為什麼課文說「在陽光的照射下」？</h4>
+            <p>月球本身不會發光，它就像一個高低不平的大石球。<br>
+            <strong>【小實驗思考】</strong>：<br>
+            如果拿手電筒垂直照在平整的桌子上，會有影子嗎？不會！<br>
+            但如果桌上有個隆起的小山丘或碗，斜斜照過去，山丘後面是不是就會投下一大片深黑色的影子？</p>
+            <p style="margin-top: 12px; color:#FFB800;">
+              ✦ 月球正是因為滿布「高低不平」的環形山，太陽斜射時投下長長陰影，地球上的人才看得見深淺黑影！
+            </p>
+          </div>
+          <div class="deck-card">
+            <h4><span>🐰</span> 古人想像的起點</h4>
+            <p>古時候沒有望遠鏡，人們在夜晚看見月球上深一塊、淺一塊的暗影，心裡就開始聯想：</p>
+            <ul style="margin-top: 12px; padding-left: 20px;">
+              <li>這塊影子耳朵長長的，像不像一隻兔子？</li>
+              <li>旁邊凹陷的部分，像不像兔子在搗藥的石臼？</li>
+            </ul>
+            <p style="margin-top: 14px;"><strong>【深究關鍵】</strong>：黑影是客觀的「物理現象」，玉兔則是主觀的「心靈想像」！</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 9: 第二段深究 ③ 科學眼鏡 ✕ 文學濾鏡 -->
+      <section class="slide" data-slide="9" data-bg="assets/moon_crater_rabbit.png">
+        <div class="deep-tag">第二段內容深究 · 探究提問 ⑥</div>
+        <h2 class="slide-title">思維碰撞：<span class="highlight">古人想像出玉兔，算不算犯錯？</span></h2>
+        <div class="grid-2">
+          <div class="deck-card" style="border-color: rgba(56, 189, 248, 0.4);">
+            <h4 style="color:#38BDF8;">👓 戴上「科學眼鏡」的視角</h4>
+            <p>科學追求「真」：<br>
+            月球上沒有空氣、沒有水，溫差高達兩百多度，根本不可能有生物或兔子存活！<br>
+            所謂的暗影，是遠古玄武岩熔岩平原（月海）與隕石坑的陰影。</p>
           </div>
           <div class="deck-card" style="border-color: var(--border-gold);">
-            <h4 style="color: var(--gold-primary);">👩‍🚀 2027 年 · 阿提米絲計畫 (Artemis)</h4>
-            <p>睽違五十多年，NASA 將首度把<strong>女性與非裔太空人</strong>送上月球。除了採集稀有資源、建立月球基地，更作為人類未來進軍火星的最關鍵前置作業！</p>
+            <h4 style="color: var(--gold-primary);">✨ 換上「文學濾鏡」的視角</h4>
+            <p>文學追求「美與情感」：<br>
+            古人雖然不知道隕石坑，但他們用浪漫的想像，給了冰冷黑影最溫柔的生命！<br>
+            如果沒有玉兔與嫦娥，中秋節賞月是不是就少了一大半的趣味與溫暖？</p>
           </div>
         </div>
+        <p style="text-align: center; margin-top: 24px; font-size: 20px; color: #E2E8F0; font-weight: 700;">
+          ✦ 深究結論：科學豐富了我們的「腦袋」，文學溫暖了我們的「心靈」，兩者並非對立，而是相輔相成！
+        </p>
       </section>
 
-      <!-- ==========================================
-           Slide 9: 關鍵句型與修辭聚焦
-           ========================================== -->
-      <section class="slide" data-slide="9" data-bg="assets/moon_earth_distance_bg.png">
-        <h2 class="slide-title">句型與修辭：<span class="highlight">精準表達的藝術</span></h2>
+      <!-- Slide 10: 第三段深究 ① 寫作手法巧思 -->
+      <section class="slide" data-slide="10" data-bg="assets/moon_earth_distance_bg.png">
+        <div class="deep-tag">第三段內容深究 · 探究提問 ⑦</div>
+        <h2 class="slide-title">寫作巧思：<span class="highlight">作者為什麼要用單車與飛機做比喻？</span></h2>
         <div class="grid-2">
           <div class="deck-card">
-            <h4 style="color:#38BDF8;">📝 關鍵句型：【就算……也……】</h4>
-            <p><strong>【句型功用】</strong>：假設複句，先退一步承認某種極端假設，再指出依然產生的結果，用以加強語氣。</p>
-            <p style="margin-top: 14px;"><strong>【課本例句】</strong>：<br>「以平均三十八萬公里計算，<strong>就算</strong>搭飛機去月球，<strong>也</strong>要花上半個月。」</p>
-            <p style="margin-top: 10px;"><strong>【生活造句】</strong>：<br>「明天的籃球比賽<strong>就算</strong>遇到強敵，我們<strong>也</strong>要全力以赴。」</p>
+            <h4><span>📏</span> 如果作者只寫「平均三十八萬公里」……</h4>
+            <p>對於四年級的同學來說，「380,000」只是一連串的零。你可能知道它很大，但根本感覺不出到底有多大！<br>
+            這種寫法叫做「抽象的統計數據」，很難在讀者腦中形成生動畫面。</p>
           </div>
           <div class="deck-card">
-            <h4 style="color:#FFB800;">🎭 修辭 Spotlight：【對比】與【激問】</h4>
-            <p><strong>【對比修辭】</strong>：<br>「科學的月球距離地球那麼遠，文學的月亮則好像近在身邊。」以「遠」與「近」突顯月亮的奇妙特質。</p>
-            <p style="margin-top: 14px;"><strong>【激問修辭（反問）】</strong>：<br>「現代人對月球或許已不再像古人那麼有想像力，但美麗的神話會不會從此消失了呢？」答案就在問題反面，啟發深層反思。</p>
+            <h4><span>🚲</span> 換成「單車三年」與「飛機半個月」……</h4>
+            <p>每個人都騎過單車、看過飛機！<br>
+            搭飛機去日本只要 3 小時，去月球竟然要<strong>半個月（360 個小時）</strong>！<br>
+            騎單車更不可思議，竟然要<strong>三年</strong>！</p>
+            <p style="margin-top: 12px; color:#FFB800;">
+              ✦ 寫作深究：利用生活常見的事物做「具體比喻」，能把冰冷的大數字瞬間變成震撼人心的臨場感！
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 10: 哲思對話
-           ========================================== -->
-      <section class="slide" data-slide="10" data-bg="assets/moon_crater_rabbit.png">
-        <h2 class="slide-title">哲思對話：<span class="highlight">為什麼又遠又近？</span></h2>
-        <div class="grid-2">
-          <div class="deck-card" style="border-left: 4px solid #38BDF8;">
-            <h4 style="color:#38BDF8;">🔭 科學的「遠」：求真與探索</h4>
-            <p>三十八萬公里的真空深空，冰冷、寂靜、毫無大氣。<br>
-            科學讓我們看清宇宙的宏大與自然的嚴峻法則，激勵人類勇往直前、探索未知。</p>
-          </div>
-          <div class="deck-card" style="border-left: 4px solid var(--gold-primary);">
-            <h4 style="color: var(--gold-primary);">🌕 文學的「近」：寄託與陪伴</h4>
-            <p>中秋月餅的甜香、詩仙李白的舉杯邀明月、遠方親人的思念。<br>
-            文學賦予月亮靈魂與溫度，讓它隨時陪伴在我們的心坎裡，永不孤獨。</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- ==========================================
-           Slide 11: 課堂互動挑戰
-           ========================================== -->
+      <!-- Slide 11: 第三段深究 ② 單車騎三年的驚人真相 -->
       <section class="slide" data-slide="11" data-bg="assets/moon_earth_distance_bg.png">
-        <h2 class="slide-title">隨堂檢測：<span class="highlight">月球知識小達人</span></h2>
-        <div class="deck-card" style="max-width: 900px;">
-          <h4 id="quiz-question">【問題】根據課文與科學事實，月球表面之所以有陰影，主要原因是什麼？</h4>
-          <div class="quiz-options">
-            <div class="quiz-option" onclick="checkAnswer(this, false)">
-              <span>A.</span> 嫦娥與玉兔在月宮中活動留下的影子
-            </div>
-            <div class="quiz-option" onclick="checkAnswer(this, true)">
-              <span>B.</span> 沒有水和大氣保護，隕石撞擊坑在陽光照射下產生的陰影
-            </div>
-            <div class="quiz-option" onclick="checkAnswer(this, false)">
-              <span>C.</span> 地球的大氣層擋住了部分月光
-            </div>
+        <div class="deep-tag">第三段內容深究 · 探究提問 ⑧</div>
+        <h2 class="slide-title">算算看：<span class="highlight">「單車騎三年」背後的驚人條件是什麼？</span></h2>
+        <div class="grid-3">
+          <div class="deck-card" style="text-align: center;">
+            <h4>🚲 速度設定</h4>
+            <p style="font-size: 32px; font-weight:900; color:#38BDF8; margin: 12px 0;">15 km/h</p>
+            <p>以小學生一般騎腳踏車的平均時速計算。</p>
           </div>
-          <div id="quiz-feedback" style="margin-top: 20px; font-size: 18px; font-weight: 700; min-height: 28px;"></div>
+          <div class="deck-card" style="text-align: center;">
+            <h4>⏱️ 所需總時數</h4>
+            <p style="font-size: 32px; font-weight:900; color:#FFB800; margin: 12px 0;">25,333 小時</p>
+            <p>380,000 ÷ 15 ≈ 25,333 個小時！</p>
+          </div>
+          <div class="deck-card" style="text-align: center;">
+            <h4>📅 換算成天數</h4>
+            <p style="font-size: 32px; font-weight:900; color:#34D399; margin: 12px 0;">1,055 天</p>
+            <p>25,333 ÷ 24 ≈ 1,055 天（將近整整 3 年）！</p>
+          </div>
+        </div>
+        <div class="deck-card" style="margin-top: 24px; background: rgba(245, 158, 11, 0.12); border-color: var(--border-gold);">
+          <p style="font-size: 20px; font-weight: 700; color: #FEF3C7; text-align: center;">
+            ⚠️ 驚人真相：這三年必須是「日夜不停、不吃不喝、不睡覺、像機器人一樣連續踩 1,055 天踏板」！如果是每天只騎 8 小時，其實要騎整整「九年」！
+          </p>
         </div>
       </section>
 
-      <!-- ==========================================
-           Slide 12: 封底與結語
-           ========================================== -->
-      <section class="slide" data-slide="12" data-bg="assets/moon_exploration_hero.png">
-        <div style="max-width: 860px; text-align: left;">
-          <div class="badge-capsule" style="margin-bottom: 24px;">
-            ✦ 108課綱國小四年級國語
+      <!-- Slide 12: 第三段深究 ③ 嫦娥奔月的童心發問 -->
+      <section class="slide" data-slide="12" data-bg="assets/moon_crater_rabbit.png">
+        <div class="deep-tag">第三段內容深究 · 探究提問 ⑨</div>
+        <h2 class="slide-title">純真提問：<span class="highlight">「那麼嫦娥是怎樣到月亮的呢？」</span></h2>
+        <div class="grid-2">
+          <div class="deck-card">
+            <h4><span>👧</span> 作者是真的相信嫦娥騎單車嗎？</h4>
+            <p>當然不是！作者剛算完搭飛機要半個月、騎單車要三年，腦袋被龐大的天文數字震撼。<br>
+            這時候他突然想到嫦娥，不禁在心裡冒出一個大問號：「這麼遙遠，嫦娥一個人到底要怎樣飛上去呢？」</p>
           </div>
-          <h2 class="slide-title" style="font-size: 60px;">
-            心懷浪漫想像，<br>
-            <span class="highlight">眼望星辰大海。</span>
-          </h2>
-          <p class="slide-subtitle">
-            科學讓我們看清世界的真實，文學讓我們溫柔地理解世界。<br>
-            謝謝大家！今天晚上不妨抬頭看看，那輪又遠又近的月亮吧！
-          </p>
-          <div style="display: flex; gap: 16px;">
-            <button class="btn btn-primary" onclick="goToSlide(1)">
-              ↺ 重新回顧簡報
-            </button>
-            <button class="btn btn-secondary" onclick="goToSlide(5)">
-              🎬 再看一次解說動畫
-            </button>
+          <div class="deck-card">
+            <h4><span>🌟</span> 這句話展現了作者什麼樣的心靈？</h4>
+            <p><strong>【深究作者心境】</strong>：<br>
+            1. <strong>純真童趣</strong>：沒有因為學了科學知識，就丟掉對神話的喜愛。<br>
+            2. <strong>思維碰撞</strong>：主動把「冰冷的科學數據」與「浪漫的文學神話」放在一起對照。<br>
+            3. <strong>承先啟後</strong>：這句問話剛好引出下一段自然老師走過來分享阿姆斯壯的趣聞！</p>
           </div>
+        </div>
+      </section>
+
+      <!-- Slide 13: 前三段統整思辨擂台 -->
+      <section class="slide" data-slide="13" data-bg="assets/moon_earth_distance_bg.png">
+        <h2 class="slide-title">前三段<span class="highlight">統整思辨擂台</span>（小組共讀對照）</h2>
+        <div class="grid-3">
+          <div class="deck-card">
+            <h4 style="color:#38BDF8;">第一段：太空新夢想</h4>
+            <p><strong>【核心行動】</strong>下課特地去圖書館讀報。<br>
+            <strong>【科學訊息】</strong>NASA阿提米絲計畫、睽違50年、太空平權、火星前哨站。<br>
+            <strong>【內在心情】</strong>對未來的太空探索充滿好奇與期待！</p>
+          </div>
+          <div class="deck-card">
+            <h4 style="color:#FFB800;">第二段：古老坑洞與陰影</h4>
+            <p><strong>【核心知識】</strong>45億歲、無水無氣保護。<br>
+            <strong>【科學訊息】</strong>隕石撞擊坑洞在陽光照射下的長長黑影。<br>
+            <strong>【文學碰撞】</strong>古人想像出的「玉兔搗藥」美麗神話！</p>
+          </div>
+          <div class="deck-card">
+            <h4 style="color:#34D399;">第三段：遙遠距離的震撼</h4>
+            <p><strong>【核心數字】</strong>平均三十八萬公里。<br>
+            <strong>【具體比喻】</strong>飛機半個月、日夜不停單車三年。<br>
+            <strong>【純真反問】</strong>既然這麼遠，古代嫦娥到底怎麼到月亮的？</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Slide 14: 終極思辨檢測（即時互動） -->
+      <section class="slide" data-slide="14" data-bg="assets/moon_exploration_hero.png">
+        <div class="deep-tag">內容深究終極挑戰 · 換你來思考！</div>
+        <h2 class="slide-title">終極思辨：<span class="highlight">讀完前三段，你覺得月球變遠了？還是變近了？</span></h2>
+        <div class="deck-card" style="max-width: 950px;">
+          <h4 id="quiz-question">【點選你認同的觀點，看看深究小精靈怎麼說】：</h4>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="checkDeepAnswer(this, 'far')">
+              <span>A.</span> <strong>我覺得月球變得「更遠了」！</strong>（因為知道平均38萬公里，搭飛機要半個月、騎單車要三年，太遙遠了！）
+            </div>
+            <div class="quiz-option" onclick="checkDeepAnswer(this, 'close')">
+              <span>B.</span> <strong>我覺得月球變得「更近了」！</strong>（因為知道人類馬上要重返月球，而且黑影有玉兔嫦娥的陪伴，感覺很親近！）
+            </div>
+            <div class="quiz-option" onclick="checkDeepAnswer(this, 'both')">
+              <span>C.</span> <strong>我覺得它「又遠又近」！</strong>（科學上距離38萬公里那麼遠，心靈與想像中卻近在身邊！）
+            </div>
+          </div>
+          <div id="quiz-feedback" style="margin-top: 20px; font-size: 19px; font-weight: 700; min-height: 32px; line-height: 1.6;"></div>
         </div>
       </section>
 
@@ -697,7 +720,7 @@
           <div id="progress-bar" class="progress-bar-fill"></div>
         </div>
         <div class="page-indicator">
-          <span id="current-page">01</span> / <span id="total-pages">12</span>
+          <span id="current-page">01</span> / <span id="total-pages">14</span>
         </div>
         <button class="nav-arrow-btn" onclick="nextSlide()" title="下一頁 (→)">
           ❯
@@ -710,11 +733,8 @@
   </div>
 
   <script>
-    // ========================================================
-    // 簡報核心控制器 (鍵盤、觸控、全螢幕與進度)
-    // ========================================================
     let currentSlideIndex = 1;
-    const totalSlides = 12;
+    const totalSlides = 14;
     const slides = document.querySelectorAll('.slide');
     const bgArt = document.getElementById('bg-art');
     const progressBar = document.getElementById('progress-bar');
@@ -739,39 +759,31 @@
         }
       });
 
-      // 影片自動控制：當離開第 5 頁時暫停影片
       if (explainerVideo) {
-        if (currentSlideIndex === 5) {
-          // 若進入動畫頁，可選擇自動播放或待命
+        if (currentSlideIndex === 6) {
           explainerVideo.play().catch(() => {});
         } else {
           explainerVideo.pause();
         }
       }
 
-      // 更新頁碼與進度條
       const pct = (currentSlideIndex / totalSlides) * 100;
       progressBar.style.width = `${pct}%`;
       currentPageEl.textContent = String(currentSlideIndex).padStart(2, '0');
     }
 
     function nextSlide() {
-      if (currentSlideIndex < totalSlides) {
-        updateDeck(currentSlideIndex + 1);
-      }
+      if (currentSlideIndex < totalSlides) updateDeck(currentSlideIndex + 1);
     }
 
     function prevSlide() {
-      if (currentSlideIndex > 1) {
-        updateDeck(currentSlideIndex - 1);
-      }
+      if (currentSlideIndex > 1) updateDeck(currentSlideIndex - 1);
     }
 
     function goToSlide(num) {
       updateDeck(num);
     }
 
-    // 鍵盤導航
     window.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
         e.preventDefault();
@@ -784,37 +796,34 @@
       }
     });
 
-    // 全螢幕切換
     function toggleFullscreen() {
       if (!document.fullscreenElement) {
         document.documentElement.requestFullscreen().catch(err => {
           console.warn(`Error attempting to enable fullscreen: ${err.message}`);
         });
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        }
+        if (document.exitFullscreen) document.exitFullscreen();
       }
     }
 
-    // 隨堂小測驗判斷
-    function checkAnswer(el, isCorrect) {
+    function checkDeepAnswer(el, type) {
       const feedback = document.getElementById('quiz-feedback');
       const allOptions = el.parentElement.querySelectorAll('.quiz-option');
       allOptions.forEach(opt => opt.classList.remove('correct', 'wrong'));
 
-      if (isCorrect) {
-        el.classList.add('correct');
-        feedback.style.color = '#34D399';
-        feedback.textContent = '🎉 太棒了！回答完全正確！月球沒有水與大氣保護，隕石撞擊坑在陽光下產生的陰影，就是古人想像的玉兔！';
+      el.classList.add('correct');
+      if (type === 'far') {
+        feedback.style.color = '#38BDF8';
+        feedback.textContent = '🔭 太有道理了！從科學的尺度來看，三十八萬公里的真空深空，單車要騎三年，月亮真的是遙不可及的巨大天體！';
+      } else if (type === 'close') {
+        feedback.style.color = '#F59E0B';
+        feedback.textContent = '🌕 很有文學溫度！從人文的視角來看，中秋月餅與玉兔傳說代代相傳，阿提米絲也即將重返月球，月亮彷彿就像鄰居一樣親切！';
       } else {
-        el.classList.add('wrong');
-        feedback.style.color = '#F87171';
-        feedback.textContent = '❌ 再想想看喔！玉兔和嫦娥是古人浪漫的文學想像，但真實的科學成因是什麼呢？';
+        feedback.style.color = '#34D399';
+        feedback.textContent = '🌟 太厲害了！你完全讀懂了課文標題的靈魂！科學的月亮那麼遠，文學的月亮近在身邊，這正是這篇課文最迷人的哲思！';
       }
     }
 
-    // 初始化
     updateDeck(1);
   </script>
 </body>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>國語四上第六課《又遠又近的月亮》原理解說動畫</title>
+    <title>國語四上第六課《又遠又近的月亮》前三段內容深究動畫</title>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
       @font-face {
@@ -38,7 +38,7 @@
         overflow: hidden;
       }
 
-      /* 星空與背景圖層 */
+      /* 背景底圖層 */
       .bg-layer {
         position: absolute;
         top: 0;
@@ -51,7 +51,6 @@
         pointer-events: none;
       }
 
-      /* 裝飾光暈與網格 */
       .grid-overlay {
         position: absolute;
         top: 0;
@@ -65,7 +64,7 @@
         pointer-events: none;
       }
 
-      /* 頂部導覽列 */
+      /* 頂部標頭 */
       .header-bar {
         position: absolute;
         top: 40px;
@@ -92,10 +91,10 @@
       .curriculum-tag {
         font-size: 20px;
         color: #94A3B8;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.08em;
       }
 
-      /* 場景容器 */
+      /* 場景通用容器 */
       .scene {
         position: absolute;
         top: 130px;
@@ -106,181 +105,179 @@
         pointer-events: none;
       }
 
-      /* Scene 1: 封面與地月距離數字 */
-      #scene-1 .title-wrap {
-        position: absolute;
-        top: 120px;
-        left: 40px;
-        max-width: 850px;
-      }
-      #scene-1 .h1-title {
-        font-size: 80px;
-        font-weight: 900;
-        line-height: 1.15;
-        color: #FFFFFF;
-        text-shadow: 0 4px 24px rgba(0,0,0,0.8);
-      }
-      #scene-1 .h1-title span {
-        color: #FFB800;
-      }
-      #scene-1 .subtitle {
-        margin-top: 24px;
-        font-size: 32px;
-        color: #94A3B8;
-        line-height: 1.5;
-      }
-      .metric-card {
-        margin-top: 40px;
-        display: inline-flex;
-        align-items: baseline;
-        gap: 16px;
-        padding: 20px 36px;
-        border-radius: 20px;
-        background: rgba(15, 23, 42, 0.75);
-        border: 1px solid rgba(255, 184, 0, 0.3);
-        backdrop-filter: blur(16px);
-      }
-      .metric-num {
-        font-size: 72px;
-        font-weight: 900;
-        color: #FFB800;
-        font-variant-numeric: tabular-nums;
-      }
-      .metric-unit {
-        font-size: 28px;
-        color: #E2E8F0;
-        font-weight: 700;
-      }
-
-      /* Scene 2: 隕石坑與月球黑影想像 */
-      #scene-2 .content-grid {
+      /* Scene 1: 第一段深究（圖書館讀報與阿提米絲） */
+      #scene-1 .layout {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 50px;
         height: 100%;
         align-items: center;
       }
-      .info-box {
+      .news-card {
         padding: 36px;
         border-radius: 24px;
         background: rgba(15, 23, 42, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(16px);
       }
-      .info-box h3 {
-        font-size: 40px;
-        color: #38BDF8;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .info-box ul {
-        list-style: none;
-      }
-      .info-box li {
-        font-size: 26px;
-        line-height: 1.8;
-        color: #CBD5E1;
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .info-box li::before {
-        content: "◆";
-        color: #FFB800;
-        font-size: 18px;
-      }
-      .visual-frame {
-        position: relative;
-        height: 520px;
-        border-radius: 24px;
-        overflow: hidden;
-        border: 2px solid rgba(255, 184, 0, 0.3);
-        box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-      }
-      .visual-frame img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .visual-tag {
-        position: absolute;
-        bottom: 24px;
-        left: 24px;
-        right: 24px;
-        padding: 14px 20px;
-        background: rgba(0, 0, 0, 0.75);
-        backdrop-filter: blur(12px);
-        border-radius: 14px;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        font-size: 22px;
-        color: #FFD56B;
-        text-align: center;
-      }
-
-      /* Scene 3: 速度與距離對比條 */
-      #scene-3 .speed-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        height: 100%;
-        gap: 40px;
-      }
-      .speed-row {
-        position: relative;
-        padding: 24px 36px;
-        border-radius: 20px;
-        background: rgba(15, 23, 42, 0.8);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-      .speed-label {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+      .news-badge {
+        display: inline-block;
+        padding: 6px 14px;
+        background: #0284C7;
+        color: #FFFFFF;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 8px;
         margin-bottom: 16px;
       }
-      .speed-title {
-        font-size: 32px;
-        font-weight: 800;
+      .news-title {
+        font-size: 38px;
+        font-weight: 900;
+        color: #FFFFFF;
+        line-height: 1.25;
+        margin-bottom: 20px;
+      }
+      .news-list li {
+        font-size: 24px;
+        line-height: 1.8;
+        color: #CBD5E1;
+        list-style: none;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 12px;
       }
-      .speed-time {
-        font-size: 36px;
-        font-weight: 900;
-        color: #FFB800;
+      .news-list li::before {
+        content: "✦";
+        color: #38BDF8;
       }
-      .speed-track {
-        position: relative;
-        width: 100%;
-        height: 18px;
-        background: rgba(255, 255, 255, 0.08);
-        border-radius: 9999px;
-        overflow: hidden;
-      }
-      .speed-bar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
-        width: 0%;
-        border-radius: 9999px;
-      }
-      .bar-bike { background: linear-gradient(90deg, #94A3B8, #64748B); }
-      .bar-plane { background: linear-gradient(90deg, #38BDF8, #0284C7); }
-      .bar-light { background: linear-gradient(90deg, #FFB800, #F59E0B); box-shadow: 0 0 20px #FFB800; }
 
-      /* Scene 4: 阿提米絲與總結天秤 */
-      #scene-4 .dual-columns {
+      /* Scene 2: 第二段深究（無大氣防護罩與光影魔術） */
+      #scene-2 .content-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 50px;
         height: 100%;
         align-items: center;
       }
-      .summary-card {
+      .crater-card {
+        padding: 36px;
+        border-radius: 24px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 184, 0, 0.3);
+        backdrop-filter: blur(16px);
+      }
+      .crater-card h3 {
+        font-size: 38px;
+        color: #FFB800;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .crater-card p {
+        font-size: 24px;
+        line-height: 1.7;
+        color: #E2E8F0;
+        margin-bottom: 14px;
+      }
+      .visual-box {
+        position: relative;
+        height: 520px;
+        border-radius: 24px;
+        overflow: hidden;
+        border: 2px solid rgba(255, 184, 0, 0.35);
+        box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+      }
+      .visual-box img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .visual-caption {
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        right: 20px;
+        padding: 12px 20px;
+        background: rgba(0,0,0,0.8);
+        border-radius: 12px;
+        font-size: 20px;
+        color: #FFD56B;
+        text-align: center;
+        backdrop-filter: blur(8px);
+      }
+
+      /* Scene 3: 第三段深究（大數字生活比喻與嫦娥提問） */
+      #scene-3 .speed-wrap {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        gap: 32px;
+      }
+      .metric-banner {
+        font-size: 42px;
+        font-weight: 900;
+        color: #FFFFFF;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .banner-num {
+        color: #FFB800;
+        font-size: 56px;
+      }
+      .compare-strip {
+        padding: 24px 32px;
+        border-radius: 20px;
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      .strip-header {
+        display: flex;
+        justify-content: space-between;
+        font-size: 28px;
+        font-weight: 800;
+        margin-bottom: 14px;
+      }
+      .strip-bar-bg {
+        width: 100%;
+        height: 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 9999px;
+        overflow: hidden;
+      }
+      .strip-bar-fill {
+        height: 100%;
+        width: 0%;
+        border-radius: 9999px;
+      }
+      .bar-flight { background: linear-gradient(90deg, #38BDF8, #0284C7); }
+      .bar-cycle { background: linear-gradient(90deg, #FFB800, #F59E0B); }
+
+      .question-box {
+        padding: 20px 32px;
+        border-radius: 18px;
+        background: rgba(245, 158, 11, 0.15);
+        border: 1px solid rgba(245, 158, 11, 0.4);
+        font-size: 26px;
+        font-weight: 700;
+        color: #FEF3C7;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      /* Scene 4: 前三段統整思辨（科學的遠 ✕ 文學的近） */
+      #scene-4 .dual-summary {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        height: 100%;
+        align-items: center;
+      }
+      .summary-tile {
         padding: 36px;
         border-radius: 24px;
         height: 520px;
@@ -289,41 +286,37 @@
         justify-content: space-between;
         backdrop-filter: blur(16px);
       }
-      .science-card {
-        background: linear-gradient(135deg, rgba(14, 165, 233, 0.12), rgba(15, 23, 42, 0.85));
-        border: 1px solid rgba(56, 189, 248, 0.3);
+      .tile-science {
+        background: linear-gradient(135deg, rgba(14, 165, 233, 0.15), rgba(15, 23, 42, 0.9));
+        border: 1px solid rgba(56, 189, 248, 0.35);
       }
-      .art-card {
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(15, 23, 42, 0.85));
-        border: 1px solid rgba(251, 191, 36, 0.3);
+      .tile-literature {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(15, 23, 42, 0.9));
+        border: 1px solid rgba(251, 191, 36, 0.35);
       }
-      .card-header {
+      .tile-header {
+        font-size: 36px;
+        font-weight: 900;
         display: flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
       }
-      .card-icon {
-        font-size: 44px;
-      }
-      .card-header h3 {
-        font-size: 38px;
-        font-weight: 800;
-      }
-      .card-desc {
-        font-size: 26px;
+      .tile-body {
+        font-size: 24px;
         line-height: 1.8;
         color: #E2E8F0;
+        margin-top: 18px;
       }
-      .card-footer {
-        padding: 16px 24px;
+      .tile-footer {
+        padding: 16px 20px;
+        background: rgba(0,0,0,0.5);
         border-radius: 14px;
-        background: rgba(0,0,0,0.4);
-        font-size: 24px;
+        font-size: 22px;
         font-weight: 700;
         text-align: center;
       }
 
-      /* 底部全域字幕列 */
+      /* 底部全域字幕 */
       #caption-box {
         position: absolute;
         bottom: 30px;
@@ -333,7 +326,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: rgba(10, 15, 29, 0.85);
+        background: rgba(10, 15, 29, 0.88);
         border: 1px solid rgba(255, 255, 255, 0.12);
         border-radius: 20px;
         backdrop-filter: blur(16px);
@@ -354,137 +347,125 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="43.8"
+      data-duration="48.4"
       data-width="1920"
       data-height="1080"
     >
-      <!-- 背景層 -->
+      <!-- 背景底圖 -->
       <div id="bg-hero" class="bg-layer" style="background-image: url('assets/moon_exploration_hero.png');"></div>
-      <div id="bg-distance" class="bg-layer" style="background-image: url('assets/moon_earth_distance_bg.png');"></div>
-      <div id="bg-crater" class="bg-layer" style="background-image: url('assets/moon_crater_rabbit.png');"></div>
       <div id="bg-artemis" class="bg-layer" style="background-image: url('assets/artemis_moon_landing.png');"></div>
+      <div id="bg-crater" class="bg-layer" style="background-image: url('assets/moon_crater_rabbit.png');"></div>
+      <div id="bg-distance" class="bg-layer" style="background-image: url('assets/moon_earth_distance_bg.png');"></div>
       <div class="grid-overlay"></div>
 
-      <!-- 頂部標頭 -->
+      <!-- 頂部資訊列 -->
       <div class="header-bar">
         <div class="badge">
-          <span>●</span> 國小國語四上 · 第六課 原理解說
+          <span>●</span> 國語四上 · 第六課《又遠又近的月亮》
         </div>
         <div class="curriculum-tag">
-          臺中市梧棲區中正國小 · 108課綱跨域探索
+          四年級學生專屬 · 前三段「內容深究」思維動態演示
         </div>
       </div>
 
-      <!-- Scene 1: 0 ~ 9.0s -->
+      <!-- Scene 1: 第一段深究（0 ~ 12.4s） -->
       <div id="scene-1" class="scene">
-        <div class="title-wrap">
-          <h1 class="h1-title">
-            又遠又近的<span>月亮</span>
-          </h1>
-          <p class="subtitle">
-            為什麼月亮看似近在咫尺，卻又遠在天邊？<br>
-            讓我們透過科學與文學的雙重視角，揭開月球的真實面貌。
-          </p>
-          <div class="metric-card">
-            <span style="font-size: 26px; color: #94A3B8;">地月平均距離</span>
-            <span id="metric-counter" class="metric-num">380,000</span>
-            <span class="metric-unit">公里 (km)</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Scene 2: 9.0s ~ 21.0s -->
-      <div id="scene-2" class="scene">
-        <div class="content-grid">
-          <div class="info-box">
-            <h3><span style="color:#FFB800;">🌑</span> 月球表面的暗影真相</h3>
-            <ul>
-              <li><strong>四十五億歲高齡</strong>：古老而靜謐的天體。</li>
-              <li><strong>無水與無大氣保護</strong>：無法抵擋宇宙隕石侵襲。</li>
-              <li><strong>成千上萬撞擊坑</strong>：終年遭受隕石高速轟擊。</li>
-              <li><strong>陽光照射陰影</strong>：古人因此想像出「玉兔搗藥」與「嫦娥奔月」。</li>
+        <div class="layout">
+          <div class="news-card">
+            <span class="news-badge">第一段內容深究 · 圖書館讀報</span>
+            <h2 class="news-title">主動探索未知：<br><span style="color:#38BDF8;">睽違五十年的太空夢</span></h2>
+            <ul class="news-list">
+              <li><strong>主動查證</strong>：作者帶著好奇走進圖書館，從「想像」跨入「科學」。</li>
+              <li><strong>阿提米絲二號</strong>：公布登月成員，首度納入女性與非裔太空人。</li>
+              <li><strong>太空加油站</strong>：引力只有1/6、無大氣阻力，作為進軍火星的跳板！</li>
             </ul>
           </div>
-          <div class="visual-frame">
+          <div class="visual-box">
+            <img src="assets/artemis_moon_landing.png" alt="阿提米絲太空人">
+            <div class="visual-caption">阿提米絲計畫 · 全人類平等探索深空的里程碑</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scene 2: 第二段深究（12.4s ~ 25.2s） -->
+      <div id="scene-2" class="scene">
+        <div class="content-grid">
+          <div class="crater-card">
+            <h3><span>🌑</span> 第二段內容深究 · 光影魔術</h3>
+            <p><strong>四十五億歲高齡</strong>：古老而靜謐的月球表面。</p>
+            <p><strong>防護罩大破案</strong>：因為沒有水和大氣層保護，每天遭受無數隕石猛烈轟擊，留下永遠無法抹平的坑洞。</p>
+            <p><strong>陰影的誕生</strong>：陽光斜射在坑洞邊緣投下黑影，古人因而看成了「玉兔搗藥」！</p>
+          </div>
+          <div class="visual-box">
             <img src="assets/moon_crater_rabbit.png" alt="隕石坑與玉兔意象">
-            <div class="visual-tag">科學的隕石撞擊坑 ✕ 文學的玉兔奔月傳說</div>
+            <div class="visual-caption">科學的隕石撞擊坑 ✕ 文學的玉兔奔月傳說</div>
           </div>
         </div>
       </div>
 
-      <!-- Scene 3: 21.0s ~ 32.5s -->
+      <!-- Scene 3: 第三段深究（25.2s ~ 38.6s） -->
       <div id="scene-3" class="scene">
-        <div class="speed-container">
-          <div style="font-size: 40px; font-weight: 800; color: #FFFFFF; margin-bottom: 10px;">
-            跨越 <span style="color:#FFB800;">38 萬公里</span> 需要多久？
+        <div class="speed-wrap">
+          <div class="metric-banner">
+            第三段深究：地月平均距離 <span class="banner-num">380,000</span> 公里到底多遠？
           </div>
 
-          <div class="speed-row">
-            <div class="speed-label">
-              <span class="speed-title">🚲 騎單車 (時速 15 km/h)</span>
-              <span class="speed-time">整整 3 年</span>
+          <div class="compare-strip">
+            <div class="strip-header">
+              <span>✈️ 搭乘噴射客機 (900 km/h)</span>
+              <span style="color:#38BDF8;">要花半個月 (15天)</span>
             </div>
-            <div class="speed-track">
-              <div id="bar-bike" class="speed-bar bar-bike"></div>
-            </div>
-          </div>
-
-          <div class="speed-row">
-            <div class="speed-label">
-              <span class="speed-title">✈️ 搭乘噴射客機 (時速 900 km/h)</span>
-              <span class="speed-time">半個月 (15 天)</span>
-            </div>
-            <div class="speed-track">
-              <div id="bar-plane" class="speed-bar bar-plane"></div>
+            <div class="strip-bar-bg">
+              <div id="bar-flight" class="strip-bar-fill bar-flight"></div>
             </div>
           </div>
 
-          <div class="speed-row" style="border-color: rgba(255, 184, 0, 0.4);">
-            <div class="speed-label">
-              <span class="speed-title">⚡ 光速旅行 (每秒 300,000 km)</span>
-              <span class="speed-time" style="color: #FFB800;">只要 1.3 秒</span>
+          <div class="compare-strip">
+            <div class="strip-header">
+              <span>🚲 日夜不停騎單車 (15 km/h)</span>
+              <span style="color:#FFB800;">要騎整整 3 年！</span>
             </div>
-            <div class="speed-track">
-              <div id="bar-light" class="speed-bar bar-light"></div>
+            <div class="strip-bar-bg">
+              <div id="bar-cycle" class="strip-bar-fill bar-cycle"></div>
             </div>
+          </div>
+
+          <div class="question-box">
+            <span>🤔</span> 既然月亮距離地球這麼遠……古代的嫦娥，到底是怎樣到月亮的呢？
           </div>
         </div>
       </div>
 
-      <!-- Scene 4: 32.5s ~ 43.8s -->
+      <!-- Scene 4: 前三段總結（38.6s ~ 48.4s） -->
       <div id="scene-4" class="scene">
-        <div class="dual-columns">
-          <div class="summary-card science-card">
+        <div class="dual-summary">
+          <div class="summary-tile tile-science">
             <div>
-              <div class="card-header">
-                <span class="card-icon">🚀</span>
-                <h3 style="color:#38BDF8;">科學的月球</h3>
+              <div class="tile-header" style="color:#38BDF8;">
+                <span>🔭</span> 科學的「真實與遙遠」
               </div>
-              <p class="card-desc" style="margin-top: 24px;">
-                距離地球平均三十八萬公里。<br>
-                從 1969 阿波羅登月，到 2027 阿提米絲重返月球並準備進軍火星。<br>
-                科學揭開了真實、嚴酷而冰冷的天文真相。
+              <p class="tile-body">
+                三十八萬公里冰冷深空、無水無氣、滿布隕石坑。<br>
+                科學揭開了嚴峻的宇宙法則，激發四年級同學探究未知的求真精神！
               </p>
             </div>
-            <div class="card-footer" style="color: #38BDF8;">
-              物理之遠：三十八萬公里
+            <div class="tile-footer" style="color:#38BDF8;">
+              第一到三段：理性的客觀事實
             </div>
           </div>
 
-          <div class="summary-card art-card">
+          <div class="summary-tile tile-literature">
             <div>
-              <div class="card-header">
-                <span class="card-icon">🌕</span>
-                <h3 style="color:#FFB800;">文學的月亮</h3>
+              <div class="tile-header" style="color:#FFB800;">
+                <span>🌕</span> 文學的「想像與溫暖」
               </div>
-              <p class="card-desc" style="margin-top: 24px;">
-                每當中秋節品嘗月餅、仰望銀白光芒。<br>
-                嫦娥、玉兔與無數詩詞歌賦，凝聚了人們對美好親情的寄託。<br>
-                文學讓月亮永遠溫暖地陪伴在我們身邊。
+              <p class="tile-body">
+                玉兔搗藥的陪伴、嫦娥奔月的純真提問。<br>
+                文學想像跨越了三十八萬公里的遙遠距離，把月亮溫柔地拉進我們心坎！
               </p>
             </div>
-            <div class="card-footer" style="color: #FFB800;">
-              心靈之近：溫暖相伴身旁
+            <div class="tile-footer" style="color:#FFB800;">
+              第一到三段：感性的心靈寄託
             </div>
           </div>
         </div>
@@ -492,7 +473,7 @@
 
       <!-- 底部字幕 -->
       <div id="caption-box">
-        <span id="caption-text">你看過夜空中皎潔的月亮嗎？</span>
+        <span id="caption-text">帶著好奇心走進圖書館，你讀到了什麼？</span>
       </div>
     </div>
 
@@ -500,27 +481,19 @@
       window.__timelines = window.__timelines || {};
       const tl = gsap.timeline({ paused: true });
 
-      // ==========================================
-      // 字幕驅動器（依據 audio_meta.json 時間點）
-      // ==========================================
+      // 字幕驅動器
       const captions = [
-        { time: 0.0, text: "你看過夜空中皎潔的月亮嗎？" },
-        { time: 3.3, text: "它看似近在眼前" },
-        { time: 5.1, text: "其實平均距離地球高達三十八萬公里" },
-        { time: 9.2, text: "月球表面為什麼有暗影？" },
-        { time: 12.0, text: "因為月球沒有大氣層與水的保護" },
-        { time: 14.9, text: "遭受無數隕石撞擊" },
-        { time: 16.9, text: "留下的坑洞陰影" },
-        { time: 18.5, text: "讓人們想像出玉兔與嫦娥的美麗傳說" },
-        { time: 22.4, text: "三十八萬公里有多遠？" },
-        { time: 25.3, text: "如果騎單車日夜不停要騎整整三年" },
-        { time: 28.5, text: "搭客機要飛半個月" },
-        { time: 30.3, text: "而如果以光速前進" },
-        { time: 32.1, text: "只需要一點三秒" },
-        { time: 34.3, text: "從阿波羅到阿提米絲計畫" },
-        { time: 36.8, text: "人類再次啟程重返月球" },
-        { time: 39.9, text: "科學揭開了冰冷真相" },
-        { time: 41.9, text: "文學卻讓月亮近在身邊，這就是奇妙的月亮" }
+        { time: 0.0, text: "帶著好奇心走進圖書館，你讀到了什麼？" },
+        { time: 4.4, text: "睽違五十多年，阿提米絲計畫將帶領人類重返月球" },
+        { time: 9.4, text: "更要以此為跳板進軍火星！" },
+        { time: 12.4, text: "四十五億歲的月球，為什麼滿是坑洞？" },
+        { time: 16.6, text: "因為月球沒有大氣層與水的保護" },
+        { time: 19.5, text: "當陽光斜斜照射，坑洞陰影讓人們想像出玉兔搗藥的傳說" },
+        { time: 25.2, text: "平均三十八萬公里到底有多遠？" },
+        { time: 28.8, text: "搭飛機要半個月，如果日夜不停騎單車要整整三年" },
+        { time: 34.1, text: "這麼遙遠，古代的嫦娥到底是怎樣到月亮的呢？" },
+        { time: 38.6, text: "看見了嗎？科學數字揭開了宇宙的真實與遙遠" },
+        { time: 43.5, text: "文學想像卻拉近了心靈的距離，這就是前三段的奇妙深究！" }
       ];
 
       captions.forEach(cap => {
@@ -530,83 +503,51 @@
         }, null, cap.time);
       });
 
-      // ==========================================
-      // 畫面動態編排 (符合 Emil Kowalski 曲線規範)
-      // ==========================================
-
-      // --- Scene 1 (0.0s ~ 9.2s) ---
-      tl.to("#bg-hero", { opacity: 0.6, duration: 1.2, ease: "power2.out" }, 0);
+      // --- Scene 1 (0.0s ~ 12.4s) ---
+      tl.to("#bg-hero", { opacity: 0.5, duration: 1.0, ease: "power2.out" }, 0);
       tl.fromTo("#scene-1", 
         { opacity: 0, scale: 0.96 }, 
-        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
         0.3
       );
-      // 數字滾動動畫
-      const counterObj = { val: 0 };
-      tl.to(counterObj, {
-        val: 380000,
-        duration: 3.5,
-        ease: "power2.out",
-        onUpdate: () => {
-          const el = document.getElementById("metric-counter");
-          if (el) el.textContent = Math.round(counterObj.val).toLocaleString();
-        }
-      }, 4.8);
+      tl.to("#scene-1", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 11.8);
+      tl.to("#bg-hero", { opacity: 0, duration: 0.6 }, 11.8);
 
-      tl.to("#scene-1", { opacity: 0, scale: 0.98, duration: 0.6, ease: "power2.in" }, 8.6);
-      tl.to("#bg-hero", { opacity: 0, duration: 0.8 }, 8.6);
-
-      // --- Scene 2 (9.2s ~ 22.4s) ---
-      tl.to("#bg-crater", { opacity: 0.45, duration: 1.0, ease: "power2.out" }, 9.2);
+      // --- Scene 2 (12.4s ~ 25.2s) ---
+      tl.to("#bg-crater", { opacity: 0.45, duration: 0.8, ease: "power2.out" }, 12.4);
       tl.fromTo("#scene-2", 
         { opacity: 0, scale: 0.96 }, 
-        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
-        9.4
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        12.6
       );
-      tl.fromTo("#scene-2 .info-box li", 
-        { opacity: 0, x: -30 }, 
-        { opacity: 1, x: 0, duration: 0.6, stagger: 0.35, ease: "back.out(1.2)" }, 
-        11.5
-      );
-      tl.to("#scene-2", { opacity: 0, scale: 0.98, duration: 0.6, ease: "power2.in" }, 21.8);
-      tl.to("#bg-crater", { opacity: 0, duration: 0.8 }, 21.8);
+      tl.to("#scene-2", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 24.6);
+      tl.to("#bg-crater", { opacity: 0, duration: 0.6 }, 24.6);
 
-      // --- Scene 3 (22.4s ~ 34.3s) ---
-      tl.to("#bg-distance", { opacity: 0.45, duration: 1.0, ease: "power2.out" }, 22.4);
+      // --- Scene 3 (25.2s ~ 38.6s) ---
+      tl.to("#bg-distance", { opacity: 0.45, duration: 0.8, ease: "power2.out" }, 25.2);
       tl.fromTo("#scene-3", 
         { opacity: 0, scale: 0.96 }, 
-        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
-        22.6
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        25.4
       );
-      // 單車進度條慢慢爬 (到 15%)
-      tl.to("#bar-bike", { width: "15%", duration: 3.0, ease: "none" }, 25.0);
-      // 飛機進度條開跑 (到 55%)
-      tl.to("#bar-plane", { width: "55%", duration: 1.6, ease: "power1.out" }, 28.3);
-      // 光速瞬間射滿 100%
-      tl.to("#bar-light", { width: "100%", duration: 0.4, ease: "power4.out" }, 31.8);
+      tl.to("#bar-flight", { width: "65%", duration: 2.2, ease: "power2.out" }, 28.5);
+      tl.to("#bar-cycle", { width: "100%", duration: 3.5, ease: "power1.out" }, 30.5);
+      tl.fromTo(".question-box", 
+        { opacity: 0, y: 20 }, 
+        { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.4)" }, 
+        34.0
+      );
+      tl.to("#scene-3", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 38.0);
+      tl.to("#bg-distance", { opacity: 0, duration: 0.6 }, 38.0);
 
-      tl.to("#scene-3", { opacity: 0, scale: 0.98, duration: 0.6, ease: "power2.in" }, 33.7);
-      tl.to("#bg-distance", { opacity: 0, duration: 0.8 }, 33.7);
-
-      // --- Scene 4 (34.3s ~ 43.8s) ---
-      tl.to("#bg-artemis", { opacity: 0.4, duration: 1.0, ease: "power2.out" }, 34.3);
+      // --- Scene 4 (38.6s ~ 48.4s) ---
+      tl.to("#bg-artemis", { opacity: 0.4, duration: 0.8, ease: "power2.out" }, 38.6);
       tl.fromTo("#scene-4", 
         { opacity: 0, scale: 0.96 }, 
-        { opacity: 1, scale: 1, duration: 1.0, ease: "power3.out" }, 
-        34.5
-      );
-      tl.fromTo(".science-card", 
-        { opacity: 0, y: 30 }, 
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
-        36.0
-      );
-      tl.fromTo(".art-card", 
-        { opacity: 0, y: 30 }, 
-        { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, 
-        38.5
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        38.8
       );
 
-      // 註冊時間軸
       window.__timelines["main"] = tl;
       tl.seek(0);
     </script>
