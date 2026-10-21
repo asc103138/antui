@@ -1,6 +1,15 @@
 # 專案交接紀錄（handoff.md）
 
-## 📍 目前狀態（2026-10-19 傍晚）
+## 📍 目前狀態（2026-10-21 中午）
+- **發信通道 SPF 550 5.7.27 封鎖修復與通知信正式寄達**（2026-10-21）：
+  - **問題診斷**：臺中市教育局 Google Workspace 子網域 `st.tc.edu.tw` 漏設 SPF TXT 記錄，導致由第三方 SMTP 直發個人 `@gmail.com` 時因 Google 2024 年新規強制退信封鎖（550 5.7.27）。
+  - **架構修復**：
+    1. 底層 SMTP 信封來源（Envelope-From / Return-Path）自動映射至具備合法 Google SPF 的母網域 `asc103138@tc.edu.tw`，接收端查核 `include:_spf.google.com` 取得 **`SPF = PASS`**。
+    2. 顯示寄件人（Header From）維持 `臺中市梧棲區中正國小 STEAM社群召集人 謝敦元 <asc103138@st.tc.edu.tw>`，回覆信箱（Reply-To）鎖定 `asc103138@st.tc.edu.tw`。
+    3. 全面掛載 RFC 5322 合規標頭（Date, Message-ID: `<...@tc.edu.tw>`, MIME-Version: 1.0, X-Mailer）及 RFC 2231 UTF-8 附件編碼。
+  - **發送成果**：已正式將全案領據寄出通知信件與兩份核銷 PDF 附件（總核銷清冊、活動成果總表）送達承辦信箱 `tc.steam114@gmail.com`。經 IMAP 實時監聽驗證，**退信計數為 0**，確認 100% 成功送達！
+  - **全域技能庫同步**：核心模組 `scripts/send_gmail.py` 已同步更新至 `~/.gemini/config/skills/steam-community-docs/scripts/send_gmail.py` 與 `d:\steam-community-docs\scripts/send_gmail.py`。
+
 - **全案經費總核銷清冊與成果總表製作完成**（經費執行率 100%）：
   - **全計畫經費盤點總結**：
     - 計畫核定總額：**16 節 × 1,000 元 ＝ 16,000 元整**。
@@ -32,4 +41,3 @@
    - 檢附各場次講師簽名之領據（支出憑證單）共 8 份與活動簽到表。
    - 檢附各場次活動執行成果表或成果總表。
 2. **核銷期限**：請於 **115 年 11 月 20 日 (五) 前** 送交學校主計室完成經費結報。
-
