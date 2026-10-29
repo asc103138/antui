@@ -4,33 +4,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="theme-color" content="#0A0F1D">
-  <meta name="description" content="國小四年級社會科康軒版第二單元：2-1 傳統住屋與 2-2 傳統生活器具教學動畫簡報">
+  <meta name="description" content="國小四年級社會科康軒版第二單元：2-1 傳統住屋與 2-2 傳統生活器具教學動畫簡報（大字體教學版帶教材考證圖說）">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏡</text></svg>">
-  <title>走進時光隧道 · 家鄉的傳統住屋與器具 | 四年級社會第二單元</title>
+  <title>走進時光隧道 · 家鄉的傳統住屋與器具 | 四年級社會第二單元（大字圖說版）</title>
   <style>
     /* ========================================================
-       Emil Kowalski 設計工程工藝標準 CSS
+       Emil Kowalski 設計工程工藝標準 CSS（國小大字教學專屬）
        Zero transition:all | Zero scale(0) | 100dvh Native Mobile
        ======================================================== */
     :root {
       --bg-dark: #0A0F1D;
       --bg-surface: #111A2E;
-      --bg-card: rgba(17, 26, 46, 0.92);
-      --border-subtle: rgba(255, 255, 255, 0.12);
-      --border-gold: rgba(245, 158, 11, 0.45);
+      --bg-card: rgba(17, 26, 46, 0.94);
+      --border-subtle: rgba(255, 255, 255, 0.15);
+      --border-gold: rgba(245, 158, 11, 0.5);
       --gold-primary: #F59E0B;
       --gold-light: #FCD34D;
-      --gold-glow: rgba(245, 158, 11, 0.25);
+      --gold-glow: rgba(245, 158, 11, 0.28);
       --blue-accent: #38BDF8;
-      --blue-glow: rgba(56, 189, 248, 0.25);
+      --blue-glow: rgba(56, 189, 248, 0.28);
       --emerald-accent: #10B981;
       --rose-accent: #EF4444;
       --text-main: #F8FAFC;
-      --text-sub: #94A3B8;
-      --t1: 52px;
-      --t2: 32px;
-      --t3: 20px;
-      --t4: 14px;
+      --text-sub: #A0AEC0;
+      /* 專為教室投影設計之超大字級規範 */
+      --t1: 56px;
+      --t2: 36px;
+      --t3: 24px;
+      --t4: 16px;
       --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
       --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
     }
@@ -49,7 +50,7 @@
       min-height: 100svh;
       background-color: var(--bg-dark);
       color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", sans-serif;
       overflow: hidden;
       font-size: 16px;
     }
@@ -62,7 +63,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at 50% 20%, #15223E 0%, #0A0F1D 80%);
+      background: radial-gradient(circle at 50% 18%, #162442 0%, #0A0F1D 82%);
       overflow: hidden;
     }
 
@@ -71,31 +72,30 @@
       position: absolute;
       top: 0;
       left: 0;
-      height: 4px;
+      height: 5px;
       background: linear-gradient(90deg, var(--blue-accent), var(--gold-primary));
       width: 7.14%;
       z-index: 50;
       transition: width 280ms var(--ease-out);
     }
 
-    /* 裝飾背景星光光斑 */
     .bg-ambient {
       position: absolute;
       inset: 0;
       pointer-events: none;
       background: 
-        radial-gradient(circle at 15% 25%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 75%, rgba(245, 158, 11, 0.08) 0%, transparent 40%);
+        radial-gradient(circle at 12% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 45%),
+        radial-gradient(circle at 88% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 45%);
       z-index: 1;
     }
 
-    /* 幻燈片主畫布 (16:9 比例) */
+    /* 幻燈片主畫布 (大螢幕寬視野) */
     .slide {
       position: absolute;
-      width: 100%;
-      max-width: 1440px;
-      height: 850px;
-      padding: 40px 60px;
+      width: 96%;
+      max-width: 1560px;
+      height: 880px;
+      padding: 30px 48px;
       display: none;
       flex-direction: column;
       opacity: 0;
@@ -110,28 +110,28 @@
       transform: scale(1) translateY(0);
     }
 
-    /* 標題與標籤規範 (林長揚 30 原則) */
+    /* 標題與標籤規範 (大字級教學專用) */
     .slide-kicker {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      font-size: var(--t4);
-      font-weight: 700;
-      letter-spacing: 0.1em;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--blue-accent);
-      background: rgba(56, 189, 248, 0.12);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 6px 14px;
+      background: rgba(56, 189, 248, 0.16);
+      border: 1.5px solid rgba(56, 189, 248, 0.4);
+      padding: 6px 16px;
       border-radius: 9999px;
       width: fit-content;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
     }
 
     .kicker-gold {
       color: var(--gold-primary);
-      background: rgba(245, 158, 11, 0.12);
-      border-color: rgba(245, 158, 11, 0.35);
+      background: rgba(245, 158, 11, 0.16);
+      border-color: rgba(245, 158, 11, 0.45);
     }
 
     .slide-title {
@@ -139,8 +139,8 @@
       font-weight: 900;
       letter-spacing: -0.02em;
       line-height: 1.15;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, #FFFFFF 30%, #CBD5E1 100%);
+      margin-bottom: 6px;
+      background: linear-gradient(135deg, #FFFFFF 40%, #E2E8F0 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -148,15 +148,15 @@
     .slide-subtitle {
       font-size: var(--t3);
       color: var(--text-sub);
-      margin-bottom: 24px;
-      font-weight: 400;
+      margin-bottom: 18px;
+      font-weight: 500;
     }
 
     /* 內容網格卡片 */
     .grid-3 {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 22px;
       flex: 1;
     }
 
@@ -176,43 +176,43 @@
 
     .card {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
-      border-radius: 18px;
-      padding: 24px;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 20px;
+      padding: 22px;
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
       transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
     }
 
     .card:hover {
       border-color: var(--blue-accent);
-      box-shadow: 0 10px 25px -5px var(--blue-glow);
+      box-shadow: 0 12px 28px -6px var(--blue-glow);
     }
 
     .card-gold:hover {
       border-color: var(--gold-primary);
-      box-shadow: 0 10px 25px -5px var(--gold-glow);
+      box-shadow: 0 12px 28px -6px var(--gold-glow);
     }
 
     .card-badge {
       display: inline-block;
       align-self: flex-start;
-      font-size: 13px;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      margin-bottom: 12px;
+      font-size: 15px;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      margin-bottom: 10px;
       color: var(--gold-light);
     }
 
     .card-title {
-      font-size: 24px;
-      font-weight: 800;
-      margin-bottom: 12px;
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 10px;
       color: #FFFFFF;
       display: flex;
       align-items: center;
@@ -220,9 +220,9 @@
     }
 
     .card-desc {
-      font-size: 15px;
+      font-size: 19px;
       line-height: 1.6;
-      color: #CBD5E1;
+      color: #E2E8F0;
       flex: 1;
     }
 
@@ -233,31 +233,79 @@
 
     .card-desc li {
       position: relative;
-      padding-left: 20px;
+      padding-left: 24px;
       margin-bottom: 8px;
     }
 
     .card-desc li::before {
       content: "•";
       position: absolute;
-      left: 4px;
+      left: 6px;
       color: var(--blue-accent);
       font-weight: bold;
+      font-size: 24px;
+      line-height: 1;
     }
 
     .card-gold .card-desc li::before {
       color: var(--gold-primary);
     }
 
+    /* 專屬圖說標籤（大字高對比） */
+    .fig-box {
+      width: 100%;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fig-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      background: #0D1627;
+      display: block;
+    }
+
+    .fig-svg-container {
+      width: 100%;
+      height: 125px;
+      background: linear-gradient(180deg, #0F192C 0%, #0A101D 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .fig-caption {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.5;
+      padding: 8px 14px;
+      background: rgba(56, 189, 248, 0.12);
+      border-left: 4px solid var(--blue-accent);
+      color: #E0F2FE;
+    }
+
+    .fig-caption-gold {
+      background: rgba(245, 158, 11, 0.12);
+      border-left-color: var(--gold-primary);
+      color: #FEF3C7;
+    }
+
     /* 播放器容器 (Slide 5 關鍵動畫頁) */
     .player-wrapper {
       position: relative;
       width: 100%;
-      height: 520px;
+      height: 550px;
       background: #000000;
       border-radius: 20px;
-      border: 1px solid var(--border-gold);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      border: 2px solid var(--border-gold);
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8);
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -265,42 +313,42 @@
 
     video.main-video {
       width: 100%;
-      height: calc(100% - 64px);
+      height: calc(100% - 70px);
       object-fit: contain;
       background: #050811;
     }
 
     /* 自訂播放控制器 */
     .video-controls {
-      height: 64px;
-      background: rgba(14, 23, 42, 0.95);
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      height: 70px;
+      background: rgba(14, 23, 42, 0.98);
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
       display: flex;
       align-items: center;
-      padding: 0 24px;
-      gap: 16px;
+      padding: 0 26px;
+      gap: 18px;
       user-select: none;
       z-index: 20;
     }
 
     .ctrl-btn {
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       color: #FFFFFF;
-      border-radius: 8px;
-      padding: 8px 14px;
-      font-size: 14px;
-      font-weight: 600;
+      border-radius: 10px;
+      padding: 10px 18px;
+      font-size: 16px;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
       user-select: none;
       transition: background 160ms var(--ease-out), transform 120ms var(--ease-out);
     }
 
     .ctrl-btn:hover {
-      background: rgba(255, 255, 255, 0.18);
+      background: rgba(255, 255, 255, 0.2);
       border-color: var(--gold-primary);
     }
 
@@ -311,7 +359,7 @@
     .ctrl-btn-primary {
       background: var(--gold-primary);
       color: #0A0F1D;
-      font-weight: 800;
+      font-weight: 900;
       border-color: var(--gold-light);
     }
 
@@ -321,35 +369,35 @@
 
     .seek-slider {
       flex: 1;
-      height: 8px;
+      height: 10px;
       -webkit-appearance: none;
-      background: rgba(255, 255, 255, 0.2);
-      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 5px;
       outline: none;
       cursor: pointer;
     }
 
     .seek-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
+      width: 22px;
+      height: 22px;
       border-radius: 50%;
       background: var(--gold-primary);
-      box-shadow: 0 0 10px var(--gold-glow);
+      box-shadow: 0 0 12px var(--gold-glow);
       cursor: pointer;
       transition: transform 120ms var(--ease-out);
     }
 
     .seek-slider::-webkit-slider-thumb:hover {
-      transform: scale(1.2);
+      transform: scale(1.25);
     }
 
     .time-badge {
       font-family: monospace;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 17px;
+      font-weight: 800;
       color: var(--gold-light);
-      min-width: 120px;
+      min-width: 140px;
       text-align: center;
     }
 
@@ -357,33 +405,33 @@
     #deck-nav {
       position: absolute;
       bottom: 24px;
-      right: 40px;
+      right: 48px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       z-index: 50;
       user-select: none;
     }
 
     .nav-btn {
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid var(--border-subtle);
+      background: rgba(15, 23, 42, 0.92);
+      border: 1.5px solid var(--border-subtle);
       color: var(--text-main);
-      border-radius: 12px;
-      padding: 10px 18px;
-      font-size: 15px;
-      font-weight: 700;
+      border-radius: 14px;
+      padding: 12px 22px;
+      font-size: 18px;
+      font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
-      backdrop-filter: blur(8px);
+      gap: 10px;
+      backdrop-filter: blur(10px);
       user-select: none;
       transition: background 180ms var(--ease-out), border-color 180ms var(--ease-out), transform 120ms var(--ease-out);
     }
 
     .nav-btn:hover {
-      background: rgba(30, 41, 59, 0.95);
+      background: rgba(30, 41, 59, 0.98);
       border-color: var(--blue-accent);
     }
 
@@ -393,23 +441,23 @@
 
     #slide-indicator {
       position: absolute;
-      bottom: 30px;
-      left: 40px;
-      font-size: 14px;
-      font-weight: 700;
+      bottom: 28px;
+      left: 48px;
+      font-size: 16px;
+      font-weight: 800;
       color: var(--text-sub);
       user-select: none;
       z-index: 50;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
 
     /* 互動按鈕與測驗卡片 */
     .interactive-card {
-      background: rgba(17, 26, 46, 0.9);
-      border: 2px dashed rgba(255, 255, 255, 0.15);
-      border-radius: 16px;
+      background: rgba(17, 26, 46, 0.94);
+      border: 2px dashed rgba(255, 255, 255, 0.2);
+      border-radius: 18px;
       padding: 24px;
       cursor: pointer;
       user-select: none;
@@ -418,7 +466,7 @@
 
     .interactive-card:hover {
       border-color: var(--gold-primary);
-      background: rgba(245, 158, 11, 0.05);
+      background: rgba(245, 158, 11, 0.08);
     }
 
     .interactive-card:active {
@@ -428,26 +476,26 @@
     .interactive-card.solved {
       border-style: solid;
       border-color: var(--emerald-accent);
-      background: rgba(16, 185, 129, 0.1);
+      background: rgba(16, 185, 129, 0.12);
     }
 
     .quiz-option {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 16px 20px;
-      font-size: 16px;
-      font-weight: 600;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1.5px solid rgba(255, 255, 255, 0.16);
+      border-radius: 14px;
+      padding: 18px 24px;
+      font-size: 21px;
+      font-weight: 700;
       cursor: pointer;
       user-select: none;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       transition: background 160ms var(--ease-out), border-color 160ms var(--ease-out), transform 120ms var(--ease-out);
     }
 
     .quiz-option:hover {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.14);
       border-color: var(--blue-accent);
     }
 
@@ -456,57 +504,46 @@
     }
 
     .quiz-option.correct {
-      background: rgba(16, 185, 129, 0.25) !important;
+      background: rgba(16, 185, 129, 0.3) !important;
       border-color: var(--emerald-accent) !important;
       color: #A7F3D0;
     }
 
     .quiz-option.wrong {
-      background: rgba(239, 68, 68, 0.25) !important;
+      background: rgba(239, 68, 68, 0.3) !important;
       border-color: var(--rose-accent) !important;
       color: #FECACA;
     }
 
-    /* 比較表格規範 */
+    /* 比較表格規範 (大字版) */
     .compare-table {
       width: 100%;
       border-collapse: collapse;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
-      font-size: 15px;
+      font-size: 19px;
     }
 
     .compare-table th {
-      background: rgba(30, 45, 75, 0.9);
+      background: rgba(30, 45, 75, 0.95);
       color: var(--gold-light);
-      padding: 14px 18px;
+      padding: 16px 20px;
       text-align: left;
-      font-weight: 800;
-      border-bottom: 2px solid var(--border-gold);
+      font-weight: 900;
+      font-size: 21px;
+      border-bottom: 3px solid var(--border-gold);
     }
 
     .compare-table td {
-      background: rgba(17, 26, 46, 0.6);
-      padding: 14px 18px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      color: #E2E8F0;
-      line-height: 1.5;
+      background: rgba(17, 26, 46, 0.7);
+      padding: 18px 20px;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.1);
+      color: #F1F5F9;
+      line-height: 1.6;
     }
 
     .compare-table tr:hover td {
-      background: rgba(255, 255, 255, 0.04);
-    }
-
-    /* 畫布動畫小組件 */
-    .anim-canvas-container {
-      width: 100%;
-      height: 220px;
-      background: #080D1A;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      margin-top: 14px;
-      position: relative;
-      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
     }
   </style>
 </head>
@@ -518,22 +555,22 @@
 
   <!-- ==================== Slide 1: 滿版封面 ==================== -->
   <div class="slide active" data-slide="1">
-    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; max-width: 960px;">
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; max-width: 1100px;">
       <div class="slide-kicker kicker-gold">康軒版國小四年級社會 · 第二單元</div>
-      <h1 class="slide-title" style="font-size: 64px; line-height: 1.1; margin-bottom: 16px;">
+      <h1 class="slide-title" style="font-size: 68px; line-height: 1.12; margin-bottom: 20px;">
         走進時光隧道<br>
         <span style="background: linear-gradient(135deg, var(--gold-primary), var(--blue-accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">家鄉的傳統住屋與生活器具</span>
       </h1>
-      <p class="slide-subtitle" style="font-size: 24px; line-height: 1.5; margin-bottom: 32px;">
-        原住民族因地制宜的大自然建築 × 漢人先民長幼有序的倫理禮法<br>
+      <p class="slide-subtitle" style="font-size: 26px; line-height: 1.6; margin-bottom: 36px;">
+        原住民族因地制宜的大自然建築 × 漢人先民長幼有序的空間禮法<br>
         從石板屋、三合院到石磨、風鼓，解鎖早期臺灣先民的生活大智慧！
       </p>
-      <div style="display: flex; gap: 16px;">
-        <button class="ctrl-btn ctrl-btn-primary" style="padding: 14px 28px; font-size: 18px; border-radius: 12px;" onclick="goToSlide(2)">
+      <div style="display: flex; gap: 20px;">
+        <button class="ctrl-btn ctrl-btn-primary" style="padding: 16px 32px; font-size: 21px; border-radius: 14px;" onclick="goToSlide(2)">
           🚀 開始穿越時空探索
         </button>
-        <button class="ctrl-btn" style="padding: 14px 24px; font-size: 18px; border-radius: 12px;" onclick="goToSlide(5)">
-          🎬 直接觀看 205秒精華動畫
+        <button class="ctrl-btn" style="padding: 16px 28px; font-size: 21px; border-radius: 14px;" onclick="goToSlide(5)">
+          🎬 觀看 205秒關鍵解說動畫
         </button>
       </div>
     </div>
@@ -546,32 +583,38 @@
     <p class="slide-subtitle">先民在沒有電器與現代建材的年代，如何運用智慧生生不息？</p>
 
     <div class="grid-2">
-      <div class="card" style="border-top: 4px solid var(--blue-accent);">
-        <div class="card-badge" style="color: var(--blue-accent); background: rgba(56, 189, 248, 0.1);">主題一</div>
-        <div class="card-title">2-1 傳統住屋篇</div>
+      <div class="card" style="border-top: 5px solid var(--blue-accent);">
+        <div class="card-badge" style="color: var(--blue-accent); background: rgba(56, 189, 248, 0.15);">主題一 · 2-1 傳統住屋篇</div>
+        <div class="card-title">🏡 傳統住屋：就地取材與氣候調適</div>
         <div class="card-desc">
-          <p style="margin-bottom: 14px; font-weight: 600; color: #FFFFFF;">就地取材 · 因地制宜 · 空間禮法</p>
+          <p style="margin-bottom: 16px; font-weight: 700; color: #FFFFFF; font-size: 21px;">因地制宜 · 空間禮法 · 抵禦強風地震</p>
           <ul>
-            <li><strong>原住民建築</strong>：排灣魯凱石板屋、達悟半穴居地下屋、泰雅防鼠高腳穀倉</li>
-            <li><strong>漢人先民建築</strong>：三合院正身護龍長幼尊卑、冬暖夏涼土埆厝、街屋騎樓亭仔腳</li>
-            <li><strong>環境考證</strong>：如何抵抗夏季狂風豪雨、冬天劇烈寒風與地震威脅？</li>
+            <li><strong>原住民建築</strong>：排灣魯凱石板屋、達悟半穴居地下屋、泰雅防鼠高腳穀倉。</li>
+            <li><strong>漢人先民建築</strong>：三合院正身護龍長幼尊卑、冬暖夏涼土埆厝、街屋騎樓亭仔腳。</li>
+            <li><strong>圖說核心</strong>：觀察先民如何利用天然岩石、竹木與泥土構築安全家園。</li>
           </ul>
         </div>
-        <button class="ctrl-btn" style="margin-top: 16px; align-self: flex-start;" onclick="goToSlide(3)">進入住屋探索 →</button>
+        <div class="fig-box" style="margin-top: 14px;">
+          <div class="fig-caption">【圖說】住屋反映早期先民就地取材與順應大自然氣候的生存智慧。</div>
+        </div>
+        <button class="ctrl-btn" style="margin-top: 8px; font-size: 18px; align-self: flex-start;" onclick="goToSlide(3)">進入住屋探索 →</button>
       </div>
 
-      <div class="card card-gold" style="border-top: 4px solid var(--gold-primary);">
-        <div class="card-badge" style="color: var(--gold-primary); background: rgba(245, 158, 11, 0.1);">主題二</div>
-        <div class="card-title">2-2 傳統生活器具篇</div>
+      <div class="card card-gold" style="border-top: 5px solid var(--gold-primary);">
+        <div class="card-badge" style="color: var(--gold-primary); background: rgba(245, 158, 11, 0.15);">主題二 · 2-2 傳統生活器具篇</div>
+        <div class="card-title">🥣 傳統器具：雙手勞動與物理巧思</div>
         <div class="card-desc">
-          <p style="margin-bottom: 14px; font-weight: 600; color: #FFFFFF;">雙手勞動 · 物理巧思 · 凝聚族群</p>
+          <p style="margin-bottom: 16px; font-weight: 700; color: #FFFFFF; font-size: 21px;">生活巧思 · 重力風力 · 凝聚族群</p>
           <ul>
-            <li><strong>原住民器具</strong>：木臼長木杵搗小米麻糬、百步蛇陶壺貴族傳家、竹編魚筌倒刺陷阱</li>
-            <li><strong>漢人器具</strong>：柴火紅磚大灶、逆轉雙扇石磨、手搖風鼓風力分離、防蟻水盤菜櫥</li>
-            <li><strong>科學原理</strong>：重力比重篩分、毛細隔水、流體倒刺與力學槓桿應用！</li>
+            <li><strong>原住民器具</strong>：木臼長木杵搗小米麻糬、百步蛇陶壺貴族傳家、竹編魚筌倒刺陷阱。</li>
+            <li><strong>漢人器具</strong>：柴火紅磚大灶、逆轉雙扇石磨、手搖風鼓比重分離、防蟻水盤菜櫥。</li>
+            <li><strong>圖說核心</strong>：探究旋轉剪切出米漿、風力比重選種與隔水斷路防蟲的科學巧思。</li>
           </ul>
         </div>
-        <button class="ctrl-btn ctrl-btn-primary" style="margin-top: 16px; align-self: flex-start;" onclick="goToSlide(7)">進入器具探索 →</button>
+        <div class="fig-box" style="margin-top: 14px;">
+          <div class="fig-caption fig-caption-gold">【圖說】器物取之於大自然，全靠雙手勞動與巧妙物理結構實踐生活所需。</div>
+        </div>
+        <button class="ctrl-btn ctrl-btn-primary" style="margin-top: 8px; font-size: 18px; align-self: flex-start;" onclick="goToSlide(7)">進入器具探索 →</button>
       </div>
     </div>
   </div>
@@ -583,41 +626,102 @@
     <p class="slide-subtitle">尊重山林與海洋，依據地形氣候創造出無懈可擊的避風防震家園</p>
 
     <div class="grid-3">
+      <!-- 排灣石板屋 -->
       <div class="card">
         <div class="card-badge">南部山區 · 排灣 / 魯凱</div>
         <div class="card-title">🏔️ 石板屋</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <!-- 石板層疊 SVG -->
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 地面 -->
+              <line x1="20" y1="105" x2="280" y2="105" stroke="#475569" stroke-width="3"/>
+              <!-- 石板堆疊 -->
+              <rect x="50" y="75" width="200" height="30" rx="4" fill="#334155" stroke="#64748B" stroke-width="2"/>
+              <polygon points="40,75 150,25 260,75" fill="#1E293B" stroke="#475569" stroke-width="2"/>
+              <!-- 魚鱗石板屋頂 -->
+              <line x1="60" y1="70" x2="140" y2="35" stroke="#94A3B8" stroke-width="3"/>
+              <line x1="80" y1="75" x2="160" y2="40" stroke="#CBD5E1" stroke-width="3"/>
+              <line x1="240" y1="70" x2="160" y2="35" stroke="#94A3B8" stroke-width="3"/>
+              <!-- 門與木雕 -->
+              <rect x="130" y="80" width="40" height="25" fill="#0A0F1D" stroke="#F59E0B" stroke-width="1.5"/>
+              <text x="150" y="70" font-size="12" fill="#FCD34D" font-weight="bold" text-anchor="middle">百步蛇木雕門楣</text>
+            </svg>
+          </div>
+          <div class="fig-caption">【圖說：排灣族石板屋】利用山中頁岩與板岩像魚鱗般層層咬合堆疊，不用一根釘子，冬暖夏涼、抗強颱耐震！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>取材</strong>：就地採集山林中的黑灰板岩與頁岩。</li>
-            <li><strong>工法</strong>：像魚鱗般層層咬合堆疊，不用一根釘子。</li>
-            <li><strong>智慧</strong>：低矮堅固，冬暖夏涼，不怕強風地震。</li>
-            <li><strong>信仰</strong>：頭目家門楣刻百步蛇與祖靈圖騰。</li>
+            <li><strong>就地取材</strong>：採集山林黑灰板岩與頁岩。</li>
+            <li><strong>冬暖夏涼</strong>：厚重石板隔絕熱氣與寒風。</li>
+            <li><strong>抗颱耐震</strong>：低矮緊實結構抗地震。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 達悟地下屋 -->
       <div class="card">
         <div class="card-badge">海島蘭嶼 · 達悟族 (雅美)</div>
         <div class="card-title">🌊 半穴居地下屋</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <!-- 達悟地下屋剖面 SVG -->
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 地面開挖坑 -->
+              <path d="M 20 60 L 80 60 L 80 105 L 220 105 L 220 60 L 280 60" fill="none" stroke="#64748B" stroke-width="3"/>
+              <!-- 地下主屋斜頂 -->
+              <polygon points="70,65 150,35 230,65" fill="#334155" stroke="#F59E0B" stroke-width="2"/>
+              <rect x="90" y="65" width="120" height="40" fill="#1E293B" stroke="#38BDF8" stroke-width="1.5"/>
+              <text x="150" y="90" font-size="13" fill="#F8FAFC" font-weight="bold" text-anchor="middle">主屋深入地下避風</text>
+              <!-- 颱風流線吹過 -->
+              <path d="M 20 30 Q 150 15 280 30" fill="none" stroke="#38BDF8" stroke-width="2.5" stroke-dasharray="6,4"/>
+              <text x="240" y="25" font-size="11" fill="#38BDF8">颱風掠過</text>
+            </svg>
+          </div>
+          <div class="fig-caption">【圖說：達悟族地下屋】主屋向下開挖深陷地下，斜屋頂緊貼地表阻擋強颱，地面設涼台通風乘涼！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>向地底開挖</strong>：主屋深入地穴，屋頂微露地面。</li>
-            <li><strong>迎擊風暴</strong>：避開夏季毀滅性颱風與強烈東北季風。</li>
-            <li><strong>涼台休憩</strong>：地面搭建挑高涼台，通風涼爽。</li>
-            <li><strong>鵝卵石鋪地</strong>：精巧排水深溝，雨水迅速排走不淹水！</li>
+            <li><strong>向地底開挖</strong>：主屋深入地穴，屋頂微露地表。</li>
+            <li><strong>迎擊風暴</strong>：避開夏季強颱與狂暴東北季風。</li>
+            <li><strong>防洪暗溝</strong>：鵝卵石深溝迅速排走雨水不淹水。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 泰雅高腳倉 -->
       <div class="card">
         <div class="card-badge">中北部山區 · 泰雅 / 太魯閣</div>
         <div class="card-title">🌾 防鼠高腳穀倉</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <!-- 泰雅高腳穀倉 SVG -->
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 地面 -->
+              <line x1="30" y1="105" x2="270" y2="105" stroke="#475569" stroke-width="3"/>
+              <!-- 四根挑高柱 -->
+              <line x1="100" y1="50" x2="100" y2="105" stroke="#78350F" stroke-width="5"/>
+              <line x1="200" y1="50" x2="200" y2="105" stroke="#78350F" stroke-width="5"/>
+              <!-- 圓形防鼠板 -->
+              <ellipse cx="100" cy="65" rx="20" ry="6" fill="#F59E0B"/>
+              <ellipse cx="200" cy="65" rx="20" ry="6" fill="#F59E0B"/>
+              <!-- 架高穀倉 -->
+              <rect x="80" y="20" width="140" height="35" rx="6" fill="#D97706" stroke="#FEF3C7" stroke-width="2"/>
+              <text x="150" y="42" font-size="13" fill="#0A0F1D" font-weight="900" text-anchor="middle">架高穀倉 (儲米)</text>
+              <text x="100" y="80" font-size="11" fill="#FCD34D" text-anchor="middle">防鼠板</text>
+              <text x="200" y="80" font-size="11" fill="#FCD34D" text-anchor="middle">防鼠板</text>
+            </svg>
+          </div>
+          <div class="fig-caption">【圖說：泰雅高腳穀倉】挑高木柱隔絕地氣，柱頂「圓形倒扣防鼠板」卡死老鼠攀爬路徑！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>挑高柱體</strong>：將糧倉架高離地，防潮濕地氣。</li>
-            <li><strong>圓形防鼠板</strong>：高腳柱頂套設倒扣光滑木板。</li>
-            <li><strong>物理死角</strong>：老鼠爬至柱頂無法倒掛翻越防鼠板。</li>
-            <li><strong>護糧神技</strong>：守護全家全季珍貴的小米與糧食。</li>
+            <li><strong>挑高柱體</strong>：架高離地，通風乾燥防地氣。</li>
+            <li><strong>圓形防鼠板</strong>：光滑木板造成倒懸攀爬死角。</li>
+            <li><strong>護糧神技</strong>：守護全家族珍貴小米與糧食。</li>
           </ul>
         </div>
       </div>
@@ -631,41 +735,84 @@
     <p class="slide-subtitle">從三合院的長幼尊卑，到土埆厝的就地取材與街屋騎樓的溫情互助</p>
 
     <div class="grid-3">
+      <!-- 漢人三合院 (帶教材真實截圖) -->
       <div class="card card-gold">
         <div class="card-badge">宗族核心 · 農業平原</div>
         <div class="card-title">🏡 三合院</div>
+        <div class="fig-box">
+          <img src="assets/sanhe_textbook_diagram.png" alt="教材考證三合院結構圖" class="fig-img" style="object-fit: contain; background: #FFFFFF; padding: 4px;">
+          <div class="fig-caption fig-caption-gold">【圖說：三合院格局（教材真題考證）】中央正身設神明廳，左右護龍長幼分居（左尊右卑），門前大埕曬穀聚會。</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>正身</strong>：中央為正廳（神明廳），長輩居住。</li>
-            <li><strong>左右護龍</strong>：兩側廂房長幼分居，左尊右卑。</li>
-            <li><strong>大埕</strong>：正門前空地，曬穀、辦喜事、全族交流。</li>
-            <li><strong>堂號</strong>：門楣標誌祖籍堂號（如穎川堂、隴西堂）。</li>
+            <li><strong>正身</strong>：中央正廳（神明廳），尊長居住。</li>
+            <li><strong>左右護龍</strong>：廂房長幼有序，左尊右卑。</li>
+            <li><strong>大埕</strong>：曬穀、辦喜事、宗族情感交流。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 土埆厝 -->
       <div class="card card-gold">
         <div class="card-badge">就地取材 · 質樸民居</div>
         <div class="card-title">🧱 土埆厝 (土角厝)</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 地面與鵝卵石基座 -->
+              <line x1="30" y1="105" x2="270" y2="105" stroke="#475569" stroke-width="3"/>
+              <!-- 卵石台基 -->
+              <rect x="70" y="90" width="160" height="15" rx="3" fill="#475569" stroke="#94A3B8" stroke-width="1"/>
+              <text x="150" y="102" font-size="11" fill="#E2E8F0" text-anchor="middle">大卵石基座 (防浸水)</text>
+              <!-- 土埆牆體磚塊 -->
+              <rect x="75" y="45" width="150" height="45" fill="#78350F" stroke="#D97706" stroke-width="2"/>
+              <line x1="75" y1="60" x2="225" y2="60" stroke="#B45309" stroke-width="1.5"/>
+              <line x1="75" y1="75" x2="225" y2="75" stroke="#B45309" stroke-width="1.5"/>
+              <!-- 茅草或瓦頂 -->
+              <polygon points="60,45 150,15 240,45" fill="#B45309" stroke="#FEF3C7" stroke-width="2"/>
+              <text x="150" y="70" font-size="13" fill="#FEF08A" font-weight="bold" text-anchor="middle">稻草泥土壓製土埆磚</text>
+            </svg>
+          </div>
+          <div class="fig-caption fig-caption-gold">【圖說：漢人土埆厝】就地採黏土混合稻草、米糠、牛糞壓磚曬乾，厚牆熱傳導慢冬暖夏涼，墊卵石防浸塌。</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>就地取材</strong>：黏土混合稻草、米糠、牛糞壓磚曬乾。</li>
-            <li><strong>熱傳導慢</strong>：牆體厚實，具備極佳的「冬暖夏涼」。</li>
-            <li><strong>防護弱點</strong>：最怕大水淹浸，下半部常墊大鵝卵石。</li>
-            <li><strong>屋頂覆蓋</strong>：早期鋪蓋茅草，後演進為紅瓦。</li>
+            <li><strong>就地取材</strong>：黏土混稻草米糠壓模曬乾。</li>
+            <li><strong>冬暖夏涼</strong>：泥土厚實熱傳導慢，調節溫差。</li>
+            <li><strong>基座墊石</strong>：最怕大雨水浸，基座墊鵝卵石。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 街屋與騎樓 -->
       <div class="card card-gold">
         <div class="card-badge">商業市鎮 · 鄰里溫情</div>
-        <div class="card-title">🏮 街屋與騎樓 (亭仔腳)</div>
+        <div class="card-title">🏮 街屋騎樓 (亭仔腳)</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 街道地面 -->
+              <line x1="20" y1="105" x2="280" y2="105" stroke="#475569" stroke-width="3"/>
+              <!-- 街屋建築主體 -->
+              <rect x="50" y="20" width="160" height="85" fill="#1E293B" stroke="#94A3B8" stroke-width="2"/>
+              <!-- 騎樓走道退縮 -->
+              <rect x="50" y="65" width="60" height="40" fill="#0F172A" stroke="#F59E0B" stroke-width="2"/>
+              <text x="80" y="90" font-size="12" fill="#FCD34D" font-weight="bold" text-anchor="middle">騎樓走道</text>
+              <line x1="50" y1="65" x2="50" y2="105" stroke="#F59E0B" stroke-width="4"/>
+              <!-- 行人避雨示意 -->
+              <text x="80" y="55" font-size="11" fill="#38BDF8" text-anchor="middle">遮陽避雨</text>
+              <text x="160" y="55" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle">前店後住 (天井採光)</text>
+            </svg>
+          </div>
+          <div class="fig-caption fig-caption-gold">【圖說：街屋亭仔腳】臨街長條街屋前店後住、天井採光，騎樓為路人遮陽避雨展現濃濃人情味！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>前店後住</strong>：面寬狹窄、縱深極長，中間設天井採光。</li>
-            <li><strong>騎樓 (亭仔腳)</strong>：一樓前方退縮留出走道。</li>
-            <li><strong>遮陽避雨</strong>：臺灣多雨炎熱，提供行人通行休憩。</li>
-            <li><strong>人情味象徵</strong>：鄰里互助交流最溫暖的鄉土風景。</li>
+            <li><strong>前店後住</strong>：面寬狹窄縱深長，設天井通風。</li>
+            <li><strong>騎樓走道</strong>：一樓前方退縮，供行人通行。</li>
+            <li><strong>遮陽避雨</strong>：因應多雨炎熱氣候，鄰里互助。</li>
           </ul>
         </div>
       </div>
@@ -674,12 +821,12 @@
 
   <!-- ==================== Slide 5: 關鍵解說動畫頁 (205秒 MP4) ==================== -->
   <div class="slide" data-slide="5">
-    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 12px;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 10px;">
       <div>
-        <div class="slide-kicker kicker-gold">🎬 關鍵原理解說動畫 (全片 205 秒超高畫質全解密)</div>
-        <h2 class="slide-title" style="font-size: 34px; margin-bottom: 2px;">住屋與生活器具全景動畫解讀</h2>
+        <div class="slide-kicker kicker-gold">🎬 關鍵原理解說動畫 (全片 205.32 秒超高畫質全解密)</div>
+        <h2 class="slide-title" style="font-size: 38px; margin-bottom: 2px;">住屋與生活器具全景動畫解讀</h2>
       </div>
-      <div style="font-size: 14px; color: var(--gold-light); font-weight: 700; background: rgba(245, 158, 11, 0.15); padding: 6px 14px; border-radius: 8px; border: 1px solid var(--border-gold);">
+      <div style="font-size: 16px; color: var(--gold-light); font-weight: 800; background: rgba(245, 158, 11, 0.18); padding: 8px 16px; border-radius: 10px; border: 1.5px solid var(--border-gold);">
         ★ 台灣女聲導讀 · 完整控制列支援拖曳進度與暫停
       </div>
     </div>
@@ -690,7 +837,7 @@
         您的瀏覽器不支援 HTML5 視訊。
       </video>
 
-      <!-- 專業自訂控制面板 -->
+      <!-- 專業自訂控制面板 (大字大按鈕) -->
       <div class="video-controls">
         <button id="btn-play-pause" class="ctrl-btn ctrl-btn-primary" onclick="togglePlayPause()">
           <span id="play-icon">▶</span> <span id="play-text">播放</span>
@@ -711,27 +858,27 @@
     <h2 class="slide-title">住屋結構動態解剖台</h2>
     <p class="slide-subtitle">點擊不同建築標籤，觀察先民如何利用物理原理調節氣流與空間禮法</p>
 
-    <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-      <button id="btn-struct-sanhe" class="ctrl-btn ctrl-btn-primary" onclick="switchStruct('sanhe')">🏡 漢人三合院：家族禮法與天井對流</button>
-      <button id="btn-struct-underground" class="ctrl-btn" onclick="switchStruct('underground')">🌊 達悟地下屋：空氣動力學颱風避震</button>
-      <button id="btn-struct-granary" class="ctrl-btn" onclick="switchStruct('granary')">🌾 泰雅高腳倉：防鼠板物理死角阻截</button>
+    <div style="display: flex; gap: 18px; margin-bottom: 14px;">
+      <button id="btn-struct-sanhe" class="ctrl-btn ctrl-btn-primary" style="font-size: 18px; padding: 12px 20px;" onclick="switchStruct('sanhe')">🏡 漢人三合院：家族禮法與天井對流</button>
+      <button id="btn-struct-underground" class="ctrl-btn" style="font-size: 18px; padding: 12px 20px;" onclick="switchStruct('underground')">🌊 達悟地下屋：空氣動力學颱風避震</button>
+      <button id="btn-struct-granary" class="ctrl-btn" style="font-size: 18px; padding: 12px 20px;" onclick="switchStruct('granary')">🌾 泰雅高腳倉：防鼠板物理死角阻截</button>
     </div>
 
-    <div class="card" style="flex: 1; display: flex; flex-direction: row; gap: 32px; align-items: center;">
-      <div style="flex: 1.2; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <canvas id="struct-canvas" width="600" height="380" style="width: 100%; height: 380px; background: #070B16; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1);"></canvas>
+    <div class="card" style="flex: 1; display: flex; flex-direction: row; gap: 36px; align-items: center; padding: 26px;">
+      <div style="flex: 1.25; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+        <canvas id="struct-canvas" width="650" height="420" style="width: 100%; height: 420px; background: #070B16; border-radius: 16px; border: 1.5px solid rgba(255,255,255,0.15);"></canvas>
       </div>
       <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-        <div id="struct-badge" class="card-badge" style="color: var(--gold-light);">核心空間解碼</div>
-        <h3 id="struct-title" style="font-size: 28px; font-weight: 800; color: #FFFFFF; margin-bottom: 16px;">三合院：倫理中軸與通風大埕</h3>
-        <p id="struct-desc" style="font-size: 16px; line-height: 1.7; color: #CBD5E1; margin-bottom: 20px;">
+        <div id="struct-badge" class="card-badge" style="color: var(--gold-light); font-size: 16px;">核心空間解碼</div>
+        <h3 id="struct-title" style="font-size: 32px; font-weight: 900; color: #FFFFFF; margin-bottom: 16px;">三合院：倫理中軸與通風大埕</h3>
+        <p id="struct-desc" style="font-size: 20px; line-height: 1.7; color: #E2E8F0; margin-bottom: 22px;">
           中央神明廳代表家族敬天祭祖的核心精神；左側大房居長、右側次房居幼，展現尊卑有序。<br>
           前方空曠大埕吸熱形成溫差，自然牽引涼風從穿堂與天井流動，達到不開冷氣也通風涼爽的微氣候！
         </p>
-        <div id="struct-tags" style="display: flex; flex-wrap: wrap; gap: 8px;">
-          <span style="background: rgba(56,189,248,0.15); color: var(--blue-accent); padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">自然通風天井</span>
-          <span style="background: rgba(245,158,11,0.15); color: var(--gold-primary); padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">長幼尊卑倫理</span>
-          <span style="background: rgba(16,185,129,0.15); color: var(--emerald-accent); padding: 4px 10px; border-radius: 6px; font-size: 13px; font-weight: 700;">曬穀聚會大埕</span>
+        <div id="struct-tags" style="display: flex; flex-wrap: wrap; gap: 10px;">
+          <span style="background: rgba(56,189,248,0.18); color: var(--blue-accent); padding: 6px 14px; border-radius: 8px; font-size: 15px; font-weight: 800;">自然通風天井</span>
+          <span style="background: rgba(245,158,11,0.18); color: var(--gold-primary); padding: 6px 14px; border-radius: 8px; font-size: 15px; font-weight: 800;">長幼尊卑倫理</span>
+          <span style="background: rgba(16,185,129,0.18); color: var(--emerald-accent); padding: 6px 14px; border-radius: 8px; font-size: 15px; font-weight: 800;">曬穀聚會大埕</span>
         </div>
       </div>
     </div>
@@ -744,41 +891,91 @@
     <p class="slide-subtitle">沒有電力與塑膠的歲月，善用木、竹、陶與自然力創造生存奇蹟</p>
 
     <div class="grid-3">
+      <!-- 木臼木杵 -->
       <div class="card">
         <div class="card-badge">共同勞動 · 節慶共享</div>
         <div class="card-title">🪵 木臼與木杵</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 地面 -->
+              <line x1="30" y1="105" x2="270" y2="105" stroke="#475569" stroke-width="3"/>
+              <!-- 大木臼 -->
+              <path d="M 110 50 Q 150 65 190 50 L 175 105 L 125 105 Z" fill="#78350F" stroke="#D97706" stroke-width="2.5"/>
+              <!-- 雙木杵一上一下 -->
+              <line x1="125" y1="15" x2="140" y2="70" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+              <line x1="175" y1="35" x2="160" y2="85" stroke="#F59E0B" stroke-width="6" stroke-linecap="round"/>
+              <!-- 小米麻糬 -->
+              <ellipse cx="150" cy="80" rx="15" ry="8" fill="#FEF08A"/>
+              <text x="150" y="30" font-size="12" fill="#FCD34D" font-weight="bold" text-anchor="middle">節奏配合合力搗米</text>
+            </svg>
+          </div>
+          <div class="fig-caption">【圖說：原住民木臼木杵】整根原木鑿空成大臼，兩人以上持長木杵節奏搗小米麻糬，象徵團結合作！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>選材</strong>：整根堅韌原木（如櫸木、樟木）手工鑿空成臼。</li>
-            <li><strong>共作合力</strong>：雙人或多人手持長杵，一上一下節奏搗擊。</li>
-            <li><strong>產物</strong>：將脫殼小米搗碎，製作香糯麻糬。</li>
-            <li><strong>意義</strong>：豐年祭與重要慶典必備，凝聚部落團結。</li>
+            <li><strong>整木鑿空</strong>：精選堅硬原木（如樟木、櫸木）。</li>
+            <li><strong>共作合力</strong>：手持長木杵，兩人配合節奏起落。</li>
+            <li><strong>歲時祭儀</strong>：豐年祭慶典共作，凝聚部落情感。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 百步蛇陶壺 -->
       <div class="card">
         <div class="card-badge">尊榮象徵 · 排灣魯凱</div>
-        <div class="card-title">🏺 百步蛇紋陶壺</div>
+        <div class="card-title">🏺 百步蛇陶壺</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 陶壺外觀 -->
+              <path d="M 130 35 L 170 35 L 170 45 Q 205 65 185 95 L 175 105 L 125 105 L 115 95 Q 95 65 130 45 Z" fill="#B45309" stroke="#FCD34D" stroke-width="2.5"/>
+              <!-- 百步蛇圖騰紋樣 -->
+              <path d="M 125 65 Q 150 75 175 65 Q 150 85 125 75" fill="none" stroke="#FEF08A" stroke-width="2.5"/>
+              <circle cx="150" cy="55" r="4" fill="#FEF08A"/>
+              <text x="150" y="25" font-size="12" fill="#FCD34D" font-weight="bold" text-anchor="middle">神聖百步蛇與太陽紋</text>
+            </svg>
+          </div>
+          <div class="fig-caption">【圖說：排灣族百步蛇陶壺】壺身精雕百步蛇紋，為頭目貴族世代傳承之寶與神聖聘禮，寄託祖靈庇佑！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>百步蛇圖騰</strong>：壺身精雕百步蛇紋、太陽紋與人形紋。</li>
-            <li><strong>等級象徵</strong>：分為公壺、母壺與陰陽壺，貴族專屬。</li>
-            <li><strong>傳家與聘禮</strong>：頭目家族世襲傳承，結親不可或缺的大禮。</li>
-            <li><strong>祖靈寄託</strong>：視為祖靈守護之物，神聖莊嚴不可隨意觸碰。</li>
+            <li><strong>百步蛇圖騰</strong>：壺身精雕百步蛇與人形紋飾。</li>
+            <li><strong>階級與聘禮</strong>：貴族與頭目家族世襲傳承之信物。</li>
+            <li><strong>神聖不可犯</strong>：視為祖靈庇佑化身，神聖莊嚴。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 竹編魚筌 -->
       <div class="card">
         <div class="card-badge">溪流物理 · 單向陷阱</div>
         <div class="card-title">🐟 竹編魚筌 (魚簍)</div>
+        <div class="fig-box">
+          <div class="fig-svg-container">
+            <svg viewBox="0 0 300 120" width="100%" height="100%">
+              <rect x="0" y="0" width="300" height="120" fill="#0E1726"/>
+              <!-- 溪流水流 -->
+              <line x1="20" y1="25" x2="280" y2="25" stroke="#38BDF8" stroke-width="2" stroke-dasharray="8,6"/>
+              <!-- 魚筌外框 (錐形) -->
+              <polygon points="50,40 240,65 240,75 50,100" fill="#78350F" stroke="#FCD34D" stroke-width="2.5"/>
+              <!-- 內部倒刺 (倒鬚) -->
+              <line x1="100" y1="50" x2="140" y2="65" stroke="#EF4444" stroke-width="2.5"/>
+              <line x1="100" y1="90" x2="140" y2="75" stroke="#EF4444" stroke-width="2.5"/>
+              <!-- 魚游入無法回頭 -->
+              <text x="90" y="73" font-size="12" fill="#38BDF8">游入 →</text>
+              <text x="180" y="73" font-size="12" fill="#FECACA">倒刺卡死 ❌</text>
+            </svg>
+          </div>
+          <div class="fig-caption">【圖說：竹編魚筌】前大後小的竹筒，內層單向倒刺（倒鬚）使魚蝦游入便無法折返，為精巧物理陷阱！</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>編織工藝</strong>：劈砍細竹篾，編織成前大後小的錐形筒。</li>
-            <li><strong>倒刺（倒鬚）構造</strong>：內部設有向內傾斜的竹尖倒刺。</li>
-            <li><strong>單向通行</strong>：魚蝦逆流順勢游入後，尖刺倒卡無法折返！</li>
-            <li><strong>永續漁法</strong>：縫隙大小適中，只捕大魚不留小魚。</li>
+            <li><strong>細竹編織</strong>：前大後小的錐形漏斗構造。</li>
+            <li><strong>單向倒刺</strong>：內設向內斜插倒鬚，進易退難。</li>
+            <li><strong>永續漁法</strong>：縫隙大小適中，只捕大魚放生小魚。</li>
           </ul>
         </div>
       </div>
@@ -792,54 +989,123 @@
     <p class="slide-subtitle">灶火烹調、石輪磨漿、風力選種與水盤隔蟻的精巧實踐</p>
 
     <div class="grid-4">
+      <!-- 紅磚柴火大灶 -->
       <div class="card card-gold">
         <div class="card-badge">廚房心臟</div>
-        <div class="card-title" style="font-size: 20px;">🔥 紅磚柴火大灶</div>
-        <div class="card-desc">
+        <div class="card-title" style="font-size: 24px;">🔥 紅磚柴火大灶</div>
+        <div class="fig-box">
+          <div class="fig-svg-container" style="height: 105px;">
+            <svg viewBox="0 0 200 90" width="100%" height="100%">
+              <rect x="0" y="0" width="200" height="90" fill="#0E1726"/>
+              <rect x="30" y="30" width="110" height="55" fill="#B91C1C" stroke="#EF4444" stroke-width="2"/>
+              <!-- 大鐵鍋 -->
+              <ellipse cx="85" cy="30" rx="45" ry="12" fill="#334155" stroke="#94A3B8" stroke-width="2"/>
+              <!-- 柴火爐口 -->
+              <rect x="65" y="55" width="40" height="30" rx="4" fill="#0A0F1D"/>
+              <text x="85" y="75" font-size="14" fill="#F59E0B" text-anchor="middle">🔥</text>
+              <!-- 煙囪 -->
+              <rect x="140" y="10" width="20" height="75" fill="#7F1D1D" stroke="#EF4444" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <div class="fig-caption fig-caption-gold" style="font-size: 15px;">【圖說：紅磚大灶】大鐵鍋柴火烹煮三餐、蒸炊年糕菜包，灶上供奉灶神。</div>
+        </div>
+        <div class="card-desc" style="font-size: 17px;">
           <ul>
-            <li><strong>紅磚砌造</strong>：搭配大鐵鍋與煙囪。</li>
-            <li><strong>柴火高溫</strong>：煮飯、炒菜、燒熱水。</li>
-            <li><strong>炊粿年節</strong>：蒸炊年糕、蘿蔔糕與草仔粿。</li>
-            <li><strong>敬仰灶神</strong>：祈求一家平安飽足。</li>
+            <li><strong>柴火高溫</strong>：大鐵鍋導熱迅速均勻。</li>
+            <li><strong>炊粿年節</strong>：年節蒸炊蘿蔔糕與年糕。</li>
+            <li><strong>敬拜灶神</strong>：祈求全家溫飽平安。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 雙扇石磨 -->
       <div class="card card-gold">
         <div class="card-badge">物理碾磨</div>
-        <div class="card-title" style="font-size: 20px;">🪨 雙扇旋轉石磨</div>
-        <div class="card-desc">
+        <div class="card-title" style="font-size: 24px;">🪨 雙扇旋轉石磨</div>
+        <div class="fig-box">
+          <div class="fig-svg-container" style="height: 105px;">
+            <svg viewBox="0 0 200 90" width="100%" height="100%">
+              <rect x="0" y="0" width="200" height="90" fill="#0E1726"/>
+              <!-- 下石盤 -->
+              <ellipse cx="100" cy="65" rx="75" ry="20" fill="#475569"/>
+              <!-- 上石扇 -->
+              <ellipse cx="100" cy="45" rx="60" ry="18" fill="#64748B" stroke="#CBD5E1" stroke-width="1.5"/>
+              <circle cx="115" cy="45" r="7" fill="#0A0F1D"/>
+              <!-- 逆時針旋轉手把 -->
+              <line x1="50" y1="42" x2="30" y2="40" stroke="#D97706" stroke-width="4"/>
+              <text x="100" y="20" font-size="11" fill="#FCD34D" text-anchor="middle">⟲ 逆時針轉磨出米漿</text>
+            </svg>
+          </div>
+          <div class="fig-caption fig-caption-gold" style="font-size: 15px;">【圖說：雙扇石磨】上下重石相疊，逆轉推桿碾碎在來米流出濃白米漿。</div>
+        </div>
+        <div class="card-desc" style="font-size: 17px;">
           <ul>
             <li><strong>雙層石輪</strong>：重石相疊，上扇開孔注米。</li>
-            <li><strong>逆時針旋轉</strong>：推動木手把，磨齒咬合。</li>
-            <li><strong>出米漿</strong>：在來米磨成濃郁米漿做米苔目。</li>
-            <li><strong>省力槓桿</strong>：推桿帶動轉動慣性。</li>
+            <li><strong>剪切碾碎</strong>：米澱粉破碎流出白米漿。</li>
+            <li><strong>美食記憶</strong>：米苔目、蘿蔔糕原料。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 手搖風鼓機 -->
       <div class="card card-gold">
         <div class="card-badge">比重篩選</div>
-        <div class="card-title" style="font-size: 20px;">💨 手搖風鼓機</div>
-        <div class="card-desc">
+        <div class="card-title" style="font-size: 24px;">💨 手搖風鼓機</div>
+        <div class="fig-box">
+          <div class="fig-svg-container" style="height: 105px;">
+            <svg viewBox="0 0 200 90" width="100%" height="100%">
+              <rect x="0" y="0" width="200" height="90" fill="#0E1726"/>
+              <!-- 機身 -->
+              <rect x="35" y="25" width="110" height="55" rx="6" fill="#78350F" stroke="#D97706" stroke-width="2"/>
+              <!-- 進料漏斗 -->
+              <polygon points="65,10 95,10 85,25 75,25" fill="#B45309"/>
+              <!-- 風扇軸 -->
+              <circle cx="65" cy="52" r="14" fill="#0A0F1D" stroke="#F59E0B" stroke-width="2"/>
+              <text x="65" y="56" font-size="10" fill="#FCD34D" text-anchor="middle">手搖</text>
+              <!-- 氣流 -->
+              <path d="M 90 45 L 175 40" stroke="#38BDF8" stroke-width="2" stroke-dasharray="4,3"/>
+              <text x="160" y="32" font-size="10" fill="#38BDF8">吹走草屑</text>
+              <text x="105" y="78" font-size="10" fill="#10B981">飽滿實穀↓</text>
+            </svg>
+          </div>
+          <div class="fig-caption fig-caption-gold" style="font-size: 15px;">【圖說：手搖風鼓】手搖扇葉吹出強風，比重差分離：實穀直落、草屑吹飛！</div>
+        </div>
+        <div class="card-desc" style="font-size: 17px;">
           <ul>
-            <li><strong>手搖風扇</strong>：快速旋轉吹出強勁水平氣流。</li>
-            <li><strong>飽滿實穀</strong>：重量重，直接垂直下墜。</li>
-            <li><strong>空包彈與屑</strong>：重量輕，隨強風吹出機外。</li>
-            <li><strong>收成利器</strong>：大幅縮短稻穀篩選時間。</li>
+            <li><strong>手搖風扇</strong>：快速旋轉產生均勻氣流。</li>
+            <li><strong>飽滿實穀</strong>：重量重，垂直落入米籮。</li>
+            <li><strong>空包彈草屑</strong>：重量輕，隨強風吹出機外。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 菜罩與菜櫥 -->
       <div class="card card-gold">
         <div class="card-badge">防蟲智慧</div>
-        <div class="card-title" style="font-size: 20px;">🥣 菜罩與防蟻菜櫥</div>
-        <div class="card-desc">
+        <div class="card-title" style="font-size: 24px;">🥣 菜罩與菜櫥</div>
+        <div class="fig-box">
+          <div class="fig-svg-container" style="height: 105px;">
+            <svg viewBox="0 0 200 90" width="100%" height="100%">
+              <rect x="0" y="0" width="200" height="90" fill="#0E1726"/>
+              <!-- 菜櫥 -->
+              <rect x="50" y="20" width="80" height="55" fill="#451A03" stroke="#D97706" stroke-width="2"/>
+              <line x1="90" y1="20" x2="90" y2="75" stroke="#78350F" stroke-width="2"/>
+              <!-- 櫥腳與防蟻水盤 -->
+              <rect x="55" y="75" width="8" height="8" fill="#78350F"/>
+              <rect x="117" y="75" width="8" height="8" fill="#78350F"/>
+              <ellipse cx="59" cy="84" rx="10" ry="3" fill="#38BDF8"/>
+              <ellipse cx="121" cy="84" rx="10" ry="3" fill="#38BDF8"/>
+              <text x="90" y="15" font-size="10" fill="#FCD34D" text-anchor="middle">四腳墊注水防蟻盤</text>
+              <text x="160" y="50" font-size="11" fill="#10B981">隔水斷路</text>
+            </svg>
+          </div>
+          <div class="fig-caption fig-caption-gold" style="font-size: 15px;">【圖說：防蟻菜櫥】竹篾菜罩透氣防蠅，四腳墊注水陶盤隔水斷路防蟻爬。</div>
+        </div>
+        <div class="card-desc" style="font-size: 17px;">
           <ul>
             <li><strong>竹篾菜罩</strong>：通風透氣防蒼蠅灰塵。</li>
-            <li><strong>菜櫥四腳</strong>：木櫥腳下墊注水陶盤。</li>
-            <li><strong>隔水斷路</strong>：環狀水圈讓螞蟻無法爬過。</li>
-            <li><strong>純物理防護</strong>：不用農藥即保食物安全。</li>
+            <li><strong>防蟻陶盤</strong>：櫥腳墊注水盤隔水斷路。</li>
+            <li><strong>純物理防護</strong>：無農藥保護飯菜衛生。</li>
           </ul>
         </div>
       </div>
@@ -852,25 +1118,25 @@
     <h2 class="slide-title">石磨與風鼓機械動態模擬</h2>
     <p class="slide-subtitle">親手操作手搖把，體驗先民運用「旋轉摩擦」與「風力重力比重差」的科學智慧</p>
 
-    <div style="display: flex; gap: 16px; margin-bottom: 16px;">
-      <button id="btn-mach-mill" class="ctrl-btn ctrl-btn-primary" onclick="switchMachine('mill')">🪨 雙扇石磨：逆時針旋轉出漿模擬</button>
-      <button id="btn-mach-winnow" class="ctrl-btn" onclick="switchMachine('winnow')">💨 手搖風鼓：氣流與重量比重篩選</button>
+    <div style="display: flex; gap: 18px; margin-bottom: 14px;">
+      <button id="btn-mach-mill" class="ctrl-btn ctrl-btn-primary" style="font-size: 18px; padding: 12px 20px;" onclick="switchMachine('mill')">🪨 雙扇石磨：逆時針旋轉出漿模擬</button>
+      <button id="btn-mach-winnow" class="ctrl-btn" style="font-size: 18px; padding: 12px 20px;" onclick="switchMachine('winnow')">💨 手搖風鼓：氣流與重量比重篩選</button>
     </div>
 
-    <div class="card" style="flex: 1; display: flex; flex-direction: row; gap: 32px; align-items: center;">
-      <div style="flex: 1.2; height: 100%; display: flex; flex-direction: column; justify-content: center;">
-        <canvas id="mach-canvas" width="600" height="380" style="width: 100%; height: 380px; background: #070B16; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1);"></canvas>
+    <div class="card" style="flex: 1; display: flex; flex-direction: row; gap: 36px; align-items: center; padding: 26px;">
+      <div style="flex: 1.25; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+        <canvas id="mach-canvas" width="650" height="420" style="width: 100%; height: 420px; background: #070B16; border-radius: 16px; border: 1.5px solid rgba(255,255,255,0.15);"></canvas>
       </div>
       <div style="flex: 1; display: flex; flex-direction: column; justify-content: center;">
-        <div id="mach-badge" class="card-badge" style="color: var(--blue-accent);">物理機制解析</div>
-        <h3 id="mach-title" style="font-size: 28px; font-weight: 800; color: #FFFFFF; margin-bottom: 16px;">雙扇石磨：剪切力碾碎與離心溢流</h3>
-        <p id="mach-desc" style="font-size: 16px; line-height: 1.7; color: #CBD5E1; margin-bottom: 20px;">
+        <div id="mach-badge" class="card-badge" style="color: var(--blue-accent); font-size: 16px;">物理機制解析</div>
+        <h3 id="mach-title" style="font-size: 32px; font-weight: 900; color: #FFFFFF; margin-bottom: 16px;">雙扇石磨：剪切力碾碎與離心溢流</h3>
+        <p id="mach-desc" style="font-size: 20px; line-height: 1.7; color: #E2E8F0; margin-bottom: 22px;">
           上下兩片石輪雕刻放射狀斜紋磨齒，當推動把手逆時針旋轉時，米粒在兩石之間受到強大剪切力與擠壓，米澱粉破碎釋出。<br>
           加水研磨形成的雪白濃漿，順著石磨四周的導流溝槽聚集流向出口，注入盛裝水桶！
         </p>
-        <div style="display: flex; gap: 12px;">
-          <button class="ctrl-btn ctrl-btn-primary" onclick="triggerMachAction()">⚡ 啟動轉動/手搖操作</button>
-          <button class="ctrl-btn" onclick="resetMachAction()">⏸ 停止</button>
+        <div style="display: flex; gap: 14px;">
+          <button class="ctrl-btn ctrl-btn-primary" style="font-size: 18px; padding: 12px 22px;" onclick="triggerMachAction()">⚡ 啟動轉動/手搖操作</button>
+          <button class="ctrl-btn" style="font-size: 18px; padding: 12px 22px;" onclick="resetMachAction()">⏸ 停止</button>
         </div>
       </div>
     </div>
@@ -882,13 +1148,13 @@
     <h2 class="slide-title">原住民 vs 漢人 生活智慧矩陣</h2>
     <p class="slide-subtitle">相同的大地，不同的環境適應哲學，共同織造出多元豐富的臺灣文明</p>
 
-    <div class="card" style="flex: 1; padding: 20px; overflow-y: auto;">
+    <div class="card" style="flex: 1; padding: 24px; overflow-y: auto;">
       <table class="compare-table">
         <thead>
           <tr>
-            <th style="width: 16%;">比較面向</th>
-            <th style="width: 42%; color: var(--blue-accent);">原住民族的生活智慧</th>
-            <th style="width: 42%; color: var(--gold-primary);">漢人先民的生活智慧</th>
+            <th style="width: 18%;">比較面向</th>
+            <th style="width: 41%; color: var(--blue-accent);">原住民族的生活智慧</th>
+            <th style="width: 41%; color: var(--gold-primary);">漢人先民的生活智慧</th>
           </tr>
         </thead>
         <tbody>
@@ -924,41 +1190,53 @@
     <p class="slide-subtitle">走訪梧棲、清水與大甲，找尋生活在海線大風氣候下的先民生存印記</p>
 
     <div class="grid-3">
+      <!-- 梧棲老街 -->
       <div class="card">
         <div class="card-badge">梧棲老街 · 朝元宮旁</div>
         <div class="card-title">🏮 亭仔腳與老街屋</div>
+        <div class="fig-box">
+          <div class="fig-caption">【圖說：梧棲街屋騎樓】連續的亭仔腳抵擋強勁海風與風沙，讓來往採買鄉親免受風吹雨淋。</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>港口繁榮</strong>：清代梧棲港貿易繁盛，興建長條型街屋。</li>
-            <li><strong>連續騎樓</strong>：綿延的亭仔腳抵擋強烈海風與東北季風。</li>
-            <li><strong>前店後倉</strong>：前方做商鋪生意，後方儲存貨物與居住。</li>
-            <li><strong>互助人情</strong>：雨天採買不沾水，留下珍貴的商街風景。</li>
+            <li><strong>港口商貿</strong>：清代梧棲港貿易繁盛，興建長條型街屋。</li>
+            <li><strong>連續騎樓</strong>：綿延的亭仔腳抵擋海風與東北季風。</li>
+            <li><strong>前店後倉</strong>：前做生意，後儲貨與住家。</li>
+            <li><strong>互助人情</strong>：雨天採買不沾水，濃濃海線人情味。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 大甲藺草 -->
       <div class="card">
         <div class="card-badge">大甲溪畔 · 傳統工藝</div>
         <div class="card-title">🌾 大甲藺草編織</div>
+        <div class="fig-box">
+          <div class="fig-caption fig-caption-gold">【圖說：大甲草蓆草帽】利用大甲溪畔天然三角藺草純手工編織，吸汗散熱且散發清爽草香。</div>
+        </div>
         <div class="card-desc">
           <ul>
-            <li><strong>就地取材</strong>：利用大甲溪下游濕地特產的三角藺草。</li>
+            <li><strong>就地取材</strong>：利用大甲溪下游濕地特產三角藺草。</li>
             <li><strong>天然器具</strong>：純手工編織草帽、草蓆與坐墊。</li>
-            <li><strong>吸汗透氣</strong>：散發自然草香，夏天使用極度涼爽。</li>
-            <li><strong>外銷奇蹟</strong>：曾名揚國際，成為海線家庭的重要生計。</li>
+            <li><strong>吸汗透氣</strong>：散發自然草香，夏天涼爽宜人。</li>
+            <li><strong>經濟支柱</strong>：曾名揚國際，成為家戶重要生計。</li>
           </ul>
         </div>
       </div>
 
+      <!-- 高美竹籬 -->
       <div class="card">
         <div class="card-badge">高美濕地與港區</div>
-        <div class="card-title">🎋 防風竹籬與早期漁撈</div>
+        <div class="card-title">🎋 防風竹籬與漁撈</div>
+        <div class="fig-box">
+          <div class="fig-caption">【圖說：海線防風竹籬】聚落外圍架設緊密高聳竹籬阻擋冬季九降風飛沙，守護農田與住屋。</div>
+        </div>
         <div class="card-desc">
           <ul>
             <li><strong>強風考驗</strong>：冬季強烈東北季風夾帶海沙侵襲。</li>
-            <li><strong>防風竹籬</strong>：聚落周圍架設高聳竹編防風牆阻絕飛沙。</li>
-            <li><strong>竹編魚具</strong>：早期沿海居民使用竹編漁撈器具捕捉鰻苗。</li>
-            <li><strong>海線堅韌</strong>：展現人與強風海濤和諧共處的堅韌生命力。</li>
+            <li><strong>防風竹籬</strong>：聚落周圍架設竹編防風牆阻絕飛沙。</li>
+            <li><strong>竹編魚具</strong>：早期沿海居民使用竹編器具捕鰻苗。</li>
+            <li><strong>堅韌精神</strong>：展現人與海風海濤和諧共處的堅韌生命。</li>
           </ul>
         </div>
       </div>
@@ -973,33 +1251,33 @@
 
     <div class="grid-3">
       <div id="quiz-detect-1" class="interactive-card" onclick="revealMyth(1)">
-        <div class="card-badge" style="color: var(--rose-accent);">迷思挑戰 1</div>
-        <h3 style="font-size: 20px; color: #FFFFFF; margin-bottom: 12px;">達悟地下屋常淹水很不衛生？</h3>
-        <p style="font-size: 14px; color: #94A3B8; margin-bottom: 14px;">「把房子蓋在地底下，下大雨水不是全往裡面灌嗎？好可怕！」</p>
-        <div id="myth-ans-1" style="display: none; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); color: #A7F3D0; font-size: 14px; line-height: 1.6;">
+        <div class="card-badge" style="color: var(--rose-accent); font-size: 16px;">迷思挑戰 1</div>
+        <h3 style="font-size: 24px; color: #FFFFFF; margin-bottom: 14px;">達悟地下屋常淹水很不衛生？</h3>
+        <p style="font-size: 18px; color: #A0AEC0; margin-bottom: 16px; line-height: 1.5;">「把房子蓋在地底下，下大雨水不是全往裡面灌嗎？好可怕！」</p>
+        <div id="myth-ans-1" style="display: none; padding-top: 14px; border-top: 1.5px dashed rgba(255,255,255,0.25); color: #A7F3D0; font-size: 18px; line-height: 1.6;">
           <strong>大錯特錯！</strong> 達悟族地下屋四周鋪設鵝卵石與多重滲水階梯，外圍開挖深邃排水暗溝，雨水順斜坡排入大海，室內永遠乾爽涼快！
         </div>
-        <button class="ctrl-btn" style="margin-top: 10px; font-size: 13px;">點擊查看解密 🔍</button>
+        <button class="ctrl-btn" style="margin-top: 12px; font-size: 16px;">點擊查看解密 🔍</button>
       </div>
 
       <div id="quiz-detect-2" class="interactive-card" onclick="revealMyth(2)">
-        <div class="card-badge" style="color: var(--rose-accent);">迷思挑戰 2</div>
-        <h3 style="font-size: 20px; color: #FFFFFF; margin-bottom: 12px;">三合院想住哪間隨便挑？</h3>
-        <p style="font-size: 14px; color: #94A3B8; margin-bottom: 14px;">「三合院房間那麼多，小孫子喜歡住正身神明廳旁邊最舒服？」</p>
-        <div id="myth-ans-2" style="display: none; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); color: #A7F3D0; font-size: 14px; line-height: 1.6;">
+        <div class="card-badge" style="color: var(--rose-accent); font-size: 16px;">迷思挑戰 2</div>
+        <h3 style="font-size: 24px; color: #FFFFFF; margin-bottom: 14px;">三合院想住哪間隨便挑？</h3>
+        <p style="font-size: 18px; color: #A0AEC0; margin-bottom: 16px; line-height: 1.5;">「三合院房間那麼多，小孫子喜歡住正身神明廳旁邊最舒服？」</p>
+        <div id="myth-ans-2" style="display: none; padding-top: 14px; border-top: 1.5px dashed rgba(255,255,255,0.25); color: #A7F3D0; font-size: 18px; line-height: 1.6;">
           <strong>絕不可能！</strong> 漢人三合院嚴格講求「左尊右卑、長幼有序」。正身中央是神明廳，正身兩側大房長輩住，左右護龍由長子、次子依序分居，秩序井然！
         </div>
-        <button class="ctrl-btn" style="margin-top: 10px; font-size: 13px;">點擊查看解密 🔍</button>
+        <button class="ctrl-btn" style="margin-top: 12px; font-size: 16px;">點擊查看解密 🔍</button>
       </div>
 
       <div id="quiz-detect-3" class="interactive-card" onclick="revealMyth(3)">
-        <div class="card-badge" style="color: var(--rose-accent);">迷思挑戰 3</div>
-        <h3 style="font-size: 20px; color: #FFFFFF; margin-bottom: 12px;">風鼓機是靠插電馬達運轉？</h3>
-        <p style="font-size: 14px; color: #94A3B8; margin-bottom: 14px;">「風鼓能吹出那麼大的風吹走草屑，一定是接插座用電動馬達吧？」</p>
-        <div id="myth-ans-3" style="display: none; padding-top: 12px; border-top: 1px dashed rgba(255,255,255,0.2); color: #A7F3D0; font-size: 14px; line-height: 1.6;">
+        <div class="card-badge" style="color: var(--rose-accent); font-size: 16px;">迷思挑戰 3</div>
+        <h3 style="font-size: 24px; color: #FFFFFF; margin-bottom: 14px;">風鼓機是靠插電馬達運轉？</h3>
+        <p style="font-size: 18px; color: #A0AEC0; margin-bottom: 16px; line-height: 1.5;">「風鼓能吹出那麼大的風吹走草屑，一定是接插座用電動馬達吧？」</p>
+        <div id="myth-ans-3" style="display: none; padding-top: 14px; border-top: 1.5px dashed rgba(255,255,255,0.25); color: #A7F3D0; font-size: 18px; line-height: 1.6;">
           <strong>完全不是！</strong> 早期農村根本沒有電力，農夫靠單手持續搖轉外部曲柄把手，透過木齒輪帶動內部四片木扇葉高速旋轉，純手工物理吹風！
         </div>
-        <button class="ctrl-btn" style="margin-top: 10px; font-size: 13px;">點擊查看解密 🔍</button>
+        <button class="ctrl-btn" style="margin-top: 12px; font-size: 16px;">點擊查看解密 🔍</button>
       </div>
     </div>
   </div>
@@ -1010,22 +1288,22 @@
     <h2 class="slide-title">生活大師隨堂挑戰賽</h2>
     <p class="slide-subtitle">測試你對先民住屋與生活器具的理解程度，每題點擊選項即可獲得即時反饋：</p>
 
-    <div style="background: var(--bg-card); border-radius: 18px; border: 1px solid var(--border-subtle); padding: 30px; flex: 1; display: flex; flex-direction: column;">
+    <div style="background: var(--bg-card); border-radius: 20px; border: 1.5px solid var(--border-subtle); padding: 32px; flex: 1; display: flex; flex-direction: column;">
       <div id="quiz-question-box" style="flex: 1;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-          <span id="quiz-num-badge" class="card-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--blue-accent);">第 1 題 / 共 3 題</span>
-          <span id="quiz-score-badge" style="font-size: 15px; font-weight: 700; color: var(--gold-primary);">目前得分：0 分</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+          <span id="quiz-num-badge" class="card-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--blue-accent); font-size: 17px;">第 1 題 / 共 3 題</span>
+          <span id="quiz-score-badge" style="font-size: 18px; font-weight: 800; color: var(--gold-primary);">目前得分：0 分</span>
         </div>
-        <h3 id="quiz-question-text" style="font-size: 24px; font-weight: 800; color: #FFFFFF; margin-bottom: 24px; line-height: 1.4;">
+        <h3 id="quiz-question-text" style="font-size: 28px; font-weight: 900; color: #FFFFFF; margin-bottom: 26px; line-height: 1.45;">
           泰雅族的高腳穀倉在木柱頂端套設一塊圓形平整的木板，這項設計的主要用途是什麼？
         </h3>
-        <div id="quiz-options-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+        <div id="quiz-options-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
           <!-- 動態注入選項 -->
         </div>
-        <div id="quiz-feedback-box" style="margin-top: 20px; padding: 14px 20px; border-radius: 10px; font-size: 15px; font-weight: 600; display: none;"></div>
+        <div id="quiz-feedback-box" style="margin-top: 22px; padding: 16px 24px; border-radius: 12px; font-size: 19px; font-weight: 700; display: none;"></div>
       </div>
-      <div style="display: flex; justify-content: flex-end; gap: 12px; margin-top: 16px;">
-        <button id="btn-next-quiz" class="ctrl-btn ctrl-btn-primary" style="display: none;" onclick="nextQuizQuestion()">下一題 →</button>
+      <div style="display: flex; justify-content: flex-end; gap: 14px; margin-top: 16px;">
+        <button id="btn-next-quiz" class="ctrl-btn ctrl-btn-primary" style="display: none; font-size: 19px; padding: 12px 24px;" onclick="nextQuizQuestion()">下一題 →</button>
       </div>
     </div>
   </div>
@@ -1039,45 +1317,45 @@
     <div class="grid-3" style="margin-bottom: 24px;">
       <div class="card card-gold">
         <div class="card-badge">任務一 · 建築巡禮</div>
-        <div class="card-title">🔍 尋訪家鄉老屋</div>
-        <div class="card-desc">
-          利用假日與家人走訪附近的傳統古厝、三合院或老街騎樓（亭仔腳）。<br>
+        <div class="card-title" style="font-size: 26px;">🔍 尋訪家鄉老屋</div>
+        <div class="card-desc" style="font-size: 19px;">
+          利用假日與家人走訪附近的傳統古厝、三合院或老街騎樓（亭仔腳）。<br><br>
           記錄下它的堂號、紅磚砌法或通風天井，拍下一張美麗的建築相片。
         </div>
       </div>
 
       <div class="card card-gold">
         <div class="card-badge">任務二 · 廚房尋寶</div>
-        <div class="card-title">🥣 尋找老器物</div>
-        <div class="card-desc">
-          訪問家中的爺爺奶奶，問問他們小時候是否見過紅磚大灶、石磨或手搖風鼓。<br>
+        <div class="card-title" style="font-size: 26px;">🥣 尋找老器物</div>
+        <div class="card-desc" style="font-size: 19px;">
+          訪問家中的爺爺奶奶，問問他們小時候是否見過紅磚大灶、石磨或手搖風鼓。<br><br>
           聽長輩述說一則屬於早期臺灣農家勤奮生活、互助共好的暖心故事。
         </div>
       </div>
 
       <div class="card card-gold">
         <div class="card-badge">任務三 · 智慧傳承</div>
-        <div class="card-title">🌱 永續環保實踐</div>
-        <div class="card-desc">
-          體會先民「就地取材、物盡其用、不浪費資源」的和諧自然觀。<br>
-          在現代生活中減少塑膠使用，珍惜大自然恩賜，愛護我們美麗的家鄉！
+        <div class="card-title" style="font-size: 26px;">🌱 永續環保實踐</div>
+        <div class="card-desc" style="font-size: 19px;">
+          體會先民「就地取材、物盡其用、不浪費資源」的和諧自然觀。<br><br>
+          在現代生活中減少一次性塑膠使用，珍惜大自然恩賜，愛護美麗家鄉！
         </div>
       </div>
     </div>
 
-    <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid var(--border-gold); border-radius: 14px; padding: 16px 24px; display: flex; justify-content: space-between; align-items: center;">
-      <span style="font-size: 16px; font-weight: 700; color: var(--gold-light);">
+    <div style="background: rgba(245, 158, 11, 0.14); border: 2px solid var(--border-gold); border-radius: 16px; padding: 18px 28px; display: flex; justify-content: space-between; align-items: center;">
+      <span style="font-size: 20px; font-weight: 800; color: var(--gold-light);">
         🎉 恭喜完成第二單元傳統住屋與器具全套學習！
       </span>
-      <button class="ctrl-btn ctrl-btn-primary" onclick="goToSlide(1)">🔄 回到封面重新復習</button>
+      <button class="ctrl-btn ctrl-btn-primary" style="font-size: 19px; padding: 12px 24px;" onclick="goToSlide(1)">🔄 回到封面重新復習</button>
     </div>
   </div>
 
   <!-- 底部指示與切頁按鈕 -->
   <div id="slide-indicator">
-    <span>第 <strong id="cur-slide-num" style="color: var(--blue-accent);">1</strong> / 14 頁</span>
-    <span style="color: rgba(255,255,255,0.2);">|</span>
-    <span id="cur-slide-title" style="color: #94A3B8;">走進時光隧道</span>
+    <span>第 <strong id="cur-slide-num" style="color: var(--blue-accent); font-size: 20px;">1</strong> / 14 頁</span>
+    <span style="color: rgba(255,255,255,0.25);">|</span>
+    <span id="cur-slide-title" style="color: #CBD5E1; font-size: 17px;">走進時光隧道</span>
   </div>
 
   <div id="deck-nav">
@@ -1117,15 +1395,12 @@
       target.classList.add('active');
     }
 
-    // 更新頂部進度條
     const pct = (currentSlide / totalSlides) * 100;
     document.getElementById('progress-bar').style.width = pct + '%';
 
-    // 更新頁碼指示器
     document.getElementById('cur-slide-num').textContent = currentSlide;
     document.getElementById('cur-slide-title').textContent = slideTitles[currentSlide - 1];
 
-    // 若非 Slide 5，自動暫停視頻以防干擾
     if (currentSlide !== 5) {
       const v = document.getElementById('main-video-player');
       if (v && !v.paused) {
@@ -1133,11 +1408,9 @@
         updatePlayBtn(false);
       }
     } else {
-      // 進入 Slide 5
       initVideoControls();
     }
 
-    // 觸發特定頁面繪圖
     if (currentSlide === 6) {
       drawStruct();
     } else if (currentSlide === 9) {
@@ -1166,7 +1439,6 @@
     }
   }
 
-  // 鍵盤切頁支援 (左右方向鍵、空白鍵)
   window.addEventListener('keydown', (e) => {
     if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
       nextSlide();
@@ -1307,180 +1579,165 @@
     ctx.clearRect(0, 0, cvs.width, cvs.height);
 
     if (curStruct === 'sanhe') {
-      // 繪製三合院俯瞰與透視圖
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-      // 大埕 (曬穀場)
-      ctx.fillStyle = '#F59E0B22';
+      ctx.fillStyle = '#F59E0B25';
       ctx.strokeStyle = '#F59E0B';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(180, 180, 240, 140, 8);
+      ctx.roundRect(190, 190, 270, 160, 10);
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = '#FCD34D';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('大埕（曬穀聚會）', 240, 255);
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('大埕（曬穀聚會場）', 250, 275);
 
-      // 正身 (神明廳)
-      ctx.fillStyle = '#EF444433';
+      ctx.fillStyle = '#EF444435';
       ctx.strokeStyle = '#EF4444';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.beginPath();
-      ctx.roundRect(150, 70, 300, 80, 8);
+      ctx.roundRect(160, 65, 330, 95, 10);
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = '#FFFFFF';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('正身（神明廳／尊長房）', 205, 115);
+      ctx.font = 'bold 20px sans-serif';
+      ctx.fillText('正身（神明廳／尊長大房）', 210, 120);
 
-      // 左護龍 (大房)
-      ctx.fillStyle = '#38BDF822';
+      ctx.fillStyle = '#38BDF825';
       ctx.strokeStyle = '#38BDF8';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(70, 100, 70, 220, 8);
+      ctx.roundRect(70, 90, 80, 260, 10);
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = '#38BDF8';
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText('左護龍', 80, 200);
-      ctx.fillText('(左尊大房)', 75, 225);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('左護龍', 85, 205);
+      ctx.fillText('(左尊大房)', 75, 235);
 
-      // 右護龍 (次房)
-      ctx.fillStyle = '#10B98122';
+      ctx.fillStyle = '#10B98125';
       ctx.strokeStyle = '#10B981';
       ctx.beginPath();
-      ctx.roundRect(460, 100, 70, 220, 8);
+      ctx.roundRect(500, 90, 80, 260, 10);
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = '#10B981';
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText('右護龍', 470, 200);
-      ctx.fillText('(右卑二房)', 465, 225);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('右護龍', 515, 205);
+      ctx.fillText('(右卑二房)', 505, 235);
 
-      // 穿堂風指示箭頭
       ctx.strokeStyle = '#38BDF8';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([6, 6]);
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([8, 6]);
       ctx.beginPath();
-      ctx.moveTo(300, 360);
-      ctx.lineTo(300, 50);
+      ctx.moveTo(325, 390);
+      ctx.lineTo(325, 45);
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = '#38BDF8';
-      ctx.fillText('↑ 天井自然對流通風', 230, 365);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('↑ 天井自然對流通風', 245, 395);
 
     } else if (curStruct === 'underground') {
-      // 繪製達悟地下屋避風剖面
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-      // 地表面
       ctx.strokeStyle = '#64748B';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.beginPath();
-      ctx.moveTo(40, 200);
-      ctx.lineTo(160, 200);
-      ctx.lineTo(160, 320); // 下挖坑
-      ctx.lineTo(440, 320);
-      ctx.lineTo(440, 200);
-      ctx.lineTo(560, 200);
+      ctx.moveTo(40, 220);
+      ctx.lineTo(160, 220);
+      ctx.lineTo(160, 350);
+      ctx.lineTo(480, 350);
+      ctx.lineTo(480, 220);
+      ctx.lineTo(600, 220);
       ctx.stroke();
 
       ctx.fillStyle = '#1E293B';
-      ctx.fillRect(40, 203, 120, 160);
-      ctx.fillRect(440, 203, 120, 160);
+      ctx.fillRect(40, 223, 120, 170);
+      ctx.fillRect(480, 223, 120, 170);
 
-      // 地下主屋斜屋頂
-      ctx.fillStyle = '#F59E0B33';
+      ctx.fillStyle = '#F59E0B35';
       ctx.strokeStyle = '#F59E0B';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.beginPath();
-      ctx.moveTo(150, 210);
-      ctx.lineTo(300, 150);
-      ctx.lineTo(450, 210);
+      ctx.moveTo(150, 230);
+      ctx.lineTo(320, 160);
+      ctx.lineTo(490, 230);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
 
-      // 地下屋空間
-      ctx.fillStyle = '#38BDF822';
-      ctx.fillRect(170, 210, 260, 105);
+      ctx.fillStyle = '#38BDF825';
+      ctx.fillRect(175, 230, 290, 115);
       ctx.fillStyle = '#FCD34D';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('主屋深入地下避風', 235, 265);
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('主屋深入地下避強風', 240, 290);
 
-      // 鵝卵石排水溝
       ctx.fillStyle = '#94A3B8';
-      ctx.font = '13px sans-serif';
-      ctx.fillText('鵝卵石排水暗溝 →', 310, 340);
+      ctx.font = '15px sans-serif';
+      ctx.fillText('鵝卵石排水暗溝 →', 330, 375);
 
-      // 狂風流線吹過
       ctx.strokeStyle = '#38BDF8';
-      ctx.lineWidth = 3;
-      ctx.setLineDash([8, 6]);
+      ctx.lineWidth = 3.5;
+      ctx.setLineDash([10, 6]);
       ctx.beginPath();
-      ctx.moveTo(20, 140);
-      ctx.quadraticCurveTo(300, 110, 580, 140);
+      ctx.moveTo(20, 150);
+      ctx.quadraticCurveTo(320, 110, 620, 150);
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = '#38BDF8';
+      ctx.font = 'bold 16px sans-serif';
       ctx.fillText('颱風與季風順屋頂斜度流線掠過（風阻極小）→', 150, 95);
 
     } else if (curStruct === 'granary') {
-      // 繪製泰雅高腳倉防鼠板
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-      // 地面
       ctx.strokeStyle = '#64748B';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.beginPath();
-      ctx.moveTo(50, 320);
-      ctx.lineTo(550, 320);
+      ctx.moveTo(40, 350);
+      ctx.lineTo(600, 350);
       ctx.stroke();
 
-      // 高腳柱 (4根支柱)
       ctx.fillStyle = '#78350F';
-      ctx.fillRect(200, 160, 20, 160);
-      ctx.fillRect(380, 160, 20, 160);
+      ctx.fillRect(210, 170, 24, 180);
+      ctx.fillRect(410, 170, 24, 180);
 
-      // 防鼠板 (圓形光滑倒扣板)
       ctx.fillStyle = '#F59E0B';
       ctx.beginPath();
-      ctx.ellipse(210, 175, 45, 12, 0, 0, Math.PI * 2);
+      ctx.ellipse(222, 190, 50, 14, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.beginPath();
-      ctx.ellipse(390, 175, 45, 12, 0, 0, Math.PI * 2);
+      ctx.ellipse(422, 190, 50, 14, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.fillStyle = '#0A0F1D';
-      ctx.font = 'bold 12px sans-serif';
-      ctx.fillText('防鼠板', 193, 179);
-      ctx.fillText('防鼠板', 373, 179);
+      ctx.font = 'bold 14px sans-serif';
+      ctx.fillText('防鼠板', 202, 195);
+      ctx.fillText('防鼠板', 402, 195);
 
-      // 架高儲糧倉
-      ctx.fillStyle = '#F59E0B22';
+      ctx.fillStyle = '#F59E0B25';
       ctx.strokeStyle = '#F59E0B';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.beginPath();
-      ctx.roundRect(160, 60, 280, 100, 10);
+      ctx.roundRect(170, 60, 310, 110, 12);
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = '#FDE68A';
-      ctx.font = 'bold 18px sans-serif';
-      ctx.fillText('架高穀倉（儲藏小米乾糧）', 190, 115);
+      ctx.font = 'bold 20px sans-serif';
+      ctx.fillText('挑高穀倉（儲藏小米乾糧）', 205, 125);
 
-      // 老鼠路徑受阻指示
       ctx.strokeStyle = '#EF4444';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.moveTo(230, 280);
-      ctx.lineTo(230, 195);
+      ctx.moveTo(250, 300);
+      ctx.lineTo(250, 210);
       ctx.stroke();
       ctx.fillStyle = '#EF4444';
-      ctx.fillText('老鼠往上爬 ❌ 受阻墜落', 240, 235);
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('老鼠往上爬 ❌ 受阻墜落', 260, 255);
     }
   }
 
@@ -1490,7 +1747,6 @@
   let curMach = 'mill';
   let machRunning = true;
   let machAngle = 0;
-  let animFrameId = null;
 
   function switchMachine(type) {
     curMach = type;
@@ -1531,125 +1787,114 @@
     ctx.clearRect(0, 0, cvs.width, cvs.height);
 
     if (curMach === 'mill') {
-      // 繪製雙扇石磨
-      const cx = 300, cy = 190;
-      // 底盤
+      const cx = 325, cy = 210;
       ctx.fillStyle = '#334155';
       ctx.beginPath();
-      ctx.ellipse(cx, cy + 40, 160, 80, 0, 0, Math.PI * 2);
+      ctx.ellipse(cx, cy + 45, 180, 90, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // 出漿口
       ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(cx - 20, cy + 110, 40, 50);
+      ctx.fillRect(cx - 24, cy + 120, 48, 60);
       ctx.fillStyle = '#38BDF8';
-      ctx.font = 'bold 14px sans-serif';
-      ctx.fillText('雪白米漿流出 🥛', cx - 55, cy + 180);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('雪白米漿流出 🥛', cx - 60, cy + 195);
 
-      // 上扇石磨 (旋轉)
       ctx.save();
       ctx.translate(cx, cy);
       ctx.rotate(machAngle);
 
       ctx.fillStyle = '#64748B';
       ctx.beginPath();
-      ctx.ellipse(0, 0, 130, 65, 0, 0, Math.PI * 2);
+      ctx.ellipse(0, 0, 145, 75, 0, 0, Math.PI * 2);
       ctx.fill();
       ctx.strokeStyle = '#CBD5E1';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.stroke();
 
-      // 磨孔 (注米口)
       ctx.fillStyle = '#0F172A';
       ctx.beginPath();
-      ctx.arc(35, 0, 18, 0, Math.PI * 2);
+      ctx.arc(40, 0, 20, 0, Math.PI * 2);
       ctx.fill();
 
-      // 磨齒刻痕
       ctx.strokeStyle = '#475569';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2.5;
       for (let i = 0; i < 8; i++) {
         const rad = (i * Math.PI) / 4;
         ctx.beginPath();
-        ctx.moveTo(Math.cos(rad) * 40, Math.sin(rad) * 20);
-        ctx.lineTo(Math.cos(rad) * 120, Math.sin(rad) * 60);
+        ctx.moveTo(Math.cos(rad) * 45, Math.sin(rad) * 25);
+        ctx.lineTo(Math.cos(rad) * 135, Math.sin(rad) * 70);
         ctx.stroke();
       }
 
-      // 木把手 (丁字架)
       ctx.fillStyle = '#D97706';
-      ctx.fillRect(-150, -10, 150, 20);
+      ctx.fillRect(-170, -12, 170, 24);
       ctx.restore();
 
       ctx.fillStyle = '#FCD34D';
-      ctx.font = 'bold 16px sans-serif';
-      ctx.fillText('⟲ 逆時針均勻旋轉碾磨', cx - 90, 45);
+      ctx.font = 'bold 18px sans-serif';
+      ctx.fillText('⟲ 逆時針均勻旋轉碾磨', cx - 100, 45);
 
     } else if (curMach === 'winnow') {
-      // 繪製手搖風鼓
-      const cx = 300, cy = 190;
+      const cx = 325, cy = 210;
       ctx.fillStyle = '#0F172A';
       ctx.fillRect(0, 0, cvs.width, cvs.height);
 
-      // 風鼓木機身
       ctx.fillStyle = '#78350F';
       ctx.strokeStyle = '#D97706';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 3.5;
       ctx.beginPath();
-      ctx.roundRect(140, 80, 240, 180, 16);
+      ctx.roundRect(140, 90, 270, 200, 18);
       ctx.fill();
       ctx.stroke();
 
-      // 上方漏斗進料口
       ctx.beginPath();
-      ctx.moveTo(220, 30);
-      ctx.lineTo(300, 30);
-      ctx.lineTo(280, 80);
-      ctx.lineTo(240, 80);
+      ctx.moveTo(230, 35);
+      ctx.lineTo(320, 35);
+      ctx.lineTo(300, 90);
+      ctx.lineTo(250, 90);
       ctx.closePath();
       ctx.fill();
       ctx.stroke();
       ctx.fillStyle = '#FEF08A';
-      ctx.font = '13px sans-serif';
-      ctx.fillText('未篩稻穀倒入 ↓', 220, 25);
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('未篩稻穀倒入 ↓', 235, 28);
 
-      // 風扇輪旋轉
       ctx.save();
-      ctx.translate(220, 170);
+      ctx.translate(230, 190);
       ctx.rotate(machAngle * 2);
       ctx.strokeStyle = '#FCD34D';
-      ctx.lineWidth = 4;
+      ctx.lineWidth = 4.5;
       for (let j = 0; j < 4; j++) {
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.lineTo(40 * Math.cos(j * Math.PI / 2), 40 * Math.sin(j * Math.PI / 2));
+        ctx.lineTo(45 * Math.cos(j * Math.PI / 2), 45 * Math.sin(j * Math.PI / 2));
         ctx.stroke();
       }
       ctx.restore();
 
-      // 氣流噴出指示
       ctx.strokeStyle = '#38BDF8';
-      ctx.lineWidth = 2;
-      ctx.setLineDash([6, 6]);
+      ctx.lineWidth = 2.5;
+      ctx.setLineDash([8, 6]);
       ctx.beginPath();
-      ctx.moveTo(280, 150);
-      ctx.lineTo(480, 140);
+      ctx.moveTo(300, 170);
+      ctx.lineTo(520, 155);
       ctx.stroke();
       ctx.setLineDash([]);
       ctx.fillStyle = '#38BDF8';
-      ctx.fillText('強風吹走空包彈與草屑 💨 →', 370, 130);
+      ctx.font = 'bold 15px sans-serif';
+      ctx.fillText('強風吹走空包彈與草屑 💨 →', 390, 145);
 
-      // 飽滿穀粒直落
       ctx.fillStyle = '#10B981';
-      ctx.fillText('飽滿實穀垂直落入米籮 🌾 ↓', 220, 300);
+      ctx.font = 'bold 16px sans-serif';
+      ctx.fillText('飽滿實穀垂直落入米籮 🌾 ↓', 230, 335);
     }
   }
 
   function animateMach() {
     if (machRunning) {
-      machAngle -= 0.04; // 逆時針
+      machAngle -= 0.04;
       drawMach();
-      animFrameId = requestAnimationFrame(animateMach);
+      requestAnimationFrame(animateMach);
     }
   }
   animateMach();
@@ -1731,15 +1976,15 @@
   function selectQuizAnswer(chosenIdx) {
     const q = quizData[curQuizIndex];
     const opts = document.querySelectorAll('.quiz-option');
-    opts.forEach(o => o.style.pointerEvents = 'none'); // 禁用再次點擊
+    opts.forEach(o => o.style.pointerEvents = 'none');
 
     const fbBox = document.getElementById('quiz-feedback-box');
     fbBox.style.display = 'block';
 
     if (chosenIdx === q.ans) {
       opts[chosenIdx].classList.add('correct');
-      fbBox.style.background = 'rgba(16, 185, 129, 0.2)';
-      fbBox.style.border = '1px solid var(--emerald-accent)';
+      fbBox.style.background = 'rgba(16, 185, 129, 0.25)';
+      fbBox.style.border = '1.5px solid var(--emerald-accent)';
       fbBox.style.color = '#A7F3D0';
       fbBox.innerHTML = `🎉 <strong>回答正確！</strong> ${q.why}`;
       quizScore += 100 / quizData.length;
@@ -1747,8 +1992,8 @@
     } else {
       opts[chosenIdx].classList.add('wrong');
       opts[q.ans].classList.add('correct');
-      fbBox.style.background = 'rgba(239, 68, 68, 0.2)';
-      fbBox.style.border = '1px solid var(--rose-accent)';
+      fbBox.style.background = 'rgba(239, 68, 68, 0.25)';
+      fbBox.style.border = '1.5px solid var(--rose-accent)';
       fbBox.style.color = '#FECACA';
       fbBox.innerHTML = `⚠️ <strong>答錯囉！正確答案是 (${['A', 'B', 'C', 'D'][q.ans]})</strong>。<br>${q.why}`;
     }
@@ -1770,7 +2015,6 @@
     }
   }
 
-  // 初始化載入
   window.addEventListener('DOMContentLoaded', () => {
     updateSlideUI();
     loadQuizQuestion();
