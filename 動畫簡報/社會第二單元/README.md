@@ -13,9 +13,9 @@
 - **`社會第二單元.mp4` / `social_explainer_125s.mp4`**：
   - 205.32 秒（3分25秒）1080p 高畫質關鍵原理解說動畫影片（嵌入 Slide 5 影音劇場）。
   - `social_explainer_silent.mp4`（無聲備份版）
-  - `social_explainer_tts.mp3`（微軟台灣女聲神經語音 `zh-TW-HsiaoChenNeural` 旁白音訊檔）。
+  - `social_explainer_tts.mp3`（微軟臺灣女聲神經語音 `zh-TW-HsiaoChenNeural` 旁白音訊檔）。
 - **`assets/`**：
-  - 全套 14 頁專屬 AI 繪本背景插畫（`bg_slide1.jpg` ~ `bg_slide14.jpg`），16:9 比例、無可讀文字、溫暖台灣鄉土色調。
+  - 全套 14 頁專屬 AI 繪本背景插畫（`bg_slide1.jpg` ~ `bg_slide14.jpg`），16:9 比例、無可讀文字、溫暖臺灣鄉土色調。
 - **`renders/`**：
   - 14 頁 Playwright 實機瀏覽器渲染驗收截圖。
 - **`render_social_video.py`**：

@@ -34,7 +34,7 @@
 - **視訊檔名**：[`social_explainer_125s.mp4`](file:///d:/antui/動畫簡報/social_explainer_125s.mp4)（另附無聲版 [`social_explainer_silent.mp4`](file:///d:/antui/動畫簡報/social_explainer_silent.mp4)）
 - **視訊時長**：**205.32 秒**（3 分 25 秒，遠超 $\ge 120$ 秒要求）
 - **解析度與影格率**：1080p (1920×1080) @ 30fps
-- **語音旁白**：微軟台灣神經語音 `zh-TW-HsiaoChenNeural` 溫和女聲
+- **語音旁白**：微軟臺灣神經語音 `zh-TW-HsiaoChenNeural` 溫和女聲
 - **動態播放控制器（Slide 5）**：
   - 播放 / 暫停按鈕 (`#btn-play-pause`)
   - 可拖曳進度條 Seek Bar (`#video-seek`)
