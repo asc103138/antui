@@ -40,14 +40,16 @@ class GatekeeperAuditor:
     def audit_css(self, css_path: Path):
         if not css_path.exists():
             return
-        content = css_path.read_text(encoding='utf-8')
+        raw_content = css_path.read_text(encoding='utf-8')
+        
+        # 徹底移除所有 CSS 多行與單行註解 /* ... */
+        content = re.sub(r'/\*.*?\*/', '', raw_content, flags=re.DOTALL)
         lines = content.splitlines()
 
         # 1. 嚴禁無差別 transition: all
         transition_all_matches = []
         for idx, line in enumerate(lines, 1):
-            # 排除註解
-            cleaned = line.split('/*')[0].strip()
+            cleaned = line.strip()
             if re.search(r'transition\s*:\s*all\b', cleaned, re.IGNORECASE):
                 transition_all_matches.append(f"Line {idx}: {cleaned}")
         self.check_fatal(
@@ -60,7 +62,7 @@ class GatekeeperAuditor:
         # 2. 嚴禁 scale(0) 憑空生成
         scale_zero_matches = []
         for idx, line in enumerate(lines, 1):
-            cleaned = line.split('/*')[0].strip()
+            cleaned = line.strip()
             if re.search(r'scale\(\s*0\s*\)', cleaned):
                 scale_zero_matches.append(f"Line {idx}: {cleaned}")
         self.check_fatal(
@@ -73,7 +75,7 @@ class GatekeeperAuditor:
         # 3. 嚴禁進場使用 ease-in
         ease_in_matches = []
         for idx, line in enumerate(lines, 1):
-            cleaned = line.split('/*')[0].strip()
+            cleaned = line.strip()
             if re.search(r'animation\s*:.*?\bease-in\b', cleaned, re.IGNORECASE) or re.search(r'transition\s*:.*?\bease-in\b', cleaned, re.IGNORECASE):
                 ease_in_matches.append(f"Line {idx}: {cleaned}")
         self.check_fatal(
@@ -188,18 +190,42 @@ class GatekeeperAuditor:
                 except Exception:
                     pass
 
+    def audit_embedded_styles(self, html_path: Path):
+        if not html_path.exists():
+            return
+        content = html_path.read_text(encoding='utf-8')
+        styles = re.findall(r'<style[^>]*>(.*?)</style>', content, re.DOTALL | re.IGNORECASE)
+        combined_css = "\n".join(styles)
+        if combined_css.strip():
+            # 建立虛擬 CSS 審查
+            tmp_dummy_path = html_path.parent / f"_temp_{html_path.stem}.css"
+            try:
+                tmp_dummy_path.write_text(combined_css, encoding='utf-8')
+                self.audit_css(tmp_dummy_path)
+            finally:
+                if tmp_dummy_path.exists():
+                    tmp_dummy_path.unlink()
+
     def run(self) -> bool:
         print(f"\n{Color.BOLD}{Color.BLUE}========================================================================{Color.RESET}")
         print(f"{Color.BOLD}{Color.BLUE}   DUN-YUAN AI / antui 成品一票否決驗收檢查 (Gatekeeper Protocol)   {Color.RESET}")
         print(f"{Color.BOLD}{Color.BLUE}========================================================================{Color.RESET}\n")
 
-        # 檢驗 CSS
+        # 檢驗主目錄 CSS
         css_file = ROOT_DIR / 'style.css'
         self.audit_css(css_file)
 
-        # 檢驗 HTML
+        # 檢驗主目錄 HTML
         for html_name in ['index.html', 'tools.html']:
             self.audit_html(ROOT_DIR / html_name)
+
+        # 檢驗動畫簡報目錄下的所有 HTML (含子資料夾與內嵌 style，排除影片渲染中間模板)
+        slide_dir = ROOT_DIR / '動畫簡報'
+        if slide_dir.exists():
+            for slide_html in slide_dir.rglob('*.html'):
+                if not slide_html.name.startswith('_temp_') and not any('_motion_explainer' in part for part in slide_html.parts):
+                    self.audit_html(slide_html)
+                    self.audit_embedded_styles(slide_html)
 
         # 檢驗資安
         self.audit_security()

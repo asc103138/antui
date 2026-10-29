@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#080D1A">
+  <title>南一版國小四年級數學四上 · 第二單元 2-3 三四位數乘以二位數（直式蓋大樓心法）</title>
+  <style>
+    /* ==========================================================================
+       Emil Kowalski Design Engineering Baseline
+       Zero transition-all | Zero scale-zero | 100dvh Native Mobile
+       ========================================================================== */
+    :root {
+      --bg-primary: #080D1A;
+      --bg-card: rgba(15, 23, 42, 0.85);
+      --bg-card-hover: rgba(30, 41, 59, 0.9);
+      --border-card: rgba(255, 255, 255, 0.12);
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      --accent-cyan: #38BDF8;
+      --accent-purple: #A78BFA;
+      --accent-amber: #F59E0B;
+      --accent-green: #34D399;
+      --accent-rose: #FB7185;
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 100dvh;
+      min-height: 100svh;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
+      overflow: hidden;
+      user-select: none;
+      font-size: 16px;
+    }
+
+    /* 宇宙深空背景光暈 */
+    .bg-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background: 
+        radial-gradient(circle at 15% 20%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 85% 80%, rgba(167, 139, 250, 0.08) 0%, transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(15, 23, 42, 0.6) 0%, transparent 100%);
+    }
+
+    /* 主舞台容器 (16:9 比例自適應) */
+    .deck-container {
+      position: relative;
+      z-index: 10;
+      width: 100vw;
+      height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: clamp(12px, 2.5dvh, 28px) clamp(16px, 3dvw, 40px);
+    }
+
+    /* 頂部導航列 */
+    header.deck-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 48px;
+      flex-shrink: 0;
+      border-bottom: 1px solid var(--border-card);
+      padding-bottom: 8px;
+    }
+
+    .badge-unit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 12px;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 9999px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      letter-spacing: 0.5px;
+    }
+
+    .badge-unit::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    .progress-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .progress-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: background-color 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+      cursor: pointer;
+    }
+
+    .dot.active {
+      background: var(--accent-cyan);
+      transform: scale(1.3);
+      box-shadow: 0 0 6px var(--accent-cyan);
+    }
+
+    .slide-counter {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* 簡報滑動內容區 */
+    main.deck-main {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: calc(100% - 110px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 10px clamp(10px, 3dvw, 40px);
+      opacity: 0;
+      transform: scale(0.97);
+      transition: opacity 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    }
+
+    .slide.active {
+      display: flex;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* 標題與版面元素 */
+    .slide-title-wrap {
+      text-align: center;
+      margin-bottom: clamp(10px, 1.8dvh, 20px);
+    }
+
+    .slide-title {
+      font-size: clamp(24px, 3.2dvh, 38px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF 30%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    .slide-subtitle {
+      font-size: clamp(14px, 1.8dvh, 18px);
+      color: var(--text-muted);
+      max-width: 800px;
+      line-height: 1.5;
+    }
+
+    /* 趣味口訣專用徽章與方塊 (大幅降低認知負荷) */
+    .rhyme-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.25), rgba(251, 191, 36, 0.1));
+      border: 1.5px solid var(--accent-amber);
+      border-radius: 9999px;
+      padding: 6px 18px;
+      font-size: 15px;
+      font-weight: 800;
+      color: #FDE68A;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+    }
+
+    .rhyme-box {
+      background: rgba(15, 23, 42, 0.9);
+      border: 2px dashed var(--accent-amber);
+      border-radius: 12px;
+      padding: 12px 18px;
+      margin: 10px 0;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 800;
+      color: #FEF08A;
+      line-height: 1.6;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+    }
+
+    .floor-tag-1 {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(56, 189, 248, 0.2);
+      border: 1px solid var(--accent-cyan);
+      border-radius: 6px;
+      color: var(--accent-cyan);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .floor-tag-2 {
+      display: inline-block;
+      padding: 3px 8px;
+      background: rgba(167, 139, 250, 0.2);
+      border: 1px solid var(--accent-purple);
+      border-radius: 6px;
+      color: var(--accent-purple);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    /* 網格與卡片設計 */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(16px, 2.5dvw, 36px);
+      width: 100%;
+      max-width: 1180px;
+      height: 100%;
+      max-height: 520px;
+      align-items: center;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      width: 100%;
+      max-width: 1140px;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: clamp(16px, 2.5dvh, 26px);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-highlight {
+      border-color: rgba(56, 189, 248, 0.4);
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.8) 100%);
+    }
+
+    /* ==========================================================================
+       數學乘法位值網格系統 (Math Multiplication Grid System)
+       固定欄寬 36px/38px，萬千百十個嚴格垂對
+       ========================================================================== */
+    .math-multiplication-table {
+      display: table;
+      margin: 10px auto;
+      border-collapse: collapse;
+      font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace, 'Noto Sans TC';
+      font-size: clamp(20px, 2.5dvh, 26px);
+      color: #F8FAFC;
+      user-select: none;
+    }
+
+    .math-multiplication-table tr {
+      height: 38px;
+    }
+
+    .math-multiplication-table .col-op {
+      width: 36px;
+      text-align: center;
+      color: var(--accent-amber);
+      font-weight: 700;
+    }
+
+    .math-multiplication-table .col-digit {
+      width: 36px;
+      text-align: center;
+      font-weight: 700;
+      position: relative;
+    }
+
+    .math-multiplication-table .header-row .col-digit {
+      font-size: 14px;
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.15);
+      padding-bottom: 4px;
+    }
+
+    .math-multiplication-table .line-equals {
+      border-bottom: 2.5px solid #F8FAFC !important;
+    }
+
+    .math-multiplication-table .line-equals-top {
+      border-top: 2.5px solid #F8FAFC !important;
+    }
+
+    .math-multiplication-table .layer-1 {
+      color: var(--accent-cyan);
+    }
+
+    .math-multiplication-table .layer-2 {
+      color: var(--accent-purple);
+    }
+
+    .math-multiplication-table .layer-sum {
+      color: var(--accent-green);
+      font-weight: 800;
+    }
+
+    .math-multiplication-table .ghost-zero {
+      color: rgba(255, 255, 255, 0.25);
+      font-size: 0.85em;
+    }
+
+    .math-multiplication-table .note-col {
+      padding-left: 18px;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-align: left;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      white-space: nowrap;
+    }
+
+    /* ==========================================================================
+       自訂動態動畫控制器 (Interactive Animation Player Controller)
+       ========================================================================== */
+    .anim-player-box {
+      width: 100%;
+      background: rgba(10, 15, 30, 0.95);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    }
+
+    .anim-stage {
+      position: relative;
+      width: 100%;
+      height: 250px;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .anim-controls-bar {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(30, 41, 59, 0.5);
+      padding: 8px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .btn-anim-ctrl {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFF;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 15px;
+      transition: background-color 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+      flex-shrink: 0;
+    }
+
+    .btn-anim-ctrl:active {
+      transform: scale(0.92);
+      background: rgba(56, 189, 248, 0.3);
+    }
+
+    .btn-anim-ctrl.primary {
+      background: var(--accent-cyan);
+      color: #080D1A;
+      font-weight: 800;
+      border: none;
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+    }
+
+    .anim-seek-slider {
+      flex: 1;
+      height: 6px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .anim-seek-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      cursor: pointer;
+      box-shadow: 0 0 8px var(--accent-cyan);
+      transition: transform 0.15s var(--ease-out);
+    }
+
+    .anim-seek-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .anim-status-text {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      min-width: 90px;
+      text-align: right;
+    }
+
+    /* 迷思天秤動態 */
+    .balance-container {
+      position: relative;
+      width: 100%;
+      height: 160px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .balance-beam {
+      width: 260px;
+      height: 8px;
+      background: #CBD5E1;
+      border-radius: 4px;
+      transform-origin: center center;
+      transition: transform 0.5s var(--ease-spring);
+      position: relative;
+    }
+
+    .balance-pivot {
+      width: 0;
+      height: 0;
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 24px solid var(--accent-amber);
+      margin-top: -2px;
+    }
+
+    .balance-pan {
+      position: absolute;
+      top: 8px;
+      width: 90px;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .balance-pan.left {
+      left: 0;
+      background: rgba(251, 113, 133, 0.2);
+      border: 1px solid var(--accent-rose);
+      color: var(--accent-rose);
+    }
+
+    .balance-pan.right {
+      right: 0;
+      background: rgba(52, 211, 153, 0.2);
+      border: 1px solid var(--accent-green);
+      color: var(--accent-green);
+    }
+
+    /* 底部導覽控制列 */
+    footer.deck-footer {
+      height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border-card);
+      padding-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-btn-group {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-card);
+      border-radius: 10px;
+      color: var(--text-main);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s var(--ease-out), transform 0.15s var(--ease-out);
+    }
+
+    .btn-nav:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .btn-nav:active {
+      transform: scale(0.96);
+    }
+
+    .btn-nav.primary {
+      background: var(--accent-cyan);
+      color: #080D1A;
+      font-weight: 700;
+      border: none;
+    }
+
+    .btn-nav.primary:hover {
+      background: #7DD3FC;
+    }
+
+    .keyboard-hint {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kbd {
+      padding: 2px 6px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      font-size: 11px;
+      font-family: monospace;
+    }
+
+    .myth-interactive-card {
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid var(--border-card);
+      border-radius: 14px;
+      padding: 16px;
+      cursor: pointer;
+      transition: transform 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+    }
+
+    .myth-interactive-card:active {
+      transform: scale(0.98);
+    }
+
+    .feedback-box {
+      margin-top: 10px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .feedback-box.show {
+      display: block;
+      animation: fadeIn 0.3s var(--ease-out);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 900px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+        max-height: none;
+        overflow-y: auto;
+      }
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+      .slide-title {
+        font-size: 22px;
+      }
+      .math-multiplication-table {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-canvas"></div>
+
+  <div class="deck-container">
+    <header class="deck-header">
+      <div class="badge-unit">南一數學四上 · 2-3 三四位數乘以二位數</div>
+      <div class="progress-bar-container">
+        <div class="progress-dots" id="progress-dots"></div>
+        <div class="slide-counter" id="slide-counter">01 / 14</div>
+      </div>
+    </header>
+
+    <main class="deck-main" id="deck-main">
+
+      <!-- ==========================================
+           Slide 1: 封面
+           ========================================== -->
+      <section class="slide active" data-slide="1">
+        <div class="slide-title-wrap">
+          <div class="rhyme-badge">
+            🏰 乘法雙層大樓歌：乘數有二位，直式蓋兩樓！
+          </div>
+          <h1 class="slide-title" style="font-size: clamp(32px, 5dvh, 50px); margin-bottom: 12px;">
+            三四位數乘以二位數<br><span style="color: var(--accent-cyan);">直式「蓋大樓」心法</span>
+          </h1>
+          <p class="slide-subtitle" style="font-size: 17px;">
+            一樓個位住、二樓退一步！相加收禮物 🎁<br>
+            不用死背算則，用最好玩的口訣徹底攻克三大踩雷怪獸！
+          </p>
+        </div>
+
+        <div style="display: flex; gap: 14px; margin-top: 18px;">
+          <button class="btn-nav primary" onclick="goToSlide(2)">
+            開啟探險（按空白鍵 ➔）
+          </button>
+          <button class="btn-nav" onclick="goToSlide(5)">
+            直達動畫演示 🎥
+          </button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 2: 學習地圖
+           ========================================== -->
+      <section class="slide" data-slide="2">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">乘法升級地圖：看看我們的摩天大樓</h2>
+          <p class="slide-subtitle">乘數每多一位數，直式就多蓋一層樓！</p>
+        </div>
+
+        <div class="grid-3" style="max-width: 1000px;">
+          <div class="card" style="border-top: 4px solid var(--accent-amber);">
+            <div style="font-size: 13px; color: var(--accent-amber); font-weight: 700; margin-bottom: 6px;">2-1 平房階段</div>
+            <h3 style="font-size: 18px; margin-bottom: 8px;">四位數 × 一位數</h3>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+              乘數只有個位，直式是<strong style="color:#FFF;">一層平房</strong>，算完直接收工！
+            </p>
+          </div>
+
+          <div class="card" style="border-top: 4px solid var(--accent-purple);">
+            <div style="font-size: 13px; color: var(--accent-purple); font-weight: 700; margin-bottom: 6px;">2-2 雙層透天</div>
+            <h3 style="font-size: 18px; margin-bottom: 8px;">二位數 × 二位數</h3>
+            <p style="font-size: 14px; color: var(--text-muted); line-height: 1.6;">
+              乘數有二位，開始蓋<strong style="color:var(--accent-purple);">二層透天</strong>，一樓算個位、二樓算十位。
+            </p>
+          </div>
+
+          <div class="card card-highlight" style="border-top: 4px solid var(--accent-cyan); box-shadow: 0 0 25px rgba(56, 189, 248, 0.2);">
+            <div style="font-size: 13px; color: var(--accent-cyan); font-weight: 800; margin-bottom: 6px;">2-3 摩天大樓（本日主角 ★★★）</div>
+            <h3 style="font-size: 20px; color: var(--accent-cyan); margin-bottom: 8px;">三、四位數 × 二位數</h3>
+            <p style="font-size: 14px; color: #E2E8F0; line-height: 1.6;">
+              被乘數變超大！但別怕，<strong style="color:var(--accent-amber);">樓層一樣只有兩層</strong>！只要二樓十位退一步，保證全對！
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 3: 核心概念：為什麼一定有兩層？
+           ========================================== -->
+      <section class="slide" data-slide="3">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">直式大樓秘密：為什麼一定是「兩層」？</h2>
+          <p class="slide-subtitle">二位數乘數＝拆成兩把鑰匙，分別開一樓和二樓！</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="rhyme-box">
+              🔑 鑰匙口訣：<br>
+              乘數 28 拆兩半，個位 8 ＋ 十位 20！
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 14px;">
+              <div style="background: rgba(56, 189, 248, 0.1); border-left: 3px solid var(--accent-cyan); padding: 10px 14px; border-radius: 6px;">
+                <span class="floor-tag-1">一樓房間</span>
+                <div style="font-size: 15px; font-weight: 700; color: #FFF; margin-top: 4px;">
+                  105 × 8 ＝ 840（840 個一）
+                </div>
+              </div>
+              <div style="background: rgba(167, 139, 250, 0.1); border-left: 3px solid var(--accent-purple); padding: 10px 14px; border-radius: 6px;">
+                <span class="floor-tag-2">二樓房間</span>
+                <div style="font-size: 15px; font-weight: 700; color: #FFF; margin-top: 4px;">
+                  105 × 20 ＝ 2100（210 個十）
+                </div>
+              </div>
+            </div>
+            <div style="text-align: center; margin-top: 12px; font-weight: 800; color: var(--accent-green); font-size: 16px;">
+              一樓 ＋ 二樓 ＝ 840 ＋ 2100 ＝ 2940！
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 4px;">【雙層大樓標準骨架】</div>
+            
+            <table class="math-multiplication-table">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+                <td class="note-col">樓層標籤</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">5</td>
+                <td class="note-col">← 被乘數</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="color:var(--accent-purple);">2</td>
+                <td class="col-digit" style="color:var(--accent-cyan);">8</td>
+                <td class="note-col">← 乘數（十位2，個位8）</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">8</td>
+                <td class="col-digit">4</td>
+                <td class="col-digit">0</td>
+                <td class="note-col"><span class="floor-tag-1">一樓</span> 個位乘法</td>
+              </tr>
+              <tr class="layer-2 line-equals">
+                <td class="col-op"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+                <td class="note-col"><span class="floor-tag-2">二樓</span> 十位退一步</td>
+              </tr>
+              <tr class="layer-sum">
+                <td class="col-op"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">9</td>
+                <td class="col-digit">4</td>
+                <td class="col-digit">0</td>
+                <td class="note-col">🎁 兩樓加總收禮物</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 4: 第一層解密
+           ========================================== -->
+      <section class="slide" data-slide="4">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">一樓入住：個位先出發，屁股對齊它！</h2>
+          <p class="slide-subtitle">先請乘數個位的「8」登場，算出一樓答案 840</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="rhyme-box" style="border-color: var(--accent-cyan); color: #BAE6FD;">
+              🏃 一樓口訣：<br>
+              個位先出發，屁股對齊它！<br>
+              算完記一樓，位值不打架！
+            </div>
+            <ul style="font-size: 15px; line-height: 1.8; color: #CBD5E1; padding-left: 20px; margin-top: 12px;">
+              <li><strong>8 × 5 ＝ 40：</strong> 個位寫 0，十位頭頂進 4。</li>
+              <li><strong>8 × 0 ＝ 0：</strong> 加上進位的 4，十位寫 4。</li>
+              <li><strong>8 × 1 ＝ 8：</strong> 百位寫 8。</li>
+            </ul>
+            <div style="margin-top: 12px; font-size: 14px; color: var(--accent-cyan); font-weight: 700;">
+              ✔ 一樓完成！末位 0 牢牢對準個位！
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center;">
+            <table class="math-multiplication-table">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">5</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="opacity:0.3;">2</td>
+                <td class="col-digit" style="color:var(--accent-cyan); font-size: 1.2em;">8</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);">8</td>
+                <td class="col-digit" style="box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);">4</td>
+                <td class="col-digit" style="box-shadow: 0 0 8px rgba(56, 189, 248, 0.4);">0</td>
+              </tr>
+            </table>
+            <div style="margin-top: 14px; font-size: 14px; color: var(--accent-cyan); font-weight: 700;">
+              一樓房間：840 個一，大功告成！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 5: 【關鍵動畫頁 1】第二層位值跳躍動態演示
+           ========================================== -->
+      <section class="slide" data-slide="5">
+        <div class="slide-title-wrap">
+          <div class="rhyme-badge" style="border-color: var(--accent-purple); color: #DDD6FE;">
+            關鍵原理解說動畫 ① · 二樓退一步
+          </div>
+          <h2 class="slide-title">二樓入住：十位退一步，幽靈蛋守門口！</h2>
+          <p class="slide-subtitle">十位的 2 是「20」，算出來是 210 個十！拖拉滑桿看看它怎麼向左跳！</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="anim-player-box">
+            <div class="anim-stage" id="stage-anim-1">
+              <div id="anim-1-content" style="text-align: center;">
+                <table class="math-multiplication-table" style="font-size: 22px;">
+                  <tr>
+                    <td class="col-op"></td>
+                    <td class="col-digit"></td>
+                    <td class="col-digit">1</td>
+                    <td class="col-digit">0</td>
+                    <td class="col-digit">5</td>
+                  </tr>
+                  <tr class="line-equals">
+                    <td class="col-op">×</td>
+                    <td class="col-digit"></td>
+                    <td class="col-digit"></td>
+                    <td class="col-digit" id="anim-1-tens-digit" style="color:var(--accent-purple); font-weight:900;">2</td>
+                    <td class="col-digit" style="opacity: 0.4;">8</td>
+                  </tr>
+                  <tr class="layer-1">
+                    <td class="col-op"></td>
+                    <td class="col-digit"></td>
+                    <td class="col-digit">8</td>
+                    <td class="col-digit">4</td>
+                    <td class="col-digit">0</td>
+                  </tr>
+                  <tr class="layer-2" id="anim-1-layer-2-row">
+                    <td class="col-op"></td>
+                    <td class="col-digit" id="anim-1-d1" style="opacity:0;">2</td>
+                    <td class="col-digit" id="anim-1-d2" style="opacity:0;">1</td>
+                    <td class="col-digit" id="anim-1-d3" style="opacity:0;">0</td>
+                    <td class="col-digit" id="anim-1-d4" style="opacity:0;"><span class="ghost-zero">(0)</span></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+
+            <div class="anim-controls-bar">
+              <button class="btn-anim-ctrl primary" id="btn-play-1" onclick="togglePlay(1)">▶</button>
+              <button class="btn-anim-ctrl" onclick="stepAnim(1, -1)">⏮</button>
+              <button class="btn-anim-ctrl" onclick="stepAnim(1, 1)">⏭</button>
+              <input type="range" class="anim-seek-slider" id="slider-1" min="0" max="100" value="0" oninput="onSliderInput(1, this.value)">
+              <div class="anim-status-text" id="status-1">00:00 / 04:00</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rhyme-box" style="border-color: var(--accent-purple); color: #E9D5FF;">
+              👻 二樓口訣：<br>
+              十位換人乘，向左大步邁！<br>
+              留顆幽靈蛋，十位當靠山！
+            </div>
+            <p style="font-size: 15px; color: #CBD5E1; line-height: 1.7; margin: 12px 0;">
+              十位的 2 代表 <strong style="color:var(--accent-amber);">20</strong>！<br>
+              105 × 20 ＝ <strong>2100</strong>（210 個十）。
+            </p>
+            <div style="background: rgba(167, 139, 250, 0.15); border-left: 3px solid var(--accent-purple); padding: 8px 12px; border-radius: 6px; font-size: 14px;">
+              最末位的 0 必須寫在<strong style="color:var(--accent-purple);">十位</strong>！個位留空（放幽靈蛋），二樓絕對不能摔下樓梯！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 6: 【關鍵動畫頁 2】課本 P.29 重磅真題
+           ========================================== -->
+      <section class="slide" data-slide="6">
+        <div class="slide-title-wrap">
+          <div class="rhyme-badge">
+            關鍵原理解說動畫 ② · 課本 P.29 重磅四位數真題
+          </div>
+          <h2 class="slide-title">四位數 × 二位數：大樓蓋好兩層，加總收禮物！</h2>
+          <p class="slide-subtitle">哥哥買機車每期 2008 元分 24 期，看直式如何分工合作！</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="anim-player-box">
+            <div class="anim-stage" id="stage-anim-2" style="height: 270px;">
+              <table class="math-multiplication-table" style="font-size: 21px;">
+                <tr class="header-row">
+                  <td class="col-op"></td>
+                  <td class="col-digit">萬</td>
+                  <td class="col-digit">千</td>
+                  <td class="col-digit">百</td>
+                  <td class="col-digit">十</td>
+                  <td class="col-digit">個</td>
+                </tr>
+                <tr>
+                  <td class="col-op"></td>
+                  <td class="col-digit"></td>
+                  <td class="col-digit">2</td>
+                  <td class="col-digit">0</td>
+                  <td class="col-digit">0</td>
+                  <td class="col-digit">8</td>
+                </tr>
+                <tr class="line-equals">
+                  <td class="col-op">×</td>
+                  <td class="col-digit"></td>
+                  <td class="col-digit"></td>
+                  <td class="col-digit"></td>
+                  <td class="col-digit" id="anim-2-tens" style="color:var(--accent-purple);">2</td>
+                  <td class="col-digit" id="anim-2-ones" style="color:var(--accent-cyan);">4</td>
+                </tr>
+                <tr class="layer-1" id="anim-2-row-layer1" style="opacity: 0.15;">
+                  <td class="col-op"></td>
+                  <td class="col-digit"></td>
+                  <td class="col-digit">8</td>
+                  <td class="col-digit">0</td>
+                  <td class="col-digit">3</td>
+                  <td class="col-digit">2</td>
+                </tr>
+                <tr class="layer-2" id="anim-2-row-layer2" style="opacity: 0.15;">
+                  <td class="col-op"></td>
+                  <td class="col-digit">4</td>
+                  <td class="col-digit">0</td>
+                  <td class="col-digit">1</td>
+                  <td class="col-digit">6</td>
+                  <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+                </tr>
+                <tr class="layer-sum line-equals-top" id="anim-2-row-sum" style="opacity: 0.15;">
+                  <td class="col-op"></td>
+                  <td class="col-digit">4</td>
+                  <td class="col-digit">8</td>
+                  <td class="col-digit">1</td>
+                  <td class="col-digit">9</td>
+                  <td class="col-digit">2</td>
+                </tr>
+              </table>
+            </div>
+
+            <div class="anim-controls-bar">
+              <button class="btn-anim-ctrl primary" id="btn-play-2" onclick="togglePlay(2)">▶</button>
+              <button class="btn-anim-ctrl" onclick="stepAnim(2, -1)">⏮</button>
+              <button class="btn-anim-ctrl" onclick="stepAnim(2, 1)">⏭</button>
+              <input type="range" class="anim-seek-slider" id="slider-2" min="0" max="100" value="0" oninput="onSliderInput(2, this.value)">
+              <div class="anim-status-text" id="status-2">步驟 0/3</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rhyme-box" style="border-color: var(--accent-green); color: #A7F3D0;">
+              🎁 大樓收禮物口訣：<br>
+              一樓 8032 個位站，二樓 4016 十位看，<br>
+              拉上橫線加起來，48192 算得快！
+            </div>
+            <div style="font-size: 14px; line-height: 1.8; color: #CBD5E1; margin-top: 10px;">
+              <p><span class="floor-tag-1">一樓</span> 2008 × 4 ＝ 8032</p>
+              <p><span class="floor-tag-2">二樓</span> 2008 × 20 ＝ 40160（末位退一步對齊十位）</p>
+              <p style="color:var(--accent-green); font-weight:800; margin-top: 4px;">
+                ★ 兩樓相加：8032 ＋ 40160 ＝ <strong>48192 元</strong>！
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 7: 乘法直式工程標準
+           ========================================== -->
+      <section class="slide" data-slide="7">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">直式建築安全法規：四大不違章鐵律</h2>
+          <p class="slide-subtitle">排版工整漂亮，算乘法才不會蓋成危樓！</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="color: var(--accent-cyan); font-size: 18px; margin-bottom: 12px;">🏗️ 安全法規檢查清單</h3>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 14px; line-height: 1.5;">
+              <div style="padding: 8px 12px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <strong style="color:var(--accent-amber);">法規 1【必有兩樓】：</strong> 乘數有二位數，過程嚴格要有兩層！
+              </div>
+              <div style="padding: 8px 12px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <strong style="color:var(--accent-purple);">法規 2【二樓退步】：</strong> 二樓十位乘法，末位乖乖對齊十位！
+              </div>
+              <div style="padding: 8px 12px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <strong style="color:#FFF;">法規 3【樓板加厚】：</strong> 乘號下方與加總下方，等於直線要畫深畫直！
+              </div>
+              <div style="padding: 8px 12px; background: rgba(255,255,255,0.05); border-radius: 8px;">
+                <strong style="color:var(--accent-green);">法規 4【大樓居中】：</strong> 直式站中間，不歪左也不偏右！
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center; display: flex; flex-direction: column; justify-content: center;">
+            <div style="font-size: 14px; color: var(--accent-green); font-weight: 700; margin-bottom: 6px;">
+              ✔ 特優建築範例：1250 × 12
+            </div>
+            <table class="math-multiplication-table">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">萬</td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="color:var(--accent-purple);">1</td>
+                <td class="col-digit" style="color:var(--accent-cyan);">2</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="layer-2">
+                <td class="col-op"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+              </tr>
+              <tr class="layer-sum line-equals-top">
+                <td class="col-op"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 8: 【關鍵動畫頁 3】迷思一大破解
+           ========================================== -->
+      <section class="slide" data-slide="8">
+        <div class="slide-title-wrap">
+          <div class="rhyme-badge" style="border-color: var(--accent-rose); color: #FECDD3;">
+            關鍵原理解說動畫 ③ · 捉拿「二樓摔下樓梯怪」
+          </div>
+          <h2 class="slide-title">天秤大崩盤：二樓沒退步，摔掉三萬多！</h2>
+          <p class="slide-subtitle">如果把第二層 4016 誤擠在個位正下方，天平會歪成什麼樣？</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="anim-player-box">
+            <div class="anim-stage" id="stage-anim-3" style="height: 250px; flex-direction: column;">
+              <div class="balance-container">
+                <div class="balance-beam" id="anim-3-beam">
+                  <div class="balance-pan left">
+                    <div>❌ 摔下樓梯</div>
+                    <div style="font-size: 16px; font-weight: 800; margin-top: 4px;" id="anim-3-wrong-val">12,048</div>
+                  </div>
+                  <div class="balance-pan right">
+                    <div>✔ 二樓退步</div>
+                    <div style="font-size: 16px; font-weight: 800; margin-top: 4px;" id="anim-3-right-val">48,192</div>
+                  </div>
+                </div>
+                <div class="balance-pivot"></div>
+              </div>
+
+              <div id="anim-3-caption" style="font-size: 14px; color: var(--accent-rose); font-weight: 700; margin-top: 10px;">
+                天平劇烈傾斜！整整差了 36,144！
+              </div>
+            </div>
+
+            <div class="anim-controls-bar">
+              <button class="btn-anim-ctrl primary" id="btn-play-3" onclick="togglePlay(3)">▶</button>
+              <button class="btn-anim-ctrl" onclick="stepAnim(3, -1)">⏮</button>
+              <button class="btn-anim-ctrl" onclick="stepAnim(3, 1)">⏭</button>
+              <input type="range" class="anim-seek-slider" id="slider-3" min="0" max="100" value="0" oninput="onSliderInput(3, this.value)">
+              <div class="anim-status-text" id="status-3">對比中</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="rhyme-box" style="border-color: var(--accent-rose); color: #FFE4E6;">
+              💥 避雷警報：<br>
+              二樓十位沒退步，摔到個位哭痛痛！<br>
+              答案縮水十倍少，買車老闆不給過！
+            </div>
+            <p style="font-size: 14px; line-height: 1.7; color: #CBD5E1; margin: 10px 0;">
+              錯位算式：8032 ＋ 4016 ＝ 12048（少了十倍的 0）。<br>
+              <strong style="color:var(--accent-green);">正解：</strong> 二樓是 4016 個十（40160），相加是 48192！
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 9: 迷思二大破解：中間有 0 乘法
+           ========================================== -->
+      <section class="slide" data-slide="9">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">遇 0 乘法怪獸：老實寫 0，位值才不扁！</h2>
+          <p class="slide-subtitle">課本 P.30 練習題 6：《3007 × 59》中間連續兩個 0 的必勝法！</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="rhyme-box">
+              🍩 甜甜圈 0 口訣：<br>
+              遇到 0 蛋別發呆，乘完是 0 加進來！<br>
+              沒人進位寫個 0，位值飽滿不縮水！
+            </div>
+            <div style="font-size: 14px; line-height: 1.7; color: #CBD5E1; margin-top: 10px;">
+              <p>• 9 × 7 ＝ 63（寫 3 進 6）</p>
+              <p>• 9 × 0 ＝ 0，<strong>加上進位的 6 寫 6</strong>！</p>
+              <p>• 9 × 0 ＝ 0，<strong>沒進位老老實實寫 0</strong>！（絕不能跳過）</p>
+              <p>• 9 × 3 ＝ 27。一樓穩拿 27063！</p>
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center;">
+            <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 4px;">【3007 × 59 完整算則】</div>
+            <table class="math-multiplication-table" style="font-size: 21px;">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">十萬</td>
+                <td class="col-digit">萬</td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">3</td>
+                <td class="col-digit" style="color:var(--accent-amber);">0</td>
+                <td class="col-digit" style="color:var(--accent-amber);">0</td>
+                <td class="col-digit">7</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="color:var(--accent-purple);">5</td>
+                <td class="col-digit" style="color:var(--accent-cyan);">9</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">7</td>
+                <td class="col-digit" style="color:var(--accent-cyan); font-weight:900;">0</td>
+                <td class="col-digit">6</td>
+                <td class="col-digit">3</td>
+              </tr>
+              <tr class="layer-2">
+                <td class="col-op"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">3</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+              </tr>
+              <tr class="layer-sum line-equals-top">
+                <td class="col-op"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">7</td>
+                <td class="col-digit">7</td>
+                <td class="col-digit">4</td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">3</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 10: 課本實戰題
+           ========================================== -->
+      <section class="slide" data-slide="10">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">課本實戰題：P.28 感恩義賣手工餅乾</h2>
+          <p class="slide-subtitle">每包手工餅乾 105 公克，四年 2 班賣出 28 包，共幾公克？</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="color: var(--accent-cyan); font-size: 18px; margin-bottom: 10px;">🍪 蓋大樓拆解步驟</h3>
+            <div style="font-size: 15px; line-height: 1.8; color: #E2E8F0;">
+              <p><strong>列式：</strong> 105 × 28 ＝ (　　)</p>
+              <p>
+                <span class="floor-tag-1">一樓</span> 105 × 8 ＝ <strong>840</strong><br>
+                <span class="floor-tag-2">二樓</span> 105 × 20 ＝ <strong>2100</strong>（十位退一步）
+              </p>
+              <div style="padding: 10px 14px; background: rgba(56, 189, 248, 0.15); border-radius: 8px; border: 1px solid var(--accent-cyan); margin-top: 8px;">
+                <strong style="color:var(--accent-cyan);">答：</strong> 840 ＋ 2100 ＝ <strong>2940 公克</strong>！
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center;">
+            <table class="math-multiplication-table">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">5</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="color:var(--accent-purple);">2</td>
+                <td class="col-digit" style="color:var(--accent-cyan);">8</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">8</td>
+                <td class="col-digit">4</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="layer-2">
+                <td class="col-op"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+              </tr>
+              <tr class="layer-sum line-equals-top">
+                <td class="col-op"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">9</td>
+                <td class="col-digit">4</td>
+                <td class="col-digit">0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 11: 習作實戰題
+           ========================================== -->
+      <section class="slide" data-slide="11">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">習作實戰題：P.19 教師節感恩盆花</h2>
+          <p class="slide-subtitle">1 盆花 1350 元，學校訂購 12 盆，共要付幾元？</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="color: var(--accent-purple); font-size: 18px; margin-bottom: 10px;">💐 四位數雙層直式實戰</h3>
+            <div style="font-size: 15px; line-height: 1.8; color: #E2E8F0;">
+              <p><strong>列式：</strong> 1350 × 12 ＝ (　　)</p>
+              <p>
+                <span class="floor-tag-1">一樓</span> 1350 × 2 ＝ <strong>2700</strong><br>
+                <span class="floor-tag-2">二樓</span> 1350 × 10 ＝ <strong>13500</strong>（對齊十位）
+              </p>
+              <div style="padding: 10px 14px; background: rgba(52, 211, 153, 0.15); border-radius: 8px; border: 1px solid var(--accent-green); margin-top: 8px;">
+                <strong style="color:var(--accent-green);">答：</strong> 共要付 <strong>16,200 元</strong>！
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center;">
+            <table class="math-multiplication-table">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">萬</td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">3</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="color:var(--accent-purple);">1</td>
+                <td class="col-digit" style="color:var(--accent-cyan);">2</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">7</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="layer-2">
+                <td class="col-op"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">3</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+              </tr>
+              <tr class="layer-sum line-equals-top">
+                <td class="col-op"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">6</td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 12: 臺中海線生活情境
+           ========================================== -->
+      <section class="slide" data-slide="12">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">海線在地情境：大甲酥餅與梧棲伴手禮</h2>
+          <p class="slide-subtitle">特產芋頭酥禮盒每箱 1250 公克，接獲 36 箱訂單共重幾公克？</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3 style="color: var(--accent-amber); font-size: 18px; margin-bottom: 10px;">🌊 梧棲校慶伴手禮</h3>
+            <div style="font-size: 15px; line-height: 1.8; color: #E2E8F0;">
+              <p><strong>列式：</strong> 1250 × 36 ＝ (　　)</p>
+              <p>
+                <span class="floor-tag-1">一樓</span> 1250 × 6 ＝ <strong>7500</strong><br>
+                <span class="floor-tag-2">二樓</span> 1250 × 30 ＝ <strong>37500</strong>（十位退一步）
+              </p>
+              <div style="padding: 10px 14px; background: rgba(56, 189, 248, 0.15); border-radius: 8px; border: 1px solid var(--accent-cyan); margin-top: 8px;">
+                <strong style="color:var(--accent-cyan);">總重：</strong> 7500 ＋ 37500 ＝ <strong>45,000 公克</strong>（45公斤）！
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="text-align: center;">
+            <table class="math-multiplication-table">
+              <tr class="header-row">
+                <td class="col-op"></td>
+                <td class="col-digit">萬</td>
+                <td class="col-digit">千</td>
+                <td class="col-digit">百</td>
+                <td class="col-digit">十</td>
+                <td class="col-digit">個</td>
+              </tr>
+              <tr>
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">1</td>
+                <td class="col-digit">2</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="line-equals">
+                <td class="col-op">×</td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit" style="color:var(--accent-purple);">3</td>
+                <td class="col-digit" style="color:var(--accent-cyan);">6</td>
+              </tr>
+              <tr class="layer-1">
+                <td class="col-op"></td>
+                <td class="col-digit"></td>
+                <td class="col-digit">7</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+              </tr>
+              <tr class="layer-2">
+                <td class="col-op"></td>
+                <td class="col-digit">3</td>
+                <td class="col-digit">7</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit"><span class="ghost-zero">(0)</span></td>
+              </tr>
+              <tr class="layer-sum line-equals-top">
+                <td class="col-op"></td>
+                <td class="col-digit">4</td>
+                <td class="col-digit">5</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+                <td class="col-digit">0</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 13: 小偵探捉錯互動擂台
+           ========================================== -->
+      <section class="slide" data-slide="13">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">小偵探捉錯擂台：捉拿三大踩雷怪獸！</h2>
+          <p class="slide-subtitle">點擊卡片，看看誰踩到了違章建築紅線！</p>
+        </div>
+
+        <div class="grid-3" style="max-width: 1080px;">
+          <div class="myth-interactive-card" onclick="toggleMyth(1)">
+            <div style="font-size: 13px; color: var(--accent-rose); font-weight: 700; margin-bottom: 6px;">怪獸 1 號</div>
+            <h4 style="font-size: 16px; margin-bottom: 8px;">「二樓摔下樓梯怪」</h4>
+            <div style="font-size: 13px; color: var(--text-muted);">
+              第二層 4016 直接寫在個位正下方，忘記十位退一步！
+            </div>
+            <div class="feedback-box" id="myth-fb-1" style="background: rgba(251, 113, 133, 0.15); border: 1px solid var(--accent-rose); color: #FECDD3;">
+              ❌ <strong>捉到了！</strong> 十位的 2 代表 20，是 4016 個十！末位必須對齊十位，少退一步答案直接縮水十倍！
+            </div>
+          </div>
+
+          <div class="myth-interactive-card" onclick="toggleMyth(2)">
+            <div style="font-size: 13px; color: var(--accent-amber); font-weight: 700; margin-bottom: 6px;">怪獸 2 號</div>
+            <h4 style="font-size: 16px; margin-bottom: 8px;">「吞 0 隱形怪」</h4>
+            <div style="font-size: 13px; color: var(--text-muted);">
+              算 3007 × 9 時，看到 0 當沒看見，直接跳過不寫 0！
+            </div>
+            <div class="feedback-box" id="myth-fb-2" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-amber); color: #FDE68A;">
+              ❌ <strong>捉到了！</strong> 0 乘以 9 是 0，加進位要記下來，沒進位更要老實寫 0，否則位值直接被吃掉！
+            </div>
+          </div>
+
+          <div class="myth-interactive-card" onclick="toggleMyth(3)">
+            <div style="font-size: 13px; color: var(--accent-purple); font-weight: 700; margin-bottom: 6px;">怪獸 3 號</div>
+            <h4 style="font-size: 16px; margin-bottom: 8px;">「偷懶違章怪」</h4>
+            <div style="font-size: 13px; color: var(--text-muted);">
+              看到二位數乘法，妄圖一口氣心算寫成一層！
+            </div>
+            <div class="feedback-box" id="myth-fb-3" style="background: rgba(167, 139, 250, 0.15); border: 1px solid var(--accent-purple); color: #DDD6FE;">
+              ❌ <strong>捉到了！</strong> 乘數有二位，直式必定有兩層！老老實實蓋一樓和二樓才是算對王道！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 14: 總結英雄榜
+           ========================================== -->
+      <section class="slide" data-slide="14">
+        <div class="slide-title-wrap">
+          <h2 class="slide-title">🏆 乘法兩層直式大師：大樓神功大成！</h2>
+          <p class="slide-subtitle">全班一起念一遍「直式雙層大樓歌」，永遠不忘記！</p>
+        </div>
+
+        <div class="card" style="max-width: 900px; width: 100%; border-color: rgba(56, 189, 248, 0.4); background: rgba(15, 23, 42, 0.95);">
+          <div class="rhyme-box" style="font-size: 18px; line-height: 1.8; margin-bottom: 16px; border-color: var(--accent-cyan); color: #E0F2FE;">
+            🏰 【乘法雙層大樓歌】 🏰<br>
+            乘數有二位，直式蓋兩樓！<br>
+            一樓個位站，二樓退一步！<br>
+            遇 0 老實記，相加收禮物！
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 14px; margin-top: 10px;">
+            <button class="btn-nav primary" onclick="goToSlide(1)">
+              ↺ 重新複習整份簡報
+            </button>
+            <button class="btn-nav" onclick="goToSlide(5)">
+              🎥 重看動畫 1（二樓退步）
+            </button>
+            <button class="btn-nav" onclick="goToSlide(6)">
+              🎥 重看動畫 2（大樓全景）
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="deck-footer">
+      <div class="keyboard-hint">
+        <span>導覽提示：</span>
+        <span class="kbd">←</span> <span class="kbd">→</span> 翻頁，
+        <span class="kbd">空白鍵</span> 前進
+      </div>
+      <div class="nav-btn-group">
+        <button class="btn-nav" id="btn-prev" onclick="changeSlide(-1)">上一步</button>
+        <button class="btn-nav primary" id="btn-next" onclick="changeSlide(1)">下一步</button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ==========================================
+       現代簡報與三大關鍵動畫核心控制器
+       ========================================== -->
+  <script>
+    const TOTAL_SLIDES = 14;
+    let currentSlide = 1;
+
+    // 初始化進度指示點
+    const dotsContainer = document.getElementById('progress-dots');
+    for (let i = 1; i <= TOTAL_SLIDES; i++) {
+      const dot = document.createElement('div');
+      dot.className = `dot ${i === 1 ? 'active' : ''}`;
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    function updateDeckUI() {
+      // 切換頁面
+      document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+      const activeSlide = document.querySelector(`.slide[data-slide="${currentSlide}"]`);
+      if (activeSlide) activeSlide.classList.add('active');
+
+      // 更新指示點
+      document.querySelectorAll('.dot').forEach((d, idx) => {
+        d.classList.toggle('active', idx + 1 === currentSlide);
+      });
+
+      // 更新頁碼
+      document.getElementById('slide-counter').textContent = 
+        `${String(currentSlide).padStart(2, '0')} / ${String(TOTAL_SLIDES).padStart(2, '0')}`;
+
+      // 換頁時若切入關鍵頁，自動重置或觸發自訂狀態
+      if (currentSlide === 5 && !animStates[1].hasInit) {
+        setAnimProgress(1, 0);
+        animStates[1].hasInit = true;
+      }
+      if (currentSlide === 6 && !animStates[2].hasInit) {
+        setAnimProgress(2, 0);
+        animStates[2].hasInit = true;
+      }
+      if (currentSlide === 8 && !animStates[3].hasInit) {
+        setAnimProgress(3, 0);
+        animStates[3].hasInit = true;
+      }
+    }
+
+    function changeSlide(direction) {
+      currentSlide = Math.max(1, Math.min(TOTAL_SLIDES, currentSlide + direction));
+      updateDeckUI();
+    }
+
+    function goToSlide(slideNum) {
+      currentSlide = Math.max(1, Math.min(TOTAL_SLIDES, slideNum));
+      updateDeckUI();
+    }
+
+    // 鍵盤導航
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        changeSlide(1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        changeSlide(-1);
+      }
+    });
+
+    // 小偵探診斷卡片點擊切換
+    function toggleMyth(id) {
+      const fb = document.getElementById(`myth-fb-${id}`);
+      if (fb) {
+        fb.classList.toggle('show');
+      }
+    }
+
+    /* ==========================================================================
+       三大關鍵頁動畫引擎 (Animation Players 1, 2, 3)
+       支援：播放、暫停、滑桿拖拉 (0~100%)、分步前進後退、時間碼顯示
+       ========================================================================== */
+    const animStates = {
+      1: { isPlaying: false, progress: 0, timer: null, hasInit: false, duration: 4.0 },
+      2: { isPlaying: false, progress: 0, timer: null, hasInit: false, duration: 6.0 },
+      3: { isPlaying: false, progress: 0, timer: null, hasInit: false, duration: 3.0 }
+    };
+
+    function togglePlay(id) {
+      const state = animStates[id];
+      if (state.isPlaying) {
+        pauseAnim(id);
+      } else {
+        playAnim(id);
+      }
+    }
+
+    function playAnim(id) {
+      const state = animStates[id];
+      state.isPlaying = true;
+      const btn = document.getElementById(`btn-play-${id}`);
+      if (btn) btn.textContent = '⏸';
+
+      if (state.progress >= 100) {
+        state.progress = 0;
+      }
+
+      const stepTimeMs = 40;
+      const totalSteps = (state.duration * 1000) / stepTimeMs;
+      const deltaPercent = 100 / totalSteps;
+
+      clearInterval(state.timer);
+      state.timer = setInterval(() => {
+        state.progress += deltaPercent;
+        if (state.progress >= 100) {
+          state.progress = 100;
+          pauseAnim(id);
+        }
+        applyAnimProgress(id, state.progress);
+      }, stepTimeMs);
+    }
+
+    function pauseAnim(id) {
+      const state = animStates[id];
+      state.isPlaying = false;
+      clearInterval(state.timer);
+      const btn = document.getElementById(`btn-play-${id}`);
+      if (btn) btn.textContent = '▶';
+    }
+
+    function onSliderInput(id, val) {
+      pauseAnim(id);
+      animStates[id].progress = parseFloat(val);
+      applyAnimProgress(id, animStates[id].progress);
+    }
+
+    function stepAnim(id, dir) {
+      pauseAnim(id);
+      let p = animStates[id].progress + dir * 25;
+      p = Math.max(0, Math.min(100, p));
+      animStates[id].progress = p;
+      applyAnimProgress(id, p);
+    }
+
+    function setAnimProgress(id, percent) {
+      animStates[id].progress = percent;
+      applyAnimProgress(id, percent);
+    }
+
+    function applyAnimProgress(id, p) {
+      const slider = document.getElementById(`slider-${id}`);
+      if (slider) slider.value = p;
+
+      const status = document.getElementById(`status-${id}`);
+      const sec = (animStates[id].duration * (p / 100)).toFixed(1);
+      const totalSec = animStates[id].duration.toFixed(1);
+
+      if (id === 1) {
+        if (status) status.textContent = `00:0${Math.floor(sec)} / 00:0${Math.floor(totalSec)}`;
+        const d1 = document.getElementById('anim-1-d1');
+        const d2 = document.getElementById('anim-1-d2');
+        const d3 = document.getElementById('anim-1-d3');
+        const d4 = document.getElementById('anim-1-d4');
+        const tensDigit = document.getElementById('anim-1-tens-digit');
+
+        if (p < 20) {
+          if (tensDigit) tensDigit.style.transform = 'scale(1)';
+          if (d1) d1.style.opacity = '0';
+          if (d2) d2.style.opacity = '0';
+          if (d3) d3.style.opacity = '0';
+          if (d4) d4.style.opacity = '0';
+        } else if (p < 50) {
+          if (tensDigit) tensDigit.style.transform = 'scale(1.3)';
+          if (d3) d3.style.opacity = '1';
+          if (d4) d4.style.opacity = '0.3';
+        } else if (p < 80) {
+          if (d2) d2.style.opacity = '1';
+          if (d3) d3.style.opacity = '1';
+        } else {
+          if (d1) d1.style.opacity = '1';
+          if (d2) d2.style.opacity = '1';
+          if (d3) d3.style.opacity = '1';
+          if (d4) d4.style.opacity = '0.7';
+        }
+      } else if (id === 2) {
+        const rowL1 = document.getElementById('anim-2-row-layer1');
+        const rowL2 = document.getElementById('anim-2-row-layer2');
+        const rowSum = document.getElementById('anim-2-row-sum');
+
+        if (p < 30) {
+          if (status) status.textContent = '步驟 1: 一樓個位乘法';
+          if (rowL1) rowL1.style.opacity = '1';
+          if (rowL2) rowL2.style.opacity = '0.15';
+          if (rowSum) rowSum.style.opacity = '0.15';
+        } else if (p < 70) {
+          if (status) status.textContent = '步驟 2: 二樓十位退步';
+          if (rowL1) rowL1.style.opacity = '1';
+          if (rowL2) rowL2.style.opacity = '1';
+          if (rowSum) rowSum.style.opacity = '0.15';
+        } else {
+          if (status) status.textContent = '步驟 3: 兩樓相加收禮物';
+          if (rowL1) rowL1.style.opacity = '1';
+          if (rowL2) rowL2.style.opacity = '1';
+          if (rowSum) rowSum.style.opacity = '1';
+        }
+      } else if (id === 3) {
+        const beam = document.getElementById('anim-3-beam');
+        const caption = document.getElementById('anim-3-caption');
+        const angle = (p / 100) * 18;
+        if (beam) {
+          beam.style.transform = `rotate(${angle}deg)`;
+        }
+        if (p > 50) {
+          if (caption) caption.textContent = `❌ 摔下樓梯 12,048 vs ✔ 二樓退步 48,192（差了 36,144！）`;
+        }
+      }
+    }
+
+    // 初始化第一頁
+    updateDeckUI();
+  </script>
+</body>
+</html>

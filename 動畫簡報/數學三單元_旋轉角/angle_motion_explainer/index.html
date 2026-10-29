@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>南一版數學四上第三單元 3-5 旋轉角：三大核心迷思大破解</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Microsoft JhengHei';
+        src: local('Microsoft JhengHei');
+      }
+      @font-face {
+        font-family: 'PingFang TC';
+        src: local('PingFang TC');
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html, body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #080D1A;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+        color: #F1F5F9;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        background: radial-gradient(circle at 50% 20%, #111C38 0%, #080D1A 85%);
+        overflow: hidden;
+      }
+
+      /* 幾何座標與同心圓刻度網格背景 */
+      .grid-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: 
+          radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.05) 1px, transparent 1px),
+          linear-gradient(rgba(56, 189, 248, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(56, 189, 248, 0.03) 1px, transparent 1px);
+        background-size: 80px 80px, 40px 40px, 40px 40px;
+        pointer-events: none;
+      }
+
+      /* 光暈環境氛圍 */
+      .glow-orb-1 {
+        position: absolute;
+        top: -100px;
+        left: 250px;
+        width: 600px;
+        height: 600px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, transparent 70%);
+        filter: blur(50px);
+        pointer-events: none;
+      }
+      .glow-orb-2 {
+        position: absolute;
+        bottom: -120px;
+        right: 200px;
+        width: 650px;
+        height: 650px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, transparent 70%);
+        filter: blur(50px);
+        pointer-events: none;
+      }
+
+      /* 頂部導覽列 */
+      .header-bar {
+        position: absolute;
+        top: 36px;
+        left: 60px;
+        right: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 50;
+      }
+      .badge-unit {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: rgba(14, 165, 233, 0.15);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        padding: 8px 18px;
+        border-radius: 9999px;
+        font-size: 20px;
+        font-weight: 700;
+        color: #38BDF8;
+        letter-spacing: 0.05em;
+      }
+      .badge-chapter {
+        font-size: 20px;
+        font-weight: 600;
+        color: #94A3B8;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 8px 18px;
+        border-radius: 9999px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      /* 底部字幕列 */
+      .caption-container {
+        position: absolute;
+        bottom: 35px;
+        left: 100px;
+        right: 100px;
+        height: 75px;
+        background: rgba(8, 13, 26, 0.92);
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        border-radius: 20px;
+        padding: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(12px);
+        z-index: 50;
+      }
+      #caption-text {
+        font-size: 26px;
+        font-weight: 700;
+        color: #F8FAFC;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+        letter-spacing: 0.05em;
+        text-align: center;
+        line-height: 1.4;
+      }
+
+      /* 場景容器 */
+      .scene {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 120px 80px 140px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .scene-title-box {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      .scene-kicker {
+        font-size: 20px;
+        font-weight: 800;
+        color: #38BDF8;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+      }
+      .scene-title {
+        font-size: 46px;
+        font-weight: 900;
+        color: #FFFFFF;
+        letter-spacing: -0.01em;
+      }
+      .scene-subtitle {
+        font-size: 22px;
+        color: #94A3B8;
+        margin-top: 6px;
+      }
+
+      /* 幾何卡片通用 */
+      .card-stage {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 32px 40px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(16px);
+      }
+
+      /* ==================== Scene 1: 旋轉角核心三要素 ==================== */
+      .scene1-grid {
+        display: grid;
+        grid-template-columns: 560px 1fr;
+        gap: 50px;
+        width: 100%;
+        max-width: 1600px;
+        align-items: center;
+      }
+      .angle-display-box {
+        position: relative;
+        width: 520px;
+        height: 520px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .scene1-rule-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+      .rule-item {
+        background: rgba(30, 41, 59, 0.6);
+        border-left: 6px solid #38BDF8;
+        border-radius: 0 16px 16px 0;
+        padding: 18px 26px;
+        font-size: 24px;
+        line-height: 1.5;
+        color: #E2E8F0;
+      }
+      .rule-item.gold {
+        border-left-color: #F59E0B;
+        background: rgba(245, 158, 11, 0.08);
+      }
+      .rule-item.emerald {
+        border-left-color: #10B981;
+        background: rgba(16, 185, 129, 0.08);
+      }
+
+      /* ==================== Scene 2: 迷思一 邊長 vs 角度 ==================== */
+      .scene2-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        width: 100%;
+        max-width: 1600px;
+      }
+      .vs-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .vs-tag {
+        font-size: 24px;
+        font-weight: 800;
+        padding: 6px 20px;
+        border-radius: 9999px;
+        margin-bottom: 20px;
+      }
+      .tag-wrong { background: rgba(239, 68, 68, 0.2); color: #EF4444; border: 1px solid #EF4444; }
+      .tag-correct { background: rgba(16, 185, 129, 0.2); color: #34D399; border: 1px solid #10B981; }
+
+      /* ==================== Scene 3: 迷思二 順時針 vs 逆時針 ==================== */
+      .scene3-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        width: 100%;
+        max-width: 1600px;
+      }
+
+      /* ==================== Scene 4: 平角與周角 ==================== */
+      .scene4-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 50px;
+        width: 100%;
+        max-width: 1600px;
+      }
+
+      /* 幾何 SVG 共同樣式 */
+      svg.math-geom {
+        overflow: visible;
+      }
+      .cls-dial-circle { fill: rgba(15, 23, 42, 0.9); stroke: rgba(255, 255, 255, 0.2); stroke-width: 3; }
+      .cls-dial-num { fill: #94A3B8; font-size: 22px; font-weight: 700; text-anchor: middle; dominant-baseline: central; font-family: monospace; }
+      .cls-dial-tick { stroke: rgba(255, 255, 255, 0.3); stroke-width: 2; }
+      .cls-dial-major { stroke: #38BDF8; stroke-width: 3.5; }
+      .cls-ray-start { stroke: #94A3B8; stroke-width: 6; stroke-linecap: round; }
+      .cls-ray-end { stroke: #F59E0B; stroke-width: 6; stroke-linecap: round; }
+      .cls-arc-fill { fill: rgba(245, 158, 11, 0.2); }
+      .cls-arc-stroke { fill: none; stroke: #F59E0B; stroke-width: 4; stroke-dasharray: 6 4; }
+      .cls-center-dot { fill: #F43F5E; stroke: #FFFFFF; stroke-width: 3; }
+      .cls-label { fill: #FFFFFF; font-size: 20px; font-weight: 800; }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="84.4"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div class="grid-overlay"></div>
+      <div class="glow-orb-1"></div>
+      <div class="glow-orb-2"></div>
+
+      <!-- 頂部資訊列 -->
+      <div class="header-bar">
+        <div class="badge-unit">📐 國小四年級數學四上 · 第三單元</div>
+        <div class="badge-chapter">3-5 旋轉角觀念與迷思全解密</div>
+      </div>
+
+      <!-- ==================== Scene 1: 旋轉角核心三要素 ==================== -->
+      <section class="scene" id="scene-1">
+        <div class="scene-title-box">
+          <div class="scene-kicker">Core Concept · 核心定義</div>
+          <h2 class="scene-title">旋轉角的三大關鍵要素</h2>
+          <p class="scene-subtitle">旋轉中心 · 始邊（轉動前） · 終邊（轉動後）</p>
+        </div>
+
+        <div class="scene1-grid">
+          <!-- 幾何展示盒 -->
+          <div class="card-stage angle-display-box">
+            <svg class="math-geom" width="460" height="460" viewBox="-230 -230 460 460">
+              <!-- 底盤背景虛線圓 -->
+              <circle cx="0" cy="0" r="180" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="2" stroke-dasharray="6 6"/>
+              <!-- 旋轉角扇形面 (動態填充) -->
+              <path id="s1-arc-fill" d="M 0 0 L 180 0 A 180 180 0 0 0 127 -127 Z" fill="rgba(56, 189, 248, 0.25)"/>
+              <path id="s1-arc-stroke" d="M 180 0 A 180 180 0 0 0 127 -127" fill="none" stroke="#38BDF8" stroke-width="4"/>
+              
+              <!-- 始邊 (固定的基準射線) -->
+              <line x1="0" y1="0" x2="180" y2="0" class="cls-ray-start"/>
+              <!-- 始邊箭頭 -->
+              <polygon points="185,0 170,-7 170,7" fill="#94A3B8"/>
+              <text x="120" y="32" class="cls-label" fill="#94A3B8">始邊（基準邊）</text>
+
+              <!-- 終邊 (旋轉邊，角度隨時間動態旋轉) -->
+              <g id="s1-arm-end">
+                <line x1="0" y1="0" x2="180" y2="0" class="cls-ray-end"/>
+                <polygon points="185,0 170,-7 170,7" fill="#F59E0B"/>
+                <text x="100" y="-24" class="cls-label" fill="#F59E0B">終邊（旋轉後）</text>
+              </g>
+
+              <!-- 旋轉中心頂點 -->
+              <circle cx="0" cy="0" r="9" class="cls-center-dot"/>
+              <text x="-120" y="24" class="cls-label" fill="#F43F5E">旋轉中心</text>
+
+              <!-- 方向標示弧線 -->
+              <g id="s1-dir-arrow">
+                <path d="M 130 -20 A 130 130 0 0 0 95 -90" fill="none" stroke="#38BDF8" stroke-width="3" stroke-dasharray="4 4"/>
+                <polygon points="95,-90 108,-85 105,-98" fill="#38BDF8"/>
+                <text x="140" y="-70" fill="#38BDF8" font-size="20px" font-weight="800">逆時針轉動</text>
+              </g>
+            </svg>
+          </div>
+
+          <!-- 說明卡片 -->
+          <div class="scene1-rule-list">
+            <div class="rule-item">
+              <strong style="color: #F43F5E;">1. 旋轉中心：</strong>固定的不動點，也就是旋轉角的<strong>「角的頂點」</strong>。
+            </div>
+            <div class="rule-item gold">
+              <strong style="color: #F59E0B;">2. 始邊與終邊：</strong>旋轉前的邊叫作<strong>始邊</strong>，旋轉後停下來的邊叫作<strong>終邊</strong>。
+            </div>
+            <div class="rule-item emerald">
+              <strong style="color: #10B981;">3. 旋轉方向不可少：</strong>旋轉量形成的角叫作旋轉角，必須明確標定是<strong>順時針</strong>還是<strong>逆時針</strong>！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== Scene 2: 迷思一 邊長 vs 角度 ==================== -->
+      <section class="scene" id="scene-2">
+        <div class="scene-title-box">
+          <div class="scene-kicker">Myth Buster #1 · 迷思大破解</div>
+          <h2 class="scene-title">迷思一：指針越長，旋轉角就越大？</h2>
+          <p class="scene-subtitle">分針比較長、時針比較短，同樣轉 1 大格，誰的角度大？</p>
+        </div>
+
+        <div class="scene2-grid">
+          <!-- 錯誤迷思對比卡 -->
+          <div class="card-stage vs-card" style="border-color: rgba(239, 68, 68, 0.4);">
+            <div class="vs-tag tag-wrong">❌ 典型學生迷思</div>
+            <p style="font-size: 24px; color: #FCA5A5; margin-bottom: 20px; line-height: 1.6;">
+              「分針比較長，掃過的面積很大，<br>所以分針轉出來的角度比時針大？」
+            </p>
+            <div style="background: rgba(239,68,68,0.1); border-radius: 16px; padding: 18px 24px; width: 100%;">
+              <div style="font-size: 28px; font-weight: 800; color: #EF4444; margin-bottom: 8px;">大錯特錯！</div>
+              <div style="font-size: 20px; color: #CBD5E1;">角的大小是指「兩邊張開的程度」，跟邊畫多長完全沒有關係！</div>
+            </div>
+          </div>
+
+          <!-- 正確觀念實例鐘面 -->
+          <div class="card-stage vs-card" style="border-color: rgba(16, 185, 129, 0.4);">
+            <div class="vs-tag tag-correct">✔ 權威幾何真理</div>
+            <svg class="math-geom" width="480" height="260" viewBox="0 0 480 260">
+              <!-- 左邊：短指針 (時針) 轉 30° -->
+              <g transform="translate(130, 140)">
+                <circle cx="0" cy="0" r="90" class="cls-dial-circle"/>
+                <line x1="0" y1="-80" x2="0" y2="-90" class="cls-dial-major"/>
+                <line x1="45" y1="-78" x2="45" y2="-88" class="cls-dial-major"/>
+                <text x="0" y="-62" class="cls-dial-num">12</text>
+                <text x="40" y="-60" class="cls-dial-num">1</text>
+                <path d="M 0 0 L 0 -70 A 70 70 0 0 1 35 -60 Z" fill="rgba(16, 185, 129, 0.3)"/>
+                <line x1="0" y1="0" x2="0" y2="-70" stroke="#94A3B8" stroke-width="5" stroke-linecap="round"/>
+                <line x1="0" y1="0" x2="35" y2="-60" stroke="#10B981" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="0" cy="0" r="6" fill="#F43F5E"/>
+                <text x="0" y="40" fill="#34D399" font-size="20px" font-weight="800" text-anchor="middle">短時針：轉 30°</text>
+              </g>
+
+              <!-- 等號連接符號 -->
+              <text x="240" y="145" fill="#F59E0B" font-size="44px" font-weight="900" text-anchor="middle">＝</text>
+
+              <!-- 右邊：長指針 (分針) 轉 30° -->
+              <g transform="translate(350, 140)">
+                <circle cx="0" cy="0" r="90" class="cls-dial-circle"/>
+                <line x1="0" y1="-80" x2="0" y2="-90" class="cls-dial-major"/>
+                <line x1="45" y1="-78" x2="45" y2="-88" class="cls-dial-major"/>
+                <text x="0" y="-62" class="cls-dial-num">12</text>
+                <text x="40" y="-60" class="cls-dial-num">1</text>
+                <path d="M 0 0 L 0 -85 A 85 85 0 0 1 42 -74 Z" fill="rgba(56, 189, 248, 0.3)"/>
+                <line x1="0" y1="0" x2="0" y2="-85" stroke="#94A3B8" stroke-width="4" stroke-linecap="round"/>
+                <line x1="0" y1="0" x2="42" y2="-74" stroke="#38BDF8" stroke-width="4" stroke-linecap="round"/>
+                <circle cx="0" cy="0" r="6" fill="#F43F5E"/>
+                <text x="0" y="40" fill="#38BDF8" font-size="20px" font-weight="800" text-anchor="middle">長分針：也是 30°！</text>
+              </g>
+            </svg>
+            <div style="font-size: 20px; color: #A7F3D0; font-weight: 700; margin-top: 10px;">
+              🌟 核心鐵律：鐘面 1 大格永遠是 360° ÷ 12 ＝ 30°，邊長不影響角度！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== Scene 3: 迷思二 順時針 vs 逆時針 ==================== -->
+      <section class="scene" id="scene-3">
+        <div class="scene-title-box">
+          <div class="scene-kicker">Myth Buster #2 · 方向大陷阱</div>
+          <h2 class="scene-title">迷思二：同兩根指針，角度一定一樣？</h2>
+          <p class="scene-subtitle">從 9 轉到 12，順時針轉與逆時針轉，度數天差地遠！</p>
+        </div>
+
+        <div class="scene3-grid">
+          <!-- 順時針轉動 9 -> 12 -->
+          <div class="card-stage vs-card" style="border-color: rgba(56, 189, 248, 0.4);">
+            <div class="vs-tag" style="background: rgba(56,189,248,0.2); color: #38BDF8; border: 1px solid #38BDF8;">
+              🔄 情況 A：順時針旋轉
+            </div>
+            <svg class="math-geom" width="300" height="300" viewBox="-150 -150 300 300">
+              <circle cx="0" cy="0" r="120" class="cls-dial-circle"/>
+              <text x="0" y="-95" class="cls-dial-num">12</text>
+              <text x="100" y="0" class="cls-dial-num">3</text>
+              <text x="0" y="100" class="cls-dial-num">6</text>
+              <text x="-100" y="0" class="cls-dial-num">9</text>
+              <path d="M 0 0 L -105 0 A 105 105 0 0 1 0 -105 Z" fill="rgba(56, 189, 248, 0.35)"/>
+              <line x1="0" y1="0" x2="-105" y2="0" stroke="#94A3B8" stroke-width="5"/>
+              <line x1="0" y1="0" x2="0" y2="-105" stroke="#38BDF8" stroke-width="5"/>
+              <path d="M -60 -20 A 70 70 0 0 1 -20 -60" fill="none" stroke="#38BDF8" stroke-width="3"/>
+              <polygon points="-20,-60 -20,-72 -32,-65" fill="#38BDF8"/>
+              <circle cx="0" cy="0" r="7" fill="#F43F5E"/>
+            </svg>
+            <div style="margin-top: 14px; text-align: center;">
+              <div style="font-size: 28px; font-weight: 800; color: #38BDF8;">轉了 3 大格 ＝ 90°（直角）</div>
+              <div style="font-size: 18px; color: #94A3B8; margin-top: 4px;">算式：30° × 3 ＝ 90°</div>
+            </div>
+          </div>
+
+          <!-- 逆時針轉動 9 -> 12 -->
+          <div class="card-stage vs-card" style="border-color: rgba(245, 158, 11, 0.4);">
+            <div class="vs-tag" style="background: rgba(245, 158, 11, 0.2); color: #F59E0B; border: 1px solid #F59E0B;">
+              反向 🔄 情況 B：逆時針旋轉
+            </div>
+            <svg class="math-geom" width="300" height="300" viewBox="-150 -150 300 300">
+              <circle cx="0" cy="0" r="120" class="cls-dial-circle"/>
+              <text x="0" y="-95" class="cls-dial-num">12</text>
+              <text x="100" y="0" class="cls-dial-num">3</text>
+              <text x="0" y="100" class="cls-dial-num">6</text>
+              <text x="-100" y="0" class="cls-dial-num">9</text>
+              <path d="M 0 0 L -105 0 A 105 105 0 1 0 0 -105 Z" fill="rgba(245, 158, 11, 0.35)"/>
+              <line x1="0" y1="0" x2="-105" y2="0" stroke="#94A3B8" stroke-width="5"/>
+              <line x1="0" y1="0" x2="0" y2="-105" stroke="#F59E0B" stroke-width="5"/>
+              <path d="M -20 60 A 70 70 0 1 0 60 -20" fill="none" stroke="#F59E0B" stroke-width="3"/>
+              <polygon points="60,-20 72,-20 65,-32" fill="#F59E0B"/>
+              <circle cx="0" cy="0" r="7" fill="#F43F5E"/>
+            </svg>
+            <div style="margin-top: 14px; text-align: center;">
+              <div style="font-size: 28px; font-weight: 800; color: #F59E0B;">逆時針轉 9 大格 ＝ 270°！</div>
+              <div style="font-size: 18px; color: #94A3B8; margin-top: 4px;">算式：30° × 9 ＝ 270°（或 360°－90°）</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== Scene 4: 平角與周角 ==================== -->
+      <section class="scene" id="scene-4">
+        <div class="scene-title-box">
+          <div class="scene-kicker">Important Concepts · 特殊大角</div>
+          <h2 class="scene-title">平角（180°）與周角（360°）</h2>
+          <p class="scene-subtitle">成一直線的角是平角，旋轉整整一圈回到起點是周角</p>
+        </div>
+
+        <div class="scene4-grid">
+          <!-- 平角卡片 (180°) -->
+          <div class="card-stage vs-card" style="border-color: rgba(56, 189, 248, 0.4);">
+            <div style="font-size: 26px; font-weight: 800; color: #38BDF8; margin-bottom: 12px;">
+              直線平角 · 180°
+            </div>
+            <svg class="math-geom" width="360" height="200" viewBox="-180 -100 360 200">
+              <path d="M 140 0 A 140 140 0 0 0 -140 0 Z" fill="rgba(56, 189, 248, 0.2)"/>
+              <path d="M 140 0 A 140 140 0 0 0 -140 0" fill="none" stroke="#38BDF8" stroke-width="4"/>
+              <line x1="0" y1="0" x2="150" y2="0" stroke="#94A3B8" stroke-width="6"/>
+              <line x1="0" y1="0" x2="-150" y2="0" stroke="#38BDF8" stroke-width="6"/>
+              <circle cx="0" cy="0" r="8" fill="#F43F5E"/>
+              <text x="0" y="-40" fill="#38BDF8" font-size="28px" font-weight="900" text-anchor="middle">180°</text>
+            </svg>
+            <div style="font-size: 20px; line-height: 1.6; color: #E2E8F0; text-align: center; margin-top: 10px;">
+              旋轉半圈，始邊與終邊<strong>成一直線</strong>。<br>
+              <strong>180° 的角叫作平角</strong>（等於 2 個直角）。
+            </div>
+          </div>
+
+          <!-- 周角卡片 (360°) -->
+          <div class="card-stage vs-card" style="border-color: rgba(245, 158, 11, 0.4);">
+            <div style="font-size: 26px; font-weight: 800; color: #F59E0B; margin-bottom: 12px;">
+              旋轉一整圈 · 360° 周角
+            </div>
+            <svg class="math-geom" width="360" height="200" viewBox="-180 -100 360 200">
+              <circle cx="0" cy="0" r="75" fill="rgba(245, 158, 11, 0.2)" stroke="#F59E0B" stroke-width="3" stroke-dasharray="6 4"/>
+              <line x1="0" y1="0" x2="150" y2="0" stroke="#F59E0B" stroke-width="6"/>
+              <path d="M 0 -85 A 85 85 0 1 1 -5 -85" fill="none" stroke="#F59E0B" stroke-width="4"/>
+              <polygon points="0,-85 12,-92 12,-78" fill="#F59E0B"/>
+              <circle cx="0" cy="0" r="8" fill="#F43F5E"/>
+              <text x="0" y="8" fill="#F59E0B" font-size="28px" font-weight="900" text-anchor="middle">360°</text>
+            </svg>
+            <div style="font-size: 20px; line-height: 1.6; color: #E2E8F0; text-align: center; margin-top: 10px;">
+              指針繞一圈回到起點，終邊與始邊<strong>完全重合</strong>。<br>
+              <strong>360° 的角叫作周角</strong>（等於 2 個平角、4 個直角）。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 底部同步字幕 -->
+      <div class="caption-container">
+        <p id="caption-text">3-5 旋轉角核心觀念與三大迷思大解密</p>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = {};
+      const tl = gsap.timeline({ paused: true });
+
+      // 精準同步字幕清單（對齊 audio_meta.json 時間點，總時長 84.4s）
+      const captions = [
+        // Scene 1 (0.0s ~ 19.49s)
+        { time: 0.0, text: "旋轉角是怎麼形成的呢？" },
+        { time: 2.9, text: "一條固定不動的邊叫作「始邊」" },
+        { time: 5.5, text: "繞著旋轉中心轉動後停下來的邊叫作「終邊」" },
+        { time: 9.3, text: "兩條邊張開的旋轉量，就是「旋轉角」" },
+        { time: 13.5, text: "記住！旋轉角必須指定方向，可以是順時針，也可以是逆時針！" },
+        
+        // Scene 2 (19.49s ~ 40.83s)
+        { time: 19.5, text: "第一個致命迷思：指針越長，旋轉角就越大嗎？" },
+        { time: 24.5, text: "大錯特錯！鐘面上長長的分針和短短的時針" },
+        { time: 29.3, text: "如果同樣轉動一大格，旋轉的張開角度都剛好是三十度" },
+        { time: 35.0, text: "角的大小只和張開的旋轉量有關，跟邊的長短完全沒有關係！" },
+
+        // Scene 3 (40.83s ~ 61.17s)
+        { time: 40.8, text: "第二個致命迷思：鐘面上兩針相差幾格就是幾度嗎？" },
+        { time: 46.2, text: "千萬要注意旋轉方向！指針從九轉到十二" },
+        { time: 50.9, text: "如果是順時針轉了三大格是九十度直角" },
+        { time: 54.7, text: "但如果是逆時針轉，是倒退轉了九大格，轉出的角高達兩百七十度！" },
+
+        // Scene 4 (61.17s ~ 84.34s)
+        { time: 61.2, text: "第三個關鍵概念：平角與周角" },
+        { time: 64.8, text: "當始邊和終邊轉成一條直線，轉了一百八十度，叫作平角" },
+        { time: 70.4, text: "如果指針旋轉整整一圈回到起點，轉了三百六十度，叫作周角" },
+        { time: 76.8, text: "牢記鐘面一大格三十度，方向看清楚，旋轉角觀念永遠不迷路！" }
+      ];
+
+      captions.forEach(cap => {
+        tl.call(() => {
+          const el = document.getElementById("caption-text");
+          if (el) el.textContent = cap.text;
+        }, null, cap.time);
+      });
+
+      // --- Scene 1 (0.0s ~ 19.49s) ---
+      tl.fromTo("#scene-1", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        0.2
+      );
+      // 動態旋轉指針動態
+      tl.fromTo("#s1-arm-end", 
+        { rotation: 0, transformOrigin: "0px 0px" },
+        { rotation: -45, transformOrigin: "0px 0px", duration: 4.5, ease: "power1.inOut" },
+        4.0
+      );
+      tl.to("#scene-1", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 18.9);
+
+      // --- Scene 2 (19.49s ~ 40.83s) ---
+      tl.fromTo("#scene-2", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        19.6
+      );
+      tl.to("#scene-2", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 40.2);
+
+      // --- Scene 3 (40.83s ~ 61.17s) ---
+      tl.fromTo("#scene-3", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        41.0
+      );
+      tl.to("#scene-3", { opacity: 0, scale: 0.98, duration: 0.5, ease: "power2.in" }, 60.5);
+
+      // --- Scene 4 (61.17s ~ 84.34s) ---
+      tl.fromTo("#scene-4", 
+        { opacity: 0, scale: 0.96 }, 
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, 
+        61.3
+      );
+
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

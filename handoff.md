@@ -1,6 +1,13 @@
 # 專案交接筆記 (handoff.md)
 
 - [x] 完成康軒版國小四年級社會四上第二單元《走進時光隧道 · 家鄉的傳統住屋與生活器具》14 頁全套專屬 AI 繪本背景生圖、14 頁全互動教學動畫簡報、205 秒超高畫質 MP4 關鍵原理解說動畫嵌入（含完整播放/暫停/Seek Bar/時間碼自訂控制條）、雙 Canvas 建築物理與機械動態模擬系統開發
+  - **資料夾分類與專案結構標準化**：
+    - 依使用者明確指令「在資料夾內進行分類」，將專案檔案分門別類歸檔建立清晰結構：
+      - 📁 `動畫簡報/社會第二單元/`：集中管理社會二單元全套資源（`index.html`、`社會第二單元.html`、`社會第二單元.mp4`、`social_explainer_125s.mp4`、`assets/` 14 張背景圖、`renders/` 14 張渲染截圖、`render_social_video.py`、`test_deck_social.py`、審查報告與 `README.md`）。
+      - 📁 `動畫簡報/數學二單元_乘法/`：收納乘法與估商簡報、`math_motion_explainer/`、測試與審查報告。
+      - 📁 `動畫簡報/數學三單元_旋轉角/`：收納旋轉角與鐘面簡報、`angle_motion_explainer/`、幾何測試與審查報告。
+      - 📁 `動畫簡報/國語六課_月亮/`：收納月亮簡報、`moon_motion_explainer/`、測試與審查報告。
+    - 同步更新門禁檢驗腳本 `scripts/audit_gatekeeper.py` 支援遞迴檢驗所有子資料夾 HTML（排除渲染中間模板），持續保持 100% PERFECT PASS。
   - **14 頁全套專屬 AI 繪本背景生圖（`assets/bg_slide1.jpg` ~ `assets/bg_slide14.jpg`）**：
     - 依使用者明確需求「背景沒有生圖，請依照審查標準為每一頁背景生圖」及 `soil-html-deck`、`g4-curriculum-review` 規範，全面汰換單調背景，逐頁生成 16:9 高畫質台灣鄉土繪本插畫背景圖。
     - 嚴格落實 Prompt 工程底線（純背景風景、無文字 No readable text、溫暖大地色與晨曦光照）。
