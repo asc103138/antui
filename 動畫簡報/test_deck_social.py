@@ -37,17 +37,17 @@ async def run_test():
         await page.screenshot(path=str(renders_dir / "deck_social_slide2_map.png"))
         print("✓ Slide 2 Map captured")
 
-        # 3. Slide 3: 2-1 原住民傳統住屋
+        # 3. Slide 3: 2-1 原住民族傳統住屋
         await page.evaluate("goToSlide(3)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide3_indigenous_house.png"))
         print("✓ Slide 3 Indigenous Houses captured")
 
-        # 4. Slide 4: 2-1 漢人傳統住屋
+        # 4. Slide 4: 會呼吸的房子石板屋
         await page.evaluate("goToSlide(4)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide4_han_house.png"))
-        print("✓ Slide 4 Han Houses captured")
+        print("✓ Slide 4 Breathing Slate House captured")
 
         # 5. Slide 5: 關鍵解說動畫頁 (205秒 MP4 控制面板)
         await page.evaluate("goToSlide(5)")
@@ -59,84 +59,74 @@ async def run_test():
         print(f"Slide 5 Controls: video={has_video}, play={has_play_btn}, seek={has_seek}, time={has_time}")
         assert has_video and has_play_btn and has_seek and has_time, "Slide 5 播放器控制項缺失！"
 
-        # 點擊播放與調整進度
         await page.click("#btn-play-pause")
-        await page.wait_for_timeout(600)
+        await page.wait_for_timeout(500)
         await page.fill("#video-seek", "45")
         await page.evaluate("onSeekChange()")
         await page.wait_for_timeout(400)
         await page.screenshot(path=str(renders_dir / "deck_social_slide5_video_player.png"))
         print("✓ Slide 5 Video Player captured")
 
-        # 6. Slide 6: 建築物理結構解剖
+        # 6. Slide 6: 漢人傳統住屋（竹管仔厝與土埆厝）
         await page.evaluate("goToSlide(6)")
-        await page.wait_for_timeout(400)
-        await page.click("#btn-struct-underground")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide6_struct_canvas.png"))
-        print("✓ Slide 6 Structural Anatomy captured")
+        print("✓ Slide 6 Han Traditional Houses captured")
 
-        # 7. Slide 7: 2-2 原住民生活器具
+        # 7. Slide 7: 住屋擴建三部曲（一條龍、單伸手、三合院）
         await page.evaluate("goToSlide(7)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide7_indigenous_tools.png"))
-        print("✓ Slide 7 Indigenous Tools captured")
+        print("✓ Slide 7 House Evolution captured")
 
-        # 8. Slide 8: 2-2 漢人生活器具
+        # 8. Slide 8: 三合院生活空間情境圖解
         await page.evaluate("goToSlide(8)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide8_han_tools.png"))
-        print("✓ Slide 8 Han Tools captured")
+        print("✓ Slide 8 Sanheyuan Living Space captured")
 
-        # 9. Slide 9: 器具物理動態演示
+        # 9. Slide 9: 傳統住屋的改變與再生
         await page.evaluate("goToSlide(9)")
-        await page.wait_for_timeout(400)
-        await page.click("#btn-mach-winnow")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide9_machine_canvas.png"))
-        print("✓ Slide 9 Machine Simulation captured")
+        print("✓ Slide 9 House Change & Rebirth captured")
 
-        # 10. Slide 10: 跨族群智慧對照
+        # 10. Slide 10: 原住民族傳統生活器物
         await page.evaluate("goToSlide(10)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide10_compare.png"))
-        print("✓ Slide 10 Compare Matrix captured")
+        print("✓ Slide 10 Indigenous Tools captured")
 
-        # 11. Slide 11: 臺中海線在地情境
+        # 11. Slide 11: 漢人傳統器物與物盡其用（紅磚灶灰燼悶地瓜）
         await page.evaluate("goToSlide(11)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide11_local_coast.png"))
-        print("✓ Slide 11 Local Coast captured")
+        print("✓ Slide 11 Han Utensils & Resourcefulness captured")
 
-        # 12. Slide 12: 小偵探捉錯互動
+        # 12. Slide 12: 生活器物現代風貌與減塑實踐
         await page.evaluate("goToSlide(12)")
         await page.wait_for_timeout(300)
-        await page.click("#quiz-detect-1")
-        await page.wait_for_timeout(200)
         await page.screenshot(path=str(renders_dir / "deck_social_slide12_myth_detective.png"))
-        print("✓ Slide 12 Detective Myth captured")
+        print("✓ Slide 12 Modern Plastic & Reduction captured")
 
         # 13. Slide 13: 康軒四上真實習作 P.12-17 互動檢討工作台
         await page.evaluate("goToSlide(13)")
         await page.wait_for_timeout(400)
-        # 測試切換至 P.14-15 分頁
         await page.evaluate("setWbTab(2)")
         await page.wait_for_timeout(300)
-        # 測試切換至 P.16-17 分頁
         await page.evaluate("setWbTab(3)")
         await page.wait_for_timeout(300)
-        # 切回 P.12-13 分頁並切換教師紅字
         await page.evaluate("setWbTab(1)")
         await page.evaluate("switchWbImg(1, 'tch')")
         await page.wait_for_timeout(400)
         await page.screenshot(path=str(renders_dir / "deck_social_slide13_interactive_quiz.png"))
         print("✓ Slide 13 Real Workbook Deck captured")
 
-        # 14. Slide 14: SOIL 喚起行動
+        # 14. Slide 14: 小探究家與階層圖學習策略
         await page.evaluate("goToSlide(14)")
         await page.wait_for_timeout(300)
         await page.screenshot(path=str(renders_dir / "deck_social_slide14_soil_cta.png"))
-        print("✓ Slide 14 SOIL CTA captured")
+        print("✓ Slide 14 Inquiry & Hierarchy Strategy captured")
 
         await browser.close()
 
