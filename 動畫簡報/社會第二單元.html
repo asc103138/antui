@@ -102,12 +102,62 @@
       transform: scale(0.96) translateY(12px);
       transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
       z-index: 10;
+      border-radius: 24px;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: 1.5px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.75);
     }
 
     .slide.active {
       display: flex;
       opacity: 1;
       transform: scale(1) translateY(0);
+    }
+
+    /* 14 頁專屬 AI 繪本背景生圖（16:9 高畫質 + WCAG AA 護眼深色遮罩） */
+    .slide[data-slide="1"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.72) 0%, rgba(10, 15, 29, 0.88) 100%), url('assets/bg_slide1.jpg');
+    }
+    .slide[data-slide="2"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.82) 0%, rgba(10, 15, 29, 0.90) 100%), url('assets/bg_slide2.jpg');
+    }
+    .slide[data-slide="3"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.89) 100%), url('assets/bg_slide3.jpg');
+    }
+    .slide[data-slide="4"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.89) 100%), url('assets/bg_slide4.jpg');
+    }
+    .slide[data-slide="5"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.86) 0%, rgba(10, 15, 29, 0.94) 100%), url('assets/bg_slide5.jpg');
+    }
+    .slide[data-slide="6"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.82) 0%, rgba(10, 15, 29, 0.91) 100%), url('assets/bg_slide6.jpg');
+    }
+    .slide[data-slide="7"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.89) 100%), url('assets/bg_slide7.jpg');
+    }
+    .slide[data-slide="8"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.89) 100%), url('assets/bg_slide8.jpg');
+    }
+    .slide[data-slide="9"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.84) 0%, rgba(10, 15, 29, 0.92) 100%), url('assets/bg_slide9.jpg');
+    }
+    .slide[data-slide="10"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.89) 100%), url('assets/bg_slide10.jpg');
+    }
+    .slide[data-slide="11"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.89) 100%), url('assets/bg_slide11.jpg');
+    }
+    .slide[data-slide="12"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.82) 0%, rgba(10, 15, 29, 0.91) 100%), url('assets/bg_slide12.jpg');
+    }
+    .slide[data-slide="13"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.85) 0%, rgba(10, 15, 29, 0.93) 100%), url('assets/bg_slide13.jpg');
+    }
+    .slide[data-slide="14"] {
+      background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.78) 0%, rgba(10, 15, 29, 0.88) 100%), url('assets/bg_slide14.jpg');
     }
 
     /* 標題與標籤規範 (大字級教學專用) */
