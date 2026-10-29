@@ -565,6 +565,58 @@
       color: #FECACA;
     }
 
+    /* 第二單元習作檢討 (P.12-17) 專屬樣式 */
+    .wb-tab-panel {
+      display: none;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .wb-tab-panel.active {
+      display: flex;
+    }
+    .wb-card {
+      background: rgba(14, 23, 38, 0.75);
+      border: 1.5px solid rgba(255, 255, 255, 0.12);
+      border-radius: 16px;
+      padding: 18px 24px;
+    }
+    .wb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--gold-light);
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      padding: 4px 12px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+    .wb-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #FFFFFF;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .wb-desc {
+      font-size: 18px;
+      color: #CBD5E1;
+      line-height: 1.6;
+    }
+    .wb-reveal-box {
+      display: none;
+      margin-top: 14px;
+      padding: 16px 20px;
+      border-radius: 12px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1.5px solid var(--emerald-accent);
+      color: #A7F3D0;
+      font-size: 18px;
+      line-height: 1.6;
+    }
+
     /* 比較表格規範 (大字版) */
     .compare-table {
       width: 100%;
@@ -1367,29 +1419,183 @@
     </div>
   </div>
 
-  <!-- ==================== Slide 13: 隨堂互動大挑戰 ==================== -->
+  <!-- ==================== Slide 13: 第二單元習作檢討 (P.12-17) ==================== -->
   <div class="slide" data-slide="13">
-    <div class="slide-kicker kicker-gold">隨堂大挑戰</div>
-    <h2 class="slide-title">生活大師隨堂挑戰賽</h2>
-    <p class="slide-subtitle">測試你對先民住屋與生活器具的理解程度，每題點擊選項即可獲得即時反饋：</p>
+    <div class="slide-kicker kicker-gold">第二單元習作檢討 · 康軒版 P.12-17</div>
+    <h2 class="slide-title">第二單元習作精華深度檢討</h2>
+    <p class="slide-subtitle">康軒版四上社會第 12～17 頁：逐頁檢討傳統住屋演變、生活器物巧思與古今永續素養</p>
 
-    <div style="background: var(--bg-card); border-radius: 20px; border: 1.5px solid var(--border-subtle); padding: 32px; flex: 1; display: flex; flex-direction: column;">
-      <div id="quiz-question-box" style="flex: 1;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
-          <span id="quiz-num-badge" class="card-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--blue-accent); font-size: 17px;">第 1 題 / 共 3 題</span>
-          <span id="quiz-score-badge" style="font-size: 18px; font-weight: 800; color: var(--gold-primary);">目前得分：0 分</span>
+    <!-- 習作分頁切換按鈕群 -->
+    <div style="display: flex; gap: 14px; margin-bottom: 14px;">
+      <button id="btn-wb-p12" class="ctrl-btn ctrl-btn-primary" onclick="switchWbTab('p12')" style="font-size: 19px; padding: 10px 22px;">
+        🏠 P.12-13 傳統住屋篇
+      </button>
+      <button id="btn-wb-p14" class="ctrl-btn" onclick="switchWbTab('p14')" style="font-size: 19px; padding: 10px 22px;">
+        🥣 P.14-15 生活器物篇
+      </button>
+      <button id="btn-wb-p16" class="ctrl-btn" onclick="switchWbTab('p16')" style="font-size: 19px; padding: 10px 22px;">
+        🌍 P.16-17 統整素養篇
+      </button>
+    </div>
+
+    <!-- 習作檢討主工作台 (支援滾動以容納大字體解析) -->
+    <div style="background: var(--bg-card); border-radius: 20px; border: 1.5px solid var(--border-subtle); padding: 22px 28px; flex: 1; display: flex; flex-direction: column; overflow-y: auto;">
+      
+      <!-- Panel 1: P.12-13 傳統住屋篇 -->
+      <div id="wb-panel-p12" class="wb-tab-panel active">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+          <div class="wb-card">
+            <div class="wb-badge">P.12 第一大題 · 住屋形式擴建三部曲</div>
+            <div class="wb-title">漢人傳統住宅擴建順序為何？</div>
+            <div class="wb-desc">
+              隨著家庭人口增加與經濟改善，房屋由小擴大：<br>
+              <strong>① 一條龍</strong>（僅有一字型正身）<br>
+              <strong>② 單伸手</strong>（正身加蓋單側護龍，成 L 型）<br>
+              <strong>③ 三合院</strong>（正身加兩側左右護龍，成ㄇ字型）
+            </div>
+            <button class="ctrl-btn" style="margin-top: 10px; font-size: 15px;" onclick="toggleWbReveal('rev-p12-1')">查看習作防雷精析 💡</button>
+            <div id="rev-p12-1" class="wb-reveal-box">
+              ⚠️ <strong>失分防雷指南</strong>：段考與習作最常錯把「單伸手」漏掉！單伸手如伸出一臂，是人口成長的關鍵過渡期。正身中央為<strong>正廳</strong>，供奉祖先神明，長輩居住正身兩側。
+            </div>
+          </div>
+
+          <div class="wb-card">
+            <div class="wb-badge">P.13 第二大題 · 原漢傳統住屋對照</div>
+            <div class="wb-title">三合院大埕 vs 原住民適應氣候</div>
+            <div class="wb-desc">
+              • <strong>三合院大埕</strong>：曬穀農作、宗族聚會聊天的開闊空地。<br>
+              • <strong>排灣族石板屋</strong>：採集山中頁岩/板岩，冬暖夏涼、抗震防颱。<br>
+              • <strong>達悟族地下屋</strong>：主屋深入地穴，斜屋頂抵禦強颱與東北季風。
+            </div>
+            <button class="ctrl-btn" style="margin-top: 10px; font-size: 15px;" onclick="toggleWbReveal('rev-p12-2')">查看空間功能正解 💡</button>
+            <div id="rev-p12-2" class="wb-reveal-box">
+              ✅ <strong>習作標準答案</strong>：三合院遵循「左尊右卑」，左護龍為大房、右護龍為二房；達悟族地面設涼台通風乘涼，地下設鵝卵石暗溝防積水。
+            </div>
+          </div>
         </div>
-        <h3 id="quiz-question-text" style="font-size: 28px; font-weight: 900; color: #FFFFFF; margin-bottom: 26px; line-height: 1.45;">
-          泰雅族的高腳穀倉在木柱頂端套設一塊圓形平整的木板，這項設計的主要用途是什麼？
-        </h3>
-        <div id="quiz-options-list" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px;">
-          <!-- 動態注入選項 -->
+
+        <!-- 實戰互動演練題 -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(56, 189, 248, 0.35); border-radius: 16px; padding: 18px 22px; margin-top: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span class="card-badge" style="background: rgba(56, 189, 248, 0.2); color: var(--blue-accent); font-size: 16px;">P.12 習作互動真題演練</span>
+            <span style="font-size: 16px; font-weight: 700; color: var(--gold-light);">點擊選項即時檢討</span>
+          </div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #FFFFFF; margin-bottom: 14px;">
+            漢人早期住屋中，當人口略增，在正身其中一側加蓋廂房（護龍），外型如同伸出一隻手臂（L型），這種住屋形式稱為什麼？
+          </h3>
+          <div class="quiz-options-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p12', '答錯囉！一條龍只有橫向正身，沒有任何護龍喔！')"><span>A.</span> <span>一條龍</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, true, 'fb-p12', '🎉 太棒了！答對！正身加上單邊護龍稱為「單伸手」（L型），之後兩側都加蓋才成為三合院（ㄇ型）！')"><span>B.</span> <span>單伸手</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p12', '答錯囉！三合院是左右兩邊都有護龍的ㄇ字型建築喔！')"><span>C.</span> <span>三合院</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p12', '答錯囉！四合院是前後兩進封閉的四合院落！')"><span>D.</span> <span>四合院</span></div>
+          </div>
+          <div id="fb-p12" class="wb-reveal-box" style="margin-top: 12px;"></div>
         </div>
-        <div id="quiz-feedback-box" style="margin-top: 22px; padding: 16px 24px; border-radius: 12px; font-size: 19px; font-weight: 700; display: none;"></div>
       </div>
-      <div style="display: flex; justify-content: flex-end; gap: 14px; margin-top: 16px;">
-        <button id="btn-next-quiz" class="ctrl-btn ctrl-btn-primary" style="display: none; font-size: 19px; padding: 12px 24px;" onclick="nextQuizQuestion()">下一題 →</button>
+
+      <!-- Panel 2: P.14-15 生活器物篇 -->
+      <div id="wb-panel-p14" class="wb-tab-panel">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+          <div class="wb-card">
+            <div class="wb-badge">P.14 第一大題 · 傳統器具用途連連看</div>
+            <div class="wb-title">先民器物智慧與用途核心配對</div>
+            <div class="wb-desc">
+              • <strong>木臼與木杵</strong>：兩人有節奏搗小米麻糬，凝聚族人情感。<br>
+              • <strong>百步蛇陶壺</strong>：排灣魯凱貴族專屬傳家寶與神聖聘禮。<br>
+              • <strong>竹編魚筌</strong>：喇叭開口、內部倒鬚（倒刺），魚游入無法退。<br>
+              • <strong>手搖風鼓</strong>：利用風力與比重差分離飽滿穀與草屑雜質。
+            </div>
+            <button class="ctrl-btn" style="margin-top: 10px; font-size: 15px;" onclick="toggleWbReveal('rev-p14-1')">查看器物用途正解 💡</button>
+            <div id="rev-p14-1" class="wb-reveal-box">
+              ✅ <strong>習作標準答案</strong>：石磨用於旋轉研磨米漿豆漿；水盤防蟻菜櫥四腳置於水盤隔水斷路防螞蟻爬入，竹篾通風防菜餚腐壞。
+            </div>
+          </div>
+
+          <div class="wb-card">
+            <div class="wb-badge">P.15 第二大題 · 自然取材與環境分解</div>
+            <div class="wb-title">早期器物材質對環境有何好處？</div>
+            <div class="wb-desc">
+              先民器具取自大自然天然材料（竹、木、陶、石、月桃葉）：<br>
+              <strong>1. 取之自然</strong>：因地制宜就地取材，不耗費大量工業能源。<br>
+              <strong>2. 容易分解</strong>：廢棄損壞後能回歸大自然腐化分解。<br>
+              <strong>3. 零環境負擔</strong>：不會在土地上留下難以清除的永久垃圾。
+            </div>
+            <button class="ctrl-btn" style="margin-top: 10px; font-size: 15px;" onclick="toggleWbReveal('rev-p14-2')">查看環保素養精析 💡</button>
+            <div id="rev-p14-2" class="wb-reveal-box">
+              🌿 <strong>先民永續思維</strong>：傳統竹藤器具壞了直接埋入土中成為肥料，體現人與自然和諧共生的生態哲學。
+            </div>
+          </div>
+        </div>
+
+        <!-- 實戰互動演練題 -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(245, 158, 11, 0.35); border-radius: 16px; padding: 18px 22px; margin-top: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span class="card-badge kicker-gold" style="font-size: 16px;">P.14 習作互動真題演練</span>
+            <span style="font-size: 16px; font-weight: 700; color: var(--gold-light);">點擊選項即時檢討</span>
+          </div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #FFFFFF; margin-bottom: 14px;">
+            泰雅族的高腳穀倉在木柱頂端套設一塊圓形平整的木板，這項設計的主要用途是什麼？
+          </h3>
+          <div class="quiz-options-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p14', '答錯囉！穀倉主要功能是護糧，不是純美化裝飾喔！')"><span>A.</span> <span>美化建築裝飾百步蛇圖騰</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, true, 'fb-p14', '🎉 回答正確！這塊光滑倒扣圓板就是「防鼠板」，利用倒懸死角徹底阻斷老鼠攀爬偷吃小米！')"><span>B.</span> <span>阻擋老鼠攀爬偷吃珍貴小米（防鼠板）</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p14', '答錯囉！武器平台不是高腳柱頂端的功能！')"><span>C.</span> <span>當作放置武器與長矛的平台</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p14', '答錯囉！防曬主要靠屋頂茅草，柱頂木板是為了防鼠！')"><span>D.</span> <span>防止夏天陽光直射穀倉內部</span></div>
+          </div>
+          <div id="fb-p14" class="wb-reveal-box" style="margin-top: 12px;"></div>
+        </div>
       </div>
+
+      <!-- Panel 3: P.16-17 統整素養篇 -->
+      <div id="wb-panel-p16" class="wb-tab-panel">
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;">
+          <div class="wb-card">
+            <div class="wb-badge">P.16 單元統整 · 傳統與現代生活大對照</div>
+            <div class="wb-title">住屋與生活器具的古今大轉變</div>
+            <div class="wb-desc">
+              • <strong>住屋空間</strong>：傳統三合院（宗族合居通風） ➜ 現代大樓公寓（鋼筋水泥耐震、節省土地、重隱私）。<br>
+              • <strong>食物烹煮</strong>：傳統紅磚柴火大灶 ➜ 現代瓦斯爐/微波爐（迅速潔淨安全）。<br>
+              • <strong>食物保鮮</strong>：傳統水盤菜櫥/竹菜罩 ➜ 現代電冰箱（低溫保鮮冷藏）。
+            </div>
+            <button class="ctrl-btn" style="margin-top: 10px; font-size: 15px;" onclick="toggleWbReveal('rev-p16-1')">查看生活轉變正解 💡</button>
+            <div id="rev-p16-1" class="wb-reveal-box">
+              ✅ <strong>習作標準答案</strong>：科技進步讓現代生活更迅速省力，但也提高了對電力、天然氣等能源的依賴度。
+            </div>
+          </div>
+
+          <div class="wb-card">
+            <div class="wb-badge">P.17 素養探究 · 現代材質的省思與行動</div>
+            <div class="wb-title">現代塑膠危機與先民永續智慧</div>
+            <div class="wb-desc">
+              • <strong>現代材質致命傷</strong>：塑膠與化纖製品<strong>數百年不易自然分解</strong>，焚燒產生毒氣、丟棄破壞海洋環境形成微塑膠危害生物。<br>
+              • <strong>四年級實踐行動</strong>：自備水壺環保袋、減少一次性餐具、確實做好垃圾分類回收，傳承先民「物盡其用」的簡樸精神。
+            </div>
+            <button class="ctrl-btn" style="margin-top: 10px; font-size: 15px;" onclick="toggleWbReveal('rev-p16-2')">查看素養探究正解 💡</button>
+            <div id="rev-p16-2" class="wb-reveal-box">
+              🌱 <strong>SDGs 連結</strong>：符合 SDG 12「責任消費與生產」，從自身生活減塑做起，守護美麗家鄉環境！
+            </div>
+          </div>
+        </div>
+
+        <!-- 實戰互動演練題 -->
+        <div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 16px; padding: 18px 22px; margin-top: 6px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+            <span class="card-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--emerald-accent); font-size: 16px;">P.17 習作互動真題演練</span>
+            <span style="font-size: 16px; font-weight: 700; color: var(--gold-light);">點擊選項即時檢討</span>
+          </div>
+          <h3 style="font-size: 22px; font-weight: 800; color: #FFFFFF; margin-bottom: 14px;">
+            原住民的石板屋、達悟地下屋，與漢人的三合院、土埆厝，共同體現了先民的哪一種偉大生存智慧？
+          </h3>
+          <div class="quiz-options-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;">
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p16', '答錯囉！早期根本沒有現代電器與水泥鋼筋喔！')"><span>A.</span> <span>全靠現代電器與水泥鋼筋建造</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, true, 'fb-p16', '🎉 答對了！先民取之於自然（石板、泥土、稻草、竹木），順應地形氣候對抗強颱強震，是大自然永續共榮的最高智慧！')"><span>B.</span> <span>就地取材、順應地形氣候的大自然共榮智慧</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p16', '答錯囉！早期住屋因應氣候多低矮緊實，並非蓋高樓大廈！')"><span>C.</span> <span>只蓋高樓大廈方便眺望遠方</span></div>
+            <div class="quiz-option" onclick="checkWbAnswer(this, false, 'fb-p16', '答錯囉！先民都是就地取材，並非進口昂貴建材！')"><span>D.</span> <span>從國外進口昂貴建材炫耀財富</span></div>
+          </div>
+          <div id="fb-p16" class="wb-reveal-box" style="margin-top: 12px;"></div>
+        </div>
+      </div>
+
     </div>
   </div>
 
@@ -1469,7 +1675,7 @@
     "跨族群智慧對照矩陣",
     "臺中海線在地情境",
     "時光小偵探抓錯擂台",
-    "生活大師隨堂挑戰賽",
+    "第二單元習作檢討 (P.12-17)",
     "SOIL 喚起行動與總結"
   ];
 
@@ -1997,112 +2203,56 @@
   }
 
   /* ========================================================
-     Slide 13 隨堂挑戰賽互動系統
+     Slide 13 第二單元習作檢討 (P.12-17) 互動邏輯
      ======================================================== */
-  const quizData = [
-    {
-      q: "泰雅族的高腳穀倉在木柱頂端套設一塊圓形平整的木板，這項設計的主要用途是什麼？",
-      options: [
-        "美化建築裝飾百步蛇圖騰",
-        "阻擋老鼠攀爬偷吃珍貴小米（防鼠板）",
-        "當作放置武器與長矛的平台",
-        "防止夏天陽光直射穀倉內部"
-      ],
-      ans: 1,
-      why: "泰雅族先民的智慧結晶「防鼠板」，利用圓形倒扣的光滑木板造成物理死角，讓老鼠無法倒懸攀爬，守護整座糧倉！"
-    },
-    {
-      q: "漢人先民使用手搖「風鼓」篩選剛收割的稻穀時，主要是利用什麼科學原理？",
-      options: [
-        "磁鐵相吸相斥原理",
-        "重力與空氣阻力的「比重差」分離飽滿與空包彈",
-        "高溫加熱讓水分蒸發",
-        "水流浮力逆向漂浮"
-      ],
-      ans: 1,
-      why: "飽滿實穀重量重直接下墜，而乾癟的空包彈和碎草屑重量輕隨風吹散，展現極高超的比重物理篩選！"
-    },
-    {
-      q: "原住民的石板屋、達悟地下屋，與漢人的三合院、土埆厝，共同體現了先民的哪一種偉大智慧？",
-      options: [
-        "全靠現代電器與水泥鋼筋建造",
-        "就地取材、順應地形氣候的大自然共榮智慧",
-        "只蓋高樓大廈方便眺望遠方",
-        "從國外進口昂貴建材炫耀財富"
-      ],
-      ans: 1,
-      why: "先民取之於自然（石板、泥土、稻草、竹木），因地制宜對抗颱風、強風與地震，是臺灣珍貴的永續環境智慧！"
-    }
-  ];
+  function switchWbTab(tabName) {
+    document.querySelectorAll('.wb-tab-panel').forEach(p => p.classList.remove('active'));
+    document.getElementById('btn-wb-p12').className = (tabName === 'p12' ? 'ctrl-btn ctrl-btn-primary' : 'ctrl-btn');
+    document.getElementById('btn-wb-p14').className = (tabName === 'p14' ? 'ctrl-btn ctrl-btn-primary' : 'ctrl-btn');
+    document.getElementById('btn-wb-p16').className = (tabName === 'p16' ? 'ctrl-btn ctrl-btn-primary' : 'ctrl-btn');
 
-  let curQuizIndex = 0;
-  let quizScore = 0;
-
-  function loadQuizQuestion() {
-    const q = quizData[curQuizIndex];
-    document.getElementById('quiz-num-badge').textContent = `第 ${curQuizIndex + 1} 題 / 共 ${quizData.length} 題`;
-    document.getElementById('quiz-question-text').textContent = q.q;
-
-    const optList = document.getElementById('quiz-options-list');
-    optList.innerHTML = '';
-
-    q.options.forEach((optText, idx) => {
-      const btn = document.createElement('div');
-      btn.className = 'quiz-option';
-      btn.innerHTML = `<span>${['A', 'B', 'C', 'D'][idx]}.</span> <span>${optText}</span>`;
-      btn.onclick = () => selectQuizAnswer(idx);
-      optList.appendChild(btn);
-    });
-
-    document.getElementById('quiz-feedback-box').style.display = 'none';
-    document.getElementById('btn-next-quiz').style.display = 'none';
-  }
-
-  function selectQuizAnswer(chosenIdx) {
-    const q = quizData[curQuizIndex];
-    const opts = document.querySelectorAll('.quiz-option');
-    opts.forEach(o => o.style.pointerEvents = 'none');
-
-    const fbBox = document.getElementById('quiz-feedback-box');
-    fbBox.style.display = 'block';
-
-    if (chosenIdx === q.ans) {
-      opts[chosenIdx].classList.add('correct');
-      fbBox.style.background = 'rgba(16, 185, 129, 0.25)';
-      fbBox.style.border = '1.5px solid var(--emerald-accent)';
-      fbBox.style.color = '#A7F3D0';
-      fbBox.innerHTML = `🎉 <strong>回答正確！</strong> ${q.why}`;
-      quizScore += 100 / quizData.length;
-      document.getElementById('quiz-score-badge').textContent = `目前得分：${Math.round(quizScore)} 分`;
-    } else {
-      opts[chosenIdx].classList.add('wrong');
-      opts[q.ans].classList.add('correct');
-      fbBox.style.background = 'rgba(239, 68, 68, 0.25)';
-      fbBox.style.border = '1.5px solid var(--rose-accent)';
-      fbBox.style.color = '#FECACA';
-      fbBox.innerHTML = `⚠️ <strong>答錯囉！正確答案是 (${['A', 'B', 'C', 'D'][q.ans]})</strong>。<br>${q.why}`;
-    }
-
-    if (curQuizIndex < quizData.length - 1) {
-      document.getElementById('btn-next-quiz').style.display = 'inline-flex';
-      document.getElementById('btn-next-quiz').textContent = '下一題 →';
-    } else {
-      document.getElementById('btn-next-quiz').style.display = 'inline-flex';
-      document.getElementById('btn-next-quiz').textContent = '完成挑戰！進入行動頁 →';
-      document.getElementById('btn-next-quiz').onclick = () => goToSlide(14);
+    const target = document.getElementById(`wb-panel-${tabName}`);
+    if (target) {
+      target.classList.add('active');
     }
   }
 
-  function nextQuizQuestion() {
-    if (curQuizIndex < quizData.length - 1) {
-      curQuizIndex++;
-      loadQuizQuestion();
+  function toggleWbReveal(boxId) {
+    const el = document.getElementById(boxId);
+    if (el) {
+      el.style.display = (el.style.display === 'block' ? 'none' : 'block');
+    }
+  }
+
+  function checkWbAnswer(btnEl, isCorrect, fbId, msg) {
+    const parentGrid = btnEl.closest('.quiz-options-grid');
+    if (parentGrid) {
+      parentGrid.querySelectorAll('.quiz-option').forEach(opt => {
+        opt.style.pointerEvents = 'none';
+      });
+    }
+
+    const fbBox = document.getElementById(fbId);
+    if (fbBox) {
+      fbBox.style.display = 'block';
+      if (isCorrect) {
+        btnEl.classList.add('correct');
+        fbBox.style.background = 'rgba(16, 185, 129, 0.25)';
+        fbBox.style.border = '1.5px solid var(--emerald-accent)';
+        fbBox.style.color = '#A7F3D0';
+        fbBox.innerHTML = msg;
+      } else {
+        btnEl.classList.add('wrong');
+        fbBox.style.background = 'rgba(239, 68, 68, 0.25)';
+        fbBox.style.border = '1.5px solid var(--rose-accent)';
+        fbBox.style.color = '#FECACA';
+        fbBox.innerHTML = `⚠️ ${msg}`;
+      }
     }
   }
 
   window.addEventListener('DOMContentLoaded', () => {
     updateSlideUI();
-    loadQuizQuestion();
   });
 </script>
 </body>
