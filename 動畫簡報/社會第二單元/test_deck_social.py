@@ -19,12 +19,12 @@ async def run_test():
         page.on("console", lambda msg: console_errors.append(f"[{msg.type}] {msg.text}") if msg.type == "error" else None)
         page.on("pageerror", lambda err: console_errors.append(str(err)))
 
-        html_path = Path("d:/antui/動畫簡報/社會第二單元/index.html").resolve()
+        html_path = Path("d:/antui/動畫簡報/index.html").resolve()
         url = f"file:///{html_path.as_posix()}"
         print(f"Navigating to {url}...")
         await page.goto(url, wait_until="networkidle")
 
-        renders_dir = Path("d:/antui/動畫簡報/社會第二單元/renders")
+        renders_dir = Path("d:/antui/動畫簡報/renders")
         renders_dir.mkdir(parents=True, exist_ok=True)
 
         # 1. 封面截圖 (Slide 1)
@@ -116,16 +116,21 @@ async def run_test():
         await page.screenshot(path=str(renders_dir / "deck_social_slide12_myth_detective.png"))
         print("✓ Slide 12 Detective Myth captured")
 
-        # 13. Slide 13: 隨堂測驗互動
+        # 13. Slide 13: 康軒四上真實習作 P.12-17 互動檢討工作台
         await page.evaluate("goToSlide(13)")
         await page.wait_for_timeout(400)
-        # 點擊正確答案 (選項 B: 防鼠板)
-        options = await page.query_selector_all(".quiz-option")
-        if len(options) >= 2:
-            await options[1].click()
-            await page.wait_for_timeout(400)
+        # 測試切換至 P.14-15 分頁
+        await page.evaluate("setWbTab(2)")
+        await page.wait_for_timeout(300)
+        # 測試切換至 P.16-17 分頁
+        await page.evaluate("setWbTab(3)")
+        await page.wait_for_timeout(300)
+        # 切回 P.12-13 分頁並切換教師紅字
+        await page.evaluate("setWbTab(1)")
+        await page.evaluate("switchWbImg(1, 'tch')")
+        await page.wait_for_timeout(400)
         await page.screenshot(path=str(renders_dir / "deck_social_slide13_interactive_quiz.png"))
-        print("✓ Slide 13 Interactive Quiz captured")
+        print("✓ Slide 13 Real Workbook Deck captured")
 
         # 14. Slide 14: SOIL 喚起行動
         await page.evaluate("goToSlide(14)")
