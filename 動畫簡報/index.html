@@ -766,8 +766,82 @@
     </div>
   </div>
 
-  <!-- ==================== Slide 13: 習作實戰檢討 (一)：住屋篇 P.12-15 ==================== -->
+    <!-- ==================== Slide 13: 時空透視鏡 · 百年家鄉大演進（前後對比拉桿演示） ==================== -->
   <div class="slide" data-slide="13">
+    <div class="slide-kicker kicker-gold">時空透視鏡 · 互動視覺化演示 [VIZ]</div>
+    <h2 class="slide-title">家鄉生活百年大演進 · 時空對比透視鏡</h2>
+    <p class="slide-subtitle">左右拖動中間光暈滑桿 ⇄ 穿梭於「早期先民生活智慧」與「現代科技風貌與永續行動」之間：</p>
+
+    <!-- 模式切換按鈕群 -->
+    <div style="display: flex; gap: 14px; margin-bottom: 12px; justify-content: center; flex-wrap: wrap;">
+      <button id="viz-btn-mode-house" class="ctrl-btn ctrl-btn-primary" onclick="setVizMode('house')" style="font-size: 17px; padding: 8px 22px;">
+        🏠 住屋建築篇 · 聚落到高樓
+      </button>
+      <button id="viz-btn-mode-tool" class="ctrl-btn" onclick="setVizMode('tool')" style="font-size: 17px; padding: 8px 22px;">
+        🧺 生活器具篇 · 天然到塑膠
+      </button>
+    </div>
+
+    <!-- 透視鏡滑桿主舞台 -->
+    <div class="viz-wrapper" style="position: relative; width: 100%; max-width: 1040px; margin: 0 auto; flex: 1; display: flex; flex-direction: column;">
+      
+      <div id="viz-viewport" class="viz-viewport" style="position: relative; width: 100%; height: 420px; border-radius: 18px; overflow: hidden; border: 2px solid rgba(255,255,255,0.18); box-shadow: 0 16px 45px rgba(0,0,0,0.6); user-select: none;">
+        
+        <!-- 底層：早期先民智慧 (Before) -->
+        <div id="viz-pane-before" class="viz-pane" style="position: absolute; inset: 0; background: radial-gradient(circle at top left, #292017 0%, #111827 80%); padding: 26px 36px; display: flex; flex-direction: column; justify-content: space-between; z-index: 1;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <div id="viz-badge-before" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(245, 158, 11, 0.25); border: 1.5px solid var(--gold-primary); color: var(--gold-light); padding: 5px 14px; border-radius: 20px; font-size: 15px; font-weight: 800; transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
+              👈 早期先民智慧（傳統）
+            </div>
+            <span style="font-size: 14px; color: #94A3B8; font-weight: 600;">因地制宜 · 就地取材</span>
+          </div>
+
+          <!-- 內容容器 -->
+          <div id="viz-content-before" style="margin-top: 6px;"></div>
+
+          <div id="viz-tags-before" style="display: flex; gap: 8px; flex-wrap: wrap;"></div>
+        </div>
+
+        <!-- 頂層：現代生活與再生 (After) -->
+        <div id="viz-pane-after" class="viz-pane" style="position: absolute; inset: 0; background: radial-gradient(circle at top right, #0d324d 0%, #062b1e 80%); padding: 26px 36px; display: flex; flex-direction: column; justify-content: space-between; z-index: 2; clip-path: inset(0 50% 0 0);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+            <span style="font-size: 14px; color: #94A3B8; font-weight: 600;">科技便利 · 永續傳承</span>
+            <div id="viz-badge-after" style="display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.25); border: 1.5px solid var(--blue-accent); color: #38BDF8; padding: 5px 14px; border-radius: 20px; font-size: 15px; font-weight: 800; transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);">
+              現代生活與再生（現代） 👉
+            </div>
+          </div>
+
+          <!-- 內容容器 -->
+          <div id="viz-content-after" style="margin-top: 6px;"></div>
+
+          <div id="viz-tags-after" style="display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;"></div>
+        </div>
+
+        <!-- 分割線與發光光芒 -->
+        <div id="viz-divider" style="position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: linear-gradient(to bottom, #38BDF8, #F59E0B, #10B981); box-shadow: 0 0 16px rgba(56, 189, 248, 0.95), 0 0 32px rgba(245, 158, 11, 0.7); z-index: 10; pointer-events: none; transform: translateX(-50%);">
+          <!-- 圓形拖曳把手 -->
+          <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 42px; height: 42px; border-radius: 50%; background: #0b1329; border: 2.5px solid #38BDF8; box-shadow: 0 0 18px rgba(56, 189, 248, 0.9); display: flex; align-items: center; justify-content: center; color: #FFFFFF; font-size: 17px; font-weight: 800;">
+            ⇄
+          </div>
+        </div>
+
+      </div>
+
+      <!-- 控制拉桿與狀態欄 -->
+      <div style="margin-top: 12px; display: flex; flex-direction: column; align-items: center; gap: 6px;">
+        <input id="viz-slider-input" type="range" min="0" max="100" value="50" oninput="updateVizSlider(this.value)" style="width: 100%; max-width: 680px; height: 8px; cursor: ew-resize; accent-color: #38BDF8;">
+        <div style="display: flex; justify-content: space-between; width: 100%; max-width: 680px; font-size: 14px; color: #94A3B8;">
+          <span>◀ 100% 早期傳統智慧</span>
+          <span id="viz-status-label" style="color: var(--gold-light); font-weight: 700;">傳統 50% ｜ 現代 50%</span>
+          <span>100% 現代生活與再生 ▶</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ==================== Slide 14: 習作實戰檢討 (一)：住屋篇 P.12-15 ==================== -->
+  <div class="slide" data-slide="14">
     <div class="slide-kicker kicker-gold">康軒版四上社會習作 · 2-1 傳統住屋篇全解密</div>
     <h2 class="slide-title">習作實戰檢討 (一)：P.12～P.15 傳統住屋</h2>
     <p class="slide-subtitle">100% 符應康軒真實習作：土埆厝與石板屋閱讀理解、三合院中秋團聚空間禮法與未來抉擇</p>
@@ -972,8 +1046,8 @@
     </div>
   </div>
 
-  <!-- ==================== Slide 14: 習作實戰檢討 (二)：器物與減塑篇 P.16-17 ==================== -->
-  <div class="slide" data-slide="14">
+  <!-- ==================== Slide 15: 習作實戰檢討 (二)：器物與減塑篇 P.16-17 ==================== -->
+  <div class="slide" data-slide="15">
     <div class="slide-kicker kicker-emerald">康軒版四上社會習作 · 2-2 生活器具與永續減塑</div>
     <h2 class="slide-title">習作實戰檢討 (二)：P.16～P.17 生活器具與減塑</h2>
     <p class="slide-subtitle">100% 符應康軒真實習作：P.16 傳統蓑衣 vs 塑膠雨衣比較表格、P.17 海洋塑膠統計長條圖與日常減塑</p>
@@ -1110,7 +1184,7 @@
   </div>
 
 <!-- ==================== Slide 15: 小探究家與階層圖（課本 P.48-51） ==================== -->
-  <div class="slide" data-slide="15">
+  <div class="slide" data-slide="16">
     <div class="slide-kicker kicker-emerald">小探究家與學習策略 · 課本 P.48-51</div>
     <h2 class="slide-title">早期器物探究與階層圖整理分析</h2>
     <p class="slide-subtitle">課本 P.48-51 真實探究：斗笠、桌罩、布農族藤編背簍與階層圖思維工具：</p>
@@ -1143,7 +1217,7 @@
   <!-- ==================== 底部固定導航列 ==================== -->
   <div id="bottom-nav">
     <div class="nav-indicator">
-      <span>第 <strong id="cur-slide-num">1</strong> 頁 / 共 15 頁</span>
+      <span>第 <strong id="cur-slide-num">1</strong> 頁 / 共 16 頁</span>
       <span style="color: var(--border-subtle);">|</span>
       <span id="cur-slide-title" style="color: #CBD5E1;">封面</span>
     </div>
@@ -1157,7 +1231,7 @@
 
 <script>
   let currentSlide = 1;
-  const totalSlides = 14;
+  const totalSlides = 16;
 
   const slideTitles = [
     "封面 · 家鄉的傳統住屋與器物",
@@ -1172,7 +1246,9 @@
     "原住民族傳統生活器物 (課本 P.42-43)",
     "漢人傳統器物與物盡其用 (課本 P.44-45)",
     "生活器物現代風貌與減塑 (課本 P.46-47)",
-    "第二單元習作 P.12-17 實戰檢討",
+    "時空透視鏡 · 百年家鄉大演進",
+    "習作實戰檢討 (一)：住屋篇 (P.12-15)",
+    "習作實戰檢討 (二)：器具篇 (P.16-17)",
     "小探究家與階層圖策略 (課本 P.48-51)"
   ];
 
@@ -1528,6 +1604,116 @@
     }
   }
 
+  // ==================== 時空透視鏡 (VIZ Slider) 核心互動 ====================
+  let currentVizMode = 'house';
+
+  const vizData = {
+    house: {
+      before: {
+        title: '三合院與土埆聚落（因地制宜 · 宗族共生）',
+        desc: '• <strong>就地取材建築</strong>：以泥土、稻稈、紅磚、黑石板築屋，冬暖夏涼。<br>• <strong>大家庭宗親同聚</strong>：長幼有序（正身正廳供奉神明祖先，左右護龍分房居），中庭稻埕曬穀親族聚會。<br>• <strong>生活零廢棄循環</strong>：紅磚大灶柴燒炊煮，木柴灰燼入田施肥，生活與自然和諧共存。',
+        tags: [
+          { text: '🌿 就地取材', color: '#FCD34D', bg: 'rgba(245, 158, 11, 0.15)' },
+          { text: '👨‍👩‍👧‍👦 家族宗親聚落', color: '#FCD34D', bg: 'rgba(245, 158, 11, 0.15)' },
+          { text: '🔄 生活零廢棄物', color: '#FCD34D', bg: 'rgba(245, 158, 11, 0.15)' }
+        ]
+      },
+      after: {
+        title: '鋼筋大樓與古厝再生（科技便利 · 文化傳承）',
+        desc: '• <strong>鋼筋混凝土耐震耐震</strong>：電梯門禁、氣密防音窗，享受現代科技帶來的獨立私密生活。<br>• <strong>現代化管線設施</strong>：瓦斯爐、抽油煙機、自來水管路，烹飪清潔安全又省時。<br>• <strong>老屋活化文化傳承</strong>：修復傳統老厝改建為特色民宿、鄉土文物館與文化茶館，延續家鄉珍貴記憶！',
+        tags: [
+          { text: '🏢 耐震耐震高樓', color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.15)' },
+          { text: '⚡ 便捷現代管線', color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.15)' },
+          { text: '🏮 古厝活化再生', color: '#34D399', bg: 'rgba(16, 185, 129, 0.15)' }
+        ]
+      }
+    },
+    tool: {
+      before: {
+        title: '天然器物物盡其用（純天然 · 零污染）',
+        desc: '• <strong>棕櫚葉蓑衣</strong>：天然棕葉緊密編織，透氣排汗、堅固耐磨，能穿數十年不壞。<br>• <strong>竹編桌罩與魚筌</strong>：竹篾編織防蠅防塵、通風保鮮；魚筌倒刺構造順流捕魚蝦。<br>• <strong>灰燼餘熱與天然肥料</strong>：紅磚大灶柴火燃燒後，灰燼餘溫悶烤香甜地瓜，再拌入菜園當天然肥料。',
+        tags: [
+          { text: '🌴 棕櫚葉蓑衣', color: '#FCD34D', bg: 'rgba(245, 158, 11, 0.15)' },
+          { text: '🎋 竹編生活智慧', color: '#FCD34D', bg: 'rgba(245, 158, 11, 0.15)' },
+          { text: '🌱 柴灰物盡其用', color: '#FCD34D', bg: 'rgba(245, 158, 11, 0.15)' }
+        ]
+      },
+      after: {
+        title: '現代便利與減塑行動（輕便便宜 · 環境反思）',
+        desc: '• <strong>塑膠雨衣輕便便宜</strong>：小巧易摺疊好攜帶，但穿著悶熱、丟棄後在環境中難以分解。<br>• <strong>海洋塑膠廢棄物警訊</strong>：臺灣每年淨灘廢棄物以寶特瓶（6.7萬件）、吸管與免洗餐具居多。<br>• <strong>四年級減塑大實踐</strong>：外出自備環保餐具、隨身攜帶保溫水壺與環保提袋，向先民學習物盡其用！',
+        tags: [
+          { text: '🧥 輕便塑膠雨衣', color: '#38BDF8', bg: 'rgba(56, 189, 248, 0.15)' },
+          { text: '⚠️ 海洋廢棄物危機', color: '#F87171', bg: 'rgba(239, 68, 68, 0.15)' },
+          { text: '🥤 SDG 12 源頭減塑', color: '#34D399', bg: 'rgba(16, 185, 129, 0.15)' }
+        ]
+      }
+    }
+  };
+
+  function setVizMode(mode) {
+    currentVizMode = mode;
+    const btnHouse = document.getElementById('viz-btn-mode-house');
+    const btnTool = document.getElementById('viz-btn-mode-tool');
+    if (btnHouse && btnTool) {
+      if (mode === 'house') {
+        btnHouse.classList.add('ctrl-btn-primary');
+        btnTool.classList.remove('ctrl-btn-primary');
+      } else {
+        btnTool.classList.add('ctrl-btn-primary');
+        btnHouse.classList.remove('ctrl-btn-primary');
+      }
+    }
+
+    const data = vizData[mode];
+    const cBefore = document.getElementById('viz-content-before');
+    const cAfter = document.getElementById('viz-content-after');
+    const tBefore = document.getElementById('viz-tags-before');
+    const tAfter = document.getElementById('viz-tags-after');
+
+    if (cBefore && cAfter) {
+      cBefore.innerHTML = `
+        <h3 style="font-size: 24px; color: #FFFFFF; font-weight: 800; margin-bottom: 10px;">${data.before.title}</h3>
+        <p style="font-size: 17px; color: #CBD5E1; line-height: 1.6;">${data.before.desc}</p>
+      `;
+      cAfter.innerHTML = `
+        <h3 style="font-size: 24px; color: #FFFFFF; font-weight: 800; margin-bottom: 10px; text-align: right;">${data.after.title}</h3>
+        <p style="font-size: 17px; color: #CBD5E1; line-height: 1.6; text-align: right;">${data.after.desc}</p>
+      `;
+    }
+
+    if (tBefore && tAfter) {
+      tBefore.innerHTML = data.before.tags.map(t => `<span class="card-tag" style="background: ${t.bg}; color: ${t.color}; font-size: 14px;">${t.text}</span>`).join('');
+      tAfter.innerHTML = data.after.tags.map(t => `<span class="card-tag" style="background: ${t.bg}; color: ${t.color}; font-size: 14px;">${t.text}</span>`).join('');
+    }
+  }
+
+  function updateVizSlider(val) {
+    const v = Number(val);
+    const paneAfter = document.getElementById('viz-pane-after');
+    const divider = document.getElementById('viz-divider');
+    const statusLabel = document.getElementById('viz-status-label');
+    const badgeBefore = document.getElementById('viz-badge-before');
+    const badgeAfter = document.getElementById('viz-badge-after');
+
+    if (paneAfter) {
+      paneAfter.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+    }
+    if (divider) {
+      divider.style.left = v + '%';
+    }
+    if (statusLabel) {
+      statusLabel.textContent = `傳統 ${100 - v}% ｜ 現代 ${v}%`;
+    }
+
+    // 靠邊界時平滑隱藏 Badge
+    if (badgeBefore) {
+      badgeBefore.style.opacity = v < 15 ? '0' : '1';
+    }
+    if (badgeAfter) {
+      badgeAfter.style.opacity = v > 85 ? '0' : '1';
+    }
+  }
+
   function revealP16Table() {
     const rMat = document.getElementById('cell-rain-mat');
     const sPro = document.getElementById('cell-suo-pro');
@@ -1551,6 +1737,8 @@
 
   // 初始化
   goToSlide(1);
+  setVizMode("house");
+  updateVizSlider(50);
   setWbTab(1);
 </script>
 

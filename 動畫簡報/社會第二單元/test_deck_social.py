@@ -109,19 +109,29 @@ async def run_test():
         await page.screenshot(path=str(renders_dir / "deck_social_slide12_myth_detective.png"))
         print("✓ Slide 12 Modern Plastic & Reduction captured")
 
-        # 13. Slide 13: 習作實戰檢討 (一)：住屋篇 P.12-15
+        # 13. Slide 13: 時空透視鏡 · 百年家鄉大演進（滑桿視覺化演示）
         await page.evaluate("goToSlide(13)")
+        await page.wait_for_timeout(400)
+        await page.evaluate("updateVizSlider(65)")
+        await page.wait_for_timeout(200)
+        await page.evaluate("setVizMode('house')")
+        await page.wait_for_timeout(300)
+        await page.screenshot(path=str(renders_dir / "deck_social_slide13_viz_slider.png"))
+        print("✓ Slide 13 Time Machine Visual Slider captured")
+
+        # 14. Slide 14: 習作實戰檢討 (一)：住屋篇 P.12-15
+        await page.evaluate("goToSlide(14)")
         await page.wait_for_timeout(400)
         await page.evaluate("setWbTab(2)")
         await page.wait_for_timeout(300)
         await page.evaluate("setWbTab(1)")
         await page.evaluate("switchWbImg(1, 'tch')")
         await page.wait_for_timeout(400)
-        await page.screenshot(path=str(renders_dir / "deck_social_slide13_interactive_quiz.png"))
-        print("✓ Slide 13 Workbook Housing (P.12-15) captured")
+        await page.screenshot(path=str(renders_dir / "deck_social_slide14_interactive_quiz.png"))
+        print("✓ Slide 14 Workbook Housing (P.12-15) captured")
 
-        # 14. Slide 14: 習作實戰檢討 (二)：器物與減塑篇 P.16-17
-        await page.evaluate("goToSlide(14)")
+        # 15. Slide 15: 習作實戰檢討 (二)：器物與減塑篇 P.16-17
+        await page.evaluate("goToSlide(15)")
         await page.wait_for_timeout(400)
         await page.evaluate("setWbPageImg14(17)")
         await page.wait_for_timeout(300)
@@ -129,14 +139,14 @@ async def run_test():
         await page.evaluate("switchWbImg14('tch')")
         await page.evaluate("revealP16Table()")
         await page.wait_for_timeout(400)
-        await page.screenshot(path=str(renders_dir / "deck_social_slide14_workbook_p16_17.png"))
-        print("✓ Slide 14 Dedicated Workbook Utensils & Plastic Reduction (P.16-17) captured")
+        await page.screenshot(path=str(renders_dir / "deck_social_slide15_workbook_p16_17.png"))
+        print("✓ Slide 15 Dedicated Workbook Utensils & Plastic Reduction (P.16-17) captured")
 
-        # 15. Slide 15: 小探究家與階層圖學習策略
-        await page.evaluate("goToSlide(15)")
+        # 16. Slide 16: 小探究家與階層圖學習策略
+        await page.evaluate("goToSlide(16)")
         await page.wait_for_timeout(300)
-        await page.screenshot(path=str(renders_dir / "deck_social_slide15_soil_cta.png"))
-        print("✓ Slide 15 Inquiry & Hierarchy Strategy captured")
+        await page.screenshot(path=str(renders_dir / "deck_social_slide16_soil_cta.png"))
+        print("✓ Slide 16 Inquiry & Hierarchy Strategy captured")
 
         await browser.close()
 
