@@ -520,8 +520,8 @@
         </button>
         <button class="ctrl-btn" onclick="skipVideo(-10)" title="倒退10秒" style="padding: 10px 14px;">⏪ 10s</button>
         <button class="ctrl-btn" onclick="skipVideo(10)" title="快進10秒" style="padding: 10px 14px;">10s ⏩</button>
-        <input type="range" id="video-seek" min="0" max="205.32" step="0.1" value="0" style="flex: 1; accent-color: var(--gold-primary); cursor: pointer;" oninput="onSeekChange()">
-        <span id="video-time" style="font-size: 16px; font-weight: 700; color: var(--gold-light); min-width: 120px; text-align: center;">00:00 / 03:25</span>
+        <input type="range" id="video-seek" min="0" max="271.85" step="0.1" value="0" style="flex: 1; accent-color: var(--gold-primary); cursor: pointer;" oninput="onSeekChange()">
+        <span id="video-time" style="font-size: 16px; font-weight: 700; color: var(--gold-light); min-width: 120px; text-align: center;">00:00 / 04:31</span>
         <button id="btn-mute" class="ctrl-btn" onclick="toggleMute()" style="padding: 10px 14px;">🔊 聲音</button>
         <button class="ctrl-btn" onclick="restartVideo()" style="padding: 10px 14px;">🔄 重播</button>
       </div>
@@ -1224,6 +1224,13 @@
   const timeBadge = document.getElementById('video-time');
 
   if (video) {
+    video.onloadedmetadata = () => {
+      if (video.duration) {
+        seekBar.max = video.duration;
+        updateTimeDisplay(0, video.duration);
+      }
+    };
+
     video.ontimeupdate = () => {
       if (!isSeeking && video.duration) {
         seekBar.value = video.currentTime;
@@ -1270,14 +1277,14 @@
   function onSeekChange() {
     if (!video) return;
     video.currentTime = parseFloat(seekBar.value);
-    updateTimeDisplay(video.currentTime, video.duration || 205.32);
+    updateTimeDisplay(video.currentTime, video.duration || 271.85);
   }
 
   function skipVideo(seconds) {
     if (!video) return;
-    video.currentTime = Math.min(Math.max(video.currentTime + seconds, 0), video.duration || 205.32);
+    video.currentTime = Math.min(Math.max(video.currentTime + seconds, 0), video.duration || 271.85);
     seekBar.value = video.currentTime;
-    updateTimeDisplay(video.currentTime, video.duration || 205.32);
+    updateTimeDisplay(video.currentTime, video.duration || 271.85);
   }
 
   function updateTimeDisplay(cur, dur) {
