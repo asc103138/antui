@@ -116,7 +116,8 @@
     .slide[data-slide="11"] { background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.82) 0%, rgba(10, 15, 29, 0.92) 100%), url('assets/bg_slide8.jpg'); }
     .slide[data-slide="12"] { background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.82) 0%, rgba(10, 15, 29, 0.92) 100%), url('assets/bg_slide12.jpg'); }
     .slide[data-slide="13"] { background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.85) 0%, rgba(10, 15, 29, 0.93) 100%), url('assets/bg_slide13.jpg'); }
-    .slide[data-slide="14"] { background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.90) 100%), url('assets/bg_slide14.jpg'); }
+    .slide[data-slide="14"] { background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.85) 0%, rgba(10, 15, 29, 0.93) 100%), url('assets/bg_slide12.jpg'); }
+    .slide[data-slide="15"] { background-image: linear-gradient(135deg, rgba(10, 15, 29, 0.80) 0%, rgba(10, 15, 29, 0.90) 100%), url('assets/bg_slide14.jpg'); }
 
     /* 大字體層級規範 */
     .slide-kicker {
@@ -765,11 +766,11 @@
     </div>
   </div>
 
-  <!-- ==================== Slide 13: 康軒四上真實習作 P.12-17 實戰檢討 ==================== -->
+  <!-- ==================== Slide 13: 習作實戰檢討 (一)：住屋篇 P.12-15 ==================== -->
   <div class="slide" data-slide="13">
-    <div class="slide-kicker kicker-gold">康軒版四上社會習作 · 第二單元全解密</div>
-    <h2 class="slide-title">第二單元習作 P.12～P.17 實戰檢討</h2>
-    <p class="slide-subtitle">100% 符應用戶 114 四上教材：土埆厝與石板屋、三合院中秋團聚、蓑衣雨衣大對比、臺灣海洋廢棄物統計</p>
+    <div class="slide-kicker kicker-gold">康軒版四上社會習作 · 2-1 傳統住屋篇全解密</div>
+    <h2 class="slide-title">習作實戰檢討 (一)：P.12～P.15 傳統住屋</h2>
+    <p class="slide-subtitle">100% 符應康軒真實習作：土埆厝與石板屋閱讀理解、三合院中秋團聚空間禮法與未來抉擇</p>
 
     <!-- 習作分頁導航按鈕群 -->
     <div style="display: flex; gap: 14px; margin-bottom: 12px; flex-wrap: wrap;">
@@ -778,9 +779,6 @@
       </button>
       <button id="wb-tab-btn-2" class="ctrl-btn" onclick="setWbTab(2)" style="font-size: 18px; padding: 9px 20px;">
         🏡 P.14-15 三合院中秋團聚
-      </button>
-      <button id="wb-tab-btn-3" class="ctrl-btn" onclick="setWbTab(3)" style="font-size: 18px; padding: 9px 20px;">
-        🌧️ P.16-17 蓑衣雨衣 ＆ 海洋廢棄物
       </button>
     </div>
 
@@ -971,125 +969,138 @@
         </div>
       </div>
 
-      <!-- 分頁 3: P.16-17 -->
-      <div id="wb-view-3" class="wb-view" style="display: none; gap: 24px; flex-direction: row; align-items: stretch;">
-        <div style="flex: 0 0 340px; background: rgba(10, 15, 29, 0.7); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <span style="font-size: 15px; font-weight: 800; color: var(--gold-light);">📖 習作真實頁面</span>
-            <div style="display: flex; gap: 6px;">
-              <button class="ctrl-btn" id="btn-mode-stu-3" onclick="switchWbImg(3, 'stu')" style="font-size: 13px; padding: 4px 10px; background: rgba(56, 189, 248, 0.25); border-color: var(--blue-accent); color: #fff;">學用版</button>
-              <button class="ctrl-btn" id="btn-mode-tch-3" onclick="switchWbImg(3, 'tch')" style="font-size: 13px; padding: 4px 10px;">教師紅字</button>
-            </div>
+    </div>
+  </div>
+
+  <!-- ==================== Slide 14: 習作實戰檢討 (二)：器物與減塑篇 P.16-17 ==================== -->
+  <div class="slide" data-slide="14">
+    <div class="slide-kicker kicker-emerald">康軒版四上社會習作 · 2-2 生活器具與永續減塑</div>
+    <h2 class="slide-title">習作實戰檢討 (二)：P.16～P.17 生活器具與減塑</h2>
+    <p class="slide-subtitle">100% 符應康軒真實習作：P.16 傳統蓑衣 vs 塑膠雨衣比較表格、P.17 海洋塑膠統計長條圖與日常減塑</p>
+
+    <!-- 習作檢討主工作台容器 -->
+    <div style="background: var(--bg-card); border-radius: 20px; border: 1.5px solid var(--border-subtle); padding: 20px 26px; flex: 1; display: flex; flex-direction: row; gap: 24px; align-items: stretch; overflow-y: auto; box-shadow: 0 16px 40px rgba(0,0,0,0.4);">
+      
+      <!-- 左欄：真實頁面與切換 -->
+      <div style="flex: 0 0 340px; background: rgba(10, 15, 29, 0.7); border: 1.5px solid rgba(255,255,255,0.12); border-radius: 16px; padding: 14px; display: flex; flex-direction: column; gap: 10px;">
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 15px; font-weight: 800; color: var(--gold-light);">📖 習作真實頁面</span>
+          <div style="display: flex; gap: 6px;">
+            <button class="ctrl-btn" id="btn-mode-stu-14" onclick="switchWbImg14('stu')" style="font-size: 13px; padding: 4px 10px; background: rgba(56, 189, 248, 0.25); border-color: var(--blue-accent); color: #fff;">學用版</button>
+            <button class="ctrl-btn" id="btn-mode-tch-14" onclick="switchWbImg14('tch')" style="font-size: 13px; padding: 4px 10px;">教師紅字</button>
           </div>
-          <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 4px;">
-            <button class="ctrl-btn" onclick="setWbPageImg(3, 16)" style="font-size: 13px; padding: 3px 10px;">P.16 蓑衣雨衣</button>
-            <button class="ctrl-btn" onclick="setWbPageImg(3, 17)" style="font-size: 13px; padding: 3px 10px;">P.17 海洋廢棄物</button>
+        </div>
+        <div style="display: flex; gap: 8px; justify-content: center; margin-bottom: 4px;">
+          <button class="ctrl-btn" onclick="setWbPageImg14(16)" style="font-size: 13px; padding: 3px 10px;">P.16 蓑衣雨衣</button>
+          <button class="ctrl-btn" onclick="setWbPageImg14(17)" style="font-size: 13px; padding: 3px 10px;">P.17 海洋廢棄物</button>
+        </div>
+        <div style="flex: 1; overflow: hidden; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: #fff; display: flex; justify-content: center; align-items: center; min-height: 400px;">
+          <img id="wb-img-14" src="assets/workbook/wb_student_p16.png" alt="習作頁面" style="width: 100%; height: auto; max-height: 500px; object-fit: contain;">
+        </div>
+        <div style="font-size: 13px; color: #94A3B8; text-align: center;">P.16 傳統 vs 現代雨衣；P.17 海洋塑膠統計與減塑</div>
+      </div>
+
+      <!-- 右欄：題目互動與解析 -->
+      <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
+        <!-- P.16 -->
+        <div style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.35); border-radius: 14px; padding: 16px 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span class="card-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--gold-light); font-size: 15px;">P.16 第一大題 · 器物與生活</span>
+            <span style="font-size: 15px; color: #94A3B8;">對話判讀 ➔ 表格填空</span>
           </div>
-          <div style="flex: 1; overflow: hidden; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: #fff; display: flex; justify-content: center; align-items: center; min-height: 380px;">
-            <img id="wb-img-3" src="assets/workbook/wb_student_p16.png" alt="習作頁面" style="width: 100%; height: auto; max-height: 480px; object-fit: contain;">
-          </div>
-          <div style="font-size: 13px; color: #94A3B8; text-align: center;">P.16 傳統 vs 現代雨衣；P.17 海洋塑膠統計與減塑</div>
+          <p style="font-size: 16px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
+            <strong>奶奶說：</strong>「蓑衣就是以前的雨衣。現在的雨衣是<strong>塑膠</strong>製成的，穿起來比較<strong>悶熱</strong>，而蓑衣是用<strong>棕櫚葉</strong>製成。蓑衣雖然<strong>重量較重</strong>，但<strong>堅固耐用</strong>，可以穿很久。現代人改穿<strong>方便攜帶</strong>的塑膠雨衣。」
+          </p>
+          <table class="compare-table" style="font-size: 17px; margin-bottom: 10px;">
+            <thead>
+              <tr>
+                <th style="width: 25%;">內容＼名稱</th>
+                <th style="width: 37.5%; color: #FCD34D;">蓑　衣</th>
+                <th style="width: 37.5%; color: #38BDF8;">雨　衣</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>製作材料</strong></td>
+                <td>棕櫚葉</td>
+                <td id="cell-rain-mat" onclick="revealWbCell('cell-rain-mat', '塑膠', '#38BDF8')" style="background: rgba(56, 189, 248, 0.1); cursor: pointer;">（點擊揭曉）</td>
+              </tr>
+              <tr>
+                <td><strong>優　點</strong></td>
+                <td id="cell-suo-pro" onclick="revealWbCell('cell-suo-pro', '堅固耐用', '#FCD34D')" style="background: rgba(245, 158, 11, 0.1); cursor: pointer;">（點擊揭曉）</td>
+                <td>方便攜帶</td>
+              </tr>
+              <tr>
+                <td><strong>缺　點</strong></td>
+                <td id="cell-suo-con" onclick="revealWbCell('cell-suo-con', '重量較重', '#F87171')" style="background: rgba(245, 158, 11, 0.1); cursor: pointer;">（點擊揭曉）</td>
+                <td id="cell-rain-con" onclick="revealWbCell('cell-rain-con', '穿起來較悶熱', '#F87171')" style="background: rgba(56, 189, 248, 0.1); cursor: pointer;">（點擊揭曉）</td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="ctrl-btn ctrl-btn-primary" onclick="revealP16Table()" style="font-size: 14px; padding: 6px 16px;">一鍵填入表格標準答案 ✍️</button>
         </div>
 
-        <div style="flex: 1; display: flex; flex-direction: column; gap: 16px;">
-          <div style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(245, 158, 11, 0.35); border-radius: 14px; padding: 16px 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span class="card-badge" style="background: rgba(245, 158, 11, 0.2); color: var(--gold-light); font-size: 15px;">P.16 第一大題 · 器物與生活</span>
-              <span style="font-size: 15px; color: #94A3B8;">對話判讀 ➔ 表格填空</span>
+        <!-- P.17 -->
+        <div style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 16px 20px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span class="card-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--emerald-accent); font-size: 15px;">P.17 第二大題 · 素養統計圖表</span>
+            <span style="font-size: 15px; color: #94A3B8;">民國 111 vs 112 年臺灣海洋廢棄物</span>
+          </div>
+          
+          <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; font-size: 14px; text-align: center;">
+            <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); padding: 8px; border-radius: 8px;">
+              <div style="color: #F87171; font-weight: 800;">寶特瓶（最多）</div>
+              <div>111年: 45,996件</div>
+              <div style="color: #FCD34D; font-weight: 700;">112年: 67,076件 ↑</div>
             </div>
-            <p style="font-size: 16px; color: #CBD5E1; line-height: 1.5; margin-bottom: 10px;">
-              <strong>奶奶說：</strong>「蓑衣就是以前的雨衣。現在的雨衣是<strong>塑膠</strong>製成的，穿起來比較<strong>悶熱</strong>，而蓑衣是用<strong>棕櫚葉</strong>製成。蓑衣雖然<strong>重量較重</strong>，但<strong>堅固耐用</strong>，可以穿很久。現代人改穿<strong>方便攜帶</strong>的塑膠雨衣。」
-            </p>
-            <table class="compare-table" style="font-size: 17px; margin-bottom: 10px;">
-              <thead>
-                <tr>
-                  <th style="width: 25%;">內容＼名稱</th>
-                  <th style="width: 37.5%; color: #FCD34D;">蓑　衣</th>
-                  <th style="width: 37.5%; color: #38BDF8;">雨　衣</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><strong>製作材料</strong></td>
-                  <td>棕櫚葉</td>
-                  <td id="cell-rain-mat" style="background: rgba(56, 189, 248, 0.1);">（點擊揭曉）</td>
-                </tr>
-                <tr>
-                  <td><strong>優　點</strong></td>
-                  <td id="cell-suo-pro" style="background: rgba(245, 158, 11, 0.1);">（點擊揭曉）</td>
-                  <td>方便攜帶</td>
-                </tr>
-                <tr>
-                  <td><strong>缺　點</strong></td>
-                  <td id="cell-suo-con" style="background: rgba(245, 158, 11, 0.1);">（點擊揭曉）</td>
-                  <td id="cell-rain-con" style="background: rgba(56, 189, 248, 0.1);">（點擊揭曉）</td>
-                </tr>
-              </tbody>
-            </table>
-            <button class="ctrl-btn ctrl-btn-primary" onclick="revealP16Table()" style="font-size: 14px; padding: 6px 16px;">一鍵填入表格標準答案 ✍️</button>
+            <div style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 8px; border-radius: 8px;">
+              <div style="color: #38BDF8; font-weight: 800;">吸管</div>
+              <div>111年: 10,763件</div>
+              <div style="color: #FCD34D; font-weight: 700;">112年: 21,742件 ↑</div>
+            </div>
+            <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); padding: 8px; border-radius: 8px;">
+              <div style="color: #FBBF24; font-weight: 800;">免洗餐具</div>
+              <div>111年: 11,235件</div>
+              <div style="color: #FCD34D; font-weight: 700;">112年: 16,561件 ↑</div>
+            </div>
+            <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding: 8px; border-radius: 8px;">
+              <div style="color: #34D399; font-weight: 800;">塑膠袋（最少）</div>
+              <div>111年: 8,090件</div>
+              <div style="color: #FCD34D; font-weight: 700;">112年: 15,974件 ↑</div>
+            </div>
           </div>
 
-          <div style="background: rgba(15, 23, 42, 0.75); border: 1.5px solid rgba(16, 185, 129, 0.35); border-radius: 14px; padding: 16px 20px;">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span class="card-badge" style="background: rgba(16, 185, 129, 0.2); color: var(--emerald-accent); font-size: 15px;">P.17 第二大題 · 素養統計圖表</span>
-              <span style="font-size: 15px; color: #94A3B8;">民國 111 vs 112 年臺灣海洋廢棄物</span>
-            </div>
-            
-            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 12px; font-size: 14px; text-align: center;">
-              <div style="background: rgba(239, 68, 68, 0.15); border: 1px solid rgba(239, 68, 68, 0.3); padding: 8px; border-radius: 8px;">
-                <div style="color: #F87171; font-weight: 800;">寶特瓶（最多）</div>
-                <div>111年: 45,996件</div>
-                <div style="color: #FCD34D; font-weight: 700;">112年: 67,076件 ↑</div>
-              </div>
-              <div style="background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); padding: 8px; border-radius: 8px;">
-                <div style="color: #38BDF8; font-weight: 800;">吸管</div>
-                <div>111年: 10,763件</div>
-                <div style="color: #FCD34D; font-weight: 700;">112年: 21,742件 ↑</div>
-              </div>
-              <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.3); padding: 8px; border-radius: 8px;">
-                <div style="color: #FBBF24; font-weight: 800;">免洗餐具</div>
-                <div>111年: 11,235件</div>
-                <div style="color: #FCD34D; font-weight: 700;">112年: 16,561件 ↑</div>
-              </div>
-              <div style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); padding: 8px; border-radius: 8px;">
-                <div style="color: #34D399; font-weight: 800;">塑膠袋（最少）</div>
-                <div>111年: 8,090件</div>
-                <div style="color: #FCD34D; font-weight: 700;">112年: 15,974件 ↑</div>
-              </div>
-            </div>
+          <div style="font-size: 18px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">
+            (一) 根據上圖，下列哪些敘述正確？請在框中打 √。(可複選)
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 8px;">
+            <label class="wb-check-item" id="lbl-p17-1" onclick="toggleWbCheck('p17-1')">
+              <input type="checkbox" id="chk-p17-1" style="transform: scale(1.3); cursor: pointer;">
+              <span>1. 與民國111年相比，民國112年的四項海洋塑膠廢棄物數量都有增加。</span>
+            </label>
+            <label class="wb-check-item" id="lbl-p17-2" onclick="toggleWbCheck('p17-2')">
+              <input type="checkbox" id="chk-p17-2" style="transform: scale(1.3); cursor: pointer;">
+              <span>2. 四項海洋塑膠廢棄物中，以寶特瓶連續兩年占最多數。</span>
+            </label>
+            <label class="wb-check-item" id="lbl-p17-3" onclick="toggleWbCheck('p17-3')">
+              <input type="checkbox" id="chk-p17-3" style="transform: scale(1.3); cursor: pointer;">
+              <span>3. 四項海洋塑膠廢棄物中，以免洗餐具連續兩年的數量最少。</span>
+            </label>
+          </div>
+          <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button class="ctrl-btn ctrl-btn-primary" onclick="verifyWbAnswers('p17')" style="font-size: 15px; padding: 6px 16px;">核對 P.17 答案 🔍</button>
+          </div>
+          <div id="fb-p17" class="wb-reveal-box"></div>
 
-            <div style="font-size: 18px; font-weight: 700; color: #FFFFFF; margin-bottom: 8px;">
-              (一) 根據上圖，下列哪些敘述正確？請在框中打 √。(可複選)
-            </div>
-            <div style="display: flex; flex-direction: column; gap: 8px;">
-              <label class="wb-check-item" id="lbl-p17-1" onclick="toggleWbCheck('p17-1')">
-                <input type="checkbox" id="chk-p17-1" style="transform: scale(1.3); cursor: pointer;">
-                <span>1. 與民國111年相比，民國112年的四項海洋塑膠廢棄物數量都有增加。</span>
-              </label>
-              <label class="wb-check-item" id="lbl-p17-2" onclick="toggleWbCheck('p17-2')">
-                <input type="checkbox" id="chk-p17-2" style="transform: scale(1.3); cursor: pointer;">
-                <span>2. 四項海洋塑膠廢棄物中，以寶特瓶連續兩年占最多數。</span>
-              </label>
-              <label class="wb-check-item" id="lbl-p17-3" onclick="toggleWbCheck('p17-3')">
-                <input type="checkbox" id="chk-p17-3" style="transform: scale(1.3); cursor: pointer;">
-                <span>3. 四項海洋塑膠廢棄物中，以免洗餐具連續兩年的數量最少。</span>
-              </label>
-            </div>
-            <div style="display: flex; gap: 10px; margin-top: 10px;">
-              <button class="ctrl-btn ctrl-btn-primary" onclick="verifyWbAnswers('p17')" style="font-size: 15px; padding: 6px 16px;">核對 P.17 答案 🔍</button>
-            </div>
-            <div id="fb-p17" class="wb-reveal-box"></div>
-
-            <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.2);">
-              <button class="ctrl-btn" onclick="toggleWbReveal('rev-p17-eco')" style="font-size: 14px; padding: 5px 14px;">展開 (二)(三) 生活減塑實踐指南 💡</button>
-              <div id="rev-p17-eco" class="wb-reveal-box" style="margin-top: 8px;">
-                🌱 <strong>(二) 曾經使用過的塑膠器物與原因：</strong><br>
-                例如：吸管、免洗餐具、塑膠袋。原因：外出買飲料或外食時店家直接提供，使用後不用清洗即可丟棄，相當方便。<br><br>
-                🌱 <strong>(三) 如何減少使用塑膠器物（SDG 12 行動）：</strong><br>
-                1. <strong>自備餐具</strong>：外出用餐自備環保吸管、湯匙筷子，拒絕免洗餐具。<br>
-                2. <strong>自備水壺容器</strong>：自備環保杯裝水買飲料，減少購買瓶裝水或寶特瓶。<br>
-                3. <strong>自備購物袋</strong>：購物時自備環保布袋，減少索取塑膠袋。
-              </div>
+          <div style="margin-top: 12px; padding-top: 10px; border-top: 1px dashed rgba(255,255,255,0.2);">
+            <button class="ctrl-btn" onclick="toggleWbReveal('rev-p17-eco')" style="font-size: 14px; padding: 5px 14px;">展開 (二)(三) 生活減塑實踐指南 💡</button>
+            <div id="rev-p17-eco" class="wb-reveal-box" style="margin-top: 8px;">
+              🌱 <strong>(二) 曾經使用過的塑膠器物與原因：</strong><br>
+              例如：吸管、免洗餐具、塑膠袋。原因：外出買飲料或外食時店家直接提供，使用後不用清洗即可丟棄，相當方便。<br><br>
+              🌱 <strong>(三) 如何減少使用塑膠器物（SDG 12 行動）：</strong><br>
+              1. <strong>自備餐具</strong>：外出用餐自備環保吸管、湯匙筷子，拒絕免洗餐具。<br>
+              2. <strong>自備水壺容器</strong>：自備環保杯裝水買飲料，減少購買瓶裝水或寶特瓶。<br>
+              3. <strong>自備購物袋</strong>：購物時自備環保布袋，減少索取塑膠袋。
             </div>
           </div>
         </div>
@@ -1098,8 +1109,8 @@
     </div>
   </div>
 
-  <!-- ==================== Slide 14: 小探究家與階層圖（課本 P.48-51） ==================== -->
-  <div class="slide" data-slide="14">
+<!-- ==================== Slide 15: 小探究家與階層圖（課本 P.48-51） ==================== -->
+  <div class="slide" data-slide="15">
     <div class="slide-kicker kicker-emerald">小探究家與學習策略 · 課本 P.48-51</div>
     <h2 class="slide-title">早期器物探究與階層圖整理分析</h2>
     <p class="slide-subtitle">課本 P.48-51 真實探究：斗笠、桌罩、布農族藤編背簍與階層圖思維工具：</p>
@@ -1132,7 +1143,7 @@
   <!-- ==================== 底部固定導航列 ==================== -->
   <div id="bottom-nav">
     <div class="nav-indicator">
-      <span>第 <strong id="cur-slide-num">1</strong> 頁 / 共 14 頁</span>
+      <span>第 <strong id="cur-slide-num">1</strong> 頁 / 共 15 頁</span>
       <span style="color: var(--border-subtle);">|</span>
       <span id="cur-slide-title" style="color: #CBD5E1;">封面</span>
     </div>
@@ -1468,6 +1479,52 @@
           fb.innerHTML = `❌ <strong>答錯囉！</strong> 您選擇了 ${selected}。右護龍的位置代號是 <strong>丙</strong>！`;
         }
       }
+    }
+  }
+
+  let wbImgState14 = { page: 16, mode: 'stu' };
+
+  function setWbPageImg14(pageNum) {
+    wbImgState14.page = pageNum;
+    updateWbImageSrc14();
+  }
+
+  function switchWbImg14(mode) {
+    wbImgState14.mode = mode;
+    const btnStu = document.getElementById('btn-mode-stu-14');
+    const btnTch = document.getElementById('btn-mode-tch-14');
+    if (btnStu && btnTch) {
+      if (mode === 'stu') {
+        btnStu.style.background = 'rgba(56, 189, 248, 0.25)';
+        btnStu.style.borderColor = 'var(--blue-accent)';
+        btnStu.style.color = '#fff';
+        btnTch.style.background = 'rgba(255, 255, 255, 0.08)';
+        btnTch.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+        btnTch.style.color = 'var(--text-muted)';
+      } else {
+        btnTch.style.background = 'rgba(239, 68, 68, 0.25)';
+        btnTch.style.borderColor = 'var(--rose-accent)';
+        btnTch.style.color = '#fff';
+        btnStu.style.background = 'rgba(255, 255, 255, 0.08)';
+        btnStu.style.borderColor = 'rgba(255, 255, 255, 0.18)';
+        btnStu.style.color = 'var(--text-muted)';
+      }
+    }
+    updateWbImageSrc14();
+  }
+
+  function updateWbImageSrc14() {
+    const imgEl = document.getElementById('wb-img-14');
+    if (!imgEl) return;
+    const { page, mode } = wbImgState14;
+    const prefix = mode === 'stu' ? 'wb_student' : 'wb_teacher';
+    imgEl.src = `assets/workbook/${prefix}_p${page}.png`;
+  }
+
+  function revealWbCell(cellId, text, color) {
+    const el = document.getElementById(cellId);
+    if (el) {
+      el.innerHTML = `<span style="color:${color}; font-weight:800;">${text}</span>`;
     }
   }
 
