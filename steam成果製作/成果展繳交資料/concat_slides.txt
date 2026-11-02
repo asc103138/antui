@@ -1,0 +1,16 @@
+file '簡報圖片_1080p/slide_01.png'
+duration 27.50
+file '簡報圖片_1080p/slide_02.png'
+duration 56.50
+file '簡報圖片_1080p/slide_03.png'
+duration 28.38
+file '簡報圖片_1080p/slide_04.png'
+duration 30.28
+file '簡報圖片_1080p/slide_05.png'
+duration 25.54
+file '簡報圖片_1080p/slide_06.png'
+duration 26.40
+file '簡報圖片_1080p/slide_07.png'
+duration 18.64
+file '簡報圖片_1080p/slide_07.png'
+duration 1.00

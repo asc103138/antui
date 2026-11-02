@@ -84,6 +84,12 @@ def main():
     if os.path.exists(src_rdq):
         shutil.copytree(src_rdq, dst_rdq, dirs_exist_ok=True)
 
+    # 複製成果展繳交資料 (排除大型 mp4 避免 git 負擔或納入)
+    src_exhibit = os.path.join(steam_work_dir, "成果展繳交資料")
+    dst_exhibit = os.path.join(steam_git_dir, "成果展繳交資料")
+    if os.path.exists(src_exhibit):
+        shutil.copytree(src_exhibit, dst_exhibit, dirs_exist_ok=True)
+
     print("  ✅ 檔案同步至專屬 Git 目錄完成！")
 
     # 2. 同步至全域技能模組
