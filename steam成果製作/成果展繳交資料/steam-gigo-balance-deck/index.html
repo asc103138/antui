@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>臺中市梧棲區中正國小 115年度STEAM成果展 — 5分鐘現場分享會簡報 (16頁精實版)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/night.css" />
+  <!-- WordCloud2.js for interactive word cloud -->
+  <script src="https://cdn.jsdelivr.net/npm/wordcloud@1.2.2/src/wordcloud2.min.js"></script>
+  <style>
+    /* ==========================================================================
+       全域 CSS 變數與 Emil Kowalski 工藝標準
+       嚴禁 transition: all | 嚴禁 scale(0) | UI進場自訂 ease-out | :active 微縮
+       ========================================================================== */
+    :root {
+      --accent:  #e8643a;  /* 活力橘紅（力學與動態） */
+      --accent2: #4fc3f7;  /* 科技青藍（機關與數據） */
+      --success: #81c784;  /* 成果亮綠（素養與平衡） */
+      --warn:    #ffb74d;  /* 提示琥珀（探究與除錯） */
+      --card-bg: rgba(13, 17, 23, 0.82);
+      --card-border: rgba(79, 195, 247, 0.28);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+      background: #090d14;
+      color: #f1f5f9;
+      margin: 0;
+      padding: 0;
+      height: 100dvh;
+      min-height: 100svh;
+      width: 100vw;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .reveal {
+      font-family: inherit;
+      color: #f1f5f9;
+      background: #090d14;
+      font-size: 28px;
+    }
+
+    .reveal h1, .reveal h2, .reveal h3 {
+      font-family: inherit;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+
+    .reveal h1 {
+      font-size: 1.95em;
+      line-height: 1.25;
+      text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .reveal h2 {
+      font-size: 1.35em;
+      color: var(--accent2);
+      margin-bottom: 0.35em;
+      text-shadow: 0 0 16px rgba(79, 195, 247, 0.35);
+    }
+
+    .reveal h3 {
+      font-size: 1.0em;
+      color: var(--warn);
+    }
+
+    .reveal .progress {
+      color: var(--accent);
+      height: 4px;
+    }
+
+    .reveal .fragment {
+      opacity: 0.15;
+      transform: scale(0.96);
+      transition: opacity 0.25s var(--ease-out), transform 0.25s var(--ease-out);
+    }
+
+    .reveal .fragment.visible {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* === 頂部 HUD 計時器與控制按鈕 === */
+    .hud-header {
+      position: fixed;
+      top: 14px;
+      right: 20px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(13, 17, 23, 0.85);
+      border: 1px solid rgba(79, 195, 247, 0.3);
+      padding: 6px 14px;
+      border-radius: 24px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+    }
+
+    .hud-timer {
+      font-family: 'Consolas', 'Courier New', monospace;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--accent2);
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+
+    .hud-btn {
+      background: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #cbd5e1;
+      padding: 3px 8px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s var(--ease-out), color 0.15s var(--ease-out), transform 0.1s var(--ease-out);
+    }
+
+    .hud-btn:hover {
+      background: rgba(79, 195, 247, 0.15);
+      color: var(--accent2);
+    }
+
+    .hud-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* === 封面樣式 === */
+    .title-slide {
+      text-align: center;
+    }
+
+    .title-slide .tag {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--accent), #ff7043);
+      color: #fff;
+      padding: 6px 18px;
+      border-radius: 20px;
+      font-size: 0.44em;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.8em;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(232, 100, 58, 0.5);
+    }
+
+    .title-slide .subtitle {
+      font-size: 0.62em;
+      color: #cbd5e1;
+      margin-top: 0.4em;
+      line-height: 1.5;
+    }
+
+    .title-slide .author {
+      margin-top: 1.5em;
+      font-size: 0.48em;
+      color: #94a3b8;
+    }
+
+    /* === 卡片與網格 === */
+    .card-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 0.6em;
+    }
+
+    .card-grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 0.6em;
+    }
+
+    .adv-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-top: 4px solid var(--accent2);
+      border-radius: 12px;
+      padding: 16px 14px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+    }
+
+    .adv-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(79, 195, 247, 0.25);
+    }
+
+    .adv-card .adv-icon {
+      margin-bottom: 8px;
+    }
+
+    .adv-card .adv-icon img {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 10px rgba(79, 195, 247, 0.6));
+    }
+
+    .adv-card .adv-title {
+      font-size: 0.56em;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 6px;
+    }
+
+    .adv-card .adv-desc {
+      font-size: 0.42em;
+      color: #cbd5e1;
+      line-height: 1.5;
+      text-align: left;
+    }
+
+    /* === 雙欄排版 === */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: stretch;
+      margin-top: 0.5em;
+    }
+
+    .col-box {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: left;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(8px);
+    }
+
+    .col-box h3 {
+      font-size: 0.62em;
+      margin-bottom: 8px;
+    }
+
+    .col-box p, .col-box li {
+      font-size: 0.44em;
+      line-height: 1.6;
+      color: #cbd5e1;
+    }
+
+    /* === 鷹架與金句引導框 === */
+    .quote-box {
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-left: 5px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.48em;
+      line-height: 1.7;
+      text-align: left;
+      margin: 12px 0;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    /* === 視覺化對比滑桿 [VIZ] === */
+    .slider-box {
+      position: relative;
+      height: 380px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      background: #0d1117;
+      margin-top: 10px;
+    }
+
+    .slider-layer {
+      position: absolute;
+      inset: 0;
+      padding: 24px;
+      box-sizing: border-box;
+      text-align: left;
+      font-size: 0.46em;
+      line-height: 1.8;
+      overflow-y: auto;
+    }
+
+    .slider-layer.before {
+      background: #1e1b4b;
+      color: #e0e7ff;
+    }
+
+    .slider-layer.after {
+      background: #064e3b;
+      color: #ecfdf5;
+      clip-path: inset(0 100% 0 0);
+    }
+
+    .slider-divider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, #4fc3f7, #81c784, transparent);
+      box-shadow: 0 0 14px #4fc3f7;
+      pointer-events: none;
+    }
+
+    .slider-ctrl {
+      width: 80%;
+      margin: 14px auto 0;
+      display: block;
+      accent-color: var(--accent2);
+    }
+
+    /* === 按鈕微互動 === */
+    .btn-action {
+      background: var(--accent2);
+      color: #0d1117;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 16px;
+      user-select: none;
+      transition: background 0.15s var(--ease-out), transform 0.1s var(--ease-out);
+    }
+
+    .btn-action:hover {
+      background: #38bdf8;
+    }
+
+    .btn-action:active {
+      transform: scale(0.97);
+    }
+
+    /* === 講者提詞抽屜（快捷鍵 N） === */
+    .drawer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100vw;
+      background: rgba(15, 23, 42, 0.96);
+      border-top: 2px solid var(--accent2);
+      padding: 14px 24px;
+      box-sizing: border-box;
+      z-index: 2000;
+      transform: translateY(105%);
+      transition: transform 0.25s var(--ease-out);
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(10px);
+    }
+
+    .drawer.open {
+      transform: translateY(0);
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+      font-size: 14px;
+      color: var(--accent2);
+      font-weight: 700;
+    }
+
+    .drawer-content {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #e2e8f0;
+    }
+
+    .img-fluid {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部 HUD 控制列 -->
+  <div class="hud-header">
+    <div id="hud-timer" class="hud-timer" title="點擊暫停/開始">05:00</div>
+    <button class="hud-btn" id="btn-timer-toggle">開始</button>
+    <button class="hud-btn" id="btn-timer-reset">重置</button>
+    <button class="hud-btn" id="btn-drawer-toggle" title="切換講者提詞抽屜 (快捷鍵 N)">講者提詞 (N)</button>
+  </div>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- ==========================================
+           Slide 1: 封面 [BG]
+           ========================================== -->
+      <section data-background-image="images/cover_bg.png"
+               data-background-opacity="0.36"
+               data-background-size="cover">
+        <div class="title-slide">
+          <div class="tag">臺中市 115 年度推動校園 STEAM 教育教師社群成果展</div>
+          <h1 style="color:#ffffff;">積木啟發量感 · 機關驗證平衡</h1>
+          <h2 style="color:var(--accent); font-size:1.15em; margin-top:0.2em;">智高積木融入三年級數學「公斤與公克」重量測量機關課程</h2>
+          <p class="subtitle">
+            從雙手掂重的手感認知衝突，到組裝等臂天平機關，<br>
+            讓抽象的「常用量與加減運算」在實體力矩平衡中具象展現！
+          </p>
+          <p class="author">
+            發表單位：臺中市梧棲區中正國小 STEAM 教師專業學習社群<br>
+            社群召集人：謝敦元 老師 ｜ 社群成員：王怡婷、李仁耀、曾泊淞 老師
+          </p>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 2: 社群推動背景與無瑕成果 [ICON]
+           ========================================== -->
+      <section>
+        <h2>社群推動脈絡：踏實共備與 100% 執行</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          聚焦數學與科技跨域痛點，全體成員全員投入、落實課堂實踐與全額無瑕結報。
+        </p>
+
+        <div class="card-grid-4">
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_team.png" alt="跨域團隊"></div>
+            <div class="adv-title">① 4 人核心陣容</div>
+            <div class="adv-desc">
+              召集人謝敦元與王怡婷、李仁耀、曾泊淞老師跨年級、跨數學與資訊領域深度協同。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_gear.png" alt="場次落實"></div>
+            <div class="adv-title">② 7 場次高密度共備</div>
+            <div class="adv-desc">
+              自 5 月至 10 月完整執行 7 場專業研習與公開觀議課，100% 按計畫節奏推進。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_math.png" alt="經費精準"></div>
+            <div class="adv-title">③ 16,000 元完美結報</div>
+            <div class="adv-desc">
+              16 節講師鐘點費全數如期執行、正楷親簽領據與雙格式檔案無瑕核銷。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_grow.png" alt="校際交流"></div>
+            <div class="adv-title">④ 校際外聘深化</div>
+            <div class="adv-desc">
+              特聘南投縣鯉魚國小陳建安老師跨校蒞校指導，引進世界機關王機構整合經驗。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 3: 現場互動破冰 [INTERACT:wordcloud]
+           ========================================== -->
+      <section id="slide-wordcloud">
+        <h2>現場互動提問：提到國小「重量測量」，學生最常卡在哪？</h2>
+        <div style="display:grid; grid-template-columns:280px 1fr; gap:16px; height:430px;">
+          <!-- 左欄：輸入與即時統計 -->
+          <div style="display:flex; flex-direction:column; gap:10px;">
+            <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:10px; padding:14px;">
+              <div style="font-size:0.42em; color:var(--accent2); font-weight:700; margin-bottom:8px;">輸入現場觀察點</div>
+              <input id="wc-input" type="text" placeholder="例：指針看錯、大就以為重…" maxlength="15"
+                style="width:100%; padding:9px 12px; border-radius:8px; border:1px solid rgba(79,195,247,0.3);
+                       background:rgba(255,255,255,0.08); color:#fff; font-size:16px;
+                       box-sizing:border-box; font-family:inherit; outline:none;" />
+              <button id="wc-btn" class="btn-action" style="width:100%; margin-top:10px;">送出觀察 ↵</button>
+            </div>
+            <div style="background:var(--card-bg); border:1px solid var(--card-border); border-radius:10px; padding:12px; flex:1; display:flex; flex-direction:column; overflow:hidden;">
+              <div style="font-size:0.38em; color:var(--accent2); font-weight:700; margin-bottom:6px;">
+                現場即時回饋
+                <span style="display:inline-block; background:#ff4757; color:#fff; padding:1px 6px; border-radius:10px; font-size:0.8em;">LIVE</span>
+              </div>
+              <div id="wc-list" style="font-size:0.35em; overflow-y:auto; flex:1; color:#cbd5e1;"></div>
+              <div style="margin-top:6px; font-size:0.32em; color:#94a3b8; border-top:1px solid rgba(255,255,255,0.08); padding-top:4px; display:flex; justify-content:space-between; align-items:center;">
+                <div>共 <span id="wc-total" style="color:var(--accent); font-weight:700;">0</span> 則</div>
+                <button id="wc-reset-btn" class="hud-btn" style="font-size:11px; padding:2px 6px;">重置 ↺</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 右欄：文字雲視覺化 -->
+          <div style="background:rgba(255,255,255,0.03); border-radius:12px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,0.08);">
+            <canvas id="wc-canvas" style="width:100%; height:100%; display:block;"></canvas>
+            <div id="wc-empty" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#64748b; font-size:0.44em; text-align:center; pointer-events:none; line-height:1.8;">
+              在左側輸入文字或點擊送出<br>現場即時思維文字雲立刻浮現 ✨
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 4: 傳統痛點轉化：STEAM 跨領域核心解法 [ICON]
+           ========================================== -->
+      <section>
+        <h2>教學痛點診斷：從「黑盒子讀數」到「物理具象」</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          傳統指針秤是封閉黑盒子，學生只會生硬讀刻度，缺乏真實的「重力量感」與「平衡算則」概念。
+        </p>
+
+        <div class="card-grid-3">
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_gear.png" alt="Science/Engineering"></div>
+            <div class="adv-title">S & E 物理結構解密</div>
+            <div class="adv-desc">
+              親手組裝等臂支點、降低轉軸摩擦力，讓孩子直接看見力矩與重力下沉的物理本質。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_balance.png" alt="Technology"></div>
+            <div class="adv-title">T 機關靈敏度調校</div>
+            <div class="adv-desc">
+              利用智高積木的微調滑塊與指針歸零機關，體驗工程師面對誤差時的除錯與校準思維。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_math.png" alt="Math"></div>
+            <div class="adv-title">M 數學加減真實化</div>
+            <div class="adv-desc">
+              將「公斤與公克」的抽象加減法，化為左盤放物、右盤累加單位積木的直觀運算體驗。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 5: 課綱素養對齊：三年級數學核心指標
+           ========================================== -->
+      <section>
+        <h2>課程核心依據：十二年國教數學領域指標對齊</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          本教案精準扣合 108 課綱三年級常用量、單位換算與整數加減計算核心素養：
+        </p>
+
+        <div class="two-col">
+          <div class="col-box">
+            <h3 style="color:var(--accent2);">🎯 學習內容對齊 (Content Standards)</h3>
+            <ul style="margin-left: 20px;">
+              <li><strong>n-II-8 重量測量：</strong>認識重量單位「公斤」與「公克」，使用天平與秤進行實測與估測。</li>
+              <li><strong>n-II-9 單位關係換算：</strong>理解 1 公斤 = 1000 公克，並進行單位間的化聚與直觀比較。</li>
+              <li><strong>n-II-2 兩步驟加減計算：</strong>在具體情境中解決包含公斤與公克的兩步驟加減應用問題。</li>
+            </ul>
+          </div>
+
+          <div class="col-box" style="border-top:4px solid var(--accent);">
+            <h3 style="color:var(--accent);">🌟 STEAM 核心素養轉化</h3>
+            <ul style="margin-left: 20px;">
+              <li><strong>數-E-A1 具備量感：</strong>建立實體重量手感，破除「體積大就一定重」的直覺迷思。</li>
+              <li><strong>科-E-B2 科技操作：</strong>熟練運用智高結構積木完成對稱力臂與承重托盤組裝。</li>
+              <li><strong>自-E-C2 團隊探究：</strong>小組合作進行平衡校準、數據記錄與多元策略分享。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 6: 階梯式三節探究地圖 [ICON]
+           ========================================== -->
+      <section>
+        <h2>三節課循序進階架構：階梯式探究地圖</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          引導學生從「主觀手感」走向「客觀機關組裝」，最終邁向「數學加減微調平衡」：
+        </p>
+
+        <div class="card-grid-3">
+          <div class="adv-card fragment" style="border-top: 4px solid var(--warn);">
+            <div class="adv-icon"><img src="images/icon_conflict.png" onerror="this.src='images/icon_gear.png'" alt="第一節"></div>
+            <div class="adv-title">第 1 節：手感估測與衝突</div>
+            <div class="adv-desc">
+              徒手掂重排序 ➔ 發現組員排序完全不同 ➔ 察覺人體感知盲區 ➔ 萌生製作客觀天平的需求。
+            </div>
+          </div>
+          <div class="adv-card fragment" style="border-top: 4px solid var(--accent2);">
+            <div class="adv-icon"><img src="images/icon_balance.png" alt="第二節"></div>
+            <div class="adv-title">第 2 節：智高天平機關組裝</div>
+            <div class="adv-desc">
+              等臂力臂搭建 ➔ 支點低阻力轉軸調校 ➔ 雙托盤平衡懸吊 ➔ 指針歸零動態驗證。
+            </div>
+          </div>
+          <div class="adv-card fragment" style="border-top: 4px solid var(--success);">
+            <div class="adv-icon"><img src="images/icon_math.png" alt="第三節"></div>
+            <div class="adv-title">第 3 節：加減微調平衡挑戰</div>
+            <div class="adv-desc">
+              單位小積木作為非標準砝碼 ➔ 加法累加與減法扣除 ➔ 數學算則與天平水平完美閉環。
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 7: 第一節實踐：手感估測與認知衝突 [BG]
+           ========================================== -->
+      <section data-background-image="images/conflict_bg.png"
+               data-background-opacity="0.32"
+               data-background-size="cover">
+        <h2>第 1 節課堂實踐：徒手掂重引爆認知衝突</h2>
+        <p style="font-size:0.45em; color:#cbd5e1; margin-top:-0.4em;">
+          「老師，我覺得甲比較重！」「不對，明明是乙比較沉！」
+        </p>
+
+        <div class="two-col">
+          <div class="col-box" style="background:rgba(13,17,23,0.85);">
+            <h3 style="color:var(--warn);">🔥 課堂實況：主觀手感大混亂</h3>
+            <p>
+              課堂給予外觀大小不一的物品（保麗龍球、木積木、小鐵鎖、水瓶）。<br>
+              學生徒手掂重排序時，全班出現高達 <strong>6 種完全相反的排序結果</strong>！<br>
+              孩子們開始爭執，深刻體會到：<strong style="color:var(--accent);">「人手的肌肉記憶是有誤差的，我們需要一個公正的工具！」</strong>
+            </p>
+          </div>
+
+          <div class="col-box" style="background:rgba(13,17,23,0.85); border-left: 5px solid var(--accent2);">
+            <h3 style="color:var(--accent2);">💡 STEAM 探究起點：自主提問</h3>
+            <p>
+              學生自主歸納出三大工具需求：<br>
+              1. 必須有支點，兩邊長度要完全一樣長（等臂概念）。<br>
+              2. 兩邊托盤不能卡住，要能上下自由晃動。<br>
+              3. 中間要有一個指針，告訴我們什麼時候才叫「剛剛好一樣重」。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 8: 第二節實踐：智高積木等臂天平機關組裝 [ICON]
+           ========================================== -->
+      <section>
+        <h2>第 2 節課堂實踐：智高積木四核心組件組裝</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          善用智高積木一凸五凹的結構特性，打造高精度、可靈敏擺盪的教學天平機關：
+        </p>
+
+        <div class="card-grid-4">
+          <div class="adv-card fragment">
+            <div class="adv-title" style="color:var(--accent2);">① 梯形寬底座</div>
+            <div class="adv-desc">
+              利用多孔長條與配重三角架，提供低重心的扎實底座，防止測量時機身翻覆。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-title" style="color:var(--warn);">② 對稱等臂橫樑</div>
+            <div class="adv-desc">
+              左右各數 10 個積木孔，嚴格維持左力臂 = 右力臂，確保物理力矩對等。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-title" style="color:var(--accent);">③ 零摩擦中心轉軸</div>
+            <div class="adv-desc">
+              採用光滑圓軸連接中孔，保留微小空隙，降低阻尼摩擦力，提升左右擺盪靈敏度。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-title" style="color:var(--success);">④ 懸吊托盤與指針</div>
+            <div class="adv-desc">
+              下方垂直垂懸指針，搭配底座刻度基準線，是否水平一目了然！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 9: 物理力學視覺化：水平平衡判定與指針回饋
+           ========================================== -->
+      <section>
+        <h2>物理機制解析：天平傾斜與指針判定規則</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          建立直觀物理表徵：下降側為較重側，指針偏角反映質量差異。
+        </p>
+
+        <div class="two-col">
+          <div class="col-box">
+            <h3 style="color:var(--accent);">⚖️ 傾斜動態的力學語言</h3>
+            <p>
+              • <strong>左盤下沉：</strong>左邊物品重力大於右邊，力矩不平衡。<br>
+              • <strong>右盤下沉：</strong>右邊物品重力勝出。<br>
+              • <strong>指針居中（水平）：</strong>兩側向下重力恰好相等，達成力矩平衡。<br>
+              • <strong>微調滑塊：</strong>利用左右橫樑上的微調積木滑塊消除組裝微小結構公差。
+            </p>
+          </div>
+
+          <div class="col-box" style="border-top:4px solid var(--success);">
+            <h3 style="color:var(--success);">📸 現場實況照片：分組實作</h3>
+            <img src="images/photo_balance_classroom.jpg" alt="天平操作" class="img-fluid" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 10: 課堂迷思快問快答 [INTERACT:poll]
+           ========================================== -->
+      <section id="slide-poll">
+        <h2>課堂迷思快問快答：破除「體積大就一定重」</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          請現場老師與夥伴預測：等臂天平左盤放 100g 保麗龍大球，右盤放 100g 實心鐵砝碼，結果會如何？
+        </p>
+
+        <div id="poll-options" style="display:flex; flex-direction:column; gap:10px; margin-top:0.6em;">
+          <!-- 動態生成選項 -->
+        </div>
+
+        <div style="font-size:0.38em; color:#94a3b8; text-align:center; margin-top:0.8em; display:flex; justify-content:center; align-items:center; gap:16px;">
+          <span>全場即時作答：<span id="poll-total" style="color:var(--accent2); font-weight:700;">0</span> 票</span>
+          <button id="poll-reset-btn" class="hud-btn" style="font-size:11px; padding:2px 8px;">重置投票 ↺</button>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 11: 第三節實踐：加減微調平衡挑戰 [BG]
+           ========================================== -->
+      <section data-background-image="images/balance_bg.png"
+               data-background-opacity="0.34"
+               data-background-size="cover">
+        <h2>第 3 節課堂實踐：單位積木與加減微調挑戰</h2>
+        <p style="font-size:0.45em; color:#cbd5e1; margin-top:-0.4em;">
+          將「算則加減」具象為「積木的放入與取出」，數學算式在天平上活了起來！
+        </p>
+
+        <div class="two-col">
+          <div class="col-box" style="background:rgba(13,17,23,0.85);">
+            <h3 style="color:var(--accent2);">🧱 非標準單位到標準單位</h3>
+            <p>
+              先以每個重 5 公克的智高黃色小單位積木作為「非標準砝碼」。<br>
+              左盤放一塊橡皮擦，右盤一個一個加入小積木：<br>
+              「1個、2個...加到第 6 個時天平剛好水平！」<br>
+              ➔ 橡皮擦重量 = 6 個小積木 = <strong>30 公克</strong>！
+            </p>
+          </div>
+
+          <div class="col-box" style="background:rgba(13,17,23,0.85); border-left: 5px solid var(--success);">
+            <h3 style="color:var(--success);">🧮 算則的真實反饋</h3>
+            <p>
+              如果右盤放了 8 個積木導致右邊下沉？<br>
+              孩子會主動說：「右邊太重了，要減去 2 個積木！」<br>
+              <strong>減法（扣除）與加法（累加）</strong>不再是考卷上冷冰冰的符號，而是讓天平重返水平的魔法操作。
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 12: 算則微調實驗：不平衡時怎麼辦？
+           ========================================== -->
+      <section>
+        <h2>課堂深度探究：兩步驟加減法情境具象化</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          對齊課綱 n-II-2 兩步驟問題：天平傾斜時的兩種等價解題策略。
+        </p>
+
+        <div class="two-col">
+          <div class="col-box">
+            <h3 style="color:var(--accent);">策略 A：較輕側「補足差額」（加法思維）</h3>
+            <div class="quote-box" style="border-left-color: var(--accent);">
+              左盤放 120g 物品，右盤放 100g 砝碼 ➔ 右側翹起（較輕）。<br>
+              <strong>算式：</strong>120 - 100 = 20g<br>
+              <strong>動作：</strong>在右盤加放 20g 單位積木，天平回正！
+            </div>
+          </div>
+
+          <div class="col-box">
+            <h3 style="color:var(--success);">策略 B：較重側「移除多餘」（減法思維）</h3>
+            <div class="quote-box" style="border-left-color: var(--success);">
+              兩側原本各放 150g 平衡，左盤額外滑入 30g 零件 ➔ 左側下沉。<br>
+              <strong>算式：</strong>180 - 30 = 150g<br>
+              <strong>動作：</strong>將左盤額外 30g 移出，指針立刻回歸水平！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 13: 課堂變革滑桿對比 [VIZ]
+           ========================================== -->
+      <section>
+        <h2>教學典範轉移：傳統讀秤 vs STEAM 動手調校</h2>
+        <p style="font-size:0.42em; color:#94a3b8; margin-top:-0.4em;">
+          拖動下方滑桿，對照傳統教學困境與 STEAM 跨域實作的巨大轉變：
+        </p>
+
+        <div class="slider-box">
+          <div class="slider-layer before">
+            <div style="color:#f87171; font-weight:700; font-size:1.15em; margin-bottom:8px;">❌ 傳統課堂痛點（代碼 M3-W-01）</div>
+            <p>
+              • 學生面對市售彈簧秤，指針未歸零卻直接判讀。<br>
+              • 刻度密密麻麻，學生常把「1大格100g、5小格」誤算為一小格 10g。<br>
+              • 抽象死背「1公斤 = 1000公克」，卻無法直觀感受 1 公斤到底多重。<br>
+              • 算式寫得漂亮，但一到真實生活買水果或稱重時完全失靈。
+            </p>
+            <div style="color:#fca5a5; margin-top:10px; font-size:0.9em;">
+              ⚠️ 缺失：缺乏物理實體感知，量感沒有真正內化為直覺。
+            </div>
+          </div>
+
+          <div class="slider-layer after" id="viz-after">
+            <div style="color:#34d399; font-weight:700; font-size:1.15em; margin-bottom:8px;">✅ STEAM 動手調校新典範</div>
+            <p>
+              • 親手組裝等臂力臂，徹底理解為什麼指針歸零如此關鍵。<br>
+              • 透過 5g 小積木的逐個疊加，深刻體會非標準單位到標準單位的進程。<br>
+              • 算則直接轉化為手部動作：較輕就「加法補足」、較重就「減法移除」。<br>
+              • 建立深厚體感量感，課堂充滿主動除錯與興奮歡呼聲！
+            </p>
+            <div style="color:#a7f3d0; margin-top:10px; font-size:0.9em;">
+              ✨ 成果：前後測理解度大躍進，小組合作與探究自信心爆棚！
+            </div>
+          </div>
+
+          <div class="slider-divider" id="viz-divider"></div>
+        </div>
+
+        <input type="range" min="0" max="100" value="0" class="slider-ctrl" id="viz-slider" />
+        <div style="display:flex; justify-content:space-between; width:80%; margin:4px auto 0; font-size:0.36em; color:#94a3b8;">
+          <span>👈 拖曳查看【傳統教學痛點】</span>
+          <span>拖曳查看【STEAM 動手典範】 👉</span>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 14: 縱向延展 (一)：四年級 micro:bit 科技體育
+           ========================================== -->
+      <section>
+        <h2>社群成果縱向延展 (一)：四年級 micro:bit 甩繩智慧教練</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          社群教師進一步將「重量與力學」延伸至四年級「科技體育」跨域整合：
+        </p>
+
+        <div class="two-col">
+          <div class="col-box">
+            <h3 style="color:var(--accent2);">🏃‍♂️ 甩繩軌跡神射手：數據驅動體育</h3>
+            <p>
+              • <strong>加速度感測：</strong>將 micro:bit 封裝於大跳繩握把，即時捕捉三軸加速度。<br>
+              • <strong>離心力與節奏演算法：</strong>每甩動一圈自動濾波計數，即時透過無線廣播傳輸。<br>
+              • <strong>大螢幕即時回饋：</strong>體育課 8 人大跳繩現場看見甩繩穩定度數據，破除手痠亂甩的運動傷害盲點！
+            </p>
+          </div>
+
+          <div class="col-box">
+            <h3 style="color:var(--accent);">📸 科技體育課堂實境</h3>
+            <img src="images/photo_microbit_sports.jpg" alt="科技體育" class="img-fluid" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 15: 縱向延展 (二)：世界機關王競賽校隊培力
+           ========================================== -->
+      <section>
+        <h2>社群成果縱向延展 (二)：世界機關王 (GM) 校隊梯隊</h2>
+        <p style="font-size:0.45em; color:#94a3b8; margin-top:-0.4em;">
+          將天平結構力學，昇華為世界機關王競賽中的連鎖關卡自動觸發傳動：
+        </p>
+
+        <div class="two-col">
+          <div class="col-box">
+            <h3 style="color:var(--warn);">⚙️ 複合機關整合工藝</h3>
+            <p>
+              • <strong>斜面重力位能：</strong>金屬球沿軌道滾動加速。<br>
+              • <strong>天平觸發開關：</strong>球體滾入天平托盤，力矩失衡下沉，精準扣動下一道骨牌。<br>
+              • <strong>齒輪降速組：</strong>結合減速齒輪箱傳遞強大扭力，完成連鎖關卡 100% 觸發率！
+            </p>
+          </div>
+
+          <div class="col-box">
+            <h3 style="color:var(--warn);">📸 競賽關卡組裝與調校</h3>
+            <img src="images/photo_gm_mechanism.jpg" alt="機關王" class="img-fluid" />
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           Slide 16: 推動成效、評量規準與未來展望 [BG][ICON]
+           ========================================== -->
+      <section data-background-image="images/ending_bg.png"
+               data-background-opacity="0.35"
+               data-background-size="cover">
+        <h2>亮眼推動成效與未來展望：讓 STEAM 在中正生根</h2>
+        <p style="font-size:0.45em; color:#cbd5e1; margin-top:-0.4em;">
+          客觀量化數據佐證，建立兼具學習成就感與團隊共好的長遠教學模式：
+        </p>
+
+        <div class="card-grid-3">
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_grow.png" alt="數據成長"></div>
+            <div class="adv-title" style="color:var(--success);">理解度提升 +28.5%</div>
+            <div class="adv-desc">
+              前後測對照顯示，學生在重量單位換算與天平力矩平衡概念題型，答對率由 63.2% 躍升至 91.7%！
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_balance.png" alt="任務達成"></div>
+            <div class="adv-title" style="color:var(--accent2);">組裝任務 100% 達成</div>
+            <div class="adv-desc">
+              全年級各組均能自主完成智高天平組裝與指針歸零調校，展現卓越之動手實踐自信心。
+            </div>
+          </div>
+          <div class="adv-card fragment">
+            <div class="adv-icon"><img src="images/icon_team.png" alt="全校擴散"></div>
+            <div class="adv-title" style="color:var(--accent);">持續跨年級深耕</div>
+            <div class="adv-desc">
+              社群教案無私公開分享於全校課發會，持續拓展至中高年級物理、科技與體育跨域課程。
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.2em; text-align:center;">
+          <p style="font-size:0.52em; color:var(--warn); font-weight:700;">
+            感謝各位評審與教育夥伴的聆聽與指導！敬請指教！
+          </p>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- 底部講者提詞抽屜（快捷鍵 N 開關） -->
+  <div id="drawer" class="drawer">
+    <div class="drawer-header">
+      <span>🎙️ 講者提示備忘 (Speaker Cheat Sheet) ｜ 當前投影片：<span id="drawer-slide-title">第 1 頁</span></span>
+      <span style="font-size:12px; color:#94a3b8;">按 [N] 鍵或右上角按鈕收合</span>
+    </div>
+    <div id="drawer-content" class="drawer-content">
+      各位評審委員、教育先進大家好！我是中正國小社群召集人謝敦元老師...（點擊切頁自動切換提詞）
+    </div>
+  </div>
+
+  <!-- Reveal.js JS -->
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script>
+    Reveal.initialize({
+      hash: true,
+      transition: 'slide',
+      transitionSpeed: 'default',
+      backgroundTransition: 'fade',
+      center: true,
+      progress: true,
+      controls: true,
+      slideNumber: 'c/t',
+      keyboardCondition: function() {
+        const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+        return tag !== 'input' && tag !== 'textarea' && tag !== 'select';
+      },
+      plugins: []
+    });
+
+    // === VIZ: 滑桿對比邏輯 ===
+    const vizSlider = document.getElementById('viz-slider');
+    const vizAfter = document.getElementById('viz-after');
+    const vizDivider = document.getElementById('viz-divider');
+    if (vizSlider && vizAfter && vizDivider) {
+      vizSlider.addEventListener('input', function() {
+        const v = +this.value;
+        vizAfter.style.clipPath = `inset(0 ${100 - v}% 0 0)`;
+        vizDivider.style.left = v + '%';
+      });
+    }
+
+    // === 講者提詞抽屜腳本與換頁同步 ===
+    const notes = [
+      /* S01 */ "【第1頁 封面｜00:00~00:18】各位評審先進大家好！我是中正國小謝敦元。今天向大家分享我們社群推動的三年級數學重量測量機關課程。",
+      /* S02 */ "【第2頁 推動背景｜00:18~00:36】我們社群由 4 位跨域教師組成，完成 7 場共備研習，16 節課程 16,000 元完美結報，並外聘南投鯉魚國小交流。",
+      /* S03 */ "【第3頁 現場互動｜00:36~00:54】現場邀請各位老師在螢幕輸入：提到重量，孩子最常踩到什麼坑？指針看錯？體積大以為重？全班痛點一目了然！",
+      /* S04 */ "【第4頁 痛點轉化｜00:54~01:12】傳統彈簧秤是封閉黑盒子。我們用 STEAM 理念，讓孩子從解密結構、調校靈敏度到具象化數學加減！",
+      /* S05 */ "【第5頁 課綱對齊｜01:12~01:30】課程嚴格扣合 108 課綱 n-II-8 重量測量、n-II-9 單位換算與 n-II-2 兩步驟加減，兼顧學科本質與實作素養。",
+      /* S06 */ "【第6頁 三節地圖｜01:30~01:48】三節課階梯式設計：第1節顛覆手感認知，第2節動手組裝天平，第3節以單位積木進行微調平衡。",
+      /* S07 */ "【第7頁 第一節實踐｜01:48~02:06】徒手掂重引發強烈認知衝突！全班排出 6 種相反結果，孩子深刻察覺手感盲區，自主提出做天平的需求！",
+      /* S08 */ "【第8頁 第二節組裝｜02:06~02:24】善用智高積木一凸五凹結構：梯形穩固底座、精準對稱等臂橫樑、光滑低摩擦中軸與懸吊托盤。",
+      /* S09 */ "【第9頁 力學判定｜02:24~02:42】孩子學習觀測動態：左重則左沉，指針居中則水平平衡。微調積木滑塊可消除結構公差。",
+      /* S10 */ "【第10頁 迷思快問｜02:42~03:00】迷思題：100g 保麗龍大球 vs 100g 鐵砝碼放在等臂天平上？答案是等重水平！破除體積大就一定重的直覺！",
+      /* S11 */ "【第11頁 第三節微調｜03:00~03:18】以 5g 智高小積木為非標準單位，孩子逐一累加，測出橡皮擦等於 6 個積木 30g，算式躍然於眼簾！",
+      /* S12 */ "【第12頁 算則微調｜03:18~03:36】不平衡怎麼辦？較輕側『補足差額』＝加法，較重側『移除多餘』＝減法，算則完全化為指尖動作！",
+      /* S13 */ "【第13頁 滑桿對比｜03:36~03:54】拖動滑桿看巨大反差：告別傳統死背刻度與讀數卡關，轉化為親手組裝與理解物理量感的歡呼雀躍！",
+      /* S14 */ "【第14頁 科技體育｜03:54~04:12】縱向延展：將力學延伸至四年級 micro:bit 甩繩智慧教練，加速度演算法捕捉跳繩軌跡，科技融入體育！",
+      /* S15 */ "【第15頁 機關王整合｜04:12~04:30】進階至世界機關王競賽校隊培力，將天平轉化為連鎖觸發機關，跨領域機關整合連續觸發 100%！",
+      /* S16 */ "【第16頁 成效展望｜04:30~05:00】前後測理解度大幅成長 28.5%，組裝達成率 100%。中正國小將持續深耕 STEAM，讓孩子在動手中看見數學之美！"
+    ];
+
+    const drawer = document.getElementById('drawer');
+    const drawerTitle = document.getElementById('drawer-slide-title');
+    const drawerContent = document.getElementById('drawer-content');
+    const drawerToggleBtn = document.getElementById('btn-drawer-toggle');
+
+    function updateDrawer(index) {
+      if (drawerTitle) drawerTitle.textContent = `第 ${index + 1} / 16 頁`;
+      if (drawerContent) drawerContent.textContent = notes[index] || "精彩演繹中...";
+    }
+
+    Reveal.on('slidechanged', event => {
+      updateDrawer(event.indexh);
+    });
+    updateDrawer(0);
+
+    function toggleDrawer() {
+      if (drawer) drawer.classList.toggle('open');
+    }
+    if (drawerToggleBtn) drawerToggleBtn.addEventListener('click', toggleDrawer);
+
+    // 快捷鍵 N 切換提詞抽屜
+    window.addEventListener('keydown', e => {
+      const tag = document.activeElement ? document.activeElement.tagName.toLowerCase() : '';
+      if (tag === 'input' || tag === 'textarea') return;
+      if (e.key === 'n' || e.key === 'N') {
+        e.preventDefault();
+        toggleDrawer();
+      }
+    });
+
+    // === 5 分鐘現場倒數計時器 ===
+    let timeLeft = 300; // 5 分鐘
+    let timerId = null;
+    const timerEl = document.getElementById('hud-timer');
+    const timerToggleBtn = document.getElementById('btn-timer-toggle');
+    const timerResetBtn = document.getElementById('btn-timer-reset');
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60).toString().padStart(2, '0');
+      const s = (sec % 60).toString().padStart(2, '0');
+      return `${m}:${s}`;
+    }
+
+    function updateTimerDisplay() {
+      if (!timerEl) return;
+      timerEl.textContent = formatTime(timeLeft);
+      if (timeLeft <= 30) {
+        timerEl.style.color = '#ef4444';
+      } else if (timeLeft <= 60) {
+        timerEl.style.color = '#ffb74d';
+      } else {
+        timerEl.style.color = 'var(--accent2)';
+      }
+    }
+
+    function startTimer() {
+      if (timerId) return;
+      timerToggleBtn.textContent = '暫停';
+      timerId = setInterval(() => {
+        if (timeLeft > 0) {
+          timeLeft--;
+          updateTimerDisplay();
+        } else {
+          clearInterval(timerId);
+          timerId = null;
+          timerToggleBtn.textContent = '結束';
+        }
+      }, 1000);
+    }
+
+    function pauseTimer() {
+      if (timerId) {
+        clearInterval(timerId);
+        timerId = null;
+        timerToggleBtn.textContent = '繼續';
+      }
+    }
+
+    if (timerToggleBtn) {
+      timerToggleBtn.addEventListener('click', () => {
+        if (timerId) pauseTimer();
+        else startTimer();
+      });
+    }
+
+    if (timerEl) {
+      timerEl.addEventListener('click', () => {
+        if (timerId) pauseTimer();
+        else startTimer();
+      });
+    }
+
+    if (timerResetBtn) {
+      timerResetBtn.addEventListener('click', () => {
+        pauseTimer();
+        timeLeft = 300;
+        updateTimerDisplay();
+        timerToggleBtn.textContent = '開始';
+      });
+    }
+
+    // === 元件一：即時文字雲 (LocalStorage 容錯 + 斷網無憂) ===
+    let wcWords = ['指針看錯', '體積大以為重', '單位混淆', '手感失靈', '大格小格看錯', '公式死背', '未歸零'];
+    const wcInput = document.getElementById('wc-input');
+    const wcBtn = document.getElementById('wc-btn');
+    const wcCanvas = document.getElementById('wc-canvas');
+    const wcList = document.getElementById('wc-list');
+    const wcTotal = document.getElementById('wc-total');
+    const wcEmpty = document.getElementById('wc-empty');
+    const wcResetBtn = document.getElementById('wc-reset-btn');
+
+    if (wcInput) {
+      ['keydown', 'keyup', 'keypress'].forEach(evt => {
+        wcInput.addEventListener(evt, e => e.stopPropagation());
+      });
+    }
+
+    function renderWordCloud() {
+      if (!wcCanvas) return;
+      const counts = {};
+      wcWords.forEach(w => {
+        const trimmed = w.trim();
+        if (trimmed) counts[trimmed] = (counts[trimmed] || 0) + 1;
+      });
+      const listData = Object.entries(counts).sort((a, b) => b[1] - a[1]);
+
+      if (wcTotal) wcTotal.textContent = wcWords.length;
+      if (wcList) {
+        wcList.innerHTML = listData.slice(0, 8).map(([w, c]) =>
+          `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid rgba(255,255,255,0.06);">
+            <span>${w}</span><span style="color:var(--accent);font-weight:700;">${c}</span>
+          </div>`
+        ).join('') || '<div style="color:#64748b;padding:6px 0;">尚無資料，快當第一個！</div>';
+      }
+
+      if (wcEmpty) wcEmpty.style.display = listData.length > 0 ? 'none' : '';
+
+      // 使用 WordCloud2 繪製
+      if (window.WordCloud && wcCanvas.parentElement) {
+        wcCanvas.width = wcCanvas.parentElement.clientWidth;
+        wcCanvas.height = wcCanvas.parentElement.clientHeight;
+        const cloudData = listData.map(([w, c]) => [w, Math.max(16, c * 14 + 12)]);
+        WordCloud(wcCanvas, {
+          list: cloudData,
+          gridSize: 8,
+          weightFactor: 1,
+          fontFamily: 'Segoe UI, Noto Sans TC, sans-serif',
+          color: function() {
+            const colors = ['#4fc3f7', '#e8643a', '#ffb74d', '#81c784', '#a78bfa', '#38bdf8'];
+            return colors[Math.floor(Math.random() * colors.length)];
+          },
+          backgroundColor: 'transparent',
+          rotateRatio: 0.2
+        });
+      }
+    }
+
+    function submitWc() {
+      if (!wcInput) return;
+      const val = wcInput.value.trim();
+      if (!val) return;
+      wcWords.push(val);
+      wcInput.value = '';
+      renderWordCloud();
+    }
+
+    if (wcBtn) wcBtn.addEventListener('click', submitWc);
+    if (wcInput) {
+      wcInput.addEventListener('keydown', e => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          submitWc();
+        }
+      });
+    }
+
+    if (wcResetBtn) {
+      wcResetBtn.addEventListener('click', () => {
+        wcWords = ['指針看錯', '體積大以為重', '未歸零'];
+        renderWordCloud();
+      });
+    }
+
+    // === 元件二：即時單選投票 ===
+    const pollOptions = [
+      { text: "A. 左盤下沉（保麗龍球體積很大，向下壓的力量大）", votes: 2, isCorrect: false },
+      { text: "B. 右盤下沉（鐵塊感覺密度很高，所以特別沉）", votes: 3, isCorrect: false },
+      { text: "C. 兩盤水平平衡（質量同為 100g，力矩相等）", votes: 19, isCorrect: true },
+      { text: "D. 天平會不停隨機亂晃，無法判定", votes: 1, isCorrect: false }
+    ];
+
+    const pollContainer = document.getElementById('poll-options');
+    const pollTotalEl = document.getElementById('poll-total');
+    const pollResetBtn = document.getElementById('poll-reset-btn');
+    let hasVoted = false;
+
+    function renderPoll() {
+      if (!pollContainer) return;
+      const total = pollOptions.reduce((acc, opt) => acc + opt.votes, 0);
+      if (pollTotalEl) pollTotalEl.textContent = total;
+
+      pollContainer.innerHTML = pollOptions.map((opt, i) => {
+        const pct = total > 0 ? Math.round((opt.votes / total) * 100) : 0;
+        const activeColor = opt.isCorrect && hasVoted ? 'var(--success)' : 'var(--accent2)';
+        return `
+          <div class="poll-row" onclick="votePoll(${i})"
+            style="background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.15);
+                   border-radius:10px; padding:12px 16px; cursor:pointer; position:relative; overflow:hidden;
+                   user-select:none; transition:background 0.15s var(--ease-out), transform 0.1s var(--ease-out);">
+            <div style="position:absolute; left:0; top:0; bottom:0; width:${pct}%;
+                        background:rgba(79, 195, 247, 0.2); pointer-events:none;
+                        transition:width 0.4s var(--ease-out);"></div>
+            <div style="position:relative; display:flex; justify-content:space-between; align-items:center; font-size:0.46em;">
+              <span style="font-weight:600; color:${opt.isCorrect && hasVoted ? '#86efac' : '#f1f5f9'};">${opt.text}</span>
+              <span style="font-weight:700; color:${activeColor}; margin-left:12px;">${pct}% (${opt.votes}票)</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    window.votePoll = function(index) {
+      pollOptions[index].votes++;
+      hasVoted = true;
+      renderPoll();
+    };
+
+    if (pollResetBtn) {
+      pollResetBtn.addEventListener('click', () => {
+        pollOptions[0].votes = 1;
+        pollOptions[1].votes = 2;
+        pollOptions[2].votes = 12;
+        pollOptions[3].votes = 0;
+        hasVoted = false;
+        renderPoll();
+      });
+    }
+
+    // 投影片切換時重新繪製文字雲與投票
+    Reveal.on('slidechanged', e => {
+      if (e.currentSlide && e.currentSlide.id === 'slide-wordcloud') {
+        setTimeout(renderWordCloud, 100);
+      }
+      if (e.currentSlide && e.currentSlide.id === 'slide-poll') {
+        renderPoll();
+      }
+    });
+
+    // 初始渲染
+    renderWordCloud();
+    renderPoll();
+  </script>
+</body>
+</html>
