@@ -281,37 +281,59 @@
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
     }
 
-    /* === 視覺化對比滑桿 [VIZ] === */
+    /* === 視覺化對比滑桿 [VIZ] 3D 立體場景 === */
     .slider-box {
       position: relative;
-      height: 480px;
-      border-radius: 16px;
+      height: 520px;
+      border-radius: 20px;
       overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      background: #0d1117;
+      border: 2px solid rgba(79, 195, 247, 0.4);
+      background: #090d14;
       margin-top: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
     }
 
     .slider-layer {
       position: absolute;
       inset: 0;
-      padding: 36px;
+      padding: 30px;
       box-sizing: border-box;
       text-align: left;
-      font-size: 28px;
-      line-height: 1.8;
+      font-size: 26px;
+      line-height: 1.7;
       overflow-y: auto;
+      display: flex;
+      align-items: center;
     }
 
     .slider-layer.before {
-      background: #1e1b4b;
+      background: #111522 url('images/viz_traditional_scale.png') center/cover no-repeat;
       color: #e0e7ff;
     }
 
     .slider-layer.after {
-      background: #064e3b;
+      background: #07221d url('images/viz_steam_balance.png') center/cover no-repeat;
       color: #ecfdf5;
       clip-path: inset(0 100% 0 0);
+    }
+
+    .slider-glass-card {
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(14px);
+      border-radius: 16px;
+      padding: 24px 30px;
+      max-width: 680px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+    }
+
+    .slider-glass-card.before {
+      border: 1px solid rgba(248, 113, 113, 0.35);
+      border-left: 6px solid #ef4444;
+    }
+
+    .slider-glass-card.after {
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-left: 6px solid #10b981;
     }
 
     .slider-divider {
@@ -321,7 +343,7 @@
       width: 4px;
       height: 100%;
       background: linear-gradient(to bottom, transparent, #4fc3f7, #81c784, transparent);
-      box-shadow: 0 0 18px #4fc3f7;
+      box-shadow: 0 0 20px #4fc3f7;
       pointer-events: none;
     }
 
@@ -855,28 +877,32 @@
 
         <div class="slider-box">
           <div class="slider-layer before">
-            <div style="color:#f87171; font-weight:800; font-size:36px; margin-bottom:16px;">❌ 傳統課堂痛點（代碼 M3-W-01）</div>
-            <p>
-              • 學生面對市售彈簧秤，指針未歸零卻直接判讀。<br>
-              • 刻度密密麻麻，學生常把「1大格100g、5小格」誤算為一小格 10g。<br>
-              • 抽象死背「1公斤 = 1000公克」，卻無法直觀感受 1 公斤到底多重。<br>
-              • 算式寫得漂亮，但一到真實生活買水果或稱重時完全失靈。
-            </p>
-            <div style="color:#fca5a5; margin-top:20px; font-size:24px; font-weight:700;">
-              ⚠️ 缺失：缺乏物理實體感知，量感沒有真正內化為直覺。
+            <div class="slider-glass-card before">
+              <div style="color:#f87171; font-weight:800; font-size:32px; margin-bottom:12px;">❌ 傳統課堂痛點（代碼 M3-W-01）</div>
+              <p>
+                • 學生面對市售彈簧秤，指針未歸零卻直接判讀。<br>
+                • 刻度密密麻麻，學生常把「1大格100g、5小格」誤算為一小格 10g。<br>
+                • 抽象死背「1公斤 = 1000公克」，卻無法直觀感受 1 公斤到底多重。<br>
+                • 算式寫得漂亮，但一到真實生活買水果或稱重時完全失靈。
+              </p>
+              <div style="color:#fca5a5; margin-top:14px; font-size:22px; font-weight:700;">
+                ⚠️ 缺失：缺乏物理實體感知，量感沒有真正內化為直覺。
+              </div>
             </div>
           </div>
 
           <div class="slider-layer after" id="viz-after">
-            <div style="color:#34d399; font-weight:800; font-size:36px; margin-bottom:16px;">✅ STEAM 動手調校新典範</div>
-            <p>
-              • 親手組裝等臂力臂，徹底理解為什麼指針歸零如此關鍵。<br>
-              • 透過 5g 小積木的逐個疊加，深刻體會非標準單位到標準單位的進程。<br>
-              • 算則直接轉化為手部動作：較輕就「加法補足」、較重就「減法移除」。<br>
-              • 建立深厚體感量感，課堂充滿主動除錯與興奮歡呼聲！
-            </p>
-            <div style="color:#a7f3d0; margin-top:20px; font-size:24px; font-weight:700;">
-              ✨ 成果：前後測理解度大躍進，小組合作與探究自信心爆棚！
+            <div class="slider-glass-card after">
+              <div style="color:#34d399; font-weight:800; font-size:32px; margin-bottom:12px;">✅ STEAM 動手調校新典範</div>
+              <p>
+                • 親手組裝等臂力臂，徹底理解為什麼指針歸零如此關鍵。<br>
+                • 透過 5g 小積木的逐個疊加，深刻體會非標準單位到標準單位的進程。<br>
+                • 算則直接轉化為手部動作：較輕就「加法補足」、較重就「減法移除」。<br>
+                • 建立深厚體感量感，課堂充滿主動除錯與興奮歡呼聲！
+              </p>
+              <div style="color:#a7f3d0; margin-top:14px; font-size:22px; font-weight:700;">
+                ✨ 成果：前後測理解度大躍進，小組合作與探究自信心爆棚！
+              </div>
             </div>
           </div>
 
