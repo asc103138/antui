@@ -26,15 +26,15 @@ html_url = "file:///" + html_path.replace("\\", "/")
 
 for i in range(22):
     out_png = os.path.join(SLIDES_IMG_DIR, f"slide_{i+1:02d}.png")
-    # Reveal.js fragment 全開與精準導航
-    url = f"{html_url}#/{i}"
+    # 強制 fragments=false 確保每頁所有照片、卡片、圖表完整浮現，絕不留白
+    url = f"{html_url}?fragments=false#/{i}"
     cmd = [
         chrome_exe,
         "--headless=new",
         f"--screenshot={out_png}",
         "--window-size=1920,1080",
         "--hide-scrollbars",
-        "--virtual-time-budget=1200",
+        "--virtual-time-budget=2000",
         url
     ]
     res = subprocess.run(cmd, capture_output=True)

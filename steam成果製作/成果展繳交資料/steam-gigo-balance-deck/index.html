@@ -385,6 +385,14 @@
       pointer-events: none;
       z-index: 100;
     }
+
+    /* 截圖與全覽模式支援：當包含 no-fragments 或 url 帶 fragments=false 時全部可見 */
+    html.no-fragments .fragment,
+    .no-fragments .fragment {
+      opacity: 1 !important;
+      visibility: visible !important;
+      transform: none !important;
+    }
   </style>
 </head>
 
@@ -1043,12 +1051,12 @@
 
         <div class="chronicle-grid">
           <div class="photo-album-card fragment">
-            <img src="images/chronicle/c05_0926_teaching_blackboard.jpg" alt="0926入班試教板書" />
+            <img src="images/chronicle/c05_0926_teaching_blackboard.jpg" alt="天平機構校正與零點定規" />
             <div class="caption">
               <span class="tag-session" style="background:var(--success);">第 4 場次 ｜ 115.09.26</span>
-              <div class="title">入班公開課：三年丙班黑板板書架構與量感階梯</div>
+              <div class="title">教具工程精進：等臂天平轉軸阻尼校正與指針定規</div>
               <div class="desc">
-                在三年丙班進行公開觀議課，板書清楚標註公斤與公克位值轉換表，全班學生動手操作等臂天平，實作參與度高達 100%，觀課教師詳實記錄反思。
+                召集人謝敦元老師針對天平支點進行超光滑圓銷定規，排除微摩擦力阻尼干擾，並確立零點鉛直基準線，確保入班試教時量測精度達到 2.5g 高靈敏度。
               </div>
             </div>
           </div>
@@ -1145,23 +1153,23 @@
 
         <div class="chronicle-grid">
           <div class="photo-album-card fragment">
-            <img src="images/chronicle/c11_plan_structure_spec.png" alt="教案藍圖" />
+            <img src="images/chronicle/c11_plan_structure_spec.png" alt="學生任務操作單與評量規準" />
             <div class="caption">
-              <span class="tag-session" style="background:var(--accent2);">教案附件 6 典藏</span>
-              <div class="title">智高積木等臂天平工程規格藍圖</div>
+              <span class="tag-session" style="background:var(--accent2);">多元評量規準</span>
+              <div class="title">學生任務操作單與三階素養規準表</div>
               <div class="desc">
-                詳實規範左右等臂 10 孔距、梯形配重重心、低阻尼轉軸與懸吊托盤卡榫結構，確保跨校與全年級推廣時具備高度組裝穩定性與測量再現性。
+                涵蓋「手感估測、機關組裝、加減微調平衡、生活問題解決」四大維度，搭配同儕互評與量規，兼顧歷程性與總結性學習成就感。
               </div>
             </div>
           </div>
 
           <div class="photo-album-card fragment">
-            <img src="images/chronicle/c12_plan_balance_blueprint.png" alt="評量規準" />
+            <img src="images/chronicle/c12_plan_balance_blueprint.png" alt="天平工程規格藍圖" />
             <div class="caption">
-              <span class="tag-session" style="background:var(--success);">多元評量規準</span>
-              <div class="title">學生任務操作單與三階素養規準表</div>
+              <span class="tag-session" style="background:var(--success);">教案附件 6 典藏</span>
+              <div class="title">智高積木等臂天平工程規格藍圖</div>
               <div class="desc">
-                涵蓋「手感估測、機關組裝、加減微調平衡、生活問題解決」四大維度，搭配同儕互評與量規，兼顧歷程性與總結性學習成就感。
+                詳實規範左右等臂 10 孔距、梯形配重重心、低阻尼轉軸與懸吊托盤卡榫結構，確保跨校與全年級推廣時具備高度組裝穩定性與測量再現性。
               </div>
             </div>
           </div>
@@ -1227,6 +1235,12 @@
   <!-- Reveal.js JS -->
   <script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
   <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const disableFragments = urlParams.get('fragments') === 'false';
+    if (disableFragments) {
+      document.documentElement.classList.add('no-fragments');
+    }
+
     Reveal.initialize({
       width: 1920,
       height: 1080,
@@ -1239,7 +1253,8 @@
       hash: true,
       transition: 'slide',
       backgroundTransition: 'fade',
-      transitionSpeed: 'default'
+      transitionSpeed: 'default',
+      fragments: !disableFragments
     });
 
     // S13 互動對比滑桿即時控制 (修正：向右拖動展現社群新典範，向左拖動回顧傳統困境)
