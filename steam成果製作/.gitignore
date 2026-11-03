@@ -27,6 +27,9 @@ ENV/
 *.png
 !references/**/*.png
 !references/**/*.jpg
+!成果展繳交資料/**/*.png
+!成果展繳交資料/**/*.jpg
+成果展繳交資料/*.mp4
 
 # Large scans & generated activity folders
 簽 名 後 紙 本 申 請 表.pdf
