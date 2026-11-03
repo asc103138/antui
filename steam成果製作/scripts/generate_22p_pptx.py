@@ -54,21 +54,21 @@ def set_slide_bg(slide, bg_filename):
         slide.shapes.add_picture(bg_path, 0, 0, width=prs.slide_width, height=prs.slide_height)
 
 def add_header(slide, title_text, category_text="臺中市115年度推動校園STEAM教育成果展"):
-    tb = slide.shapes.add_textbox(Inches(0.8), Inches(0.4), Inches(11.7), Inches(1.3))
+    tb = slide.shapes.add_textbox(Inches(0.8), Inches(0.35), Inches(11.7), Inches(1.4))
     tf = tb.text_frame
     tf.word_wrap = True
     
     p0 = tf.paragraphs[0]
     p0.text = category_text
     p0.font.name = "微軟正黑體"
-    p0.font.size = Pt(18)
+    p0.font.size = Pt(22)
     p0.font.bold = True
     p0.font.color.rgb = CYAN_ACCENT
     
     p1 = tf.add_paragraph()
     p1.text = title_text
     p1.font.name = "微軟正黑體"
-    p1.font.size = Pt(32)
+    p1.font.size = Pt(38)
     p1.font.bold = True
     p1.font.color.rgb = WHITE
     p1.space_before = Pt(4)
@@ -91,7 +91,7 @@ def add_card(slide, left, top, width, height, title, body, border_color=CYAN_ACC
         p0 = tf.paragraphs[0]
         p0.text = title
         p0.font.name = "微軟正黑體"
-        p0.font.size = Pt(22)
+        p0.font.size = Pt(26)
         p0.font.bold = True
         p0.font.color.rgb = title_color
     
@@ -99,7 +99,7 @@ def add_card(slide, left, top, width, height, title, body, border_color=CYAN_ACC
         p1 = tf.add_paragraph() if title else tf.paragraphs[0]
         p1.text = body
         p1.font.name = "微軟正黑體"
-        p1.font.size = Pt(17)
+        p1.font.size = Pt(22)
         p1.font.color.rgb = WHITE
         if title:
             p1.space_before = Pt(8)
@@ -110,21 +110,21 @@ def add_card(slide, left, top, width, height, title, body, border_color=CYAN_ACC
 # -------------------------------------------------------------
 s1 = prs.slides.add_slide(blank_layout)
 set_slide_bg(s1, "cover_bg.png")
-tb = s1.shapes.add_textbox(Inches(1.0), Inches(1.2), Inches(11.3), Inches(5.2))
+tb = s1.shapes.add_textbox(Inches(1.0), Inches(1.1), Inches(11.3), Inches(5.4))
 tf = tb.text_frame
 tf.word_wrap = True
 
 p = tf.paragraphs[0]
 p.text = "臺中市 115 年度推動校園 STEAM 教育教師社群成果展"
 p.font.name = "微軟正黑體"
-p.font.size = Pt(22)
+p.font.size = Pt(26)
 p.font.bold = True
 p.font.color.rgb = CYAN_ACCENT
 
 p = tf.add_paragraph()
 p.text = "積木啟發量感 · 機關驗證平衡"
 p.font.name = "微軟正黑體"
-p.font.size = Pt(46)
+p.font.size = Pt(54)
 p.font.bold = True
 p.font.color.rgb = WHITE
 p.space_before = Pt(14)
@@ -132,15 +132,15 @@ p.space_before = Pt(14)
 p = tf.add_paragraph()
 p.text = "智高積木融入三年級數學「公斤與公克」重量測量機關課程設計"
 p.font.name = "微軟正黑體"
-p.font.size = Pt(26)
+p.font.size = Pt(30)
 p.font.bold = True
 p.font.color.rgb = GREEN_ACCENT
-p.space_before = Pt(12)
+p.space_before = Pt(14)
 
 p = tf.add_paragraph()
 p.text = "承辦學校：臺中市梧棲區中正國小 ｜ 社群召集人：謝敦元 老師"
 p.font.name = "微軟正黑體"
-p.font.size = Pt(20)
+p.font.size = Pt(24)
 p.font.color.rgb = MUTED
 p.space_before = Pt(36)
 
