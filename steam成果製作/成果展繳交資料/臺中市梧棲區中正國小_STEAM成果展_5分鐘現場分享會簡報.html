@@ -256,7 +256,7 @@
       color: #cbd5e1;
     }
 
-    /* 3D 比較滑桿元件 */
+    /* 3D 比較滑桿元件 (完美修正方向與圖層) */
     .slider-box {
       position: relative;
       height: 520px;
@@ -281,20 +281,25 @@
       align-items: center;
     }
 
+    /* 底層：傳統課堂困境 (置於右側) */
     .slider-layer.before {
       background: #111522 url('images/viz_traditional_scale.png') center/cover no-repeat;
       color: #e0e7ff;
+      justify-content: flex-end;
     }
 
+    /* 上層：社群研發 STEAM 新典範 (自左側展開，藉由 clip-path 裁切右端) */
     .slider-layer.after {
       background: #07221d url('images/viz_steam_balance.png') center/cover no-repeat;
       color: #ecfdf5;
-      clip-path: inset(0 100% 0 0);
+      justify-content: flex-start;
+      clip-path: inset(0 50% 0 0);
     }
 
     .slider-glass-card {
-      background: rgba(15, 23, 42, 0.88);
-      backdrop-filter: blur(14px);
+      background: rgba(15, 23, 42, 0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 16px;
       padding: 24px 30px;
       max-width: 680px;
@@ -302,23 +307,23 @@
     }
 
     .slider-glass-card.before {
-      border: 1px solid rgba(248, 113, 113, 0.35);
+      border: 1px solid rgba(248, 113, 113, 0.4);
       border-left: 6px solid #ef4444;
     }
 
     .slider-glass-card.after {
-      border: 1px solid rgba(52, 211, 153, 0.35);
+      border: 1px solid rgba(52, 211, 153, 0.4);
       border-left: 6px solid #10b981;
     }
 
     .slider-divider {
       position: absolute;
       top: 0;
-      left: 0;
+      left: 50%;
       width: 4px;
       height: 100%;
-      background: linear-gradient(to bottom, transparent, #4fc3f7, #81c784, transparent);
-      box-shadow: 0 0 20px #4fc3f7;
+      background: linear-gradient(to bottom, transparent, #38bdf8, #34d399, transparent);
+      box-shadow: 0 0 20px #38bdf8;
       pointer-events: none;
     }
 
@@ -330,72 +335,6 @@
       height: 10px;
       border-radius: 5px;
       cursor: ew-resize;
-    }
-
-    /* 互動文字雲 */
-    .cloud-tag {
-      display: inline-block;
-      margin: 10px 14px;
-      padding: 10px 22px;
-      border-radius: 14px;
-      background: rgba(30, 41, 59, 0.85);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #e2e8f0;
-      transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), background-color 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-      user-select: none;
-    }
-
-    .cloud-tag:hover {
-      transform: scale(1.06);
-      background: rgba(56, 189, 248, 0.25);
-      border-color: #38bdf8;
-    }
-
-    .cloud-tag:active {
-      transform: scale(0.97);
-    }
-
-    /* 投票選項按鈕 */
-    .poll-btn {
-      width: 100%;
-      background: rgba(15, 23, 42, 0.85);
-      border: 2px solid rgba(56, 189, 248, 0.3);
-      border-radius: 16px;
-      padding: 18px 24px;
-      color: #ffffff;
-      font-size: 26px;
-      font-weight: 700;
-      text-align: left;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.2s cubic-bezier(0.23, 1, 0.32, 1), background 0.2s cubic-bezier(0.23, 1, 0.32, 1);
-      user-select: none;
-    }
-
-    .poll-btn:hover {
-      border-color: #38bdf8;
-      background: rgba(56, 189, 248, 0.15);
-      transform: translateX(6px);
-    }
-
-    .poll-btn:active {
-      transform: scale(0.97);
-    }
-
-    .poll-btn.correct {
-      border-color: #10b981;
-      background: rgba(16, 185, 129, 0.2);
-    }
-
-    /* 數學策略流程節點 */
-    .strategy-node {
-      background: rgba(15, 23, 42, 0.9);
-      border-radius: 16px;
-      padding: 20px 24px;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      position: relative;
     }
 
     /* 課綱表格 */
@@ -459,7 +398,7 @@
                data-background-size="cover">
         <div style="margin-top:40px;">
           <span class="badge-pill badge-cyan" style="font-size:22px; margin-bottom:24px;">
-            臺中市 115 年度推動校園 STEAM 教育實施計畫成果展
+            臺中市 115 年度推動校園 STEAM 教育教師社群成果展
           </span>
           <h1 style="margin-top:20px; margin-bottom:24px;">
             積木啟發量感 · 機關驗證平衡
@@ -520,73 +459,81 @@
         </div>
       </section>
 
-      <!-- S03: 現場互動提問 (文字雲) -->
+      <!-- S03: 社群研發四階段全景地圖 (取代文字雲迷思) -->
       <section data-background-image="images/bgs/bg_wordcloud.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>現場互動提問：提到國小「重量測量」，學生最常卡在哪？</h2>
+        <h2>社群研發全景地圖：四階段推進與七大里程碑</h2>
         <p class="lead-text">
-          請現場各位教育夥伴與評審委員回想日常課堂，點擊下方高頻困境：
+          中正國小社群聚焦「將抽象重量具象化」，依循標準研發歷程循序推動：
         </p>
 
-        <div style="margin-top:24px; padding:24px; background:rgba(15,23,42,0.85); border-radius:20px; border:1px solid rgba(56,189,248,0.3);">
-          <div class="cloud-tag" style="font-size:36px; color:#f87171; border-color:#f87171;">
-            🔥 彈簧秤指針未歸零 (32%)
+        <div class="grid-4">
+          <div class="glass-card" style="border-top:6px solid #38bdf8;">
+            <span class="badge-pill badge-cyan">階段一</span>
+            <h3 style="color:#38bdf8; margin-top:10px;">教材剖析與方向確立</h3>
+            <p style="font-size:20px; color:#cbd5e1; margin:0;">
+              深入分析三年級「公斤與公克」學習盲點，開箱智高零件庫，定調自製天平研發路徑。
+            </p>
           </div>
-          <div class="cloud-tag" style="font-size:40px; color:#38bdf8; font-weight:800; border-color:#38bdf8;">
-            ⭐ 刻度格值看錯 (38%)
-          </div>
-          <div class="cloud-tag" style="font-size:32px; color:#fbbf24; border-color:#fbbf24;">
-            ⚠️ 公斤與公克換算障礙 (24%)
-          </div>
-          <br />
-          <div class="cloud-tag" style="font-size:34px; color:#34d399; border-color:#34d399;">
-            💡 誤認「體積大一定重」 (29%)
-          </div>
-          <div class="cloud-tag" style="font-size:30px; color:#c084fc; border-color:#c084fc;">
-            📦 缺乏實體量感直覺 (27%)
-          </div>
-          <div class="cloud-tag" style="font-size:28px; color:#94a3b8; border-color:#94a3b8;">
-            📝 兩步驟加減解題機械化 (21%)
-          </div>
-        </div>
 
-        <div style="margin-top:28px; font-size:24px; color:#cbd5e1; font-weight:500;">
-          👉 這些痛點的根源：傳統課堂依賴「市售黑盒子彈簧秤」，學生只看讀數，缺少<span style="color:#38bdf8; font-weight:700;">「物理結構支撐」</span>與<span style="color:#34d399; font-weight:700;">「手動調校過程」</span>！
+          <div class="glass-card" style="border-top:6px solid #fbbf24;">
+            <span class="badge-pill badge-amber">階段二</span>
+            <h3 style="color:#fbbf24; margin-top:10px;">機構除錯與名師請益</h3>
+            <p style="font-size:20px; color:#cbd5e1; margin:0;">
+              解決轉軸阻尼與力臂對稱；親赴南投鯉魚國小特聘陳建安名師座談，傳承機關王技術。
+            </p>
+          </div>
+
+          <div class="glass-card" style="border-top:6px solid #34d399;">
+            <span class="badge-pill badge-green">階段三</span>
+            <h3 style="color:#34d399; margin-top:10px;">入班試教與數據實證</h3>
+            <p style="font-size:20px; color:#cbd5e1; margin:0;">
+              三年丙班公開試教，驗證 100% 學生動手參與；試教前後測量化分析理解度大增 28.5%！
+            </p>
+          </div>
+
+          <div class="glass-card" style="border-top:6px solid #c084fc;">
+            <span class="badge-pill badge-purple">階段四</span>
+            <h3 style="color:#c084fc; margin-top:10px;">賽事整合與教案典藏</h3>
+            <p style="font-size:20px; color:#cbd5e1; margin:0;">
+              將天平改裝為世界機關王 8 迴連續觸發開關；完成附件 6 正式教案送件，無瑕結報。
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- S04: 教學痛點診斷 -->
+      <!-- S04: 社群研發動機與破局策略 -->
       <section data-background-image="images/bgs/bg_steam.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>教學痛點診斷：從「黑盒子讀數」到「物理具象」</h2>
+        <h2>社群研發動機與破局策略：自製天平取代黑盒子</h2>
         <p class="lead-text">
-          依據南一版三年級上學期第六單元教材分析，拆解傳統教學三大壁壘：
+          社群教師共備診斷傳統課堂困境，確立以自製教具作為核心解方：
         </p>
 
         <div class="grid-3">
           <div class="glass-card" style="border-left:6px solid #ef4444;">
-            <div style="font-size:40px; margin-bottom:12px;">❌</div>
-            <h3 style="color:#f87171;">痛點一：刻度密麻與未歸零</h3>
+            <div style="font-size:40px; margin-bottom:12px;">📦</div>
+            <h3 style="color:#f87171;">困境一：黑盒子指針盲從</h3>
             <p style="font-size:22px; color:#cbd5e1; margin:0;">
-              市售彈簧秤 1 大格 100g 內含 5 小格，學生常直覺誤認一小格為 10g；且指針未調零便直接判讀，誤差累積。
+              市售彈簧秤將彈簧力學隱藏在塑膠殼內，指針未歸零學生不知緣由，格值讀數常把一小格誤判為 10g。
             </p>
           </div>
 
-          <div class="glass-card" style="border-left:6px solid #f59e0b;">
-            <div style="font-size:40px; margin-bottom:12px;">⚡</div>
-            <h3 style="color:#fbbf24;">痛點二：抽象單位換算障礙</h3>
+          <div class="glass-card" style="border-left:6px solid #fbbf24;">
+            <div style="font-size:40px; margin-bottom:12px;">🧩</div>
+            <h3 style="color:#fbbf24;">社群破局：全透明物理結構</h3>
             <p style="font-size:22px; color:#cbd5e1; margin:0;">
-              「1 公斤 = 1000 公克」淪為數字背誦，學生面對 2 公斤 50 公克常誤寫成 2500 公克，欠缺體感重量基準。
+              運用智高積木自組等臂天平，力臂長度、轉軸支點與吊盤重力完全裸露，讓力矩平衡看得見、摸得著！
             </p>
           </div>
 
-          <div class="glass-card" style="border-left:6px solid #38bdf8;">
-            <div style="font-size:40px; margin-bottom:12px;">🔄</div>
-            <h3 style="color:#38bdf8;">痛點三：生活應用與算則脫節</h3>
+          <div class="glass-card" style="border-left:6px solid #34d399;">
+            <div style="font-size:40px; margin-bottom:12px;">⚖️</div>
+            <h3 style="color:#34d399;">創新價值：調校中內化算則</h3>
             <p style="font-size:22px; color:#cbd5e1; margin:0;">
-              課本兩步驟加減題目（如裝箱去皮、兩物補平）缺乏具象操作，學生只能死套公式，無法連結真實生活情境。
+              將抽象數學文字題化為手動增減積木：左傾就加積木、超重就減積木，手腦並用建立深刻量感直覺。
             </p>
           </div>
         </div>
@@ -596,9 +543,9 @@
       <section data-background-image="images/bgs/bg_curriculum.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>課程核心依據：十二年國教數學領域指標對齊</h2>
+        <h2>課綱領域指標深度轉化：十二年國教數學實作對應</h2>
         <p class="lead-text">
-          緊密扣合課綱學習表現與學習內容，落實跨領域素養導向設計：
+          社群將課綱條目精準轉化為積木操作任務，落實素養導向設計：
         </p>
 
         <table class="spec-table">
@@ -633,19 +580,19 @@
       <section data-background-image="images/bgs/bg_roadmap.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>三節課循序進階架構：階梯式探究地圖</h2>
+        <h2>社群三節課教案研發：階梯式探究架構</h2>
         <p class="lead-text">
-          設計由感官到結構、再由結構到數理計量的完整學習進程：
+          歷經多次共備修改，定稿由感官到結構、再由結構到數理計量的完整學習歷程：
         </p>
 
         <div class="grid-3">
           <div class="glass-card">
             <span class="badge-pill badge-amber">第 1 節 ｜ 40 min</span>
-            <h3 style="color:#fbbf24; margin-top:14px;">手感掂重引爆認知衝突</h3>
+            <h3 style="color:#fbbf24; margin-top:14px;">手感體驗與需求建構</h3>
             <p style="font-size:22px; color:#cbd5e1;">
               • 盲測比較保麗龍與金屬球。<br>
-              • 破除「體積大一定重」的直覺謬誤。<br>
-              • 體會手部疲勞誤差，引出對精準測量工具的渴望。
+              • 體會手部疲勞與主觀估測誤差。<br>
+              • 引發對科學標準測量工具的強烈需求。
             </p>
           </div>
 
@@ -653,61 +600,61 @@
             <span class="badge-pill badge-cyan">第 2 節 ｜ 40 min</span>
             <h3 style="color:#38bdf8; margin-top:14px;">智高積木等臂機構組裝</h3>
             <p style="font-size:22px; color:#cbd5e1;">
-              • 掌握梯形底座、對稱橫樑與低阻尼轉軸。<br>
-              • 解決卡榫摩擦力問題，完成指針歸零。<br>
+              • 掌握梯形底座、橫樑與低阻尼轉軸。<br>
+              • 排除卡榫摩擦力干擾，完成指針垂直歸零。<br>
               • 透過指針傾斜直觀辨識輕重與水平平衡。
             </p>
           </div>
 
           <div class="glass-card">
             <span class="badge-pill badge-green">第 3 節 ｜ 40 min</span>
-            <h3 style="color:#34d399; margin-top:14px;">公克積木微調與生活應用</h3>
+            <h3 style="color:#34d399; margin-top:14px;">公克積木微調與算則具象</h3>
             <p style="font-size:22px; color:#cbd5e1;">
               • 5g 單位積木加減微調解題。<br>
               • 兩步驟加減法情境具象操作實證。<br>
-              • 小組合作秤量文具、玩具等生活物品並記錄。
+              • 小組合作秤量生活文具並完成任務單。
             </p>
           </div>
         </div>
       </section>
 
-      <!-- S07: 第 1 節課堂實踐 -->
+      <!-- S07: 社群教學設計 (一) -->
       <section data-background-image="images/conflict_bg.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>第 1 節課堂實踐：徒手掂重引爆認知衝突</h2>
+        <h2>社群教學設計 (一)：第 1 節手感體驗與測量需求建構</h2>
         <p class="lead-text">
-          利用「視覺體積」與「真實重量」的巨大落差，製造強烈教學鷹架：
+          社群精心設計兩道感官對比實驗，引導學生自主發現科學工具的不可或缺：
         </p>
 
         <div class="grid-2">
           <div class="glass-card" style="border-left:6px solid #fb923c;">
-            <h3 style="color:#fb923c;">📦 認知衝突實驗：大保麗龍 vs 小鐵球</h3>
+            <h3 style="color:#fb923c;">📦 實驗一：大保麗龍 vs 小鐵球盲測</h3>
             <p style="font-size:24px; color:#e2e8f0; line-height:1.7;">
-              • 學生單憑雙眼觀察，92% 直覺猜測體積大 5 倍的保麗龍方塊較重。<br>
-              • 當雙手捧起閉眼盲測時，震撼發現掌心下沉的反而是小小金屬球！<br>
-              • 瞬間瓦解「大 = 重」的直覺迷思，課堂討論氣氛瞬間點燃。
+              • 社群準備體積相差 5 倍的材料，讓學生雙手閉眼盲測。<br>
+              • 震撼發現掌心下沉的竟是小鐵球，破除視覺欺騙，奠定密度概念。<br>
+              • 學生從被動聽講轉為主動質疑：「不能只看外表，必須有工具量！」
             </p>
           </div>
 
           <div class="glass-card" style="border-left:6px solid #38bdf8;">
-            <h3 style="color:#38bdf8;">✋ 雙手掂重限制：感官疲勞與主觀爭議</h3>
+            <h3 style="color:#38bdf8;">✋ 實驗二：手部肌肉疲勞與主觀爭議</h3>
             <p style="font-size:24px; color:#e2e8f0; line-height:1.7;">
-              • 兩件物品重量相近時（如 85g 橡皮擦 vs 90g 膠水），組內同學互換手感各執一詞。<br>
-              • 手腕肌肉快速疲勞導致估測失真，全班一致達成共識：<br>
-              <span style="color:#34d399; font-weight:800; font-size:26px;">「我們需要客觀、穩定、不會累的科學測量工具！」</span>
+              • 當測量重量相近的橡皮擦與膠水時，手腕肌肉快速疲勞產生誤差。<br>
+              • 小組內各執一詞，社群教師順勢引導達成共識：<br>
+              <span style="color:#34d399; font-weight:800; font-size:26px;">「我們需要客觀、穩定、不會累的科學天平！」</span>
             </p>
           </div>
         </div>
       </section>
 
-      <!-- S08: 第 2 節課堂實踐 -->
+      <!-- S08: 社群教具研發 (二) -->
       <section data-background-image="images/bgs/bg_assembly.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>第 2 節課堂實踐：智高積木四核心組件組裝</h2>
+        <h2>社群教具研發 (二)：智高積木等臂天平四核心機構</h2>
         <p class="lead-text">
-          工程設計歷程（EDP）：拆解結構細節，化身小小工程師：
+          社群歷經 3 代零件選配與測試，定稿最適合國小學童操作的標準教具：
         </p>
 
         <div class="grid-4">
@@ -745,90 +692,97 @@
         </div>
       </section>
 
-      <!-- S09: 物理機制解析 -->
+      <!-- S09: 社群技術突破 -->
       <section data-background-image="images/bgs/bg_physics.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>物理機制解析：天平傾斜與指針判定規則</h2>
+        <h2>社群技術突破：低阻尼轉軸除錯與基準線定規</h2>
         <p class="lead-text">
-          手動調校零點，建立清楚直觀的力學視覺辨識語言：
+          社群教師反覆調校機械細節，確保測量具備極高靈敏度與重現性：
         </p>
 
         <div class="grid-3">
-          <div class="glass-card" style="text-align:center;">
-            <div style="font-size:52px; margin-bottom:10px;">↙️</div>
-            <h3 style="color:#f87171;">左盤下沉 · 指針偏右</h3>
-            <p style="font-size:24px; color:#e2e8f0; font-weight:700;">左邊物體較重 (Left > Right)</p>
-            <p style="font-size:20px; color:#cbd5e1;">重力力矩較大，需在右盤追加砝碼或減少左盤重量。</p>
+          <div class="glass-card" style="border-top:6px solid #f87171;">
+            <div style="font-size:44px; margin-bottom:10px;">🔧</div>
+            <h3 style="color:#f87171;">轉軸阻尼除錯</h3>
+            <p style="font-size:22px; color:#cbd5e1;">
+              初版天平卡榫摩擦過大導致指針遲滯，社群改採光滑軸套與低摩擦軸心，靈敏度躍升至 2g 感應！
+            </p>
           </div>
 
-          <div class="glass-card" style="text-align:center; border:2px solid #10b981; box-shadow:0 0 24px rgba(16,185,129,0.3);">
-            <div style="font-size:52px; margin-bottom:10px;">⚖️</div>
-            <h3 style="color:#34d399;">指針鉛直 · 兩端齊平</h3>
-            <p style="font-size:24px; color:#a7f3d0; font-weight:700;">達成完美平衡 (Left = Right)</p>
-            <p style="font-size:20px; color:#cbd5e1;">力矩完美對稱抵消，此時兩側物品重量完全相等。</p>
+          <div class="glass-card" style="border-top:6px solid #10b981; box-shadow:0 0 24px rgba(16,185,129,0.25);">
+            <div style="font-size:44px; margin-bottom:10px;">📏</div>
+            <h3 style="color:#34d399;">鉛直基準線定規</h3>
+            <p style="font-size:22px; color:#cbd5e1;">
+              基座中央標記高對比鉛直基準線，當指針與中線齊平即代表完美平衡，消除目測視角誤差。
+            </p>
           </div>
 
-          <div class="glass-card" style="text-align:center;">
-            <div style="font-size:52px; margin-bottom:10px;">↘️</div>
-            <h3 style="color:#60a5fa;">右盤下沉 · 指針偏左</h3>
-            <p style="font-size:24px; color:#e2e8f0; font-weight:700;">右邊物體較重 (Right > Left)</p>
-            <p style="font-size:20px; color:#cbd5e1;">右側力矩過大，需在左盤追加單位積木直至鉛直平衡。</p>
+          <div class="glass-card" style="border-top:6px solid #38bdf8;">
+            <div style="font-size:44px; margin-bottom:10px;">🗃️</div>
+            <h3 style="color:#38bdf8;">模組化零件盒</h3>
+            <p style="font-size:22px; color:#cbd5e1;">
+              社群教師客製專用分裝盤，學生組裝時間由 20 分鐘大幅縮減至 12 分鐘，高效率銜接課堂教學。
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- S10: 課堂迷思快問快答 -->
+      <!-- S10: 社群公開觀課與專業議課 (徹底替換原迷思快問快答) -->
       <section data-background-image="images/bgs/bg_poll.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>課堂迷思快問快答：破除「體積大就一定重」</h2>
+        <h2>社群公開觀課與專業議課：試教現場反思與精進</h2>
         <p class="lead-text">
-          課堂即時互動環節，檢驗學生對體積與質量概念的釐清：
+          於三年丙班落實公開觀議課，四位社群教師全員觀課並詳實議課紀錄：
         </p>
 
-        <div style="max-width:960px; margin:0 auto; text-align:left;">
-          <div style="background:rgba(30,41,59,0.9); padding:24px 30px; border-radius:18px; margin-bottom:24px; border-left:6px solid #38bdf8;">
-            <span style="font-size:28px; font-weight:800; color:#ffffff;">
-              ❓ 課堂快問：若天平左邊放「大棉花團」、右邊放「小金屬塊」，指針鉛直平衡，兩者誰重？
-            </span>
+        <div class="grid-3">
+          <div class="glass-card" style="border-left:6px solid #38bdf8;">
+            <h3 style="color:#38bdf8;">👀 現場觀察重點</h3>
+            <p style="font-size:22px; color:#cbd5e1; margin:0;">
+              • 學生分組動手組裝天平參與率達 100%。<br>
+              • 學生自主發現指針未歸零並手動微調。<br>
+              • 黑板位值轉換表有效支持小組記錄數據。
+            </p>
           </div>
 
-          <div style="display:flex; flex-direction:column; gap:16px;">
-            <div class="poll-btn" onclick="this.classList.toggle('correct')">
-              <span>A. 棉花團體積大很多，所以棉花較重</span>
-              <span style="color:#94a3b8; font-size:22px;">課前 38% 學生誤選</span>
-            </div>
+          <div class="glass-card" style="border-left:6px solid #fbbf24;">
+            <h3 style="color:#fbbf24;">💬 議課研討回饋</h3>
+            <p style="font-size:22px; color:#cbd5e1; margin:0;">
+              • 學生對 5g 積木疊加反應熱烈。<br>
+              • 少數組別懸吊繩長度不一致影響水平。<br>
+              • 建議將任務紀錄單加入「估測 vs 實測」對照欄。
+            </p>
+          </div>
 
-            <div class="poll-btn correct">
-              <span>B. 指針垂直中線，兩者重量完全一樣重！ ✅</span>
-              <span style="color:#34d399; font-weight:800; font-size:22px;">課後 98% 學生正解！</span>
-            </div>
-
-            <div class="poll-btn">
-              <span>C. 金屬密度大，所以一定是小金屬塊比較重</span>
-              <span style="color:#94a3b8; font-size:22px;">課前 18% 學生誤選</span>
-            </div>
+          <div class="glass-card" style="border-left:6px solid #34d399;">
+            <h3 style="color:#34d399;">⚡ 教案精進決策</h3>
+            <p style="font-size:22px; color:#cbd5e1; margin:0;">
+              • 吊盤改採固定長度插銷卡榫確保左右等高。<br>
+              • 增設小組同儕互評規準，兼顧歷程性評量。<br>
+              • 形成附件 6 正式教案之標準化作業程序。
+            </p>
           </div>
         </div>
       </section>
 
-      <!-- S11: 第 3 節課堂實踐 -->
+      <!-- S11: 社群教學設計 (三) -->
       <section data-background-image="images/balance_bg.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>第 3 節課堂實踐：單位積木與加減微調挑戰</h2>
+        <h2>社群教學設計 (三)：第 3 節 5g 單位積木定量與加減微調</h2>
         <p class="lead-text">
-          引導學生從「非標準單位」邁向「標準公克單位」的認知跳躍：
+          引導學生從個別非標準單位，跨越至標準公克計量的鷹架任務：
         </p>
 
         <div class="grid-3">
           <div class="glass-card">
             <span class="badge-pill badge-amber">關卡一</span>
-            <h3 style="color:#fbbf24; margin-top:12px;">個別單位到公克標準</h3>
+            <h3 style="color:#fbbf24; margin-top:12px;">個別單位到標準公克</h3>
             <p style="font-size:22px; color:#cbd5e1;">
-              • 先用花片、彈珠當單位，發現每組花片重量不一。<br>
-              • 深刻體會「全世界需要統一標準」的公克制度重要性。
+              • 先用花片彈珠發現各組標準不一。<br>
+              • 體認全世界需要統一重量標準的公克公制價值。
             </p>
           </div>
 
@@ -836,35 +790,35 @@
             <span class="badge-pill badge-cyan">關卡二</span>
             <h3 style="color:#38bdf8; margin-top:12px;">5g 智高積木精準定量</h3>
             <p style="font-size:22px; color:#cbd5e1;">
-              • 標準智高正方體積木每顆恰為 5 公克。<br>
-              • 學生數算顆數乘 5，直觀連結乘法倍數與重量數值。
+              • 社群實測智高正方體積木每顆恰為 5 公克。<br>
+              • 學生數算顆數乘以 5，乘法與重量直觀連動。
             </p>
           </div>
 
           <div class="glass-card">
             <span class="badge-pill badge-green">關卡三</span>
-            <h3 style="color:#34d399; margin-top:12px;">加減微調平衡挑戰</h3>
+            <h3 style="color:#34d399; margin-top:12px;">生活物品微調任務單</h3>
             <p style="font-size:22px; color:#cbd5e1;">
-              • 小組挑戰秤量鉛筆盒，在另一盤加減微調。<br>
-              • 算式與指針即時連動，成功完成課堂任務單。
+              • 小組挑戰秤量鉛筆盒、剪刀與橡皮擦。<br>
+              • 在另一盤加減積木微調平衡，完成量化紀錄。
             </p>
           </div>
         </div>
       </section>
 
-      <!-- S12: 課堂深度探究 -->
+      <!-- S12: 社群教材創新轉化 -->
       <section data-background-image="images/bgs/bg_math_strategy.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>課堂深度探究：兩步驟加減法情境具象化</h2>
+        <h2>社群教材創新轉化：兩步驟加減法情境具象化</h2>
         <p class="lead-text">
-          將數學課本抽象文字題，轉化為看得見、摸得著的動態操作：
+          社群將課本抽象算則轉化為實體增減動作，徹底打通學生解題瓶頸：
         </p>
 
         <div class="grid-2">
           <div class="glass-card" style="border-left:6px solid #38bdf8;">
             <div class="badge-pill badge-cyan" style="margin-bottom:12px;">情境一：加法補足策略</div>
-            <h3 style="color:#38bdf8;">左盤放 50g 蘋果，右盤已放 35g 積木</h3>
+            <h3 style="color:#38bdf8;">左盤放 50g 待測物，右盤放 35g 積木</h3>
             <p style="font-size:24px; color:#e2e8f0; line-height:1.7;">
               • 現象：天平左傾，指針偏右。<br>
               • 思考：要使指針歸零平衡，右盤還需要加多少公克？<br>
@@ -879,49 +833,51 @@
             <p style="font-size:24px; color:#e2e8f0; line-height:1.7;">
               • 現象：連盒帶物共 80g，已知空紙盒重 20g。<br>
               • 思考：內容物真正重量是多少？<br>
-              • 操作：從天平砝碼盤中直接取下代表盒重的 4 顆 5g 積木。<br>
+              • 操作：從砝碼盤中直接取下代表盒重的 4 顆 5g 積木。<br>
               • 算式：80 - 20 = 60（公克）。徹底根除學生對去皮運算的困惑！
             </p>
           </div>
         </div>
       </section>
 
-      <!-- S13: 典範轉移 3D 拉桿 -->
+      <!-- S13: 典範轉移 3D 拉桿 (完美修正拉桿方向與邏輯) -->
       <section data-background-image="images/bgs/bg_paradigm.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>教學典範轉移：傳統讀秤 vs STEAM 動手調校</h2>
+        <h2>社群研發成效對比：傳統課堂困境 vs STEAM 新典範</h2>
         <p class="lead-text">
-          拖動下方滑桿，對照傳統教學困境與 STEAM 跨域實作的巨大轉變：
+          拖動下方滑桿，對照傳統教學困境與中正社群 STEAM 跨域研發的巨大成效：
         </p>
 
         <div class="slider-box">
+          <!-- 底層：傳統課堂困境 (置於右側) -->
           <div class="slider-layer before">
             <div class="slider-glass-card before">
-              <div style="color:#f87171; font-weight:800; font-size:32px; margin-bottom:12px;">❌ 傳統課堂痛點（代碼 M3-W-01）</div>
+              <div style="color:#f87171; font-weight:800; font-size:32px; margin-bottom:12px;">❌ 傳統課堂教學困境（代碼 M3-W-01）</div>
               <p style="font-size:24px; line-height:1.6; color:#e2e8f0; margin:0;">
-                • 面對市售彈簧秤，指針未歸零卻直接判讀。<br>
+                • 面對市售彈簧秤黑盒子，指針未歸零卻直接判讀。<br>
                 • 刻度密密麻麻，學生常把「1大格100g、5小格」誤算為一小格 10g。<br>
-                • 抽象死背「1公斤 = 1000公克」，卻無法直觀感受 1 公斤到底多重。<br>
-                • 算式寫得漂亮，但一到真實生活買水果或稱重時完全失靈。
+                • 抽象死背「1公斤 = 1000公克」，缺乏真實重量體感。<br>
+                • 紙筆算則寫得漂亮，但一到真實生活買水果或稱重時完全失靈。
               </p>
               <div style="color:#fca5a5; margin-top:14px; font-size:22px; font-weight:700;">
-                ⚠️ 缺失：缺乏物理實體感知，量感沒有真正內化為直覺。
+                ⚠️ 核心缺失：缺乏物理實體感知，量感未內化為直覺。
               </div>
             </div>
           </div>
 
+          <!-- 上層：中正社群 STEAM 新典範 (自左側展開，拖動右移擴大) -->
           <div class="slider-layer after" id="viz-after">
             <div class="slider-glass-card after">
-              <div style="color:#34d399; font-weight:800; font-size:32px; margin-bottom:12px;">✅ STEAM 動手調校新典範</div>
+              <div style="color:#34d399; font-weight:800; font-size:32px; margin-bottom:12px;">✅ 中正社群自研 STEAM 新典範</div>
               <p style="font-size:24px; line-height:1.6; color:#ecfdf5; margin:0;">
-                • 親手組裝等臂力臂，徹底理解為什麼指針歸零如此關鍵。<br>
-                • 透過 5g 小積木的逐個疊加，深刻體會非標準單位到標準單位的進程。<br>
-                • 算則直接轉化為手部動作：較輕就「加法補足」、較重就「減法移除」。<br>
-                • 建立深厚體感量感，課堂充滿主動除錯與興奮歡呼聲！
+                • 社群研發智高等臂天平，學生親手組裝，直觀理解歸零與力矩。<br>
+                • 透過 5g 小積木逐個疊加，體會非標準到標準單位進程。<br>
+                • 算則直接對應手部調校：較輕補積木（加法）、去皮拿積木（減法）。<br>
+                • 課堂實證：前後測理解度大躍升 28.5%，滿意度達 96.8%！
               </p>
               <div style="color:#a7f3d0; margin-top:14px; font-size:22px; font-weight:700;">
-                ✨ 成果：前後測理解度大躍進，小組合作與探究自信心爆棚！
+                ✨ 社群突破：將抽象數學具象化，建立孩子深厚探究自信！
               </div>
             </div>
           </div>
@@ -929,10 +885,10 @@
           <div class="slider-divider" id="viz-divider"></div>
         </div>
 
-        <input type="range" min="0" max="100" value="0" class="slider-ctrl" id="viz-slider" />
-        <div style="display:flex; justify-content:space-between; width:80%; margin:8px auto 0; font-size:24px; color:#cbd5e1; font-weight:700;">
-          <span>👈 拖曳查看【傳統教學痛點】</span>
-          <span>拖曳查看【STEAM 動手典範】 👉</span>
+        <input type="range" min="0" max="100" value="50" class="slider-ctrl" id="viz-slider" />
+        <div style="display:flex; justify-content:space-between; width:80%; margin:16px auto 0; font-size:24px; color:#cbd5e1; font-weight:700;">
+          <span>👈 拖向左側：回顧【傳統課堂困境】</span>
+          <span>拖向右側：展現【社群研發 STEAM 新典範】 👉</span>
         </div>
       </section>
 
@@ -942,7 +898,7 @@
                data-background-size="cover">
         <h2>社群成果縱向延展 (一)：四年級 micro:bit 甩繩智動量測</h2>
         <p class="lead-text">
-          將重量與感測概念無縫銜接至四年級跨域科技與體育健康課程：
+          社群將測量概念延伸至四年級跨域科技與體育健康課程：
         </p>
 
         <div class="grid-3">
@@ -978,7 +934,7 @@
                data-background-size="cover">
         <h2>社群成果縱向延展 (二)：世界機關王 (GM) 校隊梯隊</h2>
         <p class="lead-text">
-          將微型天平槓桿原理，昇華為大型競賽連續連鎖動態關卡：
+          社群將微型天平槓桿原理，昇華為大型競賽連續連鎖動態關卡：
         </p>
 
         <div class="grid-3">
@@ -1228,7 +1184,7 @@
             <p style="font-size:22px; color:#cbd5e1;">
               • 重量概念前後測理解度大躍升 <strong style="color:#34d399;">+28.5%</strong>。<br>
               • 學生動手實作滿意度達 <strong style="color:#38bdf8;">96.8%</strong>。<br>
-              • 徹底掃除「指針未歸零」與「讀錯格值」重大迷思！
+              • 徹底掃除「指針未歸零」與「讀錯格值」重大困境！
             </p>
           </div>
 
@@ -1286,20 +1242,21 @@
       transitionSpeed: 'default'
     });
 
-    // S13 互動對比滑桿即時控制
+    // S13 互動對比滑桿即時控制 (修正：向右拖動展現社群新典範，向左拖動回顧傳統困境)
     const slider = document.getElementById('viz-slider');
     const afterLayer = document.getElementById('viz-after');
     const divider = document.getElementById('viz-divider');
 
     if (slider && afterLayer && divider) {
       function updateSlider(val) {
-        afterLayer.style.clipPath = `inset(0 0 0 ${val}%)`;
+        // afterLayer 自左側展開至 val%，右端被裁切 (100 - val)%
+        afterLayer.style.clipPath = `inset(0 ${100 - val}% 0 0)`;
         divider.style.left = `${val}%`;
       }
       slider.addEventListener('input', (e) => {
         updateSlider(e.target.value);
       });
-      // 初始設為 50% 完美展示對比兩端
+      // 初始預設 50% 完美展示對比兩端
       slider.value = 50;
       updateSlider(50);
     }
