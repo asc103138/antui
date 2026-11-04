@@ -848,59 +848,77 @@
         </div>
       </section>
 
-      <!-- S13: 典範轉移 3D 拉桿 (完美修正拉桿方向與邏輯) -->
+      <!-- S13: 社群研發對照 (一)：傳統彈簧秤黑盒子瓶頸剖析 (獨立單頁完整說明) -->
       <section data-background-image="images/bgs/bg_paradigm.png"
                data-background-opacity="0.32"
                data-background-size="cover">
-        <h2>社群研發成效對比：傳統課堂困境 vs STEAM 新典範</h2>
+        <h2>社群研發對照 (一)：傳統彈簧秤「黑盒子」瓶頸剖析</h2>
         <p class="lead-text">
-          拖動下方滑桿，對照傳統教學困境與中正社群 STEAM 跨域研發的巨大成效：
+          本社群於第一場次共備時，深入剖析傳統秤重教學為何難以建立真實量感：
         </p>
 
-        <div class="slider-box">
-          <!-- 底層：傳統課堂困境 (置於右側) -->
-          <div class="slider-layer before">
-            <div class="slider-glass-card before">
-              <div style="color:#f87171; font-weight:800; font-size:36px; margin-bottom:8px;">❌ 傳統課堂教學困境（代碼 M3-W-01）</div>
-              <p style="font-size:26px; line-height:1.45; color:#f1f5f9; margin:0;">
-                • 市售彈簧秤黑盒子，指針未歸零卻直接判讀。<br>
-                • 刻度密密麻麻，常把「1大格100g、5小格」誤算為一格10g。<br>
-                • 抽象死背「1公斤=1000公克」，缺乏真實重量手感。<br>
-                • 紙筆算則寫得漂亮，但生活實測秤重時完全失靈。
-              </p>
-              <div style="color:#fca5a5; margin-top:10px; font-size:26px; font-weight:800;">
-                ⚠️ 核心缺失：缺乏實體物理感知，量感未內化為直覺。
-              </div>
+        <div class="grid-2" style="align-items: stretch;">
+          <div class="glass-card" style="border-top: 6px solid #ef4444; display:flex; flex-direction:column; justify-content:space-between;">
+            <img src="images/viz_traditional_scale.png" alt="傳統彈簧秤黑盒子剖析"
+                 style="width:100%; height:410px; object-fit:cover; border-radius:14px; border:2px solid rgba(248,113,113,0.45); margin-bottom:16px;" />
+            <div style="font-size:26px; font-weight:700; color:#fca5a5; text-align:center; background:rgba(239,68,68,0.15); padding:10px 16px; border-radius:10px;">
+              📦 傳統教具瓶頸：彈簧結構封閉於外殼內，學生僅能被動判讀指針
             </div>
           </div>
 
-          <!-- 上層：中正社群 STEAM 新典範 (自左側展開，拖動右移擴大) -->
-          <div class="slider-layer after" id="viz-after">
-            <div class="slider-glass-card after">
-              <div style="color:#34d399; font-weight:800; font-size:36px; margin-bottom:8px;">✅ 中正社群自研 STEAM 新典範</div>
-              <p style="font-size:26px; line-height:1.45; color:#ecfdf5; margin:0;">
-                • 自研智高等臂天平，親手組裝直觀理解歸零與力矩。<br>
-                • 透過 5g 積木逐個累加，體會非標準到標準單位進程。<br>
-                • 算則對應手部調校：較輕補積木（加法）、去皮減積木（減法）。<br>
-                • 課堂實證：前後測理解度躍升 28.5%，滿意度達 96.8%！
+          <div class="glass-card" style="border-left: 6px solid #ef4444; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="color:#f87171; font-size:36px; margin-bottom:16px;">🔍 社群共備診斷之四大教學痛點</h3>
+              <p style="font-size:28px; line-height:1.62; color:#f1f5f9; margin:0;">
+                • <strong>黑盒子效應</strong>：市售彈簧秤內部力學結構封閉，指針未歸零學生卻直接讀數。<br>
+                • <strong>刻度判讀挫折</strong>：面對「1大格100g、5小格」細密刻度，常誤算為一格 10g。<br>
+                • <strong>抽象死背公式</strong>：僅靠紙筆背誦「1公斤＝1000公克」，缺乏真實重量體感。<br>
+                • <strong>算則操作脫節</strong>：紙筆加減法會算，但實際秤重配平與去皮時卻無從下手。
               </p>
-              <div style="color:#a7f3d0; margin-top:10px; font-size:26px; font-weight:800;">
-                ✨ 社群突破：將抽象數學具象化，建立深厚探究自信！
-              </div>
+            </div>
+            <div style="color:#fecaca; margin-top:18px; font-size:27px; font-weight:800; background:rgba(239,68,68,0.18); padding:12px 18px; border-radius:12px;">
+              💡 社群研發共識：必須開發「結構全透明、可親手加減配平」的實體教具！
             </div>
           </div>
-
-          <div class="slider-divider" id="viz-divider"></div>
-        </div>
-
-        <input type="range" min="0" max="100" value="50" class="slider-ctrl" id="viz-slider" />
-        <div style="display:flex; justify-content:space-between; width:80%; margin:16px auto 0; font-size:24px; color:#cbd5e1; font-weight:700;">
-          <span>👈 拖向左側：回顧【傳統課堂困境】</span>
-          <span>拖向右側：展現【社群研發 STEAM 新典範】 👉</span>
         </div>
       </section>
 
-      <!-- S14: 縱向延展 (一) micro:bit -->
+      <!-- S14: 社群研發對照 (二)：中正自製智高天平 STEAM 新典範 (獨立單頁完整說明) -->
+      <section data-background-image="images/bgs/bg_paradigm.png"
+               data-background-opacity="0.32"
+               data-background-size="cover">
+        <h2>社群研發對照 (二)：中正自製智高天平 STEAM 新典範</h2>
+        <p class="lead-text">
+          本社群以自製 20 孔等臂天平與 5g 標準積木砝碼，實現具體可感的量感教學：
+        </p>
+
+        <div class="grid-2" style="align-items: stretch;">
+          <div class="glass-card" style="border-top: 6px solid #10b981; display:flex; flex-direction:column; justify-content:space-between;">
+            <img src="images/viz_steam_balance.png" alt="中正社群自研智高積木等臂天平"
+                 style="width:100%; height:410px; object-fit:cover; border-radius:14px; border:2px solid rgba(52,211,153,0.45); margin-bottom:16px;" />
+            <div style="font-size:26px; font-weight:700; color:#a7f3d0; text-align:center; background:rgba(16,185,129,0.15); padding:10px 16px; border-radius:10px;">
+              ⚖️ 本社群自研教具：20孔等臂橫樑、鉛直基準線與 5g 積木砝碼全透明
+            </div>
+          </div>
+
+          <div class="glass-card" style="border-left: 6px solid #10b981; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <h3 style="color:#34d399; font-size:36px; margin-bottom:16px;">✅ 中正社群自研 STEAM 四大突破</h3>
+              <p style="font-size:28px; line-height:1.62; color:#ecfdf5; margin:0;">
+                • <strong>結構透明可視</strong>：親手組裝智高等臂天平，直觀理解支點、力臂與歸零原理。<br>
+                • <strong>5g 積木定量</strong>：透過每顆 5g 智高積木逐一累加，體會非標準到標準公克進程。<br>
+                • <strong>手腦合一算則</strong>：較輕補積木（加法）、去皮減積木（減法），算式與動作同步。<br>
+                • <strong>試教實證躍升</strong>：前後測理解度顯著成長 28.5%，課堂學習滿意度達 96.8%！
+              </p>
+            </div>
+            <div style="color:#a7f3d0; margin-top:18px; font-size:27px; font-weight:800; background:rgba(16,185,129,0.18); padding:12px 18px; border-radius:12px;">
+              ✨ 社群核心價值：將抽象數學公式具象化，建立孩子深厚探究自信！
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- S15: 縱向延展 (一) micro:bit -->
       <section data-background-image="images/bgs/bg_microbit.png"
                data-background-opacity="0.32"
                data-background-size="cover">
