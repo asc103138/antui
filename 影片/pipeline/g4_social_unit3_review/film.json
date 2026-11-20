@@ -1,0 +1,159 @@
+{
+ "_comment": "山獅霸的多重宇宙 × 康軒版國小四年級上學期社會科第三單元《家鄉的傳統信仰與老街》3分鐘趣味複習影片。正片 22 鏡 170.0 秒 ＋ 金色法陣片尾 10.0 秒 ＝ 180.0 秒（整整 3 分鐘）。",
+ "title": "社會第三單元總複習",
+ "repo_dir": "../..",
+ "cine": "A warm, vibrant 3D animated adventure film still in Pixar-inspired style, rich cinematic lighting, warm golden sunlight, shallow depth of field, high detail, expressive characters. Full-frame 16:9 image, NO black letterbox bars, NO text, NO watermark, NO readable letters or Chinese characters anywhere. ",
+ "chars": {
+  "zhe": {
+   "name": "阿哲",
+   "look": "Azhe, a lively 10-year-old Taiwanese elementary schoolboy with a round cheerful face, short messy black hair with a cowlick, big expressive eyes, wearing a bright sky-blue polo shirt, khaki shorts, and a small yellow backpack",
+   "edge_voice": "zh-TW-YunJheNeural",
+   "sub_color": "&H00FFEA80"
+  },
+  "chen": {
+   "name": "陳老師",
+   "look": "Ms. Chen, a composed Taiwanese female teacher in her mid-thirties with a gentle oval face, neat low ponytail, thin gold-rimmed glasses, wearing a mint-green blouse and dark trousers, holding a sleek red-and-white sci-fi pocket remote control",
+   "edge_voice": "zh-TW-HsiaoChenNeural",
+   "sub_color": "&H00B4E6FF"
+  }
+ },
+ "mix": {
+  "music_under_lines": 0.22,
+  "music_bed_rms": 0.032,
+  "target_lufs": -15.5
+ },
+ "shots": [
+  {
+   "id": "S01", "who": "zhe", "dur": 6.5,
+   "text": "第三單元不就是拜拜跟逛老街吃東西嗎？這次社會小考一百分穩的啦！",
+   "at": 0.4,
+   "prompt": "Medium shot inside a sunny Taiwanese elementary school classroom: a lively 10-year-old Taiwanese boy in a sky-blue polo shirt with messy black hair sits at a wooden desk, leaning back confidently with a smug grin and both thumbs up, an open notebook in front of him (blank pages, no text). Warm morning sunlight through classroom windows. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S02", "who": "chen", "dur": 6.5,
+   "text": "那你說說看，臺中大甲除了芋頭和媽祖繞境，還有哪兩個特產？",
+   "at": 0.4,
+   "prompt": "Medium close-up in the sunny classroom: a composed Taiwanese female teacher in her mid-thirties with low ponytail and thin gold-rimmed glasses stands beside the desk, pushing up her glasses with one finger while holding a sleek red-and-white pocket time-travel remote in the other hand, giving a dry, knowing smile. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S03", "who": "zhe", "dur": 7.0,
+   "text": "呃，珍珠奶茶跟雞排嗎？老師這什麼紅白遙控器，不要亂按啊！",
+   "at": 0.4,
+   "prompt": "Medium shot in the classroom: the 10-year-old boy in a sky-blue polo shirt drops his jaw in panic and waves both hands in front of him as glowing golden-blue time-portal sparkles swirl around his desk. Comedic shocked expression. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S04", "who": "chen", "dur": 8.5,
+   "text": "歡迎來到第一站！排灣族五年祭是感謝與追念祖靈，鄒族戰祭則是祈求天神保佑與團結族人。",
+   "at": 0.4,
+   "prompt": "Wide scenic medium shot at a lush Taiwanese indigenous mountain village plaza surrounded by misty green mountains: the female teacher in mint-green blouse gestures calmly toward traditional ceremonial wooden carvings and woven bamboo poles in the sunny courtyard, warm golden sunlight. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S05", "who": "zhe", "dur": 8.0,
+   "text": "哇！原來不是五年放假一次喔！那泰雅族的彩虹橋傳說又是什麼意思？",
+   "at": 0.4,
+   "prompt": "Medium shot on a scenic mountain overlook in Taiwan: the 10-year-old boy in sky-blue polo shirt and yellow backpack looks up in awe at a magnificent glowing rainbow arching across misty green valleys, pointing upward with sparkling curious eyes. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S06", "who": "chen", "dur": 8.5,
+   "text": "男生學打獵、女生學織布，努力成為正當有用的人，過世後才能通過彩虹橋與祖靈相聚。",
+   "at": 0.4,
+   "prompt": "Medium shot in a warm sunlit traditional indigenous workshop: the female teacher smiles warmly while pointing to traditional hand-woven colorful geometric cloth on a wooden loom beside carved hunting tools, peaceful respectful atmosphere. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S07", "who": "chen", "dur": 8.5,
+   "text": "除了祖靈，像桃園復興的高遶教堂，從竹子、土磚、方石改建成水泥，也是宗教交流的見證。",
+   "at": 0.4,
+   "prompt": "Medium wide shot in a serene mountain forest clearing: the female teacher stands in front of a charming small stone-and-concrete mountain church surrounded by tall green bamboo groves and warm sunbeams, explaining gently. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S08", "who": "zhe", "dur": 8.0,
+   "text": "懂了！那漢人拜拜我最熟！土地公保佑航海平安，媽祖守護農田作物，對吧？",
+   "at": 0.4,
+   "prompt": "Medium shot in front of a colorful traditional Taiwanese temple courtyard: the 10-year-old boy poses proudly with hands on his hips and a confident grin, surrounded by lush green rice fields in the background, unaware of his mistake. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S09", "who": "chen", "dur": 8.5,
+   "text": "剛好相反！土地公又稱福德正神，守護農田村莊；媽祖才是天上聖母，保佑航海平安！",
+   "at": 0.4,
+   "prompt": "Medium shot beside a quaint stone Taiwanese Earth God shrine under a giant banyan tree next to golden rice paddies: the female teacher holds up one finger correcting gently, with a tiny distant harbor sailboat silhouette visible on the horizon. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S10", "who": "chen", "dur": 8.0,
+   "text": "廟宇不只是信仰中心，廟前廣場也是大家聚會聯絡感情的地方。現在響應環保，雙手合掌一樣虔誠！",
+   "at": 0.4,
+   "prompt": "Wide warm shot of a lively Taiwanese temple front plaza under warm afternoon light: neighbors chatting happily on stone benches, the female teacher demonstrating putting both palms together respectfully in prayer without incense smoke. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S11", "who": "zhe", "dur": 8.5,
+   "text": "老師，我幫不吃豬肉的看護阿姨買了香腸便當，請她入境隨俗一起吃，這樣很貼心吧？",
+   "at": 0.4,
+   "prompt": "Medium shot in a cozy Taiwanese neighborhood park: the 10-year-old boy cheerfully holds out a wrapped lunchbox with a big naive smile, looking proud of himself. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S12", "who": "chen", "dur": 8.5,
+   "text": "千萬不行！面對不同信仰與飲食禁忌，要懂得尊重與包容，星期天做禮拜也可以改約星期六打球。",
+   "at": 0.4,
+   "prompt": "Medium close-up in the sunny park: the female teacher gently holds up a stop hand with a serious yet kind expression, shaking her head, while a basketball rests on a bench nearby. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S13", "who": "zhe", "dur": 7.5,
+   "text": "咻一下又到哪裡了？這裡的房子都有長長的走廊，而且屋子後面還有人在住耶！",
+   "at": 0.4,
+   "prompt": "Medium wide shot standing under a classic Taiwanese red-brick old street covered arcade (qilou): the 10-year-old boy looks around in amazement at the arched brick corridor stretching down the street, warm sunlight filtering in. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S14", "who": "chen", "dur": 8.5,
+   "text": "這就是老街的起源！早期商人聚集在廟宇附近形成市集，前面店面設騎樓遮陽避雨，後方和樓上就是住家。",
+   "at": 0.4,
+   "prompt": "Medium wide architectural view of a traditional two-story Taiwanese shophouse street: the female teacher points toward the ground-floor storefront arcade and the cozy residential upper balcony with wooden windows, clean street scene with no readable signs. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S15", "who": "chen", "dur": 8.5,
+   "text": "現代老街有三種轉變：臺南橋南老街因港口淤積而沒落；臺中南屯老街則是傳統老店與新商店並存。",
+   "at": 0.4,
+   "prompt": "Medium shot on a charming quiet heritage street where an old wooden blacksmith craft shop stands peacefully next to a modern bright convenience storefront: the female teacher gestures thoughtfully between the old and new buildings. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S16", "who": "zhe", "dur": 8.5,
+   "text": "第三種我知道！像鹿港的閩南建築、三峽祖師廟與金牛角藍染，還有西螺洋樓與醬油，都是保留風貌發展觀光！",
+   "at": 0.4,
+   "prompt": "Medium shot on a vibrant historic Taiwanese tourist old street with ornate Baroque-style brick facades and hanging blue-dyed fabrics: the 10-year-old boy happily holds a golden crescent-shaped croissant pastry in his hand, eyes shining with excitement. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S17", "who": "chen", "dur": 8.0,
+   "text": "沒錯！還有花蓮火車站旁的麻糬街，以及新住民和國際移工帶來的臺北印尼街，讓家鄉街道更多元。",
+   "at": 0.4,
+   "prompt": "Medium wide shot on a colorful multicultural city street with Southeast Asian style spice shops and tropical food stalls alongside Taiwanese shops: the female teacher holds a plate of golden turmeric rice dish and smiles warmly. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S18", "who": "zhe", "dur": 7.0,
+   "text": "好多老街喔，做報告會不會寫到昏倒？要從哪裡開始查才對？",
+   "at": 0.4,
+   "prompt": "Medium close-up back inside the school library corner: the 10-year-old boy rests his chin on the wooden table next to a stack of colorful picture books, looking dizzy with spiral comedic eyes. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S19", "who": "chen", "dur": 8.5,
+   "text": "記住小探究家四步驟：發現問題、蒐集資料、用T表整理分析，最後分享行動省思，報告輕鬆搞定！",
+   "at": 0.4,
+   "prompt": "Medium shot in the bright school library: the female teacher holds up a magnifying glass in one hand and a clean tablet displaying simple geometric chart icons (no readable text) in the other, smiling encouragingly. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S20", "who": "zhe", "dur": 7.0,
+   "text": "我全記起來了！原漢信仰要尊重，廟口市集變老街，騎樓前店後住家，多元文化在家鄉！",
+   "at": 0.4,
+   "prompt": "Medium shot in the sunny elementary school classroom: the 10-year-old boy stands up energetically at his desk, pumping one fist in the air with bright confident eyes, golden morning sunbeams behind him. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S21", "who": "chen", "dur": 6.0,
+   "text": "太棒了！這盒大甲芋頭酥和奶油酥餅，加上草帽小禮物，送給社會小達人！",
+   "at": 0.4,
+   "prompt": "Medium shot in the classroom: the female teacher smiles warmly while placing a woven straw hat on the boy's desk beside a festive pastel gift box of traditional Taiwanese taro pastries. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  },
+  {
+   "id": "S22", "who": "zhe", "dur": 5.5,
+   "text": "耶！那我現在可以先吃一口嗎？咦，老師怎麼又按下遙控器不見了！",
+   "at": 0.4,
+   "prompt": "Medium close-up in the sunny classroom: the 10-year-old boy wearing the cute woven straw hat reaches excitedly toward the pastry box, then suddenly freezes with a hilarious wide-eyed comedic look as the teacher vanishes in a puff of sparkling dust. Pixar-inspired 3D animation style, 16:9 widescreen, no text, no letters, no watermark."
+  }
+ ]
+}
