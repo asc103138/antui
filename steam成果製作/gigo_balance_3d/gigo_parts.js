@@ -610,15 +610,16 @@ window.ASSEMBLY_STEPS = [
     });
 
     // =====================================================================
-    // STEP 3：6-8-10 畢氏定理三角斜撐（dx=6, dy=8, 斜邊=10 格精準對孔）
-    // 下端 C-雙向轉接鍵插於 (偶數 X = ±8, 奇數 Z = ±3) → 100% 命中大底盤真實小洞！
+    // STEP 3：6-8-10 畢氏定理三角斜撐（dx=6, dy=8, 斜邊=10 格精準對孔，零穿模！）
+    // 下端 C-雙向轉接鍵插於大底盤小洞 (x=±8, z=±3)，上端加裝 C-二合一結合鍵墊平至 z=±3，
+    // 使斜撐 C-11 孔長條平貼於 z=±3.74 同一平面，短結合鍵完全埋入孔內不外露！
     // =====================================================================
     const braceAngle = Math.atan2(8, 6);
     [-1, 1].forEach((dirX) => {
       [-1, 1].forEach((dirZ) => {
         const cx = dirX * 5.0;
         const cy = 5.5;
-        const cz = dirZ * 2.74;
+        const cz = dirZ * 3.74;
         const rotZ = dirX < 0 ? braceAngle : -braceAngle;
         addPart(
           staticGroup,
@@ -626,14 +627,17 @@ window.ASSEMBLY_STEPS = [
           [cx, cy, cz],
           [0, 0, rotZ],
           3,
-          [dirX * 3.6, 1.4, dirZ * 4.2],
-          "6-8-10 精確畢氏三角抗晃斜撐"
+          [dirX * 3.6, 1.4, dirZ * 5.2],
+          "6-8-10 精確畢氏三角抗晃斜撐（平貼於 z=±3.74 零穿模）"
         );
-        // 下端 C-雙向轉接鍵直插大底盤真實小洞 (x = ±8, z = ±3)
-        addPart(staticGroup, "CON2", [dirX * 8, 1.5, dirZ * 3], [0, 0, 0], 3, [dirX * 4.2, 0.5, dirZ * 3.5], "斜撐下端 90° 雙向轉接支座（直插大底盤小洞 x=±8, z=±3）");
-        addPart(staticGroup, "SPEG", [dirX * 8, 1.5, dirZ * 2.74], [0, 0, 0], 3, [dirX * 4.6, 0.5, dirZ * 4.8], "斜撐下端固定短結合鍵");
-        // 上端鎖入塔架外側實體邊框 (x = ±2, y = 9.5, z = ±2)
-        addPart(staticGroup, "SPEG", [dirX * 2, 9.5, dirZ * 2.45], [0, 0, 0], 3, [dirX * 2.6, 2.2, dirZ * 5.0], "斜撐上端固定短結合鍵");
+        // 下端 C-雙向轉接鍵直插大底盤真實小洞 (x = ±8, z = ±3，外表面 z = ±3.5)
+        addPart(staticGroup, "CON2", [dirX * 8, 1.5, dirZ * 3.0], [0, 0, 0], 3, [dirX * 4.2, 0.5, dirZ * 3.5], "斜撐下端 90° 雙向轉接支座（直插大底盤小洞 x=±8, z=±3）");
+        addPart(staticGroup, "SPEG", [dirX * 8, 1.5, dirZ * 3.4], [0, 0, 0], 3, [dirX * 4.6, 0.5, dirZ * 5.8], "斜撐下端埋入式短結合鍵（緊鎖長條與轉接座）");
+
+        // 上端塔架外側墊平座（C-二合一結合鍵，位於 z = ±3.0，使外表面與下端同為 z = ±3.5）
+        addPart(staticGroup, "CON2IN1", [dirX * 2, 9.5, dirZ * 3.0], [0, 0, 0], 3, [dirX * 2.6, 2.2, dirZ * 3.8], "斜撐上端墊平轉接座（使上下兩端齊平於 z=±3.5）");
+        addPart(staticGroup, "SPEG", [dirX * 2, 9.5, dirZ * 2.5], [0, 0, 0], 3, [dirX * 2.6, 2.2, dirZ * 3.0], "墊平座鎖入塔架短結合鍵");
+        addPart(staticGroup, "SPEG", [dirX * 2, 9.5, dirZ * 3.4], [0, 0, 0], 3, [dirX * 2.6, 2.2, dirZ * 5.8], "斜撐上端埋入式短結合鍵（緊鎖長條與墊平座）");
       });
     });
 
