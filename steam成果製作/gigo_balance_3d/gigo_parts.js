@@ -7,13 +7,13 @@
 window.GIGO_CATALOG = {
   BASEGRID: {
     code: "7125-W10-B1S",
-    name: "C-大底盤-灰（30×20孔）",
-    spec: "30×20 孔實心網格（300×200×10mm）",
+    name: "C-大底盤-灰（大洞＋小洞交錯網格）",
+    spec: "300×200×10mm（20mm 格距：大洞與 Ø4.8mm 小洞交錯）",
     colorHex: 0x94a3b8,
     swatch: "#94a3b8",
     maxQty2Boxes: 4,
     category: "struct",
-    usage: "整組天平一體式高穩定底座（滿版 10mm 標準孔，防傾倒且可直接端取）"
+    usage: "整組天平一體式底座（所有短結合鍵與轉接鍵均精準對齊 20mm 間距小洞）"
   },
   F5x15: {
     code: "7413-W10-J1W",
@@ -150,20 +150,20 @@ window.GIGO_CATALOG = {
 window.ASSEMBLY_STEPS = [
   {
     step: 1,
-    title: "步驟 1｜鋪設 C-大底盤（30×20 cm 滿版實心孔）",
-    desc: "直接取出 #1248R-CN 內附的 1 片「C-大底盤（7125-W10-B1S，30×20 孔 = 300×200mm）」作為整座天平的一體式防傾底座！底盤滿版皆為 10mm 標準圓孔，不需拼接長方框，單邊放 1kg 重物也絕不晃動。",
+    title: "步驟 1｜鋪設 C-大底盤（大洞＋小洞 20mm 交錯網格）",
+    desc: "取出 #1248R-CN 內附 1 片「C-大底盤（7125-W10-B1S，300×200mm）」。真實大底盤為大洞與 Ø4.8mm 小洞交錯排列（相鄰小洞間距為 20mm＝2 孔距），後續所有垂直插銷皆已精準對齊 20mm 小洞位置。",
     tips: [
-      "兩盒 #1248R-CN 共附 4 片 C-大底盤，本作品僅需 1 片即可提供 30×20cm 超穩底面積。",
-      "底盤前半部空位可直接放置 20 顆紅齒輪砝碼，老師課堂示範可整盤端取不散落。"
+      "大底盤上的「小洞」呈 20mm×20mm 網格分布（偶數 X × 奇數 Z），專供短結合鍵與轉接鍵插入。",
+      "「大洞」位於小洞交錯格中央，本結構所有固定點皆避開大洞、100% 鎖入小洞。"
     ]
   },
   {
     step: 2,
-    title: "步驟 2｜大底盤直插錨定樑＋雙柱龍門塔架",
-    desc: "在 C-大底盤中央（Z = ±0.5）直接以黑色短結合鍵將 2 根 C-15 孔超長條的奇數垂直孔（x = ±3, ±5, ±7）插進大底盤鎖死，再將前後 2 片直立 C-5×15 孔長方框貼緊外側（Z = ±1.5），以偶數水平孔（x = -2, 0, +2）固定，穩固直立於大底盤上。",
+    title: "步驟 2｜小洞直插雙軌錨定樑＋雙柱龍門塔架",
+    desc: "將 2 根 C-15 孔超長條旋轉 90°（使偶數孔 x = ±4, ±6 為垂直孔、奇數孔 x = ±1 為水平孔），精準壓在大底盤兩排「小洞列（Z = ±1，間距 20mm）」上直插鎖死！再將前後 2 片直立 C-5×15 孔長方框貼緊外側（Z = ±2），以奇數水平孔 x = ±1 鎖固。",
     tips: [
-      "C-15 孔超長條直接壓在大底盤滿版孔上，每個奇數孔都能垂直插入短結合鍵，絕不會懸空。",
-      "雙塔內側留出 20mm 淨空通道，足以讓 10mm 寬的橫樑核心順暢擺動不磨擦。"
+      "兩根錨定樑相距 20mm（Z = -1 與 Z = +1），每個偶數孔（±4, ±6）恰好全部對準大底盤小洞！",
+      "雙塔位於 Z = ±2，內側留出 30mm 寬敞淨空通道，橫樑擺動更順滑。"
     ]
   },
   {
@@ -231,32 +231,57 @@ window.ASSEMBLY_STEPS = [
     metalness: 0.05
   });
 
-  // C-大底盤（7125-W10-B1S，30×20 孔 = 300×200×10mm 滿版 10mm 孔網格底板）
-  function buildJumboBaseGridMesh(holesX, holesZ, colorHex) {
+  // C-大底盤（7125-W10-B1S，300×200×10mm 真實大洞＋小洞 20mm 交錯網格！）
+  // 小洞（Ø4.8mm 結合鍵圓孔）：偶數 X (-14..+14) × 奇數 Z (-9..+9)，間距 20mm
+  // 大洞（12×12mm 方形減重/卡槽大孔）：奇數 X (-13..+13) × 偶數 Z (-8..+8)，間距 20mm
+  function buildJumboBaseGridMesh(widthU, depthU, colorHex) {
     const group = new THREE.Group();
     const h = 0.96;
     const mat = getPlasticMat(colorHex, 0.42);
-    const body = new THREE.Mesh(new THREE.BoxGeometry(holesX - 0.06, h, holesZ - 0.06), mat);
+    const body = new THREE.Mesh(new THREE.BoxGeometry(widthU - 0.06, h, depthU - 0.06), mat);
     body.castShadow = true;
     body.receiveShadow = true;
     group.add(body);
 
-    const holeGeo = new THREE.CylinderGeometry(0.24, 0.24, h + 0.04, 8);
-    const count = holesX * holesZ;
-    const inst = new THREE.InstancedMesh(holeGeo, holeMat, count);
-    const dummy = new THREE.Object3D();
-    let idx = 0;
-    for (let ix = 0; ix < holesX; ix++) {
-      for (let iz = 0; iz < holesZ; iz++) {
-        dummy.position.set(ix - (holesX - 1) / 2, 0, iz - (holesZ - 1) / 2);
-        dummy.updateMatrix();
-        inst.setMatrixAt(idx++, dummy.matrix);
+    const smallHoles = [];
+    const bigHoles = [];
+    for (let x = -14; x <= 14; x += 2) {
+      for (let z = -9; z <= 9; z += 2) {
+        smallHoles.push([x, z]);
       }
     }
-    inst.instanceMatrix.needsUpdate = true;
-    group.add(inst);
+    for (let x = -13; x <= 13; x += 2) {
+      for (let z = -8; z <= 8; z += 2) {
+        bigHoles.push([x, z]);
+      }
+    }
 
-    const edges = new THREE.EdgesGeometry(new THREE.BoxGeometry(holesX - 0.04, h + 0.01, holesZ - 0.04));
+    const dummy = new THREE.Object3D();
+
+    // Ø4.8mm 小洞（結合鍵插孔）
+    const smallGeo = new THREE.CylinderGeometry(0.24, 0.24, h + 0.04, 10);
+    const instSmall = new THREE.InstancedMesh(smallGeo, holeMat, smallHoles.length);
+    smallHoles.forEach(([hx, hz], idx) => {
+      dummy.position.set(hx, 0, hz);
+      dummy.updateMatrix();
+      instSmall.setMatrixAt(idx, dummy.matrix);
+    });
+    instSmall.instanceMatrix.needsUpdate = true;
+
+    // 12×12mm 大洞（方形大鏤空孔）
+    const bigHoleMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.95 });
+    const bigGeo = new THREE.BoxGeometry(1.18, h + 0.05, 1.18);
+    const instBig = new THREE.InstancedMesh(bigGeo, bigHoleMat, bigHoles.length);
+    bigHoles.forEach(([hx, hz], idx) => {
+      dummy.position.set(hx, 0, hz);
+      dummy.updateMatrix();
+      instBig.setMatrixAt(idx, dummy.matrix);
+    });
+    instBig.instanceMatrix.needsUpdate = true;
+
+    group.add(instSmall, instBig);
+
+    const edges = new THREE.EdgesGeometry(new THREE.BoxGeometry(widthU - 0.04, h + 0.01, depthU - 0.04));
     group.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.45 })));
     return group;
   }
@@ -559,41 +584,41 @@ window.ASSEMBLY_STEPS = [
     }
 
     // =====================================================================
-    // STEP 1：鋪設 C-大底盤（7125-W10-B1S，30×20 孔滿版 10mm 孔網格）
-    // X 設於 +0.5 使 30 個 X 孔落於精確整數（-14..+15），Z 設於 0 使 20 個 Z 孔落於半整數（-9.5..+9.5）！
+    // STEP 1：鋪設 C-大底盤（7125-W10-B1S，300×200mm 大洞＋小洞交錯網格）
+    // 小洞精準座標：偶數 X (-14..+14) × 奇數 Z (-9..+9)，間距 20mm！
     // =====================================================================
-    addPart(staticGroup, "BASEGRID", [0.5, 0.5, 0], [0, 0, 0], 1, [0, -2.0, 0], "30×20cm 滿版 10mm 孔大底盤（一體式防傾底座）");
+    addPart(staticGroup, "BASEGRID", [0, 0.5, 0], [0, 0, 0], 1, [0, -2.0, 0], "30×20cm 大底盤（大洞與 Ø4.8mm 小洞交錯網格）");
 
     // =====================================================================
-    // STEP 2：大底盤直插雙軌錨定樑（Z = ±0.5）＋ 雙柱龍門塔架（Z = ±1.5）
+    // STEP 2：小洞直插雙軌錨定樑（Z = ±1 偶數 X 垂直鎖小洞！）＋ 雙柱龍門塔架（Z = ±2）
     // =====================================================================
-    addPart(staticGroup, "F5x15", [0, 8.5, 1.5], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, 4.0], "前側龍門立柱塔架（貼緊前錨定樑外側 Z=+1.5）");
-    addPart(staticGroup, "F5x15", [0, 8.5, -1.5], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, -4.0], "後側龍門立柱塔架（貼緊後錨定樑外側 Z=-1.5）");
+    addPart(staticGroup, "F5x15", [0, 8.5, 2.0], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, 4.2], "前側龍門立柱塔架（貼緊前錨定樑外側 Z=+2）");
+    addPart(staticGroup, "F5x15", [0, 8.5, -2.0], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, -4.2], "後側龍門立柱塔架（貼緊後錨定樑外側 Z=-2）");
 
-    // 2 根 C-15 孔超長條直接壓在底座實體內邊框 Z = ±0.5 上！
-    [-0.5, 0.5].forEach((rz) => {
+    // 2 根 C-15 孔超長條旋轉 90°（rotX = π/2），使偶數偏位 (0,±2,±4,±6) 為垂直 Y 孔直插大底盤小洞！
+    [-1, 1].forEach((rz) => {
       const signZ = rz > 0 ? 1 : -1;
-      addPart(staticGroup, "R15", [0, 1.5, rz], [0, 0, 0], 2, [0, 1.4, signZ * 1.2], "底座實體邊框錨定樑（Z=±0.5 全長壓於實框上）");
-      // 奇數垂直孔 x = ±7, ±5, ±3, ±1 全部直插底座實體邊框孔！
-      [-7, -5, -3, 3, 5, 7].forEach((px) => {
-        addPart(staticGroup, "SPEG", [px, 1.0, rz], [Math.PI / 2, 0, 0], 2, [px * 0.1, 2.2, signZ * 1.2], "錨定樑直插底座實體邊框短結合鍵");
+      addPart(staticGroup, "R15", [0, 1.5, rz], [Math.PI / 2, 0, 0], 2, [0, 1.4, signZ * 1.2], "大底盤小洞直插錨定樑（Z=±1，偶數孔直插小洞）");
+      // 偶數垂直孔 x = ±4, ±6 × 奇數 Z = ±1 → 100% 命中大底盤真實小洞！
+      [-6, -4, 4, 6].forEach((px) => {
+        addPart(staticGroup, "SPEG", [px, 1.0, rz], [Math.PI / 2, 0, 0], 2, [px * 0.1, 2.2, signZ * 1.2], "直插大底盤小洞之黑色短結合鍵");
       });
-      // 偶數水平孔 x = -2, 0, +2 向外鎖入塔架底部實體邊框（Z = ±1.5）
-      [-2, 0, 2].forEach((tx) => {
+      // 奇數水平孔 x = -1, +1 向外鎖入塔架底部實體邊框（Z = ±2）
+      [-1, 1].forEach((tx) => {
         addPart(staticGroup, "SPEG", [tx, 1.5, rz + signZ * 0.55], [0, 0, 0], 2, [tx * 0.2, 1.4, signZ * 2.8], "錨定樑水平鎖入塔架底框短結合鍵");
       });
     });
 
     // =====================================================================
     // STEP 3：6-8-10 畢氏定理三角斜撐（dx=6, dy=8, 斜邊=10 格精準對孔）
-    // 下端使用 #1248R-CN 兩盒剛好 4 顆的 C-雙向轉接鍵直插翼板實體邊框 x=±8, z=±1.5！
+    // 下端 C-雙向轉接鍵插於 (偶數 X = ±8, 奇數 Z = ±3) → 100% 命中大底盤真實小洞！
     // =====================================================================
     const braceAngle = Math.atan2(8, 6);
     [-1, 1].forEach((dirX) => {
       [-1, 1].forEach((dirZ) => {
         const cx = dirX * 5.0;
         const cy = 5.5;
-        const cz = dirZ * 2.24;
+        const cz = dirZ * 2.74;
         const rotZ = dirX < 0 ? braceAngle : -braceAngle;
         addPart(
           staticGroup,
@@ -601,14 +626,14 @@ window.ASSEMBLY_STEPS = [
           [cx, cy, cz],
           [0, 0, rotZ],
           3,
-          [dirX * 3.6, 1.4, dirZ * 4.0],
+          [dirX * 3.6, 1.4, dirZ * 4.2],
           "6-8-10 精確畢氏三角抗晃斜撐"
         );
-        // 下端 C-雙向轉接鍵直插翼板實體內框 x = ±8, z = ±1.5
-        addPart(staticGroup, "CON2", [dirX * 8, 1.5, dirZ * 1.5], [0, 0, 0], 3, [dirX * 4.2, 0.5, dirZ * 3.2], "斜撐下端 90° 雙向轉接支座（直插翼板實框）");
-        addPart(staticGroup, "SPEG", [dirX * 8, 1.5, dirZ * 2.1], [0, 0, 0], 3, [dirX * 4.6, 0.5, dirZ * 4.5], "斜撐下端固定短結合鍵");
-        // 上端鎖入塔架外側實體邊框 (x = ±2, y = 9.5, z = ±1.5)
-        addPart(staticGroup, "SPEG", [dirX * 2, 9.5, dirZ * 1.95], [0, 0, 0], 3, [dirX * 2.6, 2.2, dirZ * 4.8], "斜撐上端固定短結合鍵");
+        // 下端 C-雙向轉接鍵直插大底盤真實小洞 (x = ±8, z = ±3)
+        addPart(staticGroup, "CON2", [dirX * 8, 1.5, dirZ * 3], [0, 0, 0], 3, [dirX * 4.2, 0.5, dirZ * 3.5], "斜撐下端 90° 雙向轉接支座（直插大底盤小洞 x=±8, z=±3）");
+        addPart(staticGroup, "SPEG", [dirX * 8, 1.5, dirZ * 2.74], [0, 0, 0], 3, [dirX * 4.6, 0.5, dirZ * 4.8], "斜撐下端固定短結合鍵");
+        // 上端鎖入塔架外側實體邊框 (x = ±2, y = 9.5, z = ±2)
+        addPart(staticGroup, "SPEG", [dirX * 2, 9.5, dirZ * 2.45], [0, 0, 0], 3, [dirX * 2.6, 2.2, dirZ * 5.0], "斜撐上端固定短結合鍵");
       });
     });
 
@@ -616,7 +641,7 @@ window.ASSEMBLY_STEPS = [
     // STEP 4：中央低摩擦主支點轉軸組（Y = 15.5，直穿前後塔架最上緣實體邊框中央孔！）
     // =====================================================================
     addPart(staticGroup, "AX100", [0, 15.5, 0], [0, 0, 0], 4, [0, 3.2, 5.5], "中央 100mm 主支點轉軸（穿過頂框實體孔）");
-    [-2.45, 2.45].forEach((cz) => {
+    [-2.95, 2.95].forEach((cz) => {
       addPart(staticGroup, "AXC", [0, 15.5, cz], [0, 0, 0], 4, [0, 3.2, cz * 2.1], "外側軸固定鍵（鎖定主軸防脫落）");
     });
 
