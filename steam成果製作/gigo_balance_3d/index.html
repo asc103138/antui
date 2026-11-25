@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#f8fafc">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23dc2626'/><text x='16' y='22' font-size='16' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='bold'>G</text></svg>">
+  <title>智高 #1248R-CN（×2組）等臂天平｜互動 3D 組裝指南</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <!-- 頂部導覽列 -->
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-badge" aria-hidden="true">1248R</div>
+        <div class="brand-text">
+          <h1>智高 #1248R-CN 等臂天平 3D 組裝指南</h1>
+          <p class="subtitle">依兩組 #1248R-CN（600件/組）實有零件打造 · 南一三下《公斤與公克》教師示範教具</p>
+        </div>
+      </div>
+
+      <nav class="mode-tabs" role="tablist" aria-label="功能模式切換">
+        <button class="tab-btn active" role="tab" aria-selected="true" data-mode="assembly" id="tab-assembly">
+          <span class="tab-ico">🔧</span>逐步組裝
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-mode="simulate" id="tab-simulate">
+          <span class="tab-ico">⚖️</span>測重與加減模擬
+        </button>
+        <button class="tab-btn" role="tab" aria-selected="false" data-mode="bom" id="tab-bom">
+          <span class="tab-ico">📋</span>官方零件 BOM
+        </button>
+      </nav>
+
+      <div class="topbar-actions">
+        <button class="icon-btn" id="btn-theme" title="切換日夜模式" aria-label="切換日夜模式">🌙</button>
+      </div>
+    </header>
+
+    <!-- 主工作區 -->
+    <main class="workspace">
+      <!-- 3D 畫布容器 -->
+      <section class="viewport-wrap" aria-label="3D 互動檢視區">
+        <div id="canvas-container" class="canvas-container"></div>
+
+        <!-- 視角快速切換與爆炸檢視工具列 -->
+        <div class="viewport-hud-bottom">
+          <div class="camera-presets" role="group" aria-label="視角預設">
+            <button class="pill-btn" data-cam="iso">等角視角</button>
+            <button class="pill-btn" data-cam="front">正面看斜撐</button>
+            <button class="pill-btn" data-cam="side">側面看轉軸</button>
+            <button class="pill-btn" data-cam="top">俯視看托盤</button>
+          </div>
+
+          <div class="explode-control" id="explode-control">
+            <label for="explode-slider" class="explode-label">
+              <span>爆炸拆解</span>
+              <strong id="explode-val">0%</strong>
+            </label>
+            <input type="range" id="explode-slider" min="0" max="100" value="0" aria-label="爆炸拆解程度">
+          </div>
+        </div>
+
+        <!-- 零件點擊檢視浮動卡 -->
+        <aside class="inspector-card" id="inspector-card" hidden>
+          <div class="inspector-header">
+            <span class="part-swatch" id="insp-swatch"></span>
+            <div>
+              <div class="insp-code" id="insp-code">7413-W10-J1W</div>
+              <div class="insp-name" id="insp-name">C-5×15孔長方框-白</div>
+            </div>
+            <button class="close-btn" id="insp-close" aria-label="關閉零件資訊">✕</button>
+          </div>
+          <div class="insp-meta">
+            <div><span>實體規格</span><strong id="insp-spec">15×5 孔（150×50×10mm）</strong></div>
+            <div><span>所屬步驟</span><strong id="insp-step">步驟 1</strong></div>
+            <div><span>結構用途</span><p id="insp-role">寬大強化底座主框架</p></div>
+          </div>
+        </aside>
+
+        <!-- 左上角操作提示 -->
+        <div class="viewport-hint" id="viewport-hint">
+          拖曳旋轉 · 滾輪縮放 · 點擊任一積木查官方品號
+        </div>
+      </section>
+
+      <!-- 右側控制面板 -->
+      <aside class="side-panel" aria-label="操作與資訊面板">
+        <!-- 模式一：逐步組裝 -->
+        <div class="panel-view active" id="view-assembly">
+          <div class="panel-head">
+            <span class="step-pill" id="step-badge">步驟 6 / 6</span>
+            <h2 id="step-title">左右 10×10cm 承重托盤與砝碼組</h2>
+          </div>
+          <p class="step-desc" id="step-desc"></p>
+
+          <div class="step-nav">
+            <button class="btn-secondary" id="btn-prev-step">← 上一步</button>
+            <button class="btn-primary" id="btn-next-step">下一步 →</button>
+          </div>
+
+          <div class="step-dots" id="step-dots" role="tablist" aria-label="組裝步驟選擇"></div>
+
+          <div class="section-block">
+            <h3>本步驟使用零件（官方品號）</h3>
+            <ul class="step-parts-list" id="step-parts-list"></ul>
+          </div>
+
+          <div class="section-block">
+            <h3>實體組裝重點（10mm 孔距驗證）</h3>
+            <ul class="check-list" id="step-tips-list"></ul>
+          </div>
+        </div>
+
+        <!-- 模式二：測重與加減模擬 -->
+        <div class="panel-view" id="view-simulate">
+          <div class="panel-head">
+            <span class="step-pill accent">教案第 2～3 節互動示範</span>
+            <h2>左右放物與小積木加減平衡</h2>
+          </div>
+
+          <div class="balance-readout" id="balance-readout">
+            <div class="readout-status" id="readout-status">兩邊一樣重（平衡）</div>
+            <div class="readout-weights">
+              <span>左盤：<strong id="left-total">0 g</strong></span>
+              <span class="sep">|</span>
+              <span>右盤：<strong id="right-total">0 g</strong></span>
+            </div>
+          </div>
+
+          <div class="pan-control-card">
+            <div class="pan-title">
+              <span class="dot left"></span>左托盤（基準待測物）
+            </div>
+            <label class="field-label" for="left-item-select">選擇實物</label>
+            <select id="left-item-select" class="select-input"></select>
+            <div class="cube-stepper">
+              <span>紅 20T 齒輪砝碼（3g/顆）</span>
+              <div class="stepper-btns">
+                <button class="step-mini-btn" id="left-cube-minus" aria-label="左盤減少一顆紅齒輪">−</button>
+                <strong id="left-cube-count">0</strong>
+                <button class="step-mini-btn" id="left-cube-plus" aria-label="左盤增加一顆紅齒輪">＋</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="pan-control-card">
+            <div class="pan-title">
+              <span class="dot right"></span>右托盤（比較與加減調整）
+            </div>
+            <label class="field-label" for="right-item-select">選擇實物</label>
+            <select id="right-item-select" class="select-input"></select>
+            <div class="cube-stepper">
+              <span>紅 20T 齒輪砝碼（3g/顆）</span>
+              <div class="stepper-btns">
+                <button class="step-mini-btn" id="right-cube-minus" aria-label="右盤減少一顆紅齒輪">−</button>
+                <strong id="right-cube-count">0</strong>
+                <button class="step-mini-btn" id="right-cube-plus" aria-label="右盤增加一顆紅齒輪">＋</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="sim-actions">
+            <button class="btn-secondary" id="btn-sim-preset">套用教案範例（橡皮擦 vs 紅齒輪）</button>
+            <button class="btn-secondary" id="btn-sim-reset">全部清空歸零</button>
+          </div>
+          <p class="sim-note">
+            ※ 兩盒 <strong>#1248R-CN</strong> 共含 <strong>20 顆</strong>「C-20T齒輪-紅（7026-W10-D2R）」，全數預留不進主結構，專供教案第 3 節加減微調；實測單顆約 3g，課堂可用電子秤標定。
+          </p>
+        </div>
+
+        <!-- 模式三：官方零件 BOM -->
+        <div class="panel-view" id="view-bom">
+          <div class="panel-head">
+            <span class="step-pill">對齊 #1248R-CN × 2盒 官方清單</span>
+            <h2>#1248R-CN 真實零件清點表（BOM）</h2>
+          </div>
+          <p class="bom-intro">
+            全機構 100% 鎖定兩盒 <strong>#1248R-CN（600件/組）</strong> 實有零件與數量上限，零虛構、零缺件。點擊任一列可在 3D 畫面高亮該類零件。
+          </p>
+
+          <div class="bom-summary-bar">
+            <div><span>主結構總片數</span><strong id="bom-struct-total">0</strong></div>
+            <div><span>砝碼預留顆數</span><strong id="bom-weight-total">20</strong></div>
+            <div><span>零件總種類</span><strong id="bom-types-total">0</strong></div>
+          </div>
+
+          <div class="bom-table-wrap">
+            <table class="bom-table">
+              <thead>
+                <tr>
+                  <th>官方品名／品號</th>
+                  <th>用途</th>
+                  <th class="num">用量/兩盒庫存</th>
+                </tr>
+              </thead>
+              <tbody id="bom-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script src="lib/three.min.js"></script>
+  <script src="lib/OrbitControls.js"></script>
+  <script src="gigo_parts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
