@@ -5,6 +5,16 @@
    ========================================================================== */
 
 window.GIGO_CATALOG = {
+  BASEGRID: {
+    code: "7125-W10-B1S",
+    name: "C-大底盤-灰（30×20孔）",
+    spec: "30×20 孔實心網格（300×200×10mm）",
+    colorHex: 0x94a3b8,
+    swatch: "#94a3b8",
+    maxQty2Boxes: 4,
+    category: "struct",
+    usage: "整組天平一體式高穩定底座（滿版 10mm 標準孔，防傾倒且可直接端取）"
+  },
   F5x15: {
     code: "7413-W10-J1W",
     name: "C-5×15孔長方框-白",
@@ -13,7 +23,7 @@ window.GIGO_CATALOG = {
     swatch: "#f8fafc",
     maxQty2Boxes: 30,
     category: "struct",
-    usage: "強化寬底座主框、雙柱龍門塔架主壁"
+    usage: "雙柱龍門塔架主壁（直立裝於大底盤中央）"
   },
   F5x10: {
     code: "7413-W10-I1W",
@@ -23,7 +33,7 @@ window.GIGO_CATALOG = {
     swatch: "#f1f5f9",
     maxQty2Boxes: 30,
     category: "struct",
-    usage: "底座左右防傾翼板、左右 10×10cm 承重托盤面"
+    usage: "左右 10×10cm 承重托盤外框（每側 2 片）"
   },
   R15: {
     code: "7413-W10-Z1W",
@@ -140,19 +150,19 @@ window.GIGO_CATALOG = {
 window.ASSEMBLY_STEPS = [
   {
     step: 1,
-    title: "步驟 1｜超寬獨立底座（平放桌面，不插大底盤）",
-    desc: "直接以 #1248R-CN 內附 2 片 C-5×15 孔長方框前後並排，左右再接 2 片 C-5×10 孔長方框，平放於桌面組成 25×10cm 獨立寬底座，並以 8 根 C-5 孔長條鎖緊外圍實體邊框（不需硬插進盒內大底盤槽孔）。",
+    title: "步驟 1｜鋪設 C-大底盤（30×20 cm 滿版實心孔）",
+    desc: "直接取出 #1248R-CN 內附的 1 片「C-大底盤（7125-W10-B1S，30×20 孔 = 300×200mm）」作為整座天平的一體式防傾底座！底盤滿版皆為 10mm 標準圓孔，不需拼接長方框，單邊放 1kg 重物也絕不晃動。",
     tips: [
-      "本底座為獨立平放式寬底盤，切勿將長方框硬塞進 #1248R-CN 附的大底盤（C-Jumbo Base Grid）方格內。",
-      "所有跨縫短結合鍵皆插在長方框最外圈的實體邊框孔位（z = ±0.5 與 ±4.5）。"
+      "兩盒 #1248R-CN 共附 4 片 C-大底盤，本作品僅需 1 片即可提供 30×20cm 超穩底面積。",
+      "底盤前半部空位可直接放置 20 顆紅齒輪砝碼，老師課堂示範可整盤端取不散落。"
     ]
   },
   {
     step: 2,
-    title: "步驟 2｜實框雙軌錨定樑＋雙柱龍門塔架",
-    desc: "將 2 根 C-15 孔超長條直接平鎖在底座中央兩條「實體內邊框（Z = ±0.5）」上（所有奇數垂直孔 ±1, ±3, ±5, ±7 全部直插底座實體孔！），再將前後兩片直立 C-5×15 孔長方框貼緊外側（Z = ±1.5），以偶數水平孔（x = -2, 0, +2）鎖死，絕不懸空於簍空處。",
+    title: "步驟 2｜大底盤直插錨定樑＋雙柱龍門塔架",
+    desc: "在 C-大底盤中央（Z = ±0.5）直接以黑色短結合鍵將 2 根 C-15 孔超長條的奇數垂直孔（x = ±3, ±5, ±7）插進大底盤鎖死，再將前後 2 片直立 C-5×15 孔長方框貼緊外側（Z = ±1.5），以偶數水平孔（x = -2, 0, +2）固定，穩固直立於大底盤上。",
     tips: [
-      "兩根錨定樑完全壓在底座 Z = ±0.5 實體邊框上，每根有 8 個真實垂直孔可直接插滿短結合鍵固定。",
+      "C-15 孔超長條直接壓在大底盤滿版孔上，每個奇數孔都能垂直插入短結合鍵，絕不會懸空。",
       "雙塔內側留出 20mm 淨空通道，足以讓 10mm 寬的橫樑核心順暢擺動不磨擦。"
     ]
   },
@@ -220,6 +230,36 @@ window.ASSEMBLY_STEPS = [
     roughness: 0.85,
     metalness: 0.05
   });
+
+  // C-大底盤（7125-W10-B1S，30×20 孔 = 300×200×10mm 滿版 10mm 孔網格底板）
+  function buildJumboBaseGridMesh(holesX, holesZ, colorHex) {
+    const group = new THREE.Group();
+    const h = 0.96;
+    const mat = getPlasticMat(colorHex, 0.42);
+    const body = new THREE.Mesh(new THREE.BoxGeometry(holesX - 0.06, h, holesZ - 0.06), mat);
+    body.castShadow = true;
+    body.receiveShadow = true;
+    group.add(body);
+
+    const holeGeo = new THREE.CylinderGeometry(0.24, 0.24, h + 0.04, 8);
+    const count = holesX * holesZ;
+    const inst = new THREE.InstancedMesh(holeGeo, holeMat, count);
+    const dummy = new THREE.Object3D();
+    let idx = 0;
+    for (let ix = 0; ix < holesX; ix++) {
+      for (let iz = 0; iz < holesZ; iz++) {
+        dummy.position.set(ix - (holesX - 1) / 2, 0, iz - (holesZ - 1) / 2);
+        dummy.updateMatrix();
+        inst.setMatrixAt(idx++, dummy.matrix);
+      }
+    }
+    inst.instanceMatrix.needsUpdate = true;
+    group.add(inst);
+
+    const edges = new THREE.EdgesGeometry(new THREE.BoxGeometry(holesX - 0.04, h + 0.01, holesZ - 0.04));
+    group.add(new THREE.LineSegments(edges, new THREE.LineBasicMaterial({ color: 0x475569, transparent: true, opacity: 0.45 })));
+    return group;
+  }
 
   // 真實簍空矩形孔框（C-5x15、C-5x10 長方框：僅外圍一圈 1 孔寬為實體孔框，中央完全簍空！）
   function buildFrameMesh(holesX, holesZ, colorHex) {
@@ -454,6 +494,7 @@ window.ASSEMBLY_STEPS = [
   function createPartMesh(typeKey) {
     const info = window.GIGO_CATALOG[typeKey];
     switch (typeKey) {
+      case "BASEGRID": return buildJumboBaseGridMesh(30, 20, info.colorHex);
       case "F5x15": return buildFrameMesh(15, 5, info.colorHex);
       case "F5x10": return buildFrameMesh(10, 5, info.colorHex);
       case "R15": return buildDualRodMesh(15, info.colorHex);
@@ -518,41 +559,13 @@ window.ASSEMBLY_STEPS = [
     }
 
     // =====================================================================
-    // STEP 1：超寬防傾強化底座（25×10 孔 = 250×100mm）
+    // STEP 1：鋪設 C-大底盤（7125-W10-B1S，30×20 孔滿版 10mm 孔網格）
+    // X 設於 +0.5 使 30 個 X 孔落於精確整數（-14..+15），Z 設於 0 使 20 個 Z 孔落於半整數（-9.5..+9.5）！
     // =====================================================================
-    addPart(staticGroup, "F5x15", [0, 0.5, 2.5], [0, 0, 0], 1, [0, -1.5, 2.2], "前側底座主框（15×5 孔）");
-    addPart(staticGroup, "F5x15", [0, 0.5, -2.5], [0, 0, 0], 1, [0, -1.5, -2.2], "後側底座主框（15×5 孔）");
-    addPart(staticGroup, "F5x10", [-10, 0.5, 0], [0, Math.PI / 2, 0], 1, [-3.8, -1.5, 0], "左側防傾延伸翼板（10×5 孔）");
-    addPart(staticGroup, "F5x10", [10, 0.5, 0], [0, Math.PI / 2, 0], 1, [3.8, -1.5, 0], "右側防傾延伸翼板（10×5 孔）");
-
-    // 跨前後縫鎖條（4 根 C-5 孔長條，只插在前後框實體邊框 z = ±0.5 孔位！）
-    const seamBars = [
-      { x: -6, z: 0.5 },
-      { x: -4, z: -0.5 },
-      { x: 4, z: -0.5 },
-      { x: 6, z: 0.5 }
-    ];
-    seamBars.forEach((b) => {
-      addPart(staticGroup, "R5", [b.x, 1.23, b.z], [Math.PI / 2, 0, Math.PI / 2], 1, [b.x * 0.12, 1.6, b.z * 2], "底座前後接縫跨鎖條");
-      [-0.5, 0.5].forEach((pz) => {
-        addPart(staticGroup, "SPEG", [b.x, 1.25, pz], [Math.PI / 2, 0, 0], 1, [b.x * 0.12, 2.6, b.z * 2], "底座實體邊框跨縫短結合鍵");
-      });
-    });
-
-    // 左右翼板與主框跨鎖條（4 根 C-5 孔長條，鎖在最前後實體外框 z = ±4.5！）
-    [-7.5, 7.5].forEach((sx) => {
-      [-4.5, 4.5].forEach((sz) => {
-        const cx = sx < 0 ? -7 : 7;
-        addPart(staticGroup, "R5", [cx, 1.23, sz], [Math.PI / 2, 0, 0], 1, [sx * 0.35, 1.8, sz * 0.5], "底座左右翼板實體外框跨鎖條");
-        [cx - 2, cx - 1, cx + 1, cx + 2].forEach((px) => {
-          addPart(staticGroup, "SPEG", [px, 1.25, sz], [Math.PI / 2, 0, 0], 1, [sx * 0.35, 2.8, sz * 0.5], "翼板實體外框短結合鍵");
-        });
-      });
-    });
+    addPart(staticGroup, "BASEGRID", [0.5, 0.5, 0], [0, 0, 0], 1, [0, -2.0, 0], "30×20cm 滿版 10mm 孔大底盤（一體式防傾底座）");
 
     // =====================================================================
-    // STEP 2：實框雙軌錨定樑（Z = ±0.5 底座實體邊框正上方！）＋ 雙柱龍門塔架（Z = ±1.5）
-    // 徹底避免零件落在長方框中央簍空區，每個垂直插銷 100% 插入底座實體邊框孔！
+    // STEP 2：大底盤直插雙軌錨定樑（Z = ±0.5）＋ 雙柱龍門塔架（Z = ±1.5）
     // =====================================================================
     addPart(staticGroup, "F5x15", [0, 8.5, 1.5], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, 4.0], "前側龍門立柱塔架（貼緊前錨定樑外側 Z=+1.5）");
     addPart(staticGroup, "F5x15", [0, 8.5, -1.5], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, -4.0], "後側龍門立柱塔架（貼緊後錨定樑外側 Z=-1.5）");
@@ -695,19 +708,19 @@ window.ASSEMBLY_STEPS = [
       });
     });
 
-    // 預留 20 顆紅色 C-20T 齒輪（#1248R-CN 兩盒全部預留不進主結構，陳列於前方預備區）
+    // 預留 20 顆紅色 C-20T 齒輪（整齊陳列於 C-大底盤前半部 Z = +5.5..+8.0 平台上）
     for (let i = 0; i < 20; i++) {
       const col = i % 10;
       const row = Math.floor(i / 10);
       const cx = (col - 4.5) * 2.35;
-      const cz = 8.0 + row * 2.35;
+      const cz = 5.8 + row * 2.35;
       addPart(
         reserveCubesGroup,
         "GEAR20",
-        [cx, 0.3, cz],
+        [cx, 1.28, cz],
         [0, 0, 0],
         6,
-        [cx * 0.2, 0, 2.5],
+        [cx * 0.2, 0.5, 2.5],
         "教案第 3 節專用等重砝碼單位（兩盒共 20 顆全數預留）"
       );
     }
