@@ -268,9 +268,9 @@ window.ASSEMBLY_STEPS = [
     });
     instSmall.instanceMatrix.needsUpdate = true;
 
-    // 12×12mm 大洞（方形大鏤空孔）
+    // Ø11.2mm 圓形大洞（與 Ø4.8mm 圓形小洞交錯排列）
     const bigHoleMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.95 });
-    const bigGeo = new THREE.BoxGeometry(1.18, h + 0.05, 1.18);
+    const bigGeo = new THREE.CylinderGeometry(0.56, 0.56, h + 0.05, 18);
     const instBig = new THREE.InstancedMesh(bigGeo, bigHoleMat, bigHoles.length);
     bigHoles.forEach(([hx, hz], idx) => {
       dummy.position.set(hx, 0, hz);
