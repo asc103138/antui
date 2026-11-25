@@ -266,7 +266,7 @@ window.ASSEMBLY_STEPS = [
     return group;
   }
 
-  // C-15 孔超長條（10mm×10mm 雙向孔）
+  // C-15 孔超長條（10mm×10mm 真實交錯雙向孔：偶數偏位為 Z 向水平孔、奇數偏位為 Y 向垂直孔！）
   function buildDualRodMesh(holes, colorHex) {
     const group = new THREE.Group();
     const mat = getPlasticMat(colorHex, 0.34);
@@ -275,21 +275,38 @@ window.ASSEMBLY_STEPS = [
     body.receiveShadow = true;
     group.add(body);
 
+    const zPositions = [];
+    const yPositions = [];
+    for (let i = 0; i < holes; i++) {
+      const offset = i - (holes - 1) / 2; // 15孔為 -7..+7
+      // 偶數偏位 (0, ±2, ±4, ±6) 為 Z 向水平孔；奇數偏位 (±1, ±3, ±5, ±7) 為 Y 向垂直孔
+      if (Math.round(Math.abs(offset)) % 2 === 0) {
+        zPositions.push(offset);
+      } else {
+        yPositions.push(offset);
+      }
+    }
+
     const holeGeoZ = new THREE.CylinderGeometry(0.24, 0.24, 1.0, 10);
     holeGeoZ.rotateX(Math.PI / 2);
-    const instZ = new THREE.InstancedMesh(holeGeoZ, holeMat, holes);
-    const holeGeoY = new THREE.CylinderGeometry(0.22, 0.22, 1.0, 10);
-    const instY = new THREE.InstancedMesh(holeGeoY, holeMat, holes);
-
+    const instZ = new THREE.InstancedMesh(holeGeoZ, holeMat, zPositions.length);
     const dummy = new THREE.Object3D();
-    for (let i = 0; i < holes; i++) {
-      dummy.position.set(i - (holes - 1) / 2, 0, 0);
+    zPositions.forEach((posX, idx) => {
+      dummy.position.set(posX, 0, 0);
       dummy.updateMatrix();
-      instZ.setMatrixAt(i, dummy.matrix);
-      instY.setMatrixAt(i, dummy.matrix);
-    }
+      instZ.setMatrixAt(idx, dummy.matrix);
+    });
     instZ.instanceMatrix.needsUpdate = true;
+
+    const holeGeoY = new THREE.CylinderGeometry(0.24, 0.24, 1.0, 10);
+    const instY = new THREE.InstancedMesh(holeGeoY, holeMat, yPositions.length);
+    yPositions.forEach((posX, idx) => {
+      dummy.position.set(posX, 0, 0);
+      dummy.updateMatrix();
+      instY.setMatrixAt(idx, dummy.matrix);
+    });
     instY.instanceMatrix.needsUpdate = true;
+
     group.add(instZ, instY);
 
     const edges = new THREE.EdgesGeometry(new THREE.BoxGeometry(holes - 0.03, 0.97, 0.97));
@@ -529,25 +546,17 @@ window.ASSEMBLY_STEPS = [
     addPart(staticGroup, "F5x15", [0, 8.5, 2.5], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, 4.5], "前側龍門立柱塔架（高 15 孔簍空框）");
     addPart(staticGroup, "F5x15", [0, 8.5, -2.5], [Math.PI / 2, Math.PI / 2, 0], 2, [0, 1.2, -4.5], "後側龍門立柱塔架（高 15 孔簍空框）");
 
-    // 內側 90° 雙軌錨定樑（2 根 C-15 孔超長條，兩端 x = ±7 精準鎖入底座實體端框！）
+    // 內側 90° 雙軌錨定樑（2 根 C-15 孔超長條：奇數偏位 ±7 為垂直孔鎖底盤、偶數偏位 -2/0/+2 為水平孔鎖塔架！）
     [-1.5, 1.5].forEach((rz) => {
       const signZ = rz > 0 ? 1 : -1;
-      addPart(staticGroup, "R15", [0, 1.5, rz], [0, 0, 0], 2, [0, 1.4, signZ * 1.5], "底座－塔架 90° 雙向孔橋接錨定樑");
-      // 兩端 x = ±7 向下鎖入底座實體側邊框
+      addPart(staticGroup, "R15", [0, 1.5, rz], [0, 0, 0], 2, [0, 1.4, signZ * 1.5], "底座－塔架 90° 交錯孔錨定樑（奇數孔鎖底盤、偶數孔鎖塔架）");
+      // 兩端 x = ±7（奇數偏位 = 真實垂直孔）向下鎖入底座實體側邊框
       [-7, 7].forEach((px) => {
-        addPart(staticGroup, "SPEG", [px, 1.0, rz], [Math.PI / 2, 0, 0], 2, [px * 0.1, 2.1, signZ * 1.5], "錨定樑鎖入底座實體端框短結合鍵");
+        addPart(staticGroup, "SPEG", [px, 1.0, rz], [Math.PI / 2, 0, 0], 2, [px * 0.1, 2.1, signZ * 1.5], "錨定樑垂直孔鎖入底座端框短結合鍵");
       });
-      // 向外水平鎖入塔架底部實體邊框（x = -2, -1, +1, +2）
-      [-2, -1, 1, 2].forEach((tx) => {
-        addPart(staticGroup, "SPEG", [tx, 1.5, rz + signZ * 0.55], [0, 0, 0], 2, [tx * 0.2, 1.4, signZ * 3.0], "錨定樑鎖入塔架底框短結合鍵");
-      });
-    });
-
-    // 塔架前後防外擴拉桿（Y = 3.5，2 根 C-5 孔長條 + 4 顆 C-二合一結合鍵）
-    [-2, 2].forEach((tx) => {
-      addPart(staticGroup, "R5", [tx, 3.5, 0], [0, Math.PI / 2, 0], 2, [tx * 1.4, 0.5, 0], "雙塔前後防外擴拉桿");
-      [-1.7, 1.7].forEach((tz) => {
-        addPart(staticGroup, "CON2IN1", [tx, 3.5, tz], [0, Math.PI / 2, 0], 2, [tx * 1.6, 0.5, tz * 1.2], "塔架拉桿二合一轉接座");
+      // x = -2, 0, +2（偶數偏位 = 真實水平孔）向外鎖入塔架底部實體邊框
+      [-2, 0, 2].forEach((tx) => {
+        addPart(staticGroup, "SPEG", [tx, 1.5, rz + signZ * 0.55], [0, 0, 0], 2, [tx * 0.2, 1.4, signZ * 3.0], "錨定樑水平孔鎖入塔架底框短結合鍵");
       });
     });
 
@@ -588,22 +597,23 @@ window.ASSEMBLY_STEPS = [
     });
 
     // =====================================================================
-    // STEP 5：三層複合強化等臂橫樑（掛載於 pivotGroup，相對於 (0,14.5,0)）
+    // STEP 5：三層複合強化等臂橫樑（嚴格遵守 C-15 孔交錯孔位奇偶規則！）
     // =====================================================================
-    addPart(pivotGroup, "R15", [0, 0, 0], [0, 0, 0], 5, [0, 4.5, 0], "等臂橫樑上層主核心（中心孔套入主軸）");
+    addPart(pivotGroup, "R15", [0, 0, 0], [0, 0, 0], 5, [0, 4.5, 0], "等臂橫樑上層主核心（偶數孔 x=0 套入主軸）");
     addPart(pivotGroup, "R15", [0, -1.0, 0], [0, 0, 0], 5, [0, 2.8, 0], "等臂橫樑下層抗彎補強樑");
 
-    [-6, -4, -2, 2, 4, 6].forEach((px) => {
-      addPart(pivotGroup, "SPEG", [px, -0.5, 0], [Math.PI / 2, 0, 0], 5, [px * 0.15, 3.6, 0], "雙層核心上下互鎖短結合鍵");
+    // 奇數偏位 x = ±1, ±3, ±5（真實垂直 Y 孔！）互鎖上下兩根 C-15 孔超長條
+    [-5, -3, -1, 1, 3, 5].forEach((px) => {
+      addPart(pivotGroup, "SPEG", [px, -0.5, 0], [Math.PI / 2, 0, 0], 5, [px * 0.15, 3.6, 0], "雙層核心奇數垂直孔互鎖短結合鍵");
     });
 
-    // 左右末端夾層承接轉接座（4 顆 C-二合一結合鍵，精準填滿前後夾板間 10mm 淨空）
+    // 左右末端夾層承接轉接座（x = ±8, ±12 整數孔位，向上 0.00mm 對齊托盤底樑）
     [-12, -8, 8, 12].forEach((cx) => {
       const dirX = cx < 0 ? -1 : 1;
       addPart(pivotGroup, "CON2IN1", [cx, 0, 0], [0, 0, 0], 5, [dirX * 3.0, 4.5, 0], "夾層橫樑末端二合一承接座（向上鎖固托盤）");
     });
 
-    // 前後三層夾板強化（4 根 C-11 孔長條）
+    // 前後三層夾板強化（4 根 C-11 孔長條，橫跨 x = ±3..±13）
     [-1, 1].forEach((dirX) => {
       [-0.74, 0.74].forEach((cz) => {
         addPart(
@@ -613,11 +623,11 @@ window.ASSEMBLY_STEPS = [
           [0, 0, 0],
           5,
           [dirX * 2.5, 4.5, cz * 4.5],
-          "橫樑前後抗彎夾板（與核心重疊 5 孔強化）"
+          "橫樑前後抗彎夾板（重疊核心偶數水平孔強化）"
         );
       });
-      // 紅色 C-長結合鍵貫穿三層（每側 6 顆，共 12 顆）
-      [3, 5, 7, 8, 10, 12].forEach((ox) => {
+      // 紅色 C-長結合鍵嚴格插在偶數水平孔 x = ±4, ±6（核心真實 Z 孔！）與 ±8, ±12（二合一結合鍵真實 Z 孔！）
+      [4, 6, 8, 12].forEach((ox) => {
         addPart(
           pivotGroup,
           "LPEG",
@@ -625,30 +635,30 @@ window.ASSEMBLY_STEPS = [
           [0, 0, 0],
           5,
           [dirX * ox * 0.25, 4.5, 4.8],
-          "貫穿前夾板＋核心＋後夾板之紅色長結合鍵"
+          "貫穿前夾板＋核心偶數Z孔/轉接座＋後夾板之紅色長結合鍵"
         );
       });
     });
 
     // =====================================================================
-    // STEP 6：左右 10×10cm 防漏格柵托盤（間隙≤10mm）＋ 20 顆紅齒輪砝碼
+    // STEP 6：左右 10×10cm 防漏格柵托盤（中心 X = ±10.5，全部孔位精準落於整數 X！）
     // =====================================================================
-    [-10, 10].forEach((panX) => {
+    [-10.5, 10.5].forEach((panX) => {
       const sideLabel = panX < 0 ? "左" : "右";
       const dirX = panX < 0 ? -1 : 1;
 
-      // 托盤底部橫鎖條（每側 2 根 C-5 孔長條，對接橫樑末端二合一結合鍵）
-      [panX - 2, panX + 2].forEach((cx) => {
-        addPart(pivotGroup, "R5", [cx, 0.92, 0.5], [Math.PI / 2, 0, Math.PI / 2], 6, [dirX * 3.5, 6.8, 0], `${sideLabel}托盤底部橫向鎖固樑`);
+      // 托盤底部橫鎖條（鎖於整數孔位 x = ±8, ±12，與橫樑二合一結合鍵 0.00mm 垂對！）
+      [dirX * 8, dirX * 12].forEach((cx) => {
+        addPart(pivotGroup, "R5", [cx, 0.92, 0.5], [Math.PI / 2, 0, Math.PI / 2], 6, [dirX * 3.5, 6.8, 0], `${sideLabel}托盤底部橫向鎖固樑（對齊 x=±8, ±12）`);
       });
 
-      // 2 片簍空 C-5×10 孔長方框組成 10×10cm 外框
+      // 2 片簍空 C-5×10 孔長方框（X 孔位 = 精確整數 ±6..±15，Z 孔位 = ±0.5..±4.5）
       addPart(pivotGroup, "F5x10", [panX, 1.65, 2.5], [0, 0, 0], 6, [dirX * 3.8, 8.5, 2.2], `${sideLabel}托盤前外框（5×10 簍空框）`);
       addPart(pivotGroup, "F5x10", [panX, 1.65, -2.5], [0, 0, 0], 6, [dirX * 3.8, 8.5, -2.2], `${sideLabel}托盤後外框（5×10 簍空框）`);
 
-      // 防漏格柵底板：4 根 C-11 孔長條置於 [-2.5, -0.5, +0.5, +2.5]，全盤每道縫隙嚴格 ≤ 10mm（Ø20mm 紅齒輪絕不掉落！）
-      [-2.5, -0.5, 0.5, 2.5].forEach((dx) => {
-        const sx = panX + dx;
+      // 防漏格柵底板：4 根 C-11 孔長條嚴格置於整數孔位 x = ±8, ±10, ±11, ±13（全盤縫隙 ≤ 10mm！）
+      [8, 10, 11, 13].forEach((ax) => {
+        const sx = dirX * ax;
         addPart(
           pivotGroup,
           "R11",
@@ -656,19 +666,21 @@ window.ASSEMBLY_STEPS = [
           [Math.PI / 2, 0, Math.PI / 2],
           6,
           [dirX * 4.2, 10.2, 0],
-          `${sideLabel}托盤防漏格柵條（跨鎖四條實體邊框，間隙≤10mm）`
+          `${sideLabel}托盤防漏格柵條（x=${sx} 整數對孔，間隙≤10mm）`
         );
-        // 鎖入前後框實體邊框 z = -4.5, -0.5, +0.5, +4.5（每根前後各插 2 顆黑短鍵 = 共 16 顆）
+        // 鎖入前後框實體邊框 z = -4.5, +4.5
         [-4.5, 4.5].forEach((pz) => {
           addPart(pivotGroup, "SPEG", [sx, 2.38, pz], [Math.PI / 2, 0, 0], 6, [dirX * 4.2, 11.2, pz * 0.4], "防漏格柵條固定短結合鍵");
         });
       });
 
-      // 外側防滾落擋邊條（C-3 孔長條）
-      const outerX = panX + dirX * 4.5;
+      // 外側防滾落擋邊條（C-3 孔長條平鋪於最外側實體邊框 x = ±15，垂直孔精準對齊 z = ±3.5, ±1.5！）
+      const outerX = dirX * 15;
       [-2.5, 2.5].forEach((rz) => {
-        addPart(pivotGroup, "R3", [outerX, 2.62, rz], [0, Math.PI / 2, 0], 6, [dirX * 5.2, 10.8, rz], `${sideLabel}托盤外側防滾擋邊條`);
-        addPart(pivotGroup, "SPEG", [outerX, 2.38, rz], [Math.PI / 2, 0, 0], 6, [dirX * 5.5, 11.5, rz], "擋邊條固定短結合鍵");
+        addPart(pivotGroup, "R3", [outerX, 2.38, rz], [Math.PI / 2, 0, Math.PI / 2], 6, [dirX * 5.2, 10.8, rz], `${sideLabel}托盤外側擋邊條（平鎖於 x=±15 實體外框）`);
+        [rz - 1, rz + 1].forEach((pz) => {
+          addPart(pivotGroup, "SPEG", [outerX, 2.38, pz], [Math.PI / 2, 0, 0], 6, [dirX * 5.5, 11.5, pz], "擋邊條固定短結合鍵");
+        });
       });
     });
 

@@ -140,11 +140,11 @@
   const assembly = window.buildGigoBalanceAssembly();
   scene.add(assembly.rootGroup);
 
-  // 左右托盤動態物品群組（置於防漏格柵底板頂面 Y = 2.62）
+  // 左右托盤動態物品群組（置於防漏格柵底板頂面 Y = 2.62，中心精準對齊 ±10.5）
   const leftPanLoadGroup = new THREE.Group();
-  leftPanLoadGroup.position.set(-10, 2.62, 0);
+  leftPanLoadGroup.position.set(-10.5, 2.62, 0);
   const rightPanLoadGroup = new THREE.Group();
-  rightPanLoadGroup.position.set(10, 2.62, 0);
+  rightPanLoadGroup.position.set(10.5, 2.62, 0);
   assembly.pivotGroup.add(leftPanLoadGroup, rightPanLoadGroup);
 
   // 高亮線框輔助器

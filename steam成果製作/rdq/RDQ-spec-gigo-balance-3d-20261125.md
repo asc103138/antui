@@ -9,7 +9,7 @@ telemetry:
   rounds: 1
   questions: 4
   q4_adopted: 1
-  revisions: 2
+  revisions: 3
 downstream: self
 ---
 
